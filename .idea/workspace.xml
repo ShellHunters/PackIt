@@ -13,6 +13,7 @@
       <list>
         <option value="module-info" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -28,7 +29,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/interfaceMagazinier" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -57,7 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1584293150249</updated>
       <workItem from="1584293151758" duration="359000" />
-      <workItem from="1584293839238" duration="1550000" />
+      <workItem from="1584293839238" duration="4122000" />
     </task>
     <servers />
   </component>
