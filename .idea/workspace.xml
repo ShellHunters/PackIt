@@ -2,25 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbce5c9c-24d0-4122-b099-1dcef8072705" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resource/fonts/Helvetica.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resource/fonts/Pacifico-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resource/icons/accountIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resource/icons/clientsIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resource/icons/dashboardIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resource/icons/fournisseursIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resource/icons/notificationIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resource/icons/parametresIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resource/icons/ventesIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resource/pictures/packIt.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackIt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PackIt.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resource/o.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +109,7 @@
       <workItem from="1584398356446" duration="2967000" />
       <workItem from="1584401353605" duration="3809000" />
       <workItem from="1584437128062" duration="1975000" />
-      <workItem from="1584439230115" duration="10450000" />
+      <workItem from="1584439230115" duration="11914000" />
     </task>
     <servers />
   </component>

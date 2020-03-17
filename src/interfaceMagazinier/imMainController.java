@@ -1,5 +1,6 @@
 package interfaceMagazinier;
 
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import javafx.beans.binding.Bindings;
@@ -10,13 +11,18 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 
 import java.net.URL;
+import java.security.SecureRandom;
 import java.util.ResourceBundle;
 
 public class imMainController implements Initializable {
+    @FXML public StackPane stackPane;
     @FXML public Button dashboardButton, ventesButton, fournisseursButton, clientsButton, parametresButton;
     @FXML public JFXHamburger hamburger;
     @FXML public MenuButton menuButton;
@@ -33,7 +39,6 @@ public class imMainController implements Initializable {
                 hamburgerTransition.play();
             }
         });
-        //
     }
 
     public void button(ActionEvent event) {

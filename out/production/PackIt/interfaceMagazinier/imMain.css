@@ -1,35 +1,35 @@
+/*FONT IMPORTATION*/
 @font-face {
     font-family: 'Pacifico';
     src: url('../resource/fonts/Pacifico-Regular.ttf');
-}/*Font importation named Pacifico*/
-
+}
+/*MAIN*/
 #mainFrame{
     -fx-background-color: #e9e9e9;
     -fx-font: bolder 16px "Trebuchet MS";
 }
 
+/*TOP MENU*/
 #topMenu{
     -fx-background-color: white;
 
 }
 
-#topMenu .menu-button{
+#topMenu .menu-button {
     -fx-background-color: transparent;
     -fx-mark-color: transparent;
     -fx-padding: 0 0 0 0;
 }
 
-
-
+/*Side Bar*/
 #mainIcon{
     -fx-background-color: white;
 }
+
 #mainIcon .label{
-    -fx-font: bolder 45px "Pacifico";
+    -fx-font: bolder 40px "Pacifico";
     -fx-text-fill: #bb0b44;
 }
-
-
 
 #sideMenu{
     -fx-background-color: white;

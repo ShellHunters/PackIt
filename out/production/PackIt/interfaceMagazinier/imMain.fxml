@@ -183,14 +183,14 @@
                   <Image url="@../resource/icons/accountIcon.png" />
                </image>
             </ImageView>
-            <Label prefHeight="50.0" prefWidth="230.0" text="Nom Prenom" />
-            <MenuButton fx:id="menuButton" alignment="CENTER" mnemonicParsing="false">
+            <Label prefHeight="50.0" prefWidth="200.0" text="Nom Prenom" />
+            <MenuButton fx:id="menuButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="100.0">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#logOut" text="LOG OUT" />
                 <MenuItem mnemonicParsing="false" onAction="#exit" text="EXIT" />
               </items>
                <graphic>
-                  <JFXHamburger fx:id="hamburger" />
+                  <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="0.0" />
                </graphic>
             </MenuButton>
          </children>
