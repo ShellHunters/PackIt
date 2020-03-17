@@ -21,12 +21,20 @@
     -fx-padding: 0 0 0 0;
 }
 
-/*Side Bar*/
-#mainIcon{
-    -fx-background-color: white;
+#topMenu .context-menu{
+    -fx-padding: 15 5 15 5;
 }
 
-#mainIcon .label{
+#topMenu .context-menu .menu-item:focused, #topMenu .context-menu .menu-item:hover{
+    -fx-background-color: #bb0b44;
+}
+
+#notificationMenu .context-menu{
+    -fx-pref-width: 600px;
+}
+
+/*Side Bar*/
+#sideMenu .label{
     -fx-font: bolder 40px "Pacifico";
     -fx-text-fill: #bb0b44;
 }

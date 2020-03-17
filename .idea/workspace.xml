@@ -3,11 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="cbce5c9c-24d0-4122-b099-1dcef8072705" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,7 +112,8 @@
       <workItem from="1584398356446" duration="2967000" />
       <workItem from="1584401353605" duration="3809000" />
       <workItem from="1584437128062" duration="1975000" />
-      <workItem from="1584439230115" duration="11914000" />
+      <workItem from="1584439230115" duration="18488000" />
+      <workItem from="1584478555261" duration="4907000" />
     </task>
     <servers />
   </component>

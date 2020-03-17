@@ -3,11 +3,9 @@ package interfaceMagazinier;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
-import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,19 +14,19 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-
 import java.net.URL;
-import java.security.SecureRandom;
 import java.util.ResourceBundle;
 
 public class imMainController implements Initializable {
-    @FXML public StackPane stackPane;
     @FXML public Button dashboardButton, ventesButton, fournisseursButton, clientsButton, parametresButton;
     @FXML public JFXHamburger hamburger;
     @FXML public MenuButton menuButton;
+    @FXML public ImageView notificationImage;
+    @FXML public StackPane mainStackPane;
+
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle){
         //Hamburger menu
         HamburgerSlideCloseTransition hamburgerTransition = new HamburgerSlideCloseTransition(hamburger);
         hamburgerTransition.setRate(-1);
@@ -38,6 +36,12 @@ public class imMainController implements Initializable {
                 hamburgerTransition.setRate(hamburgerTransition.getRate()*-1);
                 hamburgerTransition.play();
             }
+        });
+        //Notifications
+        JFXDialog notification = new JFXDialog();
+        notificationImage.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            notification.setContent(new Label("NOTIFICATIONSSQSDFQSDDFHGQSTFGQSTYFQSDF"));
+            notification.show(mainStackPane);
         });
     }
 
@@ -59,5 +63,8 @@ public class imMainController implements Initializable {
 
     public void exit(){
         System.exit(0);
+    }
+
+    public void getNotifications(){
     }
 }

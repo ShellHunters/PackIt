@@ -13,194 +13,210 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="mainFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" stylesheets="@imMain.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.imMainController">
+
+<StackPane fx:id="mainStackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.imMainController">
    <children>
-      <VBox id="sideMenu" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="320.0">
+      <AnchorPane id="mainFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" stylesheets="@imMain.css">
          <children>
-            <HBox id="mainIcon" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="320.0">
+            <VBox id="sideMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="250.0">
                <children>
-                  <Label text="PACKITIN" />
+                  <Label text="PACKITIN">
+                     <VBox.margin>
+                        <Insets bottom="3.0" left="6.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Separator prefHeight="0.0" prefWidth="100.0">
+                     <VBox.margin>
+                        <Insets bottom="50.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <JFXButton fx:id="dashboardButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="DASHBOARD">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resource/icons/dashboardIcon.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <ripplerFill>
+                        <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="WHITE" offset="0.007662835249042145" />
+                              <Stop color="WHITE" offset="0.07560137457044673" />
+                              <Stop color="#ffccd2" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <JFXButton fx:id="ventesButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="VENTES" textAlignment="RIGHT">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resource/icons/ventesIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <ripplerFill>
+                        <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="WHITE" offset="0.007662835249042145" />
+                              <Stop color="WHITE" offset="0.07560137457044673" />
+                              <Stop color="#ffccd2" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <JFXButton fx:id="fournisseursButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="FOURNISSEURS" textAlignment="RIGHT">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resource/icons/fournisseursIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <ripplerFill>
+                        <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="WHITE" offset="0.007662835249042145" />
+                              <Stop color="WHITE" offset="0.07560137457044673" />
+                              <Stop color="#ffccd2" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <JFXButton fx:id="clientsButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="CLIENTS" textAlignment="RIGHT">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resource/icons/clientsIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <ripplerFill>
+                        <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="WHITE" offset="0.007662835249042145" />
+                              <Stop color="WHITE" offset="0.07560137457044673" />
+                              <Stop color="#ffccd2" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <JFXButton fx:id="parametresButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="PARAMETRES" textAlignment="RIGHT">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resource/icons/parametresIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <ripplerFill>
+                        <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="WHITE" offset="0.007662835249042145" />
+                              <Stop color="WHITE" offset="0.07560137457044673" />
+                              <Stop color="#ffccd2" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
+            </VBox>
+            <HBox id="topMenu" alignment="CENTER_RIGHT" layoutX="250.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="1350.0" spacing="17.0">
+               <children>
+                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="110.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <JFXTextField focusColor="#bb0b44" prefWidth="500.0" promptText="Recherche">
+                     <font>
+                        <Font name="Trebuchet MS Bold" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="150.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Separator>
+                  <ImageView fx:id="notificationImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/icons/notificationIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Separator layoutX="916.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Separator>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/icons/accountIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="50.0" prefWidth="200.0" text="Nom Prenom">
+                     <HBox.margin>
+                        <Insets right="70.0" />
+                     </HBox.margin>
+                  </Label>
+                  <MenuButton fx:id="menuButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="100.0">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#logOut" text="LOG OUT" />
+                      <MenuItem mnemonicParsing="false" onAction="#exit" text="EXIT" />
+                    </items>
+                     <graphic>
+                        <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="0.0" />
+                     </graphic>
+                  </MenuButton>
+               </children>
+               <opaqueInsets>
                   <Insets />
-               </VBox.margin>
+               </opaqueInsets>
             </HBox>
-            <Separator prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="50.0" />
-               </VBox.margin>
-            </Separator>
-            <JFXButton fx:id="dashboardButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="320.0" text="DASHBOARD">
+            <AnchorPane id="content" layoutX="320.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1280.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resource/icons/dashboardIcon.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </ImageView>
-               </graphic>
-               <ripplerFill>
-                  <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="WHITE" />
-                        <Stop color="WHITE" offset="0.007662835249042145" />
-                        <Stop color="WHITE" offset="0.07560137457044673" />
-                        <Stop color="#ffccd2" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-            </JFXButton>
-            <JFXButton fx:id="ventesButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="320.0" text="VENTES" textAlignment="RIGHT">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resource/icons/ventesIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <ripplerFill>
-                  <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="WHITE" />
-                        <Stop color="WHITE" offset="0.007662835249042145" />
-                        <Stop color="WHITE" offset="0.07560137457044673" />
-                        <Stop color="#ffccd2" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-            </JFXButton>
-            <JFXButton fx:id="fournisseursButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="320.0" text="FOURNISSEURS" textAlignment="RIGHT">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resource/icons/fournisseursIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <ripplerFill>
-                  <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="WHITE" />
-                        <Stop color="WHITE" offset="0.007662835249042145" />
-                        <Stop color="WHITE" offset="0.07560137457044673" />
-                        <Stop color="#ffccd2" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-            </JFXButton>
-            <JFXButton fx:id="clientsButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="320.0" text="CLIENTS" textAlignment="RIGHT">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resource/icons/clientsIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <ripplerFill>
-                  <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="WHITE" />
-                        <Stop color="WHITE" offset="0.007662835249042145" />
-                        <Stop color="WHITE" offset="0.07560137457044673" />
-                        <Stop color="#ffccd2" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-            </JFXButton>
-            <JFXButton fx:id="parametresButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="320.0" text="PARAMETRES" textAlignment="RIGHT">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resource/icons/parametresIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <ripplerFill>
-                  <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="WHITE" />
-                        <Stop color="WHITE" offset="0.007662835249042145" />
-                        <Stop color="WHITE" offset="0.07560137457044673" />
-                        <Stop color="#ffccd2" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-            </JFXButton>
+            </AnchorPane>
          </children>
-      </VBox>
-      <HBox id="topMenu" alignment="CENTER_LEFT" layoutX="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="1280.0" spacing="17.0">
-         <children>
-            <Separator orientation="VERTICAL" prefHeight="200.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <HBox.margin>
-                  <Insets right="50.0" />
-               </HBox.margin>
-            </Separator>
-            <JFXTextField focusColor="#bb0b44" prefWidth="500.0" promptText="Recherche">
-               <font>
-                  <Font name="Trebuchet MS Bold" size="16.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="200.0" />
-               </HBox.margin>
-            </JFXTextField>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resource/icons/notificationIcon.png" />
-               </image>
-            </ImageView>
-            <Separator layoutX="916.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0" />
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resource/icons/accountIcon.png" />
-               </image>
-            </ImageView>
-            <Label prefHeight="50.0" prefWidth="200.0" text="Nom Prenom" />
-            <MenuButton fx:id="menuButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="100.0">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#logOut" text="LOG OUT" />
-                <MenuItem mnemonicParsing="false" onAction="#exit" text="EXIT" />
-              </items>
-               <graphic>
-                  <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="0.0" />
-               </graphic>
-            </MenuButton>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets></HBox>
-      <AnchorPane id="content" layoutX="320.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
       </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>
