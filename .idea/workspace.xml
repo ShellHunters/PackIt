@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cbce5c9c-24d0-4122-b099-1dcef8072705" name="Default Changelist" comment="" />
+    <list default="true" id="cbce5c9c-24d0-4122-b099-1dcef8072705" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/fonts/Helvetica.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/fonts/Pacifico-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/icons/accountIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/icons/clientsIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/icons/dashboardIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/icons/fournisseursIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/icons/notificationIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/icons/parametresIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/icons/ventesIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/pictures/packIt.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackIt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PackIt.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resource/o.html" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,9 +33,9 @@
       <list>
         <option value="module-info" />
         <option value="HTML File" />
+        <option value="CSS File" />
         <option value="Class" />
         <option value="FxmlFile" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -29,17 +49,26 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/interfaceMagazinier" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resource/icons" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\fonts" />
+      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\pictures" />
+      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\icons" />
+      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\fonts" />
       <recent name="C:\Users\Nassim\Desktop\PackIt\src\interfaceMagazinier" />
     </key>
   </component>
@@ -55,6 +84,26 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="imMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="interfaceMagazinier.imMain" />
+      <module name="PackIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="interfaceMagazinier.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.imMain" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -66,7 +115,13 @@
       <option name="presentableId" value="Default" />
       <updated>1584293150249</updated>
       <workItem from="1584293151758" duration="359000" />
-      <workItem from="1584293839238" duration="5212000" />
+      <workItem from="1584293839238" duration="6090000" />
+      <workItem from="1584351159718" duration="12950000" />
+      <workItem from="1584391763165" duration="6535000" />
+      <workItem from="1584398356446" duration="2967000" />
+      <workItem from="1584401353605" duration="3809000" />
+      <workItem from="1584437128062" duration="1975000" />
+      <workItem from="1584439230115" duration="10450000" />
     </task>
     <servers />
   </component>
@@ -78,7 +133,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
