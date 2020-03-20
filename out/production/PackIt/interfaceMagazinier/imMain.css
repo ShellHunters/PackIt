@@ -5,52 +5,74 @@
 }
 /*MAIN*/
 #mainFrame{
-    -fx-background-color: #e9e9e9;
+    /*-fx-background-color: red;*/
     -fx-font: bolder 16px "Trebuchet MS";
+    -fx-background-radius: 30;
 }
 
 /*TOP MENU*/
 #topMenu{
-    -fx-background-color: white;
+    -fx-background-color: #40bfc1;
+    -fx-background-radius: 30;
+}
 
+#topMenu .label{
+    -fx-text-fill: white;
 }
 
 #topMenu .menu-button {
     -fx-background-color: transparent;
-    -fx-mark-color: transparent;
+    -fx-mark-color: #40bfc1;
     -fx-padding: 0 0 0 0;
 }
 
+#topMenu .jfx-hamburger StackPane{
+    -fx-background-color: white;
+}
+
 #topMenu .context-menu{
+    -fx-background-radius: 15;
+    -fx-background-color: white;
     -fx-padding: 15 5 15 5;
 }
 
-#topMenu .context-menu .menu-item:focused, #topMenu .context-menu .menu-item:hover{
-    -fx-background-color: #bb0b44;
+#topMenu .context-menu .menu-item .label{
+    -fx-text-fill: black;
 }
 
-#notificationMenu .context-menu{
-    -fx-pref-width: 600px;
+#topMenu .context-menu .menu-item:focused, #topMenu .context-menu .menu-item:hover{
+    -fx-background-color: #f0134d;
+}
+
+#topMenu .context-menu .menu-item:focused .label, #topMenu .context-menu .menu-item:hover .label{
+    -fx-text-fill: white;
 }
 
 /*Side Bar*/
-#sideMenu .label{
-    -fx-font: bolder 40px "Pacifico";
-    -fx-text-fill: #bb0b44;
+#sideMenu{
+    -fx-background-color: #40bfc1;
+    -fx-background-radius: 30;
 }
 
-#sideMenu{
-    -fx-background-color: white;
+#sideMenu .label{
+    -fx-font: bolder 40px "Pacifico";
+    -fx-text-fill: #f0134d;
 }
 
 #sideMenu .button{
     -fx-padding: 0 20 0 0;
+    -fx-text-fill: white ;
 }
 
 #sideMenu .button:hover{
-    -fx-text-fill: #bb0b44;
+    -fx-text-fill: #f5f0e3;
 }
 
 .activeButton{
-    -fx-background-color: linear-gradient(to left, #ffccd2, white);
+    -fx-background-color: linear-gradient(to left, #f0134d, transparent);
+}
+
+#content{
+    -fx-background-color: #f5f0e3;
+    -fx-background-radius: 30;
 }
