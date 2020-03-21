@@ -1,0 +1,23 @@
+/*FONT IMPORTATION*/
+@font-face {
+    font-family: 'Pacifico';
+    src: url('../resource/fonts/Pacifico-Regular.ttf');
+}
+/*MAIN*/
+#mainFrame{
+    /*-fx-background-color: red;*/
+    -fx-font: bolder 16px "Trebuchet MS";
+    -fx-background-radius: 15;
+    -fx-background-color: #f5f0e3;
+}
+
+#appName{
+    -fx-font: bolder 46px "Pacifico";
+    -fx-text-fill: #f0134d;
+}
+
+.jfx-button{
+    -fx-background-color: #40bfc1;
+    -fx-text-fill: #f5f0e3;
+    -fx-font-size: 24;
+}

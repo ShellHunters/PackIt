@@ -12,15 +12,10 @@ public class identificationMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("loginMain.fxml"));
-        Parent registerRoot = FXMLLoader.load(getClass().getResource("registerMain.fxml"));
 
         Scene loginScene = new Scene(loginRoot);
         loginScene.getStylesheets().add(getClass().getResource("identificationMain.css").toString());
         loginScene.setFill(Color.TRANSPARENT);
-
-        Scene registerMain = new Scene(loginRoot);
-        registerMain.getStylesheets().add(getClass().getResource("identificationMain.css").toString());
-        registerMain.setFill(Color.TRANSPARENT);
 
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setScene(loginScene);

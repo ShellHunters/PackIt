@@ -2,19 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbce5c9c-24d0-4122-b099-1dcef8072705" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/identification/identificationMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/identification/loginMain.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/identification/registerMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_48_bin.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/icons/backArrowBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/icons/closeIconBlack.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackIt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PackIt.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/identification/login/loginMain.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/identification/login/loginMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/identification/register/registerMain.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/identification/register/registerMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/identification/identificationMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/identification/identificationMain.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/identification/loginMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/identification/loginMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/identification/registerMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/identification/registerMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/resource/o.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/identification/identificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/identificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/identification/identificationMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/identificationMain.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/identification/identificationMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/identificationMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/identification/loginMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/loginMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/identification/registerMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/registerMain.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,13 +43,18 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/Program Files/Java/Jfoenix/jfoenix-9.0.8.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resource/icons" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\icons" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Nassim\Desktop\PackIt\src\identification" />
       <recent name="C:\Users\Nassim\Desktop\PackIt\src\identification\login" />
@@ -105,6 +109,8 @@
       <workItem from="1584786802038" duration="526000" />
       <workItem from="1584787544729" duration="24000" />
       <workItem from="1584788249191" duration="57000" />
+      <workItem from="1584811308596" duration="5909000" />
+      <workItem from="1584826716294" duration="3243000" />
     </task>
     <servers />
   </component>
