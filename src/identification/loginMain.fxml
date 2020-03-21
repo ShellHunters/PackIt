@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="500.0" spacing="50.0">
+         <children>
+            <Label text="Pack It In" />
+            <JFXTextField promptText="E-Mail" />
+            <JFXPasswordField promptText="Password" />
+         </children>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="40.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
