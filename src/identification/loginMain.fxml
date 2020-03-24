@@ -21,6 +21,7 @@
       <Label id="appName" alignment="CENTER" layoutY="50.0" prefWidth="500.0" text="Pack It In" />
       <VBox fx:id="loginContent" alignment="TOP_CENTER" layoutY="125.0" prefHeight="500.0" prefWidth="500.0" spacing="50.0">
          <children>
+            <Label fx:id="status" alignment="CENTER" prefWidth="450.0" textFill="RED" />
             <JFXTextField fx:id="emailField" focusColor="#f0134d" promptText="E-Mail" />
             <JFXPasswordField fx:id="passwordField" focusColor="#f0134d" promptText="Password" />
             <JFXButton id="loginButton" onAction="#login" text="Login" />

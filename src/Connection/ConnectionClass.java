@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionClass {
-    public Connection connection;
-    public  Connection getConnection(){
+    static public Connection connection;
+    static public Connection getConnection(){
         String dbName="user";
         String userName="root";
         String password="";

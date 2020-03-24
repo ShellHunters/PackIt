@@ -20,6 +20,7 @@
       <Label id="appName" alignment="CENTER" layoutY="50.0" prefWidth="500.0" text="Pack It In" />
       <VBox fx:id="registerContent" alignment="TOP_CENTER" layoutY="115.0" prefHeight="500.0" prefWidth="500.0" spacing="40.0">
          <children>
+            <Label fx:id="status" alignment="CENTER" prefWidth="450.0" textFill="RED" />
             <JFXTextField fx:id="nameField" focusColor="#f0134d" layoutX="60.0" layoutY="157.0" promptText="Full name" />
             <JFXTextField fx:id="emailField" focusColor="#f0134d" promptText="E-Mail" />
             <JFXPasswordField fx:id="passwordField" focusColor="#f0134d" promptText="Password" />

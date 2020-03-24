@@ -5,57 +5,53 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ResourceBundle;
+import java.sql.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class identificationController implements Initializable {
+public class identificationController{
 
     @FXML public JFXTextField emailField, nameField;
     @FXML public JFXPasswordField passwordField, passwordConfirmationField;
 
     @FXML public AnchorPane identificationContainer;
 
-    Object[] registerErrors;
+    @FXML public Label status;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Errors setup for tests and displays
-        registerErrors = new Object[]{
-                new Label("Registeration not completed"),
-                new Label("Your password confirmation is not correct"),
-                new Label("Your email already exists")
-        };
-        for (int i = 0; i< registerErrors.length; i++){
-            ((Label) registerErrors[i]).setStyle("-fx-text-fill: red;");
-            ((Label) registerErrors[i]).setId("error");
+    @FXML public void login() throws SQLException {
+        if (!loginCompleteCheck()) return;
+
+        Connection connection = ConnectionClass.getConnection();
+        String sql = "SELECT * FROM logins where email= ? and password= ?  ";//Query
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,emailField.getText());
+        preparedStatement.setString(2,passwordField.getText());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (!resultSet.next()) {
+            status.setText("Enter a correct Email/Password ");
+            emailField.setText(""); passwordField.setText("");
+        } else {
+            status.setTextFill(Color.GREEN);
+            status.setText("Login successful..Redirecting..." );
         }
     }
 
-    @FXML public void login(){
-        //LA BENDAD HNA TEKTEB LOGIN TA3K
-    }
-
     @FXML public void register() throws SQLException, IOException {
-        VBox content =(VBox)identificationContainer.getChildren().get(2);
 
-        if (!registrationCompleteCheck(content)) return;
-        if (!passwordConfirmationCheck(content)) return;
+        if ((!registrationCompleteCheck()))return;
+        if (!passwordConfirmationCheck()) return ;
 
-        ConnectionClass connectionClass = new ConnectionClass();
-        Connection connection = connectionClass.getConnection();
+
+        Connection connection = ConnectionClass.getConnection();
         Statement statement = connection.createStatement();
-
-        if (!existinEmailCheck(content, statement, connection)) return;
+        if (!validateEmail()) return;
+        if (!existinEmailCheck(connection)) return;
         String sql = "INSERT INTO logins (email, nom, password) VALUES ('" + emailField.getText() + "', '" + nameField.getText() + "', '" + passwordField.getText() + "')";
         statement.executeUpdate(sql);
         connection.close();
@@ -77,47 +73,66 @@ public class identificationController implements Initializable {
     }
 
     //Errors check methods
-    void deleteErrorMessage(VBox content){
-        if(content.getChildren().get(0).getId() == "error") content.getChildren().remove(0);
+    void deleteErrorMessage(){
+        if(!status.getText().equals("")) status.setText("");
     }
 
-    boolean registrationCompleteCheck(VBox content){
+    boolean loginCompleteCheck(){
+        if (passwordField.getText().equals("") || emailField.getText().equals("")) {
+            status.setText("Fill all the text fields");
+            return false;
+        }
+        return true;
+    }
+
+    boolean registrationCompleteCheck(){
         if (passwordField.getText().equals("") || passwordConfirmationField.getText().equals("") || emailField.getText().equals("") || nameField.getText().equals("")) {
-            if (content.getChildren().get(0).getId().equals("error")) content.getChildren().remove(0);
-            content.getChildren().add(0, (Label)registerErrors[0]);
+            status.setText("Registeration not completed");
             return false;
         }
         else {
-            deleteErrorMessage(content);
+            deleteErrorMessage();
             return true;
         }
     }
 
-    boolean passwordConfirmationCheck(VBox content){
+    boolean passwordConfirmationCheck(){
         if (!passwordField.getText().equals(passwordConfirmationField.getText())){
-            if (!content.getChildren().get(0).getId().equals("error")) content.getChildren().add(0, (Label)registerErrors[1]);
+            if (status.getText().equals("")) status.setText("Your password confirmation is not correct");
             passwordField.setText("");
             passwordConfirmationField.setText("");
             return false;
         }
         else {
-            deleteErrorMessage(content);
+            deleteErrorMessage();
             return true;
         }
     }
 
-    boolean existinEmailCheck(VBox content, Statement statement, Connection connection) throws SQLException {
-        String query = "SELECT * FROM logins";
-        ResultSet rs = statement.executeQuery(query);
-        while (rs.next()){
-            String email = rs.getString("email");
-            if (email.equals(emailField.getText())){
-                if (content.getChildren().get(0).getId() != "error") content.getChildren().add(0, (Label)registerErrors[2]);
-                connection.close();
-                return false;
-            }
+    boolean existinEmailCheck(Connection connection) throws SQLException {
+        String query = "SELECT * FROM logins where email= ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, emailField.getText());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()){
+            status.setText("Your email already exists");
+            emailField.setText("");
+            return false;
         }
-        deleteErrorMessage(content);
+        deleteErrorMessage();
         return true;
+    }
+    private boolean validateEmail () {
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9-[-]]+([.][a-zA-Z]+)+") ;
+        Matcher matcher = pattern.matcher(emailField.getText()) ;
+        if (matcher.find() && matcher.group().equals(emailField.getText())) {
+            return true ;
+        }
+        else
+        {
+            status.setText("Please Entre Valid Email ");
+
+            return false ;
+        }
     }
 }

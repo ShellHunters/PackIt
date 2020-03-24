@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbce5c9c-24d0-4122-b099-1dcef8072705" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_48.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Connection/ConnectionClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_9.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_8.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PackIt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PackIt.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/Connection/ConnectionClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/Connection/ConnectionClass.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackIt/identification/identificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/identification/identificationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/identification/loginMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/identification/loginMain.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackIt/identification/registerMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/identification/registerMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackIt/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Connection/ConnectionClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Connection/ConnectionClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/identification/identificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/identificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/identification/loginMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/loginMain.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/identification/registerMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/registerMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,12 +38,17 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/Program Files/Java/mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar!/" />
+    <property name="last_opened_file_path" value="C:/Program Files/Java/javafx-sdk-11.0.2/lib/javafx.web.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -59,18 +65,6 @@
       <recent name="C:\Users\Nassim\Desktop\PackIt\src" />
       <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\icons" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="identificationMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -114,6 +108,8 @@
       <workItem from="1584830414555" duration="135000" />
       <workItem from="1584880349168" duration="8622000" />
       <workItem from="1584891607765" duration="7516000" />
+      <workItem from="1585056242796" duration="1027000" />
+      <workItem from="1585057742347" duration="5654000" />
     </task>
     <servers />
   </component>
@@ -132,5 +128,39 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="473" y="155" key="FileChooserDialogImpl" timestamp="1585064147897">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="473" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1585064147897" />
+    <state width="1493" height="229" key="GridCell.Tab.0.bottom" timestamp="1585066578613">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="229" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585066578613" />
+    <state width="1493" height="229" key="GridCell.Tab.0.center" timestamp="1585066578612">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="229" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585066578612" />
+    <state width="1493" height="229" key="GridCell.Tab.0.left" timestamp="1585066578612">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="229" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585066578612" />
+    <state width="1493" height="229" key="GridCell.Tab.0.right" timestamp="1585066578613">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="229" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585066578613" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1585064151729">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585064151729" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1585064059487">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1585064059487" />
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585066130205">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1585066130205" />
   </component>
 </project>
