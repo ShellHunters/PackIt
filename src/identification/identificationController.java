@@ -45,12 +45,12 @@ public class identificationController{
     @FXML public void register() throws SQLException, IOException {
 
         if ((!registrationCompleteCheck()))return;
-        if (!passwordConfirmationCheck()) return ;
-
+        if (!validateEmail()) return;
+        if (!passwordConfirmationCheck()) return;
 
         Connection connection = ConnectionClass.getConnection();
         Statement statement = connection.createStatement();
-        if (!validateEmail()) return;
+
         if (!existinEmailCheck(connection)) return;
         String sql = "INSERT INTO logins (email, nom, password) VALUES ('" + emailField.getText() + "', '" + nameField.getText() + "', '" + passwordField.getText() + "')";
         statement.executeUpdate(sql);
@@ -124,14 +124,13 @@ public class identificationController{
     }
     private boolean validateEmail () {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9-[-]]+([.][a-zA-Z]+)+") ;
-        Matcher matcher = pattern.matcher(emailField.getText()) ;
+        Matcher matcher = pattern.matcher(emailField.getText());
         if (matcher.find() && matcher.group().equals(emailField.getText())) {
             return true ;
         }
         else
         {
-            status.setText("Please Entre Valid Email ");
-
+            status.setText("Entre a valid email");
             return false ;
         }
     }
