@@ -1,91 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cbce5c9c-24d0-4122-b099-1dcef8072705" name="Default Changelist" comment="">
-<<<<<<< HEAD
+    <list default="true" id="0b91469d-c684-461c-9bd4-bc5a4bfbf27e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/identification/identificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/identification/identificationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/o.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackIt/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/identification/identificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/identificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-=======
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackIt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PackIt.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackIt/identification/identificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/identification/identificationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/identification/identificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/identificationController.java" afterDir="false" />
-    </list>
->>>>>>> origin/master
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="module-info" />
-        <option value="HTML File" />
-        <option value="CSS File" />
-        <option value="Class" />
-        <option value="FxmlFile" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="ProjectId" id="1ZAsI9nzx3IoV9mfxYCcA4f9v4a" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
+  <component name="ProjectId" id="1ZfViNkfv8jSc8NsLbZwkFmPaDB" />
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-<<<<<<< HEAD
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resource/icons" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
-=======
-    <property name="last_opened_file_path" value="C:/Program Files/Java/JavaFX 11.0.2/javafx-sdk-11.0.2/lib/javafx.web.jar!/" />
-    <property name="nodejs_package_manager_path" value="npm" />
->>>>>>> origin/master
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
-  </component>
-  <component name="RecentsManager">
-<<<<<<< HEAD
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\icons" />
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\fonts" />
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src\interfaceMagazinier" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\fonts" />
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\pictures" />
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource" />
-=======
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src\identification" />
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src\identification\login" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src" />
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\icons" />
->>>>>>> origin/master
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -100,21 +40,12 @@
     </option>
   </component>
   <component name="RunManager">
-<<<<<<< HEAD
-    <configuration name="imMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="interfaceMagazinier.imMain" />
-      <module name="PackIt" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="interfaceMagazinier.*" />
-=======
     <configuration name="identificationMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="identification.identificationMain" />
       <module name="PackIt" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="identification.*" />
->>>>>>> origin/master
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -124,11 +55,7 @@
     </configuration>
     <recent_temporary>
       <list>
-<<<<<<< HEAD
-        <item itemvalue="Application.imMain" />
-=======
         <item itemvalue="Application.identificationMain" />
->>>>>>> origin/master
       </list>
     </recent_temporary>
   </component>
@@ -137,39 +64,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cbce5c9c-24d0-4122-b099-1dcef8072705" name="Default Changelist" comment="" />
-      <created>1584293150249</created>
+      <changelist id="0b91469d-c684-461c-9bd4-bc5a4bfbf27e" name="Default Changelist" comment="" />
+      <created>1585163756530</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1584293150249</updated>
-      <workItem from="1584293151758" duration="359000" />
-<<<<<<< HEAD
-      <workItem from="1584293839238" duration="6090000" />
-      <workItem from="1584351159718" duration="12950000" />
-      <workItem from="1584391763165" duration="6535000" />
-      <workItem from="1584398356446" duration="2967000" />
-      <workItem from="1584401353605" duration="3809000" />
-      <workItem from="1584437128062" duration="1975000" />
-      <workItem from="1584439230115" duration="18488000" />
-      <workItem from="1584478555261" duration="4907000" />
-      <workItem from="1584630945956" duration="5494000" />
-      <workItem from="1584637032274" duration="2662000" />
-      <workItem from="1584698955276" duration="1068000" />
-=======
-      <workItem from="1584293839238" duration="4122000" />
-      <workItem from="1584786270071" duration="132000" />
-      <workItem from="1584786453518" duration="219000" />
-      <workItem from="1584786802038" duration="526000" />
-      <workItem from="1584787544729" duration="24000" />
-      <workItem from="1584788249191" duration="57000" />
-      <workItem from="1584811308596" duration="5909000" />
-      <workItem from="1584826716294" duration="3576000" />
-      <workItem from="1584830414555" duration="135000" />
-      <workItem from="1584880349168" duration="8622000" />
-      <workItem from="1584891607765" duration="7516000" />
-      <workItem from="1585056242796" duration="1027000" />
-      <workItem from="1585057742347" duration="5654000" />
->>>>>>> origin/master
+      <updated>1585163756530</updated>
+      <workItem from="1585163761102" duration="1358000" />
+      <workItem from="1585230266516" duration="557000" />
     </task>
     <servers />
   </component>
@@ -188,39 +89,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="473" y="155" key="FileChooserDialogImpl" timestamp="1585064147897">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="473" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1585064147897" />
-    <state width="1493" height="229" key="GridCell.Tab.0.bottom" timestamp="1585066578613">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="229" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585066578613" />
-    <state width="1493" height="229" key="GridCell.Tab.0.center" timestamp="1585066578612">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="229" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585066578612" />
-    <state width="1493" height="229" key="GridCell.Tab.0.left" timestamp="1585066578612">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="229" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585066578612" />
-    <state width="1493" height="229" key="GridCell.Tab.0.right" timestamp="1585066578613">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="229" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585066578613" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1585064151729">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585064151729" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1585064059487">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1585064059487" />
-    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585066130205">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1585066130205" />
   </component>
 </project>

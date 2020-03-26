@@ -3,6 +3,7 @@ package interfaceMagazinier;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import identification.identificationMain;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -14,6 +15,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -57,14 +60,14 @@ public class imMainController implements Initializable {
         //
     }
 
-    public void logOut(){
-        System.out.println("logout");
+    public void logOut() throws Exception {
+        ((Stage) mainStackPane.getScene().getWindow()).close();
+        Stage loginStage = new Stage();
+        identificationMain loginInterface = new identificationMain();
+        loginInterface.start(loginStage);
     }
 
     public void exit(){
         System.exit(0);
-    }
-
-    public void getNotifications(){
     }
 }

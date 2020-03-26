@@ -22,7 +22,7 @@
          <children>
             <VBox id="sideMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="350.0">
                <children>
-                  <Label text="Pack It In">
+                  <Label id="appName" text="Pack It In">
                      <VBox.margin>
                         <Insets bottom="50.0" left="30.0" />
                      </VBox.margin>

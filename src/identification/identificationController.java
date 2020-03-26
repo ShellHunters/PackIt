@@ -3,12 +3,17 @@ package identification;
 import Connection.ConnectionClass;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import interfaceMagazinier.imMain;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.*;
@@ -24,7 +29,7 @@ public class identificationController{
 
     @FXML public Label status;
 
-    @FXML public void login() throws SQLException {
+    @FXML public void login() throws Exception {
         if (!loginCompleteCheck()) return;
 
         Connection connection = ConnectionClass.getConnection();
@@ -39,6 +44,13 @@ public class identificationController{
         } else {
             status.setTextFill(Color.GREEN);
             status.setText("Login successful..Redirecting..." );
+
+            //Linking between interface and login
+            ((Stage) identificationContainer.getScene().getWindow()).close();
+            Stage userStage = new Stage();
+            imMain userInterface = new imMain();
+                //ADD CONDITION FOR EACH USER
+            userInterface.start(userStage);
         }
     }
 
@@ -131,6 +143,7 @@ public class identificationController{
         else
         {
             status.setText("Entre a valid email");
+            emailField.setText("");
             return false ;
         }
     }
