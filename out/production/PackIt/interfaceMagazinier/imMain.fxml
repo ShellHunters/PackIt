@@ -50,7 +50,27 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="ventesButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="VENTES" textAlignment="RIGHT">
+                  <JFXButton fx:id="stockButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="202.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="STOCK" textAlignment="RIGHT">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resource/icons/baseline_store_mall_directory_white_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <ripplerFill>
+                        <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#ffffff00" />
+                              <Stop color="#f0134d" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <JFXButton fx:id="sellsButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="SELLS" textAlignment="RIGHT">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -70,7 +90,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="fournisseursButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="FOURNISSEURS" textAlignment="RIGHT">
+                  <JFXButton fx:id="providersButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="PROVIDERS" textAlignment="RIGHT">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -110,7 +130,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="parametresButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="PARAMETRES" textAlignment="RIGHT">
+                  <JFXButton fx:id="settingsButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="70.0" prefWidth="250.0" text="SETTINGS" textAlignment="RIGHT">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

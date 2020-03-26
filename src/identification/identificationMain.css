@@ -7,7 +7,7 @@
 #mainFrame{
     /*-fx-background-color: red;*/
     -fx-font: bolder 16px "Trebuchet MS";
-    -fx-background-radius: 15;
+    -fx-background-radius: 10;
     -fx-background-color: #f5f0e3;
 }
 

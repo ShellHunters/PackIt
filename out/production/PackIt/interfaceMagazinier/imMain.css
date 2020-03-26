@@ -7,7 +7,7 @@
 #mainFrame{
     /*-fx-background-color: red;*/
     -fx-font: bolder 16px "Trebuchet MS";
-    -fx-background-radius: 30;
+    -fx-background-radius: 10;
 }
 
 #appName{
@@ -18,7 +18,7 @@
 /*TOP MENU*/
 #topMenu{
     -fx-background-color: #40bfc1;
-    -fx-background-radius: 30;
+    -fx-background-radius: 10;
 }
 
 #topMenu .label{
@@ -36,7 +36,7 @@
 }
 
 #topMenu .context-menu{
-    -fx-background-radius: 15;
+    -fx-background-radius: 10;
     -fx-background-color: white;
     -fx-padding: 15 5 15 5;
 }
@@ -56,7 +56,7 @@
 /*Side Bar*/
 #sideMenu{
     -fx-background-color: #40bfc1;
-    -fx-background-radius: 30;
+    -fx-background-radius: 10;
 }
 
 #sideMenu .button{
@@ -74,5 +74,5 @@
 
 #content{
     -fx-background-color: #f5f0e3;
-    -fx-background-radius: 30;
+    -fx-background-radius: 10;
 }

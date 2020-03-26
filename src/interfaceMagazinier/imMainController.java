@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class imMainController implements Initializable {
-    @FXML public Button dashboardButton, ventesButton, fournisseursButton, clientsButton, parametresButton;
+    @FXML public Button dashboardButton, stockButton, sellsButton, providersButton, clientsButton, settingsButton;
     @FXML public JFXHamburger hamburger;
     @FXML public MenuButton menuButton;
     @FXML public ImageView notificationImage;
@@ -52,13 +52,11 @@ public class imMainController implements Initializable {
     public void button(ActionEvent event) {
         //Change color to current button pressed
         int i = 0,j;
-        Button buttons[] = {dashboardButton, ventesButton, fournisseursButton, clientsButton, parametresButton};
-        while (i<5 && event.getSource() != buttons[i]) i++;
-        for(j=0; j < 5; j++) {
-            if (j != i) buttons[j].getStyleClass().removeAll("activeButton");
-        }
+        Button buttons[] = {dashboardButton, stockButton, sellsButton, providersButton, clientsButton, settingsButton};
+        while (i<6 && event.getSource() != buttons[i]) i++;
         buttons[i].getStyleClass().add("activeButton");
-        //
+        for(j=0; j < 6; j++) if (j != i) buttons[j].getStyleClass().removeAll("activeButton");
+        //SWAP CONTENT
     }
 
     public void logOut() throws Exception {
