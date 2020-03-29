@@ -1,44 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b91469d-c684-461c-9bd4-bc5a4bfbf27e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/resource/icons/baseline_store_mall_directory_white_36dp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackIt/identification/identificationMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/identification/identificationMain.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackIt/interfaceMagazinier/imMainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/identification/identificationMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/identificationMain.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="FxmlFile" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectId" id="1ZfViNkfv8jSc8NsLbZwkFmPaDB" />
+  <component name="ProjectId" id="1ZoYQRsPSukTnS5jcG54oF1aTkt" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resource/icons" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Nassim\Desktop\PackIt\src\resource\icons" />
-    </key>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SceneBuilder.lnk" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -52,10 +31,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.imMain">
     <configuration name="identificationMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="identification.identificationMain" />
-      <module name="PackIt" />
+      <module name="PackItIn" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="identification.*" />
@@ -66,8 +45,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="imMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="interfaceMagazinier.imMain" />
+      <module name="PackItIn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="interfaceMagazinier.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.imMain" />
         <item itemvalue="Application.identificationMain" />
       </list>
     </recent_temporary>
@@ -77,32 +70,16 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0b91469d-c684-461c-9bd4-bc5a4bfbf27e" name="Default Changelist" comment="" />
-      <created>1585163756530</created>
+      <changelist id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="" />
+      <created>1585506897608</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1585163756530</updated>
-      <workItem from="1585163761102" duration="1358000" />
-      <workItem from="1585230266516" duration="557000" />
-      <workItem from="1585232203292" duration="190000" />
-      <workItem from="1585232963459" duration="1551000" />
+      <updated>1585506897608</updated>
+      <workItem from="1585506899072" duration="12659000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
