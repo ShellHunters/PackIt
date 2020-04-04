@@ -225,7 +225,7 @@
                   </Label>
                </children>
             </VBox>
-            <AnchorPane id="content" layoutX="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0">
+            <AnchorPane id="content" fx:id="contentPane" layoutX="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

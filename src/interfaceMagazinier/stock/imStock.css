@@ -1,0 +1,14 @@
+#content{
+    -fx-font: bolder 16px "Trebuchet MS";
+    -fx-background-color: rgba(249, 246, 242, 0.9);
+}
+
+.button{
+    -fx-background-color: #e7e7e7;
+    -fx-text-fill: black;
+    -fx-background-radius: 10;
+}
+
+.tree-table-cell{
+    -fx-alignment: center;
+}

@@ -12,7 +12,7 @@ public class imMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("imMain.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("imMain.fxml"));//"imMain.fxml"
         Scene imMainScene = new Scene(root);
         imMainScene.getStylesheets().add(getClass().getResource("imMain.css").toString());
         imMainScene.setFill(Color.TRANSPARENT);
