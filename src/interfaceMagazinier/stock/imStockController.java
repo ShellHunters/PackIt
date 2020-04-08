@@ -1,5 +1,6 @@
 package interfaceMagazinier.stock;
 
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import basicClasses.product;
@@ -10,19 +11,30 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 public class imStockController implements Initializable {
-    @FXML JFXTreeTableView<product> table;
+    @FXML TableView<product> table;
+    @FXML TableColumn<product, Number> barcodeColumn;
+    @FXML TableColumn<product, String> nameColumn;
+    @FXML TableColumn<product, Number> quantityColumn;
+    @FXML TableColumn<product, Number> buypriceColumn;
+    @FXML TableColumn<product, Number> sellpriceColumn;
+    @FXML TableColumn<product, LocalDate> expirationdateColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,71 +42,56 @@ public class imStockController implements Initializable {
     }
 
     void tableSetUp(){
-        //Table construction
-        JFXTreeTableColumn<product, Number> barcode = new JFXTreeTableColumn<>("Barcode");
-        barcode.setPrefWidth(200);
-        barcode.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
+        barcodeColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
             @Override
-            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<product, Number> param) {
-                return param.getValue().getValue().barcodeProperty();
+            public ObservableValue<Number> call(TableColumn.CellDataFeatures<product, Number> param) {
+                return param.getValue().barcodeProperty();
             }
         });
 
-        JFXTreeTableColumn<product, String> productName = new JFXTreeTableColumn<>("Name");
-        productName.setPrefWidth(300);
-        productName.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<product, String>, ObservableValue<String>>() {
+        nameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<product, String> param) {
-                return param.getValue().getValue().productNameProperty();
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<product, String> param) {
+                return param.getValue().productNameProperty();
             }
         });
 
-
-        JFXTreeTableColumn<product, Number> sellPrice = new JFXTreeTableColumn<>("Sell price");
-        sellPrice.setPrefWidth(200);
-        sellPrice.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
+        quantityColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
             @Override
-            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<product, Number> param) {
-                return param.getValue().getValue().sellPriceProperty();
+            public ObservableValue<Number> call(TableColumn.CellDataFeatures<product, Number> param) {
+                return param.getValue().quantityProperty();
             }
         });
 
-        JFXTreeTableColumn<product, Number> buyPrice = new JFXTreeTableColumn<>("Buy price");
-        buyPrice.setPrefWidth(200);
-        buyPrice.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
+        buypriceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
             @Override
-            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<product, Number> param) {
-                return param.getValue().getValue().buyPriceProperty();
+            public ObservableValue<Number> call(TableColumn.CellDataFeatures<product, Number> param) {
+                return param.getValue().buyPriceProperty();
             }
         });
 
-        JFXTreeTableColumn<product, Number> quantity = new JFXTreeTableColumn<>("Quantity");
-        quantity.setPrefWidth(100);
-        quantity.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
+        sellpriceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
             @Override
-            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<product, Number> param) {
-                return param.getValue().getValue().quantityProperty();
+            public ObservableValue<Number> call(TableColumn.CellDataFeatures<product, Number> param) {
+                return param.getValue().sellPriceProperty();
             }
         });
 
-        JFXTreeTableColumn<product, LocalDate> expirationDate = new JFXTreeTableColumn<>("Expiration Date");
-        expirationDate.setPrefWidth(250);
-        expirationDate.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<product, LocalDate>, ObservableValue<LocalDate>>() {
+        expirationdateColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, LocalDate>, ObservableValue<LocalDate>>() {
             @Override
-            public ObservableValue<LocalDate> call(TreeTableColumn.CellDataFeatures<product, LocalDate> param) {
-                return param.getValue().getValue().expirationDateProperty();
+            public ObservableValue<LocalDate> call(TableColumn.CellDataFeatures<product, LocalDate> param) {
+                return param.getValue().expirationDateProperty();
             }
         });
 
         ObservableList<product> products = FXCollections.observableArrayList();
         //Using database to read products
-        products.add(new product(new SimpleStringProperty("MERGUEZ"), new SimpleIntegerProperty(40), new SimpleFloatProperty(40.5f), new SimpleFloatProperty(40.51f), new SimpleIntegerProperty(40), null));
-        products.add(new product(new SimpleStringProperty("sosig"), new SimpleIntegerProperty(40), new SimpleFloatProperty(40.5f), new SimpleFloatProperty(40.51f), new SimpleIntegerProperty(40), null));
-        products.add(new product(new SimpleStringProperty("ja3far"), new SimpleIntegerProperty(40), new SimpleFloatProperty(40.5f), new SimpleFloatProperty(40.51f), new SimpleIntegerProperty(40), null));
+        products.add(new product("merguez", 2, 3, 3.5f, 2, null));
+        products.add(new product("ja3far", 23, 5, 53, 2, null));
 
-        final TreeItem<product> root = new RecursiveTreeItem<product>(products, RecursiveTreeObject::getChildren);
-        table.getColumns().setAll(barcode, productName, quantity, buyPrice, sellPrice, expirationDate);
-        table.setRoot(root);
-        table.setShowRoot(false);
+        table.setItems(products);
+
     }
 }
+
+

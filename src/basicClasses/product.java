@@ -14,13 +14,23 @@ public class product extends RecursiveTreeObject<product> {
     private SimpleIntegerProperty quantity;
     private ObjectProperty<LocalDate> expirationDate;
 
-    public product(SimpleStringProperty productName, SimpleIntegerProperty barcode, SimpleFloatProperty buyPrice, SimpleFloatProperty sellPrice, SimpleIntegerProperty quantity, ObjectProperty<LocalDate> expirationDate) {
-        this.productName = productName;
-        this.barcode = barcode;
-        this.buyPrice = buyPrice;
-        this.sellPrice = sellPrice;
-        this.quantity = quantity;
-        this.expirationDate = expirationDate;
+    public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, LocalDate expirationDate) {
+        this.productName = new SimpleStringProperty(productName);
+        this.barcode = new SimpleIntegerProperty(barcode);
+        this.buyPrice = new SimpleFloatProperty(buyPrice);
+        this.sellPrice = new SimpleFloatProperty(sellPrice);
+        this.quantity = new SimpleIntegerProperty(quantity);
+        this.expirationDate = new ObjectPropertyBase<LocalDate>() { //i don t know wtf is this just testing
+            @Override
+            public Object getBean() {
+                return expirationDate;
+            }
+
+            @Override
+            public String getName() {
+                return null;
+            }
+        };
     }
 
     public String getProductName() {
