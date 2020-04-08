@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController$2.class" afterDir="false" />
@@ -14,9 +11,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController$6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/basicClasses/product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basicClasses/product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -129,6 +124,7 @@
       <workItem from="1586020247290" duration="1786000" />
       <workItem from="1586183631761" duration="2415000" />
       <workItem from="1586187656761" duration="4042000" />
+      <workItem from="1586360810741" duration="1054000" />
     </task>
     <servers />
   </component>

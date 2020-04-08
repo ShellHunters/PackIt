@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -55,6 +56,7 @@ public class imStockController implements Initializable {
                 return param.getValue().productNameProperty();
             }
         });
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         quantityColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
             @Override
