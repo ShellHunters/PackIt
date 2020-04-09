@@ -42,12 +42,13 @@
         </HBox>
       <TableView fx:id="table" editable="true" layoutX="40.0" layoutY="170.0" prefHeight="690.0" prefWidth="1300.0">
         <columns>
-          <TableColumn fx:id="barcodeColumn" prefWidth="200.0" text="Barcode" />
-          <TableColumn fx:id="nameColumn" prefWidth="300.0" text="Name" />
-            <TableColumn fx:id="quantityColumn" prefWidth="200.0" text="Quantity" />
-            <TableColumn fx:id="buypriceColumn" prefWidth="200.0" text="Buy  price" />
-            <TableColumn fx:id="sellpriceColumn" prefWidth="200.0" text="Sell price" />
-            <TableColumn fx:id="expirationdateColumn" prefWidth="200.0" text="Expiration date" />
+          <TableColumn fx:id="barcodeColumn" prefWidth="199.0" text="Barcode" />
+          <TableColumn fx:id="nameColumn" prefWidth="269.0" text="Name" />
+            <TableColumn fx:id="quantityColumn" prefWidth="149.0" text="Quantity" />
+            <TableColumn fx:id="buypriceColumn" prefWidth="169.0" text="Buy  price" />
+            <TableColumn fx:id="sellpriceColumn" prefWidth="169.0" text="Sell price" />
+            <TableColumn fx:id="expirationdateColumn" prefWidth="199.0" text="Expiration date" />
+            <TableColumn fx:id="selectedColumn" prefWidth="139.0" text="Selected" />
         </columns>
       </TableView>
     </children>

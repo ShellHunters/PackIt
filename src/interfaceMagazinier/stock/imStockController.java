@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.stage.Stage;
@@ -36,6 +37,7 @@ public class imStockController implements Initializable {
     @FXML TableColumn<product, Number> buypriceColumn;
     @FXML TableColumn<product, Number> sellpriceColumn;
     @FXML TableColumn<product, LocalDate> expirationdateColumn;
+    @FXML TableColumn<product, Boolean> selectedColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,41 +52,18 @@ public class imStockController implements Initializable {
             }
         });
 
-        nameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<product, String> param) {
-                return param.getValue().productNameProperty();
-            }
-        });
+        nameColumn.setCellValueFactory(param -> { return  param.getValue().productNameProperty(); });
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        quantityColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
-            @Override
-            public ObservableValue<Number> call(TableColumn.CellDataFeatures<product, Number> param) {
-                return param.getValue().quantityProperty();
-            }
-        });
+        quantityColumn.setCellValueFactory(param -> { return param.getValue().quantityProperty(); });
 
-        buypriceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
-            @Override
-            public ObservableValue<Number> call(TableColumn.CellDataFeatures<product, Number> param) {
-                return param.getValue().buyPriceProperty();
-            }
-        });
+        buypriceColumn.setCellValueFactory(param -> { return param.getValue().buyPriceProperty(); });
 
-        sellpriceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, Number>, ObservableValue<Number>>() {
-            @Override
-            public ObservableValue<Number> call(TableColumn.CellDataFeatures<product, Number> param) {
-                return param.getValue().sellPriceProperty();
-            }
-        });
+        sellpriceColumn.setCellValueFactory(param -> { return  param.getValue().sellPriceProperty(); });
 
-        expirationdateColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<product, LocalDate>, ObservableValue<LocalDate>>() {
-            @Override
-            public ObservableValue<LocalDate> call(TableColumn.CellDataFeatures<product, LocalDate> param) {
-                return param.getValue().expirationDateProperty();
-            }
-        });
+        expirationdateColumn.setCellValueFactory(param -> { return param.getValue().expirationDateProperty(); });
+
+        selectedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(selectedColumn));
 
         ObservableList<product> products = FXCollections.observableArrayList();
         //Using database to read products
@@ -92,7 +71,6 @@ public class imStockController implements Initializable {
         products.add(new product("ja3far", 23, 5, 53, 2, null));
 
         table.setItems(products);
-
     }
 }
 
