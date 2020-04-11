@@ -19,25 +19,25 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
             <children>
-                <JFXButton prefHeight="50.0" prefWidth="300.0" ripplerFill="BLACK" text="Add basicClasses.product" textAlignment="CENTER">
+                <JFXButton prefHeight="50.0" prefWidth="300.0" ripplerFill="#ee974c" text="Add basicClasses.product" textAlignment="CENTER">
                     <effect>
-                        <DropShadow color="#00000059" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                        <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
                     </effect>
                 </JFXButton>
-                <JFXButton layoutX="550.0" layoutY="60.0" prefHeight="50.0" prefWidth="300.0" ripplerFill="BLACK" text="Update products" textAlignment="CENTER">
+                <JFXButton layoutX="550.0" layoutY="60.0" prefHeight="50.0" prefWidth="300.0" ripplerFill="#ee974c" text="Update products" textAlignment="CENTER">
                     <effect>
-                        <DropShadow color="#00000059" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                        <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
                     </effect>
                 </JFXButton>
-                <JFXButton layoutX="710.0" layoutY="60.0" prefHeight="50.0" prefWidth="300.0" ripplerFill="BLACK" text="Remove products" textAlignment="CENTER">
+                <JFXButton layoutX="710.0" layoutY="60.0" prefHeight="50.0" prefWidth="300.0" ripplerFill="#ee974c" text="Remove products" textAlignment="CENTER">
                     <HBox.margin>
                         <Insets right="50.0" />
                     </HBox.margin>
                     <effect>
-                        <DropShadow color="#00000059" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                        <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
                     </effect>
                 </JFXButton>
-                <JFXTextField focusColor="#bf0000" prefWidth="300.0" promptText="Search" />
+                <JFXTextField fx:id="searchTextField" focusColor="#ff7300" prefWidth="300.0" promptText="Search" />
             </children>
         </HBox>
       <TableView fx:id="table" editable="true" layoutX="40.0" layoutY="170.0" prefHeight="690.0" prefWidth="1300.0">

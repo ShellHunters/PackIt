@@ -15,7 +15,7 @@
 
 /*Side Bar*/
 #sideMenu{
-        -fx-background-color: linear-gradient(to bottom, rgba(233, 219, 164, 0.91), rgba(233, 197, 168, 0.91), rgba(233, 192, 174, 0.91));
+        -fx-background-color: linear-gradient(to bottom, rgba(0, 101, 147, 0.91), rgba(28, 16, 111, 0.91), rgba(19, 3, 104, 0.91));
 /*    #3b6978*/
 }
 
@@ -32,7 +32,7 @@
 }
 
 .activeButton{
-    -fx-background-color: linear-gradient(to left, #d36753, transparent);
+    -fx-background-color: linear-gradient(to left, #ee801b, transparent);
 }
 
 #sideMenu .menu-button {
@@ -58,7 +58,7 @@
 }
 
 #sideMenu .context-menu .menu-item:focused, #topMenu .context-menu .menu-item:hover{
-    -fx-background-color: #d36753;
+    -fx-background-color: #ee801b;
 }
 
 #sideMenu .context-menu .menu-item:focused .label, #topMenu .context-menu .menu-item:hover .label{
@@ -67,5 +67,6 @@
 
 /*Content*/
 #content{
-    -fx-background-color: rgba(249, 246, 242, 0.9);
+    -fx-background-color: rgb(229, 236, 243);
+    -fx-font: bolder 16px "Trebuchet MS";
 }
