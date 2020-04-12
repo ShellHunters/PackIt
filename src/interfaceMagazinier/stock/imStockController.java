@@ -40,6 +40,7 @@ import java.util.ResourceBundle;
 
 public class imStockController implements Initializable {
     @FXML TableView<product> table;
+    public static ObservableList<product> products;
     @FXML TableColumn<product, Number> barcodeColumn;
     @FXML TableColumn<product, String> nameColumn;
     @FXML TableColumn<product, Number> quantityColumn;
@@ -72,9 +73,7 @@ public class imStockController implements Initializable {
         selectedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(selectedColumn));
 
         //Table content
-        ObservableList<product> products = FXCollections.observableArrayList();
-
-        //Using database to read products
+        products = FXCollections.observableArrayList();
         products = loadProducts();
 
         FilteredList<product> filteredData = new FilteredList<>(products, product -> true);
@@ -111,5 +110,62 @@ public class imStockController implements Initializable {
             e.printStackTrace();
             return null;
         }
+    }
+
+        /*
+    public void add_product_window(ActionEvent event) throws IOException {
+
+        Parent root1= FXMLLoader.load(getClass().getResource("Add-product.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.show();
+
+
+
+    }*/
+
+  /*  public void add_product() throws SQLException {
+        Connection connection = ConnectionClass.getConnection();
+        Statement statement = connection.createStatement();
+        product Product = new product();
+        int Barcode = Integer.parseInt(TF_Barcode.getText());
+        float sellPrice = Float.parseFloat(TF_sellPrice.getText());
+        float buyPrice = Float.parseFloat(TF_buyPrice.getText());
+        int Quanity = Integer.parseInt(TF_Quanity.getText());
+        // ADDing values to Database
+        Product.setProductName(TF_productName.getText().toString());
+        Product.setBarcode(Barcode);
+        Product.setSellPrice(sellPrice);
+        Product.setBuyPrice(buyPrice);
+        Product.setQuantity(Quanity);
+        Product.setExpirationDate(DP_expiratioDate.getValue());
+        String sql = "INSERT INTO products (nom,codebar, prix_a , prix_v, quantit, date) VALUES ('" + TF_productName + "', '" + TF_Barcode + "', '" + TF_buyPrice + "', '" + TF_sellPrice + "', '" + TF_Quanity + "', '" + DP_expiratioDate + "')";
+        statement.executeUpdate(sql);
+        //Adding to table from database
+        try {
+            ResultSet resultSet =connection.createStatement().executeQuery("SELECT * from products ") ;
+            while (resultSet.next()){
+                observableList.add(new product(resultSet.getString("nom"),resultSet.getInt("codebar"),
+                        resultSet.getFloat("prix_a"),resultSet.getFloat("prix_v"),resultSet.getInt("quantit"),
+                        resultSet.getDate("date")));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(imStockController.class.getName()).log(Level.SEVERE,null,e);
+        }
+           barcodeColumn.setCellValueFactory(new PropertyValueFactory<>("codebar"));
+           nameColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+           buypriceColumn.setCellValueFactory(new PropertyValueFactory<>("prix_v"));
+           sellpriceColumn.setCellValueFactory(new PropertyValueFactory<>("prix_a"));
+           quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantit"));
+           expirationdateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+           table.setItems(observableList);
+    }
+*/
+
+    public void addProduct(javafx.event.ActionEvent event) throws IOException {
+        Parent root1= FXMLLoader.load(getClass().getResource("add/addProduct.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.show();
     }
 }

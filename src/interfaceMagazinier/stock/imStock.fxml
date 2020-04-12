@@ -19,7 +19,7 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
             <children>
-                <JFXButton prefHeight="50.0" prefWidth="300.0" ripplerFill="#ee974c" text="Add basicClasses.product" textAlignment="CENTER">
+                <JFXButton onAction="#addProduct" prefHeight="50.0" prefWidth="300.0" ripplerFill="#ee974c" text="Add products" textAlignment="CENTER">
                     <effect>
                         <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
                     </effect>
