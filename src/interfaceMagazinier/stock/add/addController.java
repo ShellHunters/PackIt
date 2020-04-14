@@ -64,8 +64,4 @@ public class addController {
     private void resetFields(){
         productname.setText(""); barcode.setText(""); buyprice.setText(""); sellprice.setText(""); quantity.setText(""); expirationdate.setValue(null);
     }
-    @FXML private void close() {
-        productname.getScene().getWindow().hide();
-        imStockController.stage = null;
-    }
 }

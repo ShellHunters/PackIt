@@ -8,48 +8,54 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" stylesheets="@imStock.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.stock.imStockController">
-    <opaqueInsets>
-        <Insets />
-    </opaqueInsets>
-    <children>
-        <HBox alignment="CENTER" prefHeight="150.0" prefWidth="1380.0" spacing="20.0">
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
-            <children>
-                <JFXButton onAction="#addProduct" prefHeight="50.0" prefWidth="300.0" ripplerFill="#ee974c" text="Add products" textAlignment="CENTER">
-                    <effect>
-                        <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
-                    </effect>
-                </JFXButton>
-                <JFXButton layoutX="550.0" layoutY="60.0" prefHeight="50.0" prefWidth="300.0" ripplerFill="#ee974c" text="Update products" textAlignment="CENTER">
-                    <effect>
-                        <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
-                    </effect>
-                </JFXButton>
-                <JFXButton layoutX="710.0" layoutY="60.0" prefHeight="50.0" prefWidth="300.0" ripplerFill="#ee974c" text="Remove products" textAlignment="CENTER">
-                    <HBox.margin>
-                        <Insets right="50.0" />
-                    </HBox.margin>
-                    <effect>
-                        <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
-                    </effect>
-                </JFXButton>
-                <JFXTextField fx:id="searchTextField" focusColor="#ff7300" prefWidth="300.0" promptText="Search" />
-            </children>
-        </HBox>
-      <TableView fx:id="table" editable="true" layoutX="40.0" layoutY="170.0" prefHeight="690.0" prefWidth="1300.0">
-        <columns>
-          <TableColumn fx:id="barcodeColumn" prefWidth="199.0" text="Barcode" />
-          <TableColumn fx:id="nameColumn" prefWidth="269.0" text="Name" />
-            <TableColumn fx:id="quantityColumn" prefWidth="149.0" text="Quantity" />
-            <TableColumn fx:id="buypriceColumn" prefWidth="169.0" text="Buy  price" />
-            <TableColumn fx:id="sellpriceColumn" prefWidth="169.0" text="Sell price" />
-            <TableColumn fx:id="expirationdateColumn" prefWidth="199.0" text="Expiration date" />
-            <TableColumn fx:id="selectedColumn" prefWidth="139.0" text="Selected" />
-        </columns>
-      </TableView>
-    </children>
-</AnchorPane>
+
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.stock.imStockController">
+   <children>
+      <AnchorPane id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" stylesheets="@imStock.css">
+          <opaqueInsets>
+              <Insets />
+          </opaqueInsets>
+          <children>
+              <HBox alignment="CENTER" prefHeight="150.0" prefWidth="1380.0" spacing="20.0">
+                  <padding>
+                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  </padding>
+                  <children>
+                      <JFXButton onAction="#addProduct" prefHeight="50.0" prefWidth="300.0" ripplerFill="BLACK" text="Add products" textAlignment="CENTER">
+                          <effect>
+                              <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                          </effect>
+                      </JFXButton>
+                      <JFXButton layoutX="550.0" layoutY="60.0" prefHeight="50.0" prefWidth="300.0" ripplerFill="BLACK" text="Update products" textAlignment="CENTER">
+                          <effect>
+                              <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                          </effect>
+                      </JFXButton>
+                      <JFXButton layoutX="710.0" layoutY="60.0" prefHeight="50.0" prefWidth="300.0" ripplerFill="BLACK" styleClass="notPressed" text="Remove products" textAlignment="CENTER">
+                          <HBox.margin>
+                              <Insets right="50.0" />
+                          </HBox.margin>
+                          <effect>
+                              <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                          </effect>
+                      </JFXButton>
+                      <JFXTextField fx:id="searchTextField" focusColor="#ff7300" prefWidth="300.0" promptText="Search" />
+                  </children>
+              </HBox>
+            <TableView fx:id="table" editable="true" layoutX="40.0" layoutY="170.0" prefHeight="690.0" prefWidth="1300.0">
+              <columns>
+                <TableColumn fx:id="barcodeColumn" prefWidth="199.0" text="Barcode" />
+                <TableColumn fx:id="nameColumn" prefWidth="269.0" text="Name" />
+                  <TableColumn fx:id="quantityColumn" prefWidth="149.0" text="Quantity" />
+                  <TableColumn fx:id="buypriceColumn" prefWidth="169.0" text="Buy  price" />
+                  <TableColumn fx:id="sellpriceColumn" prefWidth="169.0" text="Sell price" />
+                  <TableColumn fx:id="expirationdateColumn" prefWidth="199.0" text="Expiration date" />
+                  <TableColumn fx:id="selectedColumn" prefWidth="139.0" text="Selected" />
+              </columns>
+            </TableView>
+          </children>
+      </AnchorPane>
+   </children>
+</StackPane>

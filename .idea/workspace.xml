@@ -4,9 +4,16 @@
     <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addProduct.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addProduct.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addProduct.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addProduct.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addProduct.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addProduct.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -125,7 +132,7 @@
       <workItem from="1586711593790" duration="6011000" />
       <workItem from="1586766826272" duration="6578000" />
       <workItem from="1586805791411" duration="1251000" />
-      <workItem from="1586880071285" duration="4400000" />
+      <workItem from="1586880071285" duration="9247000" />
     </task>
     <servers />
   </component>

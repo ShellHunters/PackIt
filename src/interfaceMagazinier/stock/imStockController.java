@@ -1,12 +1,11 @@
 package interfaceMagazinier.stock;
 
 import Connection.ConnectionClass;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.*;
 import basicClasses.product;
-import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import com.jfoenix.controls.events.JFXDialogEvent;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,21 +13,27 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 import javax.swing.text.DateFormatter;
+import javax.xml.transform.Source;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -43,6 +48,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class imStockController implements Initializable {
+    @FXML StackPane stackPane;
     @FXML TableView<product> table;
     public static ObservableList<product> products;
     @FXML TableColumn<product, Number> barcodeColumn;
@@ -54,11 +60,8 @@ public class imStockController implements Initializable {
     @FXML TableColumn selectedColumn;
     @FXML JFXTextField searchTextField;
 
-    public static Stage stage;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        stage = null;
         tableSetUp();
     }
 
@@ -117,16 +120,14 @@ public class imStockController implements Initializable {
     }
 
     public void addProduct(javafx.event.ActionEvent event) throws IOException {
-        if (stage == null) {
-            Parent root1 = FXMLLoader.load(getClass().getResource("add/addProduct.fxml"));
-            stage = new Stage();
-            Scene scene = new Scene(root1);
-            scene.setFill(Color.TRANSPARENT);
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.show();
-            stage.setResizable(false);
-            stage.setAlwaysOnTop(true);
-        }
+        //get source to change the button color
+        JFXButton source = (JFXButton) event.getSource();
+        source.getStyleClass().add("pressed");
+        //Used region for the animation
+        Region root1 = FXMLLoader.load(getClass().getResource("add/addProduct.fxml"));
+        JFXDialog add = new JFXDialog(stackPane, root1, DialogTransition.RIGHT);
+        add.show();
+        //Change back the button to default color
+        add.setOnDialogClosed(event1 ->{ source.getStyleClass().removeAll("pressed"); });
     }
 }
