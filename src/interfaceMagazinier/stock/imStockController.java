@@ -90,9 +90,6 @@ public class imStockController implements Initializable {
                 String lowercaseFilter = newValue.toLowerCase();
                 if (product.getProductName().toLowerCase().indexOf(lowercaseFilter) != -1) return true;
                 else if (Integer.toString(product.getBarcode()).indexOf(lowercaseFilter) != -1) return true;
-                else if (Integer.toString(product.getQuantity()).indexOf(lowercaseFilter) != -1) return true;
-                else if (Float.toString(product.getBuyPrice()).indexOf(lowercaseFilter) != -1) return true;
-                else if (Float.toString(product.getSellPrice()).indexOf(lowercaseFilter) != -1) return true;
                 else return false;
             });
         }));
