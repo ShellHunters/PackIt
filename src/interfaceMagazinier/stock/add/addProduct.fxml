@@ -1,77 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.*?>
-<AnchorPane fx:id="root1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.stock.add.addController">
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="mainFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" stylesheets="@addProduct.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.stock.add.addController">
    <children>
-      <Pane fx:id="pane1" layoutY="-3.0" prefHeight="75.0" prefWidth="492.0" style="-fx-background-color: #cf7500;">
+      <VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="500.0" spacing="50.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="102.0" layoutY="19.0" prefHeight="30.0" prefWidth="313.0" text="ADD PRODUCT">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="462.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../resource/icons/closeIconBlack.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btn_Cancel2" layoutX="464.0" layoutY="4.0" mnemonicParsing="false" onAction="#ExitButton" prefHeight="25.0" prefWidth="21.0" style="-fx-background-color: transparent;" />
+            <Label fx:id="errorLabel" alignment="CENTER" prefWidth="400.0" textFill="RED" />
+            <JFXTextField fx:id="productname" focusColor="#ee801b" prefWidth="400.0" promptText="Product name" />
+            <JFXTextField fx:id="barcode" focusColor="#ee801b" layoutX="60.0" layoutY="344.0" prefWidth="400.0" promptText="Barcode" />
+            <JFXTextField fx:id="quantity" focusColor="#ee801b" layoutX="60.0" layoutY="373.0" prefWidth="400.0" promptText="Quantity" />
+            <JFXTextField fx:id="buyprice" focusColor="#ee801b" layoutX="60.0" layoutY="401.0" prefWidth="400.0" promptText="Buy price" />
+            <JFXTextField fx:id="sellprice" focusColor="#ee801b" layoutX="60.0" layoutY="430.0" prefWidth="400.0" promptText="Sell price" />
+            <JFXDatePicker fx:id="expirationdate" defaultColor="#ee801b" editable="false" prefWidth="400.0" promptText="Expiration date" />
+            <JFXButton onAction="#addProduct" prefHeight="40.0" prefWidth="200.0" text="Add product" />
          </children>
-      </Pane>
-      <Pane fx:id="pane2" layoutX="-6.0" layoutY="72.0" prefHeight="526.0" prefWidth="499.0" style="-fx-background-color: #363062;">
-         <children>
-            <Label layoutX="44.0" layoutY="58.0" prefHeight="17.0" prefWidth="90.0" text="Product Name" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="44.0" layoutY="118.0" prefHeight="17.0" prefWidth="90.0" text="Barcode" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="44.0" layoutY="178.0" prefHeight="17.0" prefWidth="90.0" text="Sell price" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="44.0" layoutY="238.0" prefHeight="17.0" prefWidth="90.0" text="Buy price" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="44.0" layoutY="374.0" prefHeight="17.0" prefWidth="90.0" text="Expiration date" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="44.0" layoutY="305.0" prefHeight="17.0" prefWidth="90.0" text="Quantity" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Button fx:id="btn_Cancel" layoutX="112.0" layoutY="448.0" mnemonicParsing="false" onAction="#ExitButton" prefHeight="30.0" prefWidth="102.0" style="-fx-background-color: red;" text="Cancel " textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_Save" layoutX="321.0" layoutY="448.0" mnemonicParsing="false" onAction="#add_product" prefHeight="30.0" prefWidth="102.0" style="-fx-background-color: green;" text="Save" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <TextField fx:id="TF_productName" layoutX="149.0" layoutY="54.0" prefHeight="30.0" prefWidth="313.0" style="-fx-background-color: #363062; -fx-border-color: #cf7500; -fx-border-radius: 5; -fx-border-width: 2;" />
-            <TextField fx:id="TF_Barcode" layoutX="149.0" layoutY="114.0" prefHeight="30.0" prefWidth="313.0" style="-fx-background-color: #363062; -fx-border-color: #cf7500; -fx-border-radius: 5; -fx-border-width: 2;" />
-            <TextField fx:id="TF_sellPrice" layoutX="149.0" layoutY="174.0" prefHeight="30.0" prefWidth="313.0" style="-fx-background-color: #363062; -fx-border-color: #cf7500; -fx-border-radius: 5; -fx-border-width: 2;" />
-            <TextField fx:id="TF_buyPrice" layoutX="149.0" layoutY="234.0" prefHeight="30.0" prefWidth="313.0" style="-fx-background-color: #363062; -fx-border-color: #cf7500; -fx-border-radius: 5; -fx-border-width: 2;" />
-            <TextField fx:id="TF_Quanity" layoutX="149.0" layoutY="302.0" prefHeight="30.0" prefWidth="313.0" style="-fx-background-color: #363062; -fx-border-color: #cf7500; -fx-border-radius: 5; -fx-border-width: 2;" />
-            <DatePicker fx:id="DP_expiratioDate" layoutX="147.0" layoutY="372.0" prefHeight="25.0" prefWidth="313.0" style="-fx-background-color: #000000;" />
-         </children>
-      </Pane>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+      </VBox>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="455.0" layoutY="5.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resource/icons/closeIconBlack.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

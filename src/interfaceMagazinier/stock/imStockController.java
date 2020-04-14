@@ -23,9 +23,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
+import javax.swing.text.DateFormatter;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +37,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -50,8 +54,11 @@ public class imStockController implements Initializable {
     @FXML TableColumn selectedColumn;
     @FXML JFXTextField searchTextField;
 
+    public static Stage stage;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        stage = null;
         tableSetUp();
     }
 
@@ -112,60 +119,17 @@ public class imStockController implements Initializable {
         }
     }
 
-        /*
-    public void add_product_window(ActionEvent event) throws IOException {
-
-        Parent root1= FXMLLoader.load(getClass().getResource("Add-product.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1));
-        stage.show();
-
-
-
-    }*/
-
-  /*  public void add_product() throws SQLException {
-        Connection connection = ConnectionClass.getConnection();
-        Statement statement = connection.createStatement();
-        product Product = new product();
-        int Barcode = Integer.parseInt(TF_Barcode.getText());
-        float sellPrice = Float.parseFloat(TF_sellPrice.getText());
-        float buyPrice = Float.parseFloat(TF_buyPrice.getText());
-        int Quanity = Integer.parseInt(TF_Quanity.getText());
-        // ADDing values to Database
-        Product.setProductName(TF_productName.getText().toString());
-        Product.setBarcode(Barcode);
-        Product.setSellPrice(sellPrice);
-        Product.setBuyPrice(buyPrice);
-        Product.setQuantity(Quanity);
-        Product.setExpirationDate(DP_expiratioDate.getValue());
-        String sql = "INSERT INTO products (nom,codebar, prix_a , prix_v, quantit, date) VALUES ('" + TF_productName + "', '" + TF_Barcode + "', '" + TF_buyPrice + "', '" + TF_sellPrice + "', '" + TF_Quanity + "', '" + DP_expiratioDate + "')";
-        statement.executeUpdate(sql);
-        //Adding to table from database
-        try {
-            ResultSet resultSet =connection.createStatement().executeQuery("SELECT * from products ") ;
-            while (resultSet.next()){
-                observableList.add(new product(resultSet.getString("nom"),resultSet.getInt("codebar"),
-                        resultSet.getFloat("prix_a"),resultSet.getFloat("prix_v"),resultSet.getInt("quantit"),
-                        resultSet.getDate("date")));
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(imStockController.class.getName()).log(Level.SEVERE,null,e);
-        }
-           barcodeColumn.setCellValueFactory(new PropertyValueFactory<>("codebar"));
-           nameColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
-           buypriceColumn.setCellValueFactory(new PropertyValueFactory<>("prix_v"));
-           sellpriceColumn.setCellValueFactory(new PropertyValueFactory<>("prix_a"));
-           quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantit"));
-           expirationdateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-           table.setItems(observableList);
-    }
-*/
-
     public void addProduct(javafx.event.ActionEvent event) throws IOException {
-        Parent root1= FXMLLoader.load(getClass().getResource("add/addProduct.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1));
-        stage.show();
+        if (stage == null) {
+            Parent root1 = FXMLLoader.load(getClass().getResource("add/addProduct.fxml"));
+            stage = new Stage();
+            Scene scene = new Scene(root1);
+            scene.setFill(Color.TRANSPARENT);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.show();
+            stage.setResizable(false);
+            stage.setAlwaysOnTop(true);
+        }
     }
 }

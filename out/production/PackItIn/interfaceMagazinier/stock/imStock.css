@@ -3,8 +3,8 @@
     -fx-font: bolder 16px "Trebuchet MS";
 }
 .button{
-    -fx-background-color: #e3e3e3;
-    -fx-text-fill: black;
+    -fx-background-color: #170480;
+    -fx-text-fill: white;
     -fx-background-radius: 10;
 }
 
