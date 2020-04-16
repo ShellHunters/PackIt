@@ -1,5 +1,6 @@
 package basicClasses;
 
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.*;
 import sun.java2d.pipe.SpanShapeRenderer;
@@ -12,25 +13,17 @@ public class product extends RecursiveTreeObject<product> {
     private SimpleIntegerProperty barcode;
     private SimpleFloatProperty buyPrice, sellPrice;
     private SimpleIntegerProperty quantity;
-    private ObjectProperty<LocalDate> expirationDate;
+    private SimpleStringProperty expirationDate;
+    private JFXCheckBox checkbox;
 
-    public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, LocalDate expirationDate) {
+    public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, String expirationDate) {
         this.productName = new SimpleStringProperty(productName);
         this.barcode = new SimpleIntegerProperty(barcode);
         this.buyPrice = new SimpleFloatProperty(buyPrice);
         this.sellPrice = new SimpleFloatProperty(sellPrice);
         this.quantity = new SimpleIntegerProperty(quantity);
-        this.expirationDate = new ObjectPropertyBase<LocalDate>() { //i don t know wtf is this just testing
-            @Override
-            public Object getBean() {
-                return expirationDate;
-            }
-
-            @Override
-            public String getName() {
-                return null;
-            }
-        };
+        this.expirationDate = new SimpleStringProperty(expirationDate);
+        this.checkbox = new JFXCheckBox();
     }
 
     public String getProductName() {
@@ -93,15 +86,23 @@ public class product extends RecursiveTreeObject<product> {
         this.quantity.set(quantity);
     }
 
-    public LocalDate getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate.get();
     }
 
-    public ObjectProperty<LocalDate> expirationDateProperty() {
+    public SimpleStringProperty expirationDateProperty() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate.set(expirationDate);
+    }
+
+    public JFXCheckBox getCheckbox() {
+        return checkbox;
+    }
+
+    public void setCheckbox(JFXCheckBox checkbox) {
+        this.checkbox = checkbox;
     }
 }

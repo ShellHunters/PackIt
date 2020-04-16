@@ -3,15 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addProduct.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addProduct.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addProduct.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basicClasses/product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basicClasses/product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addProduct.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addProduct.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addProduct.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" afterDir="false" />
@@ -41,7 +40,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/interfaceMagazinier/stock/add" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PackIt-imVente" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -133,6 +132,8 @@
       <workItem from="1586766826272" duration="6578000" />
       <workItem from="1586805791411" duration="1251000" />
       <workItem from="1586880071285" duration="9247000" />
+      <workItem from="1587061209523" duration="3003000" />
+      <workItem from="1587064273343" duration="1148000" />
     </task>
     <servers />
   </component>

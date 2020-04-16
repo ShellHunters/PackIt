@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-
 <StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.stock.imStockController">
    <children>
       <AnchorPane id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" stylesheets="@imStock.css">
@@ -33,7 +32,7 @@
                               <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
                           </effect>
                       </JFXButton>
-                      <JFXButton layoutX="710.0" layoutY="60.0" prefHeight="50.0" prefWidth="300.0" ripplerFill="BLACK" styleClass="notPressed" text="Remove products" textAlignment="CENTER">
+                      <JFXButton layoutX="710.0" layoutY="60.0" onAction="#removeProduct" prefHeight="50.0" prefWidth="300.0" ripplerFill="BLACK" styleClass="notPressed" text="Remove products" textAlignment="CENTER">
                           <HBox.margin>
                               <Insets right="50.0" />
                           </HBox.margin>

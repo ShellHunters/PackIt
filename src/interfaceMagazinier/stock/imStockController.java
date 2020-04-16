@@ -22,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.input.MouseEvent;
@@ -56,7 +57,7 @@ public class imStockController implements Initializable {
     @FXML TableColumn<product, Number> quantityColumn;
     @FXML TableColumn<product, Number> buypriceColumn;
     @FXML TableColumn<product, Number> sellpriceColumn;
-    @FXML TableColumn<product, LocalDate> expirationdateColumn;
+    @FXML TableColumn<product, String> expirationdateColumn;
     @FXML TableColumn selectedColumn;
     @FXML JFXTextField searchTextField;
 
@@ -80,7 +81,7 @@ public class imStockController implements Initializable {
 
         expirationdateColumn.setCellValueFactory(param -> { return param.getValue().expirationDateProperty(); });
 
-        selectedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(selectedColumn));
+        selectedColumn.setCellValueFactory(new PropertyValueFactory<product,String>("checkbox"));
 
         //Table content
         products = FXCollections.observableArrayList();
@@ -109,7 +110,7 @@ public class imStockController implements Initializable {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-                product newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("localdate").toLocalDate());
+                product newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("localdate").toString());
                 products.add(newProduct);
             }
             return products;
@@ -129,5 +130,19 @@ public class imStockController implements Initializable {
         add.show();
         //Change back the button to default color
         add.setOnDialogClosed(event1 ->{ source.getStyleClass().removeAll("pressed"); });
+    }
+
+    public void removeProduct() {
+        Connection connection = ConnectionClass.getConnection();
+        ObservableList<product> removedProduct = FXCollections.observableArrayList();
+        for (product bean : products )
+            if (bean.getCheckbox().isSelected()) {
+                removedProduct.add(bean);
+                // String sql = "INSERT INTO removedproducts (,codebar, prix_a , prix_v, quantit, date) VALUES ('" + TF_productName + "', '" + TF_Barcode + "', '" + TF_buyPrice + "', '" + TF_sellPrice + "', '" + TF_Quanity + "', '" + DP_expiratioDate + "')";
+                //statement.executeUpdate(sql);
+            }
+        products.removeAll(removedProduct) ;
+
+
     }
 }

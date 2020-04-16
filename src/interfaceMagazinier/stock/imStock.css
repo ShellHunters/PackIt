@@ -116,12 +116,3 @@
 .table-view .menu-item .label {
     -fx-padding: 5 0 5 0;
 }
-
-.check-box .box{
-    -fx-background-insets: 0, 0, 0, 0;
-    -fx-border-color: black;
-    -fx-background-color: #c5c5c5;
-}
-.check-box .mark:selected{
-    -fx-background-color: black;
-}

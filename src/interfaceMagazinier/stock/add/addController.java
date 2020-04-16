@@ -36,7 +36,9 @@ public class addController {
         float sellPrice = Float.parseFloat(this.sellprice.getText());
         float buyPrice = Float.parseFloat(buyprice.getText());
         int quanity = Integer.parseInt(quantity.getText());
-        product product = new product(productname.getText(), barcode, sellPrice, buyPrice, quanity, expirationdate.getValue());
+        String expirationdateString;
+        if (expirationdate.getValue() != null) expirationdateString = expirationdate.getValue().toString(); else expirationdateString = "";
+        product product = new product(productname.getText(), barcode, sellPrice, buyPrice, quanity, expirationdateString);
         imStockController.products.add(product);// darte had ster pour ajouter f tableau machi f el base de donnee
 //        String sql = "INSERT INTO products (nom,codebar, prix_a , prix_v, quantit, date) VALUES ('" + TF_productName + "', '" + TF_Barcode + "', '" + TF_buyPrice + "', '" + TF_sellPrice + "', '" + TF_Quanity + "', '" + DP_expiratioDate + "')";
 //        statement.executeUpdate(sql);
