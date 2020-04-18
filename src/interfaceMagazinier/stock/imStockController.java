@@ -38,10 +38,7 @@ import javax.xml.transform.Source;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -132,14 +129,23 @@ public class imStockController implements Initializable {
         add.setOnDialogClosed(event1 ->{ source.getStyleClass().removeAll("pressed"); });
     }
 
-    public void removeProduct() {
+    public void removeProduct() throws SQLException{
         Connection connection = ConnectionClass.getConnection();
+        Statement statement = connection.createStatement();
         ObservableList<product> removedProduct = FXCollections.observableArrayList();
         for (product bean : products )
             if (bean.getCheckbox().isSelected()) {
                 removedProduct.add(bean);
-                // String sql = "INSERT INTO removedproducts (,codebar, prix_a , prix_v, quantit, date) VALUES ('" + TF_productName + "', '" + TF_Barcode + "', '" + TF_buyPrice + "', '" + TF_sellPrice + "', '" + TF_Quanity + "', '" + DP_expiratioDate + "')";
-                //statement.executeUpdate(sql);
+                String sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,localdate) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "')";
+                statement.executeUpdate(sql);
+
+                String sqlDelete = "DELETE FROM stock WHERE barcode=?"   ;
+                PreparedStatement pst = connection.prepareStatement(sqlDelete);
+                pst.setInt(1,bean.getBarcode());
+                pst.executeUpdate();
+                pst.close() ;
+
+
             }
         products.removeAll(removedProduct) ;
 
