@@ -6,6 +6,7 @@ import basicClasses.product;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.jfoenix.controls.events.JFXDialogEvent;
+import interfaceMagazinier.stock.update.updateController;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +27,9 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -35,7 +40,6 @@ import javafx.util.Callback;
 
 import javax.swing.text.DateFormatter;
 import javax.xml.transform.Source;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -60,7 +64,13 @@ public class imStockController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        shortcutSetUp();
         tableSetUp();
+    }
+
+    void shortcutSetUp(){
+        stackPane.getScene().setOnKeyPressed(event -> {
+        });
     }
 
     void tableSetUp(){
@@ -118,10 +128,10 @@ public class imStockController implements Initializable {
     }
 
     public void addProduct(javafx.event.ActionEvent event) throws IOException {
-        //get source to change the button color
+//        get source to change the button color
         JFXButton source = (JFXButton) event.getSource();
         source.getStyleClass().add("pressed");
-        //Used region for the animation
+//        Used region for the animation
         Region root1 = FXMLLoader.load(getClass().getResource("add/addProduct.fxml"));
         JFXDialog add = new JFXDialog(stackPane, root1, DialogTransition.RIGHT);
         add.show();
@@ -144,11 +154,25 @@ public class imStockController implements Initializable {
                 pst.setInt(1,bean.getBarcode());
                 pst.executeUpdate();
                 pst.close() ;
-
-
             }
         products.removeAll(removedProduct) ;
+    }
 
-
+    public void updateProduct(javafx.event.ActionEvent event) throws IOException {
+        ObservableList<product> updatedProduct = FXCollections.observableArrayList();
+        for (product updated : products )
+            if (updated.getCheckbox().isSelected()) {
+                updateController.setProductSelected(updated);
+                updatedProduct.add(updated);
+                //get source to change the button color
+                JFXButton source = (JFXButton) event.getSource();
+                source.getStyleClass().add("pressed");
+                //Used region for the animation
+                Region root1 = FXMLLoader.load(getClass().getResource("update/updateProduct.fxml"));
+                JFXDialog update = new JFXDialog(stackPane, root1, DialogTransition.RIGHT);
+                update.show();
+                //Change back the button to default color
+                update.setOnDialogClosed(event1 -> { source.getStyleClass().removeAll("pressed"); });
+            }
     }
 }

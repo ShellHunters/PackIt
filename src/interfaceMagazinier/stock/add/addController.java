@@ -51,7 +51,7 @@ public class addController {
             errorLabel.setText("Fill all the text fields");
             return true;
         }
-        else if (!barcode.getText().chars().allMatch(Character::isDigit) || !quantity.getText().chars().allMatch(Character::isDigit) || !sellprice.getText().chars().allMatch(Character::isDigit) || !buyprice.getText().chars().allMatch(Character::isDigit)){
+        else if (!barcode.getText().matches("[0-9]*") || !quantity.getText().matches("[0-9]*") || !sellprice.getText().matches("[0-9]*\\.?[0-9]+") || !buyprice.getText().matches("[0-9]*\\.?[0-9]+")){
             errorLabel.setTextFill(Paint.valueOf("red"));
             errorLabel.setText("Some text fields must be numbers only");
             return true;

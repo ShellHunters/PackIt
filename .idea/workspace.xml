@@ -3,15 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSells.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSells.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStock.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/basicClasses/product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basicClasses/product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSells.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSells.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStock.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" afterDir="false" />
     </list>
@@ -40,24 +37,24 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PackIt-imVente" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/interfaceMagazinier/stock" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\stock\add" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\stock" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\clients" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\dashboard" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\providers" />
-    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\stock" />
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\resource\icons" />
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\stock\add" />
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\clients" />
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\dashboard" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -134,6 +131,13 @@
       <workItem from="1586880071285" duration="9247000" />
       <workItem from="1587061209523" duration="3003000" />
       <workItem from="1587064273343" duration="1148000" />
+      <workItem from="1587208939230" duration="240000" />
+      <workItem from="1587564291090" duration="171000" />
+      <workItem from="1587591906308" duration="3634000" />
+      <workItem from="1587848687662" duration="2401000" />
+      <workItem from="1587895640279" duration="465000" />
+      <workItem from="1588083181626" duration="1856000" />
+      <workItem from="1588195709415" duration="7505000" />
     </task>
     <servers />
   </component>
