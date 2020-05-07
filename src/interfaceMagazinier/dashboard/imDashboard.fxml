@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="interfaceMagazinier.dashboard.imDashboardController" prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="900.0" prefWidth="1380.0" stylesheets="@imDashboard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.dashboard.imDashboardController">
+   <children>
+      <VBox alignment="CENTER" layoutX="460.0" layoutY="380.0" prefHeight="500.0" prefWidth="900.0" spacing="20.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <JFXButton layoutX="62.0" layoutY="10.0" prefWidth="100.0" text="Day" />
+                  <JFXButton prefWidth="100.0" text="Week" />
+                  <JFXButton layoutX="10.0" layoutY="10.0" prefWidth="100.0" text="Mounth" />
+               </children>
+            </HBox>
+            <AreaChart fx:id="areaChart" legendVisible="false" prefHeight="400.0" prefWidth="800.0" verticalGridLinesVisible="false">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </AreaChart>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
 </AnchorPane>

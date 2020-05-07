@@ -1,5 +1,6 @@
 package interfaceMagazinier.stock.add;
 
+import Connection.ConnectionClass;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import  interfaceMagazinier.stock.imStockController;
@@ -16,7 +17,9 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class addController {
 
@@ -29,8 +32,9 @@ public class addController {
     @FXML Label errorLabel;
 
     @FXML private void addProduct() throws SQLException {
-//        Connection connection = ConnectionClass.getConnection();
-//        Statement statement = connection.createStatement();
+        Connection connection = ConnectionClass.getConnection();
+        Statement statement = connection.createStatement();
+        String sql;
         if (errorCheck()) return;
         int barcode = Integer.parseInt(this.barcode.getText());
         float sellPrice = Float.parseFloat(this.sellprice.getText());
@@ -39,9 +43,10 @@ public class addController {
         String expirationdateString;
         if (expirationdate.getValue() != null) expirationdateString = expirationdate.getValue().toString(); else expirationdateString = "";
         product product = new product(productname.getText(), barcode, sellPrice, buyPrice, quanity, expirationdateString);
-        imStockController.products.add(product);// darte had ster pour ajouter f tableau machi f el base de donnee
-//        String sql = "INSERT INTO products (nom,codebar, prix_a , prix_v, quantit, date) VALUES ('" + TF_productName + "', '" + TF_Barcode + "', '" + TF_buyPrice + "', '" + TF_sellPrice + "', '" + TF_Quanity + "', '" + DP_expiratioDate + "')";
-//        statement.executeUpdate(sql);
+        imStockController.products.add(product);
+        if (expirationdateString.equals("")) sql = "INSERT INTO stock (name,barcode,buyprice , sellprice, quantity) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" +sellPrice + "', '" +quanity + "')";
+            else sql = "INSERT INTO stock (name,barcode,buyprice , sellprice, quantity,expirationdate) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" +sellPrice + "', '" +quanity+ "', '" + expirationdateString + "')";
+        statement.executeUpdate(sql);
         resetFields();
     }
 

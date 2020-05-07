@@ -16,6 +16,11 @@ public class product extends RecursiveTreeObject<product> {
     private SimpleStringProperty expirationDate;
     private JFXCheckBox checkbox;
 
+    //Dashboard and sells attributes
+    private int initialQuantity;
+    private int numberOfSells;
+
+
     public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, String expirationDate) {
         this.productName = new SimpleStringProperty(productName);
         this.barcode = new SimpleIntegerProperty(barcode);
@@ -24,6 +29,10 @@ public class product extends RecursiveTreeObject<product> {
         this.quantity = new SimpleIntegerProperty(quantity);
         this.expirationDate = new SimpleStringProperty(expirationDate);
         this.checkbox = new JFXCheckBox();
+        //Dashboard attributes init
+        initialQuantity = quantity;
+        numberOfSells = 0;
+
     }
 
     public String getProductName() {

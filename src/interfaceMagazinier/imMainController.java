@@ -36,7 +36,6 @@ public class imMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        dashboardButton.getStyleClass().add("activeButton");
         //Hamburger menu
         HamburgerSlideCloseTransition hamburgerTransition = new HamburgerSlideCloseTransition(hamburger);
         hamburgerTransition.setRate(-1);
@@ -64,6 +63,9 @@ public class imMainController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        dashboardButton.getStyleClass().add("activeButton");
+        contentPane.getChildren().setAll(contents[0]);
     }
 
     public void button(ActionEvent event) throws IOException {

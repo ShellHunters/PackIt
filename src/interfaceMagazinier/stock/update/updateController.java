@@ -64,16 +64,16 @@ public class updateController implements Initializable {
 
 
         //update product
-//        Connection connection = ConnectionClass.getConnection();
-//        String query = "Update stock set name=?, barcode=? , buyprice=? , sellprice=? , quantity=? ,localdate=? where barcode='"+productSelected.getBarcode()+"'" ;
-//        PreparedStatement pst = connection.prepareStatement(query);
-//        pst.setString(1,productname.getText());
-//        pst.setString(2,String.valueOf(barcode.getText()));
-//        pst.setString(3,String.valueOf(sellprice.getText()));
-//        pst.setString(4,String.valueOf(buyprice.getText()));
-//        pst.setString(5,String.valueOf(quantity.getText()));
-//        pst.setString(6,expirationdate.getValue().toString());
-//        pst.execute() ;
+        Connection connection = ConnectionClass.getConnection();
+        String query = "Update stock set name=?, barcode=? , buyprice=? , sellprice=? , quantity=? ,expirationdate=? where barcode='"+productSelected.getBarcode()+"'" ;
+        PreparedStatement pst = connection.prepareStatement(query);
+        pst.setString(1,productname.getText());
+        pst.setString(2,String.valueOf(barcode.getText()));
+        pst.setString(3,String.valueOf(sellprice.getText()));
+        pst.setString(4,String.valueOf(buyprice.getText()));
+        pst.setString(5,String.valueOf(quantity.getText()));
+        pst.setString(6,expirationdate.getValue().toString());
+        pst.execute() ;
     }
 
 

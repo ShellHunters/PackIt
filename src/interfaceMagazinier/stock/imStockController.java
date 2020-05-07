@@ -117,7 +117,12 @@ public class imStockController implements Initializable {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-                product newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("localdate").toString());
+                product newProduct;
+                try {
+                    newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString());
+                } catch (Exception e){
+                    newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "");
+                }
                 products.add(newProduct);
             }
             return products;
@@ -146,7 +151,7 @@ public class imStockController implements Initializable {
         for (product bean : products )
             if (bean.getCheckbox().isSelected()) {
                 removedProduct.add(bean);
-                String sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,localdate) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "')";
+                String sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "')";
                 statement.executeUpdate(sql);
 
                 String sqlDelete = "DELETE FROM stock WHERE barcode=?"   ;
