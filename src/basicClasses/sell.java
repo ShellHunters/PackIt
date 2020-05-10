@@ -1,31 +1,24 @@
 package basicClasses;
 
+import java.sql.Connection;
+import Connection.ConnectionClass;
+import javafx.collections.transformation.SortedList;
+
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class sell {
-    class soldProduct{
-        product product;
-        int quantitySold;
-
-        public soldProduct(product product, int quantitySold){
-            this.product = product;
-            this.quantitySold = quantitySold;
-        }
-    }
-
-    private ArrayList<soldProduct> soldProducts;
+    private List<product> soldProducts;
     private int totalPrice = 0;
     private LocalDateTime sellTime;
 
-    public ArrayList<soldProduct> getSoldProducts() {
-        return soldProducts;
-    }
+     List<product> getSoldProducts() { return soldProducts; }
 
-    public void setSoldProducts(ArrayList<soldProduct> soldProducts) {
-        this.soldProducts = soldProducts;
-    }
+    public void setSoldProducts(List<product> soldProducts) { this.soldProducts = soldProducts; }
 
     public int getTotalPrice() {
         return totalPrice;
@@ -43,9 +36,18 @@ public class sell {
         this.sellTime = sellTime;
     }
 
-    public sell(ArrayList<soldProduct> soldProducts){
+    public sell(List<product> soldProducts){
         this.soldProducts = soldProducts;
-        soldProducts.forEach(soldProduct -> totalPrice += soldProduct.product.getSellPrice() * soldProduct.quantitySold); //Calculate final price
-        sellTime = LocalDateTime.now(); //When did the sell created
+        soldProducts.forEach(product -> totalPrice += product.getSellPrice() * product.getQuantity());
+        sellTime  = LocalDateTime.now();
+    }
+
+    public static void pushSell(sell newSell) throws SQLException {
+        Connection connection = ConnectionClass.getConnection();
+        Statement statement = connection.createStatement();
+        String query = "INSERT INTO sells(sellDate, amount) VALUES ('" + newSell.getSellTime() + "', '" + newSell.getTotalPrice() + "')";
+        //ADD THE PART WHERE U CHANgE THE PRODUCT STATS
+        statement.execute(query);
+        connection.close();
     }
 }

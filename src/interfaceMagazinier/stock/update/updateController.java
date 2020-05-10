@@ -31,7 +31,7 @@ public class updateController implements Initializable {
     @FXML private  JFXTextField quantity;
     @FXML private  JFXDatePicker expirationdate;
     @FXML private  Label errorLabel;
-    public static product productSelected ;
+    public static product productSelected;
 
 
     public static product getProductSelected() {

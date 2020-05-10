@@ -37,9 +37,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.swing.text.DateFormatter;
 import javax.xml.transform.Source;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -177,7 +181,64 @@ public class imStockController implements Initializable {
                 JFXDialog update = new JFXDialog(stackPane, root1, DialogTransition.RIGHT);
                 update.show();
                 //Change back the button to default color
-                update.setOnDialogClosed(event1 -> { source.getStyleClass().removeAll("pressed"); });
+                update.setOnDialogClosed(event1 -> {
+                    source.getStyleClass().removeAll("pressed");
+                    if (updatedProduct.size() != 0) {
+                        updatedProduct.remove(updateController.productSelected);
+                        updateController.productSelected = updatedProduct.get(updatedProduct.size() - 1);
+                    }
+                });
             }
+    }
+
+    public void exportToExcel() {
+        try {
+            // Connect with database
+            String query = "SELECT * FROM stock " ;
+            PreparedStatement  pst = ConnectionClass.getConnection().prepareStatement(query) ;
+            ResultSet rs = pst.executeQuery() ;
+
+            // creating excel sheet
+            XSSFWorkbook xssfWorkbook = new XSSFWorkbook() ;
+            XSSFSheet sheet = xssfWorkbook.createSheet("Stock") ;
+
+            //Create and Fill the first row of sheet
+            XSSFRow header = sheet.createRow(0) ;
+            header.createCell(0).setCellValue("Barcode");
+            header.createCell(1).setCellValue("Name");
+            header.createCell(2).setCellValue("Quantity");
+            header.createCell(3).setCellValue("Buy Price");
+            header.createCell(4).setCellValue("Sell Price");
+            header.createCell(5).setCellValue("Expiration Date ");
+
+            //Fill the sheet from database
+            int index = 1 ;
+            while (rs.next()) {
+                XSSFRow row = sheet.createRow(index) ;
+                row.createCell(0).setCellValue(rs.getString("barcode"));
+                row.createCell(1).setCellValue(rs.getString("name"));
+                row.createCell(2).setCellValue(rs.getString("quantity"));
+                row.createCell(3).setCellValue(rs.getString("buyprice"));
+                row.createCell(4).setCellValue(rs.getString("sellprice"));
+                row.createCell(5).setCellValue(rs.getString("expirationdate"));
+                index ++ ;
+            }
+            // creating A file
+            FileOutputStream fileOutputStream = new FileOutputStream("Stock.xlsx") ;
+            // puting data in the file
+            xssfWorkbook.write(fileOutputStream);
+            fileOutputStream.close();
+            // Alert About succes of operation
+            Alert alert = new Alert(Alert.AlertType.INFORMATION) ;
+            alert.setHeaderText(null);
+            alert.setContentText("Stock has been exported to excel file succefully");
+            alert.showAndWait();
+            //Closing connection
+            pst.close();
+            rs.close();
+
+        } catch (SQLException | IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

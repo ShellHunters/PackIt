@@ -48,6 +48,7 @@ public class addController {
             else sql = "INSERT INTO stock (name,barcode,buyprice , sellprice, quantity,expirationdate) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" +sellPrice + "', '" +quanity+ "', '" + expirationdateString + "')";
         statement.executeUpdate(sql);
         resetFields();
+        connection.close();
     }
 
     private boolean errorCheck(){

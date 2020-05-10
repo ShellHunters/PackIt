@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
+<AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
    <children>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="455.0" layoutY="5.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,13 +22,13 @@
       <VBox fx:id="loginContent" alignment="TOP_CENTER" layoutY="125.0" prefHeight="500.0" prefWidth="500.0" spacing="50.0">
          <children>
             <Label fx:id="status" alignment="CENTER" prefWidth="450.0" textFill="RED" />
-            <JFXTextField fx:id="emailField" focusColor="#f0134d" promptText="E-Mail" />
-            <JFXPasswordField fx:id="passwordField" focusColor="#f0134d" promptText="Password" />
+            <JFXTextField fx:id="emailField" focusColor="#170480" promptText="E-Mail" />
+            <JFXPasswordField fx:id="passwordField" focusColor="#170480" promptText="Password" />
             <JFXButton id="loginButton" onAction="#login" text="Login" />
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="No account?" />
-                  <Label id="toRegister" layoutX="10.0" layoutY="10.0" onMouseClicked="#toRegister" text="Join us here!" textFill="#ff6f5e" />
+                  <Label id="toRegister" layoutX="10.0" layoutY="10.0" onMouseClicked="#toRegister" text="Join us here!" textFill="#ee974c" />
                </children>
             </HBox>
          </children>

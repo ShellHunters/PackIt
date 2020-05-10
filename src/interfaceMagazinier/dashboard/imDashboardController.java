@@ -65,6 +65,7 @@ public class imDashboardController implements Initializable {
         areaChart.getData().clear();
         XYChart.Series<String, Number> mountSeries = new XYChart.Series<>();
         //load Data
+
         //
         areaChart.getData().add(mountSeries);
     }

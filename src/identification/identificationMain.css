@@ -8,16 +8,16 @@
     /*-fx-background-color: red;*/
     -fx-font: bolder 16px "Trebuchet MS";
     -fx-background-radius: 10;
-    -fx-background-color: #f5f0e3;
+    -fx-background-color: #EFF2F9;
 }
 
 #appName{
     -fx-font: bolder 46px "Pacifico";
-    -fx-text-fill: #f0134d;
+    -fx-text-fill: #ee974c;
 }
 
 .jfx-button{
-    -fx-background-color: #40bfc1;
-    -fx-text-fill: #f5f0e3;
+    -fx-background-color: #ee974c;
+    -fx-text-fill: white;
     -fx-font-size: 24;
 }

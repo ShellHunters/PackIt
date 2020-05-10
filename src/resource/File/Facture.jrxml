@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facture1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0e58c205-940c-4f5d-9457-4120fc8e307f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="Numfacture" class="java.lang.String"/>
+	<parameter name="Cashier" class="java.lang.String"/>
+	<parameter name="Total" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="productName" class="java.lang.String"/>
+	<field name="barcode" class="java.lang.String"/>
+	<field name="quantity" class="java.lang.String"/>
+	<field name="sellPrice" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="184" splitType="Stretch">
+			<staticText>
+				<reportElement x="174" y="80" width="210" height="40" uuid="59960b1d-96dd-4bde-8a9d-568349845afb"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Facture de vente]]></text>
+			</staticText>
+			<image>
+				<reportElement x="-10" y="-40" width="160" height="196" uuid="bfe30eba-7932-437e-950d-9eb14db3b8b4"/>
+				<imageExpression><![CDATA["C:/Users/Dell/Desktop/logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="420" y="30" width="40" height="30" uuid="8d48bb63-9822-40ee-843a-f65b77a2984c"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="150" width="100" height="31" uuid="4207537e-3744-4711-837f-afdbc670b91a"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cashier]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="53" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="30" uuid="4178a2ea-4941-44cd-a49c-a35bab68f887">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b7d392d3-c12d-45b0-a957-0b05eaacf97e"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="138" height="30" uuid="c3b472b6-9c82-425a-b06c-4f94a9bd8da1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4392ff8-9788-4124-be6f-84c705fdca3a"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Barcode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="138" height="30" uuid="faa7bd5b-5b23-4140-8ec7-3441e1b79dc1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2ccbe9d4-9701-4489-b6e8-901a15376a5e"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="30" uuid="c2eab524-1fb8-4068-92a3-b2da951b21bc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c0a6724c-7a3c-4c9b-ac86-3d978ebe63ec"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Price (once)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="6" y="30" width="544" height="3" uuid="78e1791a-b631-4fa1-93f8-81cd1a7d55c0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="176" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.spreadsheet.SpreadsheetLayout"/>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="63" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="90" splitType="Stretch">
+			<image>
+				<reportElement x="180" y="20" width="201" height="70" uuid="3f6a8f1b-4c04-4ea1-94a6-8f6130b9d67e"/>
+				<imageExpression><![CDATA["C:/Users/Dell/Desktop/logo1.png"]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

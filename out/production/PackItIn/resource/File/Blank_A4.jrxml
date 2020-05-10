@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="35ff9ae2-5ae6-4abd-be88-c3e65d54b95f">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="260" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="-30" width="130" height="230" uuid="7f2cb46f-f604-4800-b871-3048136a7e03"/>
+				<imageExpression><![CDATA["C:/Users/Dell/Desktop/logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="203" y="90" width="148" height="58" uuid="7f95080e-ec75-4371-8168-879b5d29a451"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Samaykoum]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="148" splitType="Stretch">
+			<staticText>
+				<reportElement x="220" y="30" width="148" height="58" uuid="d46f9872-003c-4170-8f0f-e91e6378d35e"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Samaykoum]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

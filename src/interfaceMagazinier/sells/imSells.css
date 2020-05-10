@@ -1,0 +1,10 @@
+/*@font-face {*/
+/*    font-family: 'DSEG';*/
+/*    src: url('../resource/fonts/7-Segment.ttf');*/
+
+/*}*/
+
+#price{
+        -fx-font: bolder 36px "DSEG";
+    }
+

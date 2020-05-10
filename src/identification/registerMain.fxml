@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
+<AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
    <children>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="455.0" layoutY="5.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,12 +21,12 @@
       <VBox fx:id="registerContent" alignment="TOP_CENTER" layoutY="115.0" prefHeight="500.0" prefWidth="500.0" spacing="40.0">
          <children>
             <Label fx:id="status" alignment="CENTER" prefWidth="450.0" textFill="RED" />
-            <JFXTextField fx:id="nameField" focusColor="#f0134d" layoutX="60.0" layoutY="157.0" promptText="Full name" />
-            <JFXTextField fx:id="emailField" focusColor="#f0134d" promptText="E-Mail" />
-            <JFXPasswordField fx:id="passwordField" focusColor="#f0134d" promptText="Password" />
-            <JFXPasswordField fx:id="passwordConfirmationField" focusColor="#f0134d" layoutX="60.0" layoutY="232.0" promptText="Confirm your password" />
+            <JFXTextField fx:id="nameField" focusColor="#170480" layoutX="60.0" layoutY="157.0" promptText="Full name" />
+            <JFXTextField fx:id="emailField" focusColor="#170480" promptText="E-Mail" />
+            <JFXPasswordField fx:id="passwordField" focusColor="#170480" promptText="Password" />
+            <JFXPasswordField fx:id="passwordConfirmationField" focusColor="#170480" layoutX="60.0" layoutY="232.0" promptText="Confirm your password" />
             <JFXButton id="loginButton" onAction="#register" text="Sign Up" />
-            <Label id="toLogin" onMouseClicked="#toLogin" text="Back to login" textFill="#ff6f5e" />
+            <Label id="toLogin" onMouseClicked="#toLogin" text="Back to login" textFill="#ee974c" />
          </children>
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
