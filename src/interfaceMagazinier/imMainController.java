@@ -52,20 +52,12 @@ public class imMainController implements Initializable {
             notification.setContent(new Label("NOTIFICATIONSSQSDFQSDDFHGQSTFGQSTYFQSDF"));
             notification.show(mainStackPane);
         });
-        //Content load
-        try {
-            contents[0] = FXMLLoader.load(getClass().getResource("dashboard/imDashboard.fxml"));
-            contents[1] = FXMLLoader.load(getClass().getResource("stock/imStock.fxml"));
-            contents[2] = FXMLLoader.load(getClass().getResource("sells/imSells.fxml"));
-            contents[3] = FXMLLoader.load(getClass().getResource("providers/imProviders.fxml"));
-            contents[4] = FXMLLoader.load(getClass().getResource("clients/imClients.fxml"));
-            contents[5] = FXMLLoader.load(getClass().getResource("settings/imSettings.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        loadContent();
 
         dashboardButton.getStyleClass().add("activeButton");
         contentPane.getChildren().setAll(contents[0]);
+
     }
 
     public void button(ActionEvent event) throws IOException {
@@ -73,10 +65,27 @@ public class imMainController implements Initializable {
         int i = 0,j;
         Button buttons[] = {dashboardButton, stockButton, sellsButton, providersButton, clientsButton, settingsButton};
         while (i<6 && event.getSource() != buttons[i]) i++;
+        //reload content in certain cases
+        if (i == 1) contents[1] = FXMLLoader.load(getClass().getResource("stock/imStock.fxml"));
+        if (i == 0) contents[0] = FXMLLoader.load(getClass().getResource("dashboard/imDashboard.fxml"));
+
         buttons[i].getStyleClass().add("activeButton");
         for(j=0; j < 6; j++) if (j != i) buttons[j].getStyleClass().removeAll("activeButton");
         //SWAP CONTENT
         contentPane.getChildren().setAll(contents[i]);
+    }
+
+    private void loadContent(){
+        //Right here the things u need to reload when u press a button
+        try {
+            contents[0] = FXMLLoader.load(getClass().getResource("dashboard/imDashboard.fxml"));
+            contents[2] = FXMLLoader.load(getClass().getResource("sells/imSells.fxml"));
+            contents[3] = FXMLLoader.load(getClass().getResource("providers/imProviders.fxml"));
+            contents[4] = FXMLLoader.load(getClass().getResource("clients/imClients.fxml"));
+            contents[5] = FXMLLoader.load(getClass().getResource("settings/imSettings.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void logOut() throws Exception {

@@ -3,7 +3,10 @@
     -fx-text-fill: #ee974c;
 }
 
-
+.jfx-date-picker .text-field{
+    -fx-prompt-text-fill: #8d8d8d;
+    -fx-text-fill: #8d8d8d;
+}
 
 .series0.chart-series-area-fill {
     -fx-fill: linear-gradient(to bottom, #ee974c, transparent);

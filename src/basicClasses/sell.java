@@ -1,11 +1,11 @@
 package basicClasses;
 
-import java.sql.Connection;
+import java.sql.*;
+
 import Connection.ConnectionClass;
+import interfaceMagazinier.stock.imStockController;
 import javafx.collections.transformation.SortedList;
 
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -38,7 +38,28 @@ public class sell {
 
     public sell(List<product> soldProducts){
         this.soldProducts = soldProducts;
-        soldProducts.forEach(product -> totalPrice += product.getSellPrice() * product.getQuantity());
+        soldProducts.forEach(product -> {
+            try {
+                Connection connection = ConnectionClass.getConnection();
+
+                String query = "SELECT * FROM stock where barcode=" + product.getBarcode();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet rs = preparedStatement.executeQuery();
+
+                if (rs.next()) {
+                    query = "UPDATE stock SET quantity=? where barcode=" + product.getBarcode();
+                    PreparedStatement statement = connection.prepareStatement(query);
+                    statement.setInt(1, rs.getInt("quantity") - product.getQuantity());
+                    statement.execute();
+                }
+
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            totalPrice += product.getSellPrice() * product.getQuantity();
+
+        });
         sellTime  = LocalDateTime.now();
     }
 

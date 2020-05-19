@@ -2,14 +2,11 @@ package interfaceMagazinier.sells;
 import basicClasses.product;
 import basicClasses.sell;
 import com.jfoenix.controls.JFXTextField;
-import interfaceMagazinier.stock.imStockController;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,9 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import Connection.ConnectionClass ;
-import javafx.scene.text.Font;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -30,22 +25,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.logging.Logger ;
-import java.util.logging.Level;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-import static interfaceMagazinier.stock.imStockController.products;
-import static java.lang.Float.*;
 import static javafx.scene.text.Font.loadFont;
 
 public class imSellsController implements Initializable {
 
     @FXML
     public TableView<product> sellTable;
-    public static ObservableList<product> products;
+    public static ObservableList<product> sellCollection;
     @FXML
     TableColumn<product, Number> barcodeColumn;
     @FXML
@@ -103,8 +92,6 @@ public class imSellsController implements Initializable {
     @FXML private JFXButton ok;
     @FXML private Label status;
     @FXML private JFXTextField barcodeLabel;
-    ObservableList<product> sellCollection = FXCollections.observableArrayList();
-    ObservableList<String> selledCollection = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -138,15 +125,15 @@ public class imSellsController implements Initializable {
         selectedColumn.setCellValueFactory(new PropertyValueFactory<product, String>("checkbox"));
 
         //Search
-
+        sellCollection = FXCollections.observableArrayList();
 
         FilteredList<product> filteredData = new FilteredList<>(sellCollection, product -> true);
         searchTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
             filteredData.setPredicate(product -> {
                 if (newValue == null || newValue.isEmpty()) return true;
                 String lowercaseFilter = newValue.toLowerCase();
-                if (product.getProductName().toLowerCase().indexOf(lowercaseFilter) != -1) return true;
-                else if (Integer.toString(product.getBarcode()).indexOf(lowercaseFilter) != -1) return true;
+                if (product.getProductName().toLowerCase().contains(lowercaseFilter)) return true;
+                else if (Integer.toString(product.getBarcode()).contains(lowercaseFilter)) return true;
                 else return false;
             });
         }));
@@ -154,6 +141,7 @@ public class imSellsController implements Initializable {
         sortedList.comparatorProperty().bind(sellTable.comparatorProperty());
         sellTable.setItems(sortedList);
     }
+
     //date and clock
   /*  public void runClock(){
         Thread clock = new Thread() {
@@ -303,16 +291,31 @@ public class imSellsController implements Initializable {
                 ResultSet rs = preparedStatement.executeQuery();
 
                 if (rs.next()) {
-                    product newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString());
+                    product newProduct;
+                    if (rs.getDate("expirationdate") == null) newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "");
+                    else{
+                        newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString());
+                    }
                     String oldValue = prix.getText();
                     prix.setText(Float.toString(Float.parseFloat(oldValue) + newProduct.getSellPrice()));
                     newProduct.setQuantity(1);
-                    sellCollection.add(newProduct);
-                    sellTable.setItems(sellCollection);
                     preparedStatement.close();
                     rs.close();
                     barcode = barcodeLabel.getText();
                     barcodeLabel.setText("");
+                    AtomicBoolean productAlreadyExists = new AtomicBoolean(false);
+                    sellCollection.forEach(product -> {
+                        if (product.getBarcode() == newProduct.getBarcode()) {
+                            product.setQuantity(product.getQuantity() + 1);
+                            productAlreadyExists.set(true);
+                        }
+                        return;
+                    });
+                    if (!productAlreadyExists.get()) {
+                        sellCollection.add(newProduct);
+                        sellTable.setItems(sellCollection);
+                        productAlreadyExists.set(false);
+                    }
                 } else /*if ((barcodeLabel.getText().length() > 8) || barcodeLabel.getText().length() < 6) {
 //                    Alert alert = new Alert(Alert.AlertType.ERROR);
 //                    alert.setTitle("Error");
@@ -335,7 +338,6 @@ public class imSellsController implements Initializable {
 
             }
         }catch (Exception e){
-            System.out.println("sosig");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("");

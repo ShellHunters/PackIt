@@ -103,8 +103,8 @@ public class imStockController implements Initializable {
             filteredData.setPredicate(product -> {
                 if (newValue == null || newValue.isEmpty()) return true;
                 String lowercaseFilter = newValue.toLowerCase();
-                if (product.getProductName().toLowerCase().indexOf(lowercaseFilter) != -1) return true;
-                else if (Integer.toString(product.getBarcode()).indexOf(lowercaseFilter) != -1) return true;
+                if (product.getProductName().toLowerCase().contains(lowercaseFilter)) return true;
+                else if (Integer.toString(product.getBarcode()).contains(lowercaseFilter)) return true;
                 else return false;
             });
         }));
@@ -155,7 +155,9 @@ public class imStockController implements Initializable {
         for (product bean : products )
             if (bean.getCheckbox().isSelected()) {
                 removedProduct.add(bean);
-                String sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "')";
+                String sql;
+                if (!bean.getExpirationDate().equals("")) sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "')";
+                else sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "')";
                 statement.executeUpdate(sql);
 
                 String sqlDelete = "DELETE FROM stock WHERE barcode=?"   ;
@@ -183,7 +185,7 @@ public class imStockController implements Initializable {
                 //Change back the button to default color
                 update.setOnDialogClosed(event1 -> {
                     source.getStyleClass().removeAll("pressed");
-                    if (updatedProduct.size() != 0) {
+                    if (updatedProduct.size() != 1) {
                         updatedProduct.remove(updateController.productSelected);
                         updateController.productSelected = updatedProduct.get(updatedProduct.size() - 1);
                     }

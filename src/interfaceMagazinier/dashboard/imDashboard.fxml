@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.AreaChart?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1380.0" stylesheets="@imDashboard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.dashboard.imDashboardController">
+<AnchorPane fx:id="chartTest" prefHeight="900.0" prefWidth="1380.0" stylesheets="@imDashboard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.dashboard.imDashboardController">
    <children>
       <VBox alignment="CENTER" layoutX="460.0" layoutY="380.0" prefHeight="500.0" prefWidth="900.0" spacing="20.0">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <JFXButton layoutX="62.0" layoutY="10.0" prefWidth="100.0" text="Day" />
-                  <JFXButton prefWidth="100.0" text="Week" />
-                  <JFXButton layoutX="10.0" layoutY="10.0" prefWidth="100.0" text="Mounth" />
+                  <JFXButton layoutX="62.0" layoutY="10.0" onAction="#areaChartDayData" prefWidth="100.0" text="Day" />
+                  <JFXButton onAction="#areaChartMounthData" prefWidth="100.0" text="Mounth" />
+                  <JFXButton layoutX="10.0" layoutY="10.0" onAction="#areaChartYearData" prefWidth="100.0" text="Year" />
+                  <JFXDatePicker fx:id="areaChartDatePicker" defaultColor="#ee974c" editable="false" promptText="Pick a date" />
                </children>
             </HBox>
             <AreaChart fx:id="areaChart" legendVisible="false" prefHeight="400.0" prefWidth="800.0" verticalGridLinesVisible="false">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <NumberAxis fx:id="areaChartXAxis" side="BOTTOM" />
               </xAxis>
               <yAxis>
                 <NumberAxis side="LEFT" />
               </yAxis>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </AreaChart>
          </children>
          <padding>
