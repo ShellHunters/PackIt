@@ -275,7 +275,6 @@ public class imSellsController implements Initializable {
 
 
     public void okClick() throws SQLException {
-
         try {
             if (barcodeLabel.getText().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -292,9 +291,9 @@ public class imSellsController implements Initializable {
 
                 if (rs.next()) {
                     product newProduct;
-                    if (rs.getDate("expirationdate") == null) newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "");
+                    if (rs.getDate("expirationdate") == null) newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "", rs.getInt("numberOfSells"));
                     else{
-                        newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString());
+                        newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString(), rs.getInt("numberOfSells"));
                     }
                     String oldValue = prix.getText();
                     prix.setText(Float.toString(Float.parseFloat(oldValue) + newProduct.getSellPrice()));
@@ -353,11 +352,12 @@ public class imSellsController implements Initializable {
     public void confirmSell(){
         if (sellCollection != null) {
             try {
-                sell.pushSell(new sell(sellCollection));
-                resetTable();
+                sell newSell = new sell(sellCollection);
+                newSell.pushSell();
             } catch (SQLException e) {
-                resetTable();
+                e.printStackTrace();
             }
+            resetTable();
         }
     }
 

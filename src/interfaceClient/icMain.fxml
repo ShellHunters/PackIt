@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceClient.icMainController">
+    <children>
+        <AnchorPane id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" stylesheets="@icMain.css">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <children>
+                  <HBox alignment="CENTER" layoutX="40.0" layoutY="72.0" prefHeight="50.0" prefWidth="300.0">
+                      <children>
+                          <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../resource/icons/searchIconBlack.png" />
+                              </image>
+                          </ImageView>
+                          <JFXTextField fx:id="searchTextField" focusColor="#ff7300" prefWidth="150.0" promptText="Search" />
+                      </children>
+                  </HBox>
+                <TableView fx:id="table" editable="true" layoutX="40.0" layoutY="170.0" prefHeight="690.0" prefWidth="1300.0">
+                    <columns>
+                        <TableColumn fx:id="barcodeColumn" prefWidth="199.0" text="Barcode" />
+                        <TableColumn fx:id="nameColumn" prefWidth="800.0" text="Name" />
+                        <TableColumn fx:id="priceColumn" prefWidth="299.0" text="Price" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

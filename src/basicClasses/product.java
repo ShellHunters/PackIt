@@ -35,6 +35,20 @@ public class product extends RecursiveTreeObject<product> {
 
     }
 
+    public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, String expirationDate, int numberOfSells) {
+        this.productName = new SimpleStringProperty(productName);
+        this.barcode = new SimpleIntegerProperty(barcode);
+        this.buyPrice = new SimpleFloatProperty(buyPrice);
+        this.sellPrice = new SimpleFloatProperty(sellPrice);
+        this.quantity = new SimpleIntegerProperty(quantity);
+        this.expirationDate = new SimpleStringProperty(expirationDate);
+        this.checkbox = new JFXCheckBox();
+        //Dashboard attributes init
+        initialQuantity = quantity;
+        this.numberOfSells = numberOfSells;
+
+    }
+
     public String getProductName() {
         return productName.get();
     }
@@ -114,4 +128,12 @@ public class product extends RecursiveTreeObject<product> {
     public void setCheckbox(JFXCheckBox checkbox) {
         this.checkbox = checkbox;
     }
+
+    public int getInitialQuantity() { return initialQuantity; }
+
+    public void setInitialQuantity(int initialQuantity) { this.initialQuantity = initialQuantity; }
+
+    public int getNumberOfSells() { return numberOfSells; }
+
+    public void setNumberOfSells(int numberOfSells) { this.numberOfSells = numberOfSells; }
 }

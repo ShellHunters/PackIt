@@ -1,56 +1,34 @@
 package interfaceMagazinier.stock;
 
 import Connection.ConnectionClass;
-import com.jfoenix.controls.*;
 import basicClasses.product;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import com.jfoenix.controls.events.JFXDialogEvent;
+import com.jfoenix.controls.JFXTextField;
 import interfaceMagazinier.stock.update.updateController;
-import javafx.beans.property.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.control.cell.TextFieldTreeTableCell;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Callback;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import javax.swing.text.DateFormatter;
-import javax.xml.transform.Source;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class imStockController implements Initializable {
@@ -80,18 +58,12 @@ public class imStockController implements Initializable {
     void tableSetUp(){
         //Table structure
         barcodeColumn.setCellValueFactory(param -> { return param.getValue().barcodeProperty(); });
-
         nameColumn.setCellValueFactory(param -> { return  param.getValue().productNameProperty(); });
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
         quantityColumn.setCellValueFactory(param -> { return param.getValue().quantityProperty(); });
-
         buypriceColumn.setCellValueFactory(param -> { return param.getValue().buyPriceProperty(); });
-
         sellpriceColumn.setCellValueFactory(param -> { return  param.getValue().sellPriceProperty(); });
-
         expirationdateColumn.setCellValueFactory(param -> { return param.getValue().expirationDateProperty(); });
-
         selectedColumn.setCellValueFactory(new PropertyValueFactory<product,String>("checkbox"));
 
         //Table content
@@ -127,6 +99,8 @@ public class imStockController implements Initializable {
                 } catch (Exception e){
                     newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "");
                 }
+                newProduct.setInitialQuantity(rs.getInt("initialQuantity"));
+                newProduct.setNumberOfSells(rs.getInt("numberOfSells"));
                 products.add(newProduct);
             }
             return products;

@@ -11,15 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class updateController implements Initializable {
@@ -55,6 +51,9 @@ public class updateController implements Initializable {
     @FXML private void updateProduct(ActionEvent event) throws SQLException {
         if (errorCheck()) return;
 
+        //Need this later
+        boolean barcodeChanged = Integer.parseInt(barcode.getText()) != productSelected.getBarcode();
+
         productSelected.setBarcode(Integer.parseInt(barcode.getText()));
         productSelected.setProductName(productname.getText());
         productSelected.setBuyPrice(Float.parseFloat(buyprice.getText()));
@@ -64,16 +63,32 @@ public class updateController implements Initializable {
 
 
         //update product
+
         Connection connection = ConnectionClass.getConnection();
         String query = "Update stock set name=?, barcode=? , buyprice=? , sellprice=? , quantity=? ,expirationdate=? where barcode='"+productSelected.getBarcode()+"'" ;
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,productname.getText());
-        pst.setString(2,String.valueOf(barcode.getText()));
-        pst.setString(3,String.valueOf(sellprice.getText()));
-        pst.setString(4,String.valueOf(buyprice.getText()));
+        pst.setString(2,barcode.getText());
+        pst.setString(3,buyprice.getText());
+        pst.setString(4,String.valueOf(sellprice.getText()));
         pst.setString(5,String.valueOf(quantity.getText()));
-        pst.setString(6,expirationdate.getValue().toString());
+        if (expirationdate.getValue() == null) {pst.setNull(6, Types.DATE);}
+        else { pst.setString(6,expirationdate.getValue().toString());}
         pst.execute() ;
+
+        if (barcodeChanged) {
+            //Kayna erreur hnaya
+            String sql = "Update stock set  barcode=? where name=? and sellprice=? and buyprice=? and quantity=? and expirationdate=?";
+            PreparedStatement Pst = connection.prepareStatement(sql);
+            Pst.setString(1, barcode.getText());
+            Pst.setString(2, productname.getText());
+            Pst.setString(3, sellprice.getText());
+            Pst.setString(4, buyprice.getText());
+            Pst.setString(5, quantity.getText());
+            if (expirationdate.getValue() == null) { pst.setNull(6, Types.DATE); }
+            else { pst.setString(6, expirationdate.getValue().toString()); }
+            Pst.execute();
+        }
     }
 
 

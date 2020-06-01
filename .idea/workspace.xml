@@ -4,25 +4,27 @@
     <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Stock.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Stock.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/sell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/sell.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboardController$areaChartElement.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboardController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSells.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSells.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSells.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSells.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSellsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSellsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/update/updateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/update/updateController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basicClasses/product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basicClasses/product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/basicClasses/sell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basicClasses/sell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceClient/o.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSells.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSells.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSells.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSells.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSellsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSellsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/update/updateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/update/updateController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,28 +54,29 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/Program Files/Java/Poi lib/xmlbeans-3.1.0.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../moncif/PackItIn" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src" />
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\sells" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceClient" />
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src" />
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\stock" />
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src\resource\icons" />
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\stock\add" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\clients" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\sells" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -89,6 +92,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.imMain">
+    <configuration name="icMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="interfaceClient.icMain" />
+      <module name="PackItIn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="interfaceClient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="identificationMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="identification.identificationMain" />
       <module name="PackItIn" />
@@ -118,6 +134,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.imMain" />
+        <item itemvalue="Application.icMain" />
         <item itemvalue="Application.identificationMain" />
       </list>
     </recent_temporary>
@@ -171,7 +188,26 @@
       <workItem from="1589462307284" duration="3044000" />
       <workItem from="1589473155427" duration="14598000" />
       <workItem from="1589720846364" duration="4803000" />
-      <workItem from="1589881268359" duration="391000" />
+      <workItem from="1589881268359" duration="1757000" />
+      <workItem from="1589979853532" duration="4323000" />
+      <workItem from="1590013751288" duration="36000" />
+      <workItem from="1590013952316" duration="514000" />
+      <workItem from="1590100745343" duration="2133000" />
+      <workItem from="1590147243412" duration="805000" />
+      <workItem from="1590165763147" duration="1461000" />
+      <workItem from="1590188750824" duration="321000" />
+      <workItem from="1590189104794" duration="1607000" />
+      <workItem from="1590396493202" duration="1793000" />
+      <workItem from="1590399367429" duration="2696000" />
+      <workItem from="1590405378641" duration="51000" />
+      <workItem from="1590405500701" duration="174000" />
+      <workItem from="1590405696808" duration="2681000" />
+      <workItem from="1590408420096" duration="66000" />
+      <workItem from="1590408518263" duration="191000" />
+      <workItem from="1590423977934" duration="7526000" />
+      <workItem from="1590596422333" duration="3251000" />
+      <workItem from="1590766601131" duration="2777000" />
+      <workItem from="1590931567037" duration="20065000" />
     </task>
     <servers />
   </component>
@@ -190,6 +226,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboardController.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PackItIn$imMain.ic" NAME="imMain Coverage Results" MODIFIED="1589500680205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

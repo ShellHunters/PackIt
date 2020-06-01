@@ -35,6 +35,7 @@ public class addController {
         Connection connection = ConnectionClass.getConnection();
         Statement statement = connection.createStatement();
         String sql;
+
         if (errorCheck()) return;
         int barcode = Integer.parseInt(this.barcode.getText());
         float sellPrice = Float.parseFloat(this.sellprice.getText());
@@ -42,10 +43,13 @@ public class addController {
         int quanity = Integer.parseInt(quantity.getText());
         String expirationdateString;
         if (expirationdate.getValue() != null) expirationdateString = expirationdate.getValue().toString(); else expirationdateString = "";
+
         product product = new product(productname.getText(), barcode, sellPrice, buyPrice, quanity, expirationdateString);
         imStockController.products.add(product);
-        if (expirationdateString.equals("")) sql = "INSERT INTO stock (name,barcode,buyprice , sellprice, quantity) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" +sellPrice + "', '" +quanity + "')";
-            else sql = "INSERT INTO stock (name,barcode,buyprice , sellprice, quantity,expirationdate) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" +sellPrice + "', '" +quanity+ "', '" + expirationdateString + "')";
+
+
+        if (expirationdateString.equals("")) sql = "INSERT INTO stock (name,barcode,buyprice , sellprice, quantity, initialQuantity) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" +sellPrice + "', '" +quanity + "', '" + quanity + "')";
+            else sql = "INSERT INTO stock (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" +sellPrice + "', '" +quanity+ "', '" + expirationdateString + "', '" + quanity + "')";
         statement.executeUpdate(sql);
         resetFields();
         connection.close();

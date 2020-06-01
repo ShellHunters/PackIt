@@ -4,12 +4,10 @@ import java.sql.*;
 
 import Connection.ConnectionClass;
 import interfaceMagazinier.stock.imStockController;
-import javafx.collections.transformation.SortedList;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class sell {
     private List<product> soldProducts;
@@ -39,36 +37,69 @@ public class sell {
     public sell(List<product> soldProducts){
         this.soldProducts = soldProducts;
         soldProducts.forEach(product -> {
-            try {
-                Connection connection = ConnectionClass.getConnection();
-
-                String query = "SELECT * FROM stock where barcode=" + product.getBarcode();
-                PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet rs = preparedStatement.executeQuery();
-
-                if (rs.next()) {
-                    query = "UPDATE stock SET quantity=? where barcode=" + product.getBarcode();
-                    PreparedStatement statement = connection.prepareStatement(query);
-                    statement.setInt(1, rs.getInt("quantity") - product.getQuantity());
-                    statement.execute();
-                }
-
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
             totalPrice += product.getSellPrice() * product.getQuantity();
-
         });
         sellTime  = LocalDateTime.now();
     }
 
-    public static void pushSell(sell newSell) throws SQLException {
-        Connection connection = ConnectionClass.getConnection();
-        Statement statement = connection.createStatement();
-        String query = "INSERT INTO sells(sellDate, amount) VALUES ('" + newSell.getSellTime() + "', '" + newSell.getTotalPrice() + "')";
-        //ADD THE PART WHERE U CHANgE THE PRODUCT STATS
-        statement.execute(query);
+     public void pushSell() throws SQLException {
+         Connection connection = ConnectionClass.getConnection();
+
+         //Incrementation of NumberOfSells in database of each product and decrementing quantity
+         this.soldProducts.forEach(product -> {
+
+             //Get the original quantity
+             //REMARQUE : We had to get the new quantity because in sells the quantity field is not the same as the quantity field in stock (one is quantity in stock and the other is the quantity of sold products)
+             //reminder nassim : if u have time add a soldQUantity field in the product class and adjust this function
+             AtomicInteger newQuantity = new AtomicInteger();
+             imStockController.products.forEach(originalProduct -> {
+                 if (originalProduct.getBarcode() == product.getBarcode()){
+                     newQuantity.set(originalProduct.getQuantity() - product.getQuantity());
+                     return;
+                 }
+             });
+
+            //changing the quantity and the number of sells
+             //REMARQUE : Number of sells is correct because we used the second constructor (which includes the number of sells) to add the products to the list.
+            String query = "UPDATE stock SET numberOfSells=?, quantity=? WHERE barcode=" + product.getBarcode();
+            PreparedStatement numberOfSellsStatement;
+            try {
+                numberOfSellsStatement = connection.prepareStatement(query);
+                numberOfSellsStatement.setInt(1, product.getNumberOfSells() + product.getQuantity());
+                numberOfSellsStatement.setInt(2, newQuantity.get());
+                numberOfSellsStatement.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
+        //GetLast ID Sell
+        String idQuery = "SELECT * FROM sells WHERE id = ( SELECT MAX( id ) FROM sells )";
+        Statement idStatement = connection.createStatement();
+        ResultSet rs = idStatement.executeQuery(idQuery);
+
+        int id = 0;
+        if (rs.next()){
+            id = rs.getInt("id") + 1;
+        }
+
+        System.out.println(id);
+
+        String query = "INSERT INTO sells(id, productCode, quantity, sellTime, sellPrice) VALUES (?, ?, ?, ?, ?)";
+        int finalId = id;
+        soldProducts.forEach(product -> {
+            try {
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setString(1, String.valueOf(finalId));
+                ps.setString(2, String.valueOf(product.getBarcode()));
+                ps.setString(3, String.valueOf(product.getQuantity()));
+                ps.setString(4, LocalDateTime.now().toString());
+                ps.setString(5, String.valueOf(product.getSellPrice()));
+                ps.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
         connection.close();
     }
 }
