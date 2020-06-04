@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
@@ -18,16 +18,17 @@
          </image>
       </ImageView>
       <Label id="appName" alignment="CENTER" layoutY="50.0" prefWidth="500.0" text="Pack It In" />
-      <VBox fx:id="registerContent" alignment="TOP_CENTER" layoutY="77.0" prefHeight="500.0" prefWidth="500.0" spacing="40.0">
+      <VBox fx:id="loginContent" alignment="TOP_CENTER" layoutY="125.0" prefHeight="500.0" prefWidth="500.0" spacing="50.0">
          <children>
             <Label fx:id="status" alignment="CENTER" prefWidth="450.0" textFill="RED" />
-            <JFXTextField fx:id="nameField" focusColor="#170480" promptText="Full name" />
-            <JFXTextField fx:id="shopNameField" focusColor="#170480" layoutX="60.0" layoutY="157.0" promptText="Shop name" />
-            <JFXTextField fx:id="emailField" focusColor="#170480" promptText="E-Mail" />
-            <JFXPasswordField fx:id="passwordField" focusColor="#170480" promptText="Password" />
-            <JFXPasswordField fx:id="passwordConfirmationField" focusColor="#170480" layoutX="60.0" layoutY="232.0" promptText="Confirm your password" />
-            <JFXButton id="loginButton" onAction="#register" text="Sign Up" />
-            <Label id="toLogin" onMouseClicked="#toLogin" text="Back to login" textFill="#ee974c" />
+            <JFXTextField fx:id="shopNameField" focusColor="#170480" promptText="Shop name" />
+            <JFXTextField fx:id="emailField" focusColor="#170480" promptText="E-mail" />
+            <JFXButton id="loginButton" onAction="#loginAsProvider" text="Login" />
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label id="toRegister" layoutX="10.0" layoutY="10.0" onMouseClicked="#toLogin" text="Back" textFill="#ee974c" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />

@@ -2,7 +2,6 @@ package interfaceMagazinier.dashboard;
 
 import Connection.ConnectionClass;
 import com.jfoenix.controls.JFXDatePicker;
-import interfaceMagazinier.stock.imStockController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,7 +11,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.net.URL;
 import java.sql.*;
@@ -21,7 +19,6 @@ import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class imDashboardController implements Initializable {
 
@@ -42,6 +39,11 @@ public class imDashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+//        imStockController.products.forEach(product -> {
+//            System.out.println("ja3far");
+//        });
+
         areaChartSetUp();
         pieChartSetUp();
         loadStatistique();

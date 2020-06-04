@@ -2,11 +2,9 @@ package basicClasses;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import javafx.beans.property.*;
-import sun.java2d.pipe.SpanShapeRenderer;
-
-import java.time.LocalDate;
-import java.util.Date;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class product extends RecursiveTreeObject<product> {
     private SimpleStringProperty productName;

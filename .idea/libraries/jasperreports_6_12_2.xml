@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="jasperreports-6.12.2">
+    <CLASSES>
+      <root url="jar://C:/Program Files/Java/Jasper Report/jasperreports-6.12.2.jar!/" />
+      <root url="jar://C:/Program Files/Java/Jasper Report/jasperreports-annotation-processors-6.12.2.jar!/" />
+      <root url="jar://C:/Program Files/Java/Jasper Report/jasperreports-chart-customizers-6.12.2.jar!/" />
+      <root url="jar://C:/Program Files/Java/Jasper Report/jasperreports-chart-themes-6.12.2 (1).jar!/" />
+      <root url="jar://C:/Program Files/Java/Jasper Report/jasperreports-custom-visualization-6.12.2 (1).jar!/" />
+      <root url="jar://C:/Program Files/Java/Jasper Report/jasperreports-functions-6.12.2.jar!/" />
+      <root url="jar://C:/Program Files/Java/Jasper Report/jasperreports-metadata-6.12.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
+<AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
    <children>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="455.0" layoutY="5.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,13 +20,34 @@
          </image>
       </ImageView>
       <Label id="appName" alignment="CENTER" layoutY="50.0" prefWidth="500.0" text="Pack It In" />
-      <VBox fx:id="loginContent" alignment="TOP_CENTER" layoutY="125.0" prefHeight="500.0" prefWidth="500.0" spacing="50.0">
+      <VBox fx:id="loginContent" alignment="TOP_CENTER" layoutY="109.0" prefHeight="500.0" prefWidth="500.0" spacing="50.0">
          <children>
             <Label fx:id="status" alignment="CENTER" prefWidth="450.0" textFill="RED" />
             <JFXTextField fx:id="emailField" focusColor="#170480" promptText="E-Mail" />
-            <JFXPasswordField fx:id="passwordField" focusColor="#170480" promptText="Password" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <JFXTextField fx:id="textField" prefHeight="32.0" prefWidth="400.0" visible="false" />
+                  <JFXPasswordField fx:id="passwordField" prefHeight="32.0" prefWidth="400.0" promptText="Password" />
+                  <ImageView fx:id="visible" fitHeight="30.0" fitWidth="30.0" layoutX="360.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/icons/baseline_visibility_black_36dp.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="invisible" fitHeight="30.0" fitWidth="30.0" layoutX="360.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../resource/icons/baseline_visibility_off_black_36dp.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="360.0" mnemonicParsing="false" onAction="#show" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: transparent;" />
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#forgotPassword" text="Forgot password ? " textFill="#ee974c" />
+               </children>
+            </HBox>
             <JFXButton id="loginButton" onAction="#login" text="Login" />
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="TOP_CENTER" prefHeight="20.0" prefWidth="327.0">
                <children>
                   <Label text="No account?" />
                   <Label id="toRegister" layoutX="10.0" layoutY="10.0" onMouseClicked="#toRegister" text="Join us here!" textFill="#ee974c" />
@@ -36,5 +58,7 @@
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </padding>
       </VBox>
+      <Label layoutX="345.0" layoutY="638.0" onMouseClicked="#toLoginAsProvider" text="Login as provider" textFill="#ee974c" />
+      <Label layoutX="16.0" layoutY="638.0" onMouseClicked="#toLoginAsClient" text="Login as client" textFill="#ee974c" />
    </children>
 </AnchorPane>
