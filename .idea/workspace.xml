@@ -2,34 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackItIn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PackItIn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/Connection/ConnectionClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/Connection/ConnectionClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/sell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/sell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/identification/identificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/identification/identificationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/identification/identificationMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/identification/identificationMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/identification/loginMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/identification/loginMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceClient/icMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceClient/icMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceClient/icMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceClient/icMain.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceClient/icMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceClient/icMainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/clients/imClientsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/clients/imClientsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/providers/imProvidersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/providers/imProvidersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSellsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSellsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/imSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/imSettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/update/updateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/update/updateController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/basicClasses/product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basicClasses/product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/identification/identificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/identificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/identification/loginMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/loginMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/identification/registerMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/registerMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceClient/icMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceClient/icMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceClient/icMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceClient/icMainController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +40,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/jfoenix-9.0.9.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/interfaceFournisseur" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -73,19 +50,19 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dell\Desktop\PackItIn\src\interfaceFournisseur" />
+      <recent name="C:\Users\Dell\Desktop\PackItIn\src\interfaceFournisseur\suggest" />
+      <recent name="C:\Users\Dell\Desktop\PackItIn\src\interfaceClient\request" />
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceClient" />
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src" />
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\sells" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceClient" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\stock" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\resource\icons" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\stock\add" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="" />
     </key>
   </component>
   <component name="RunManager" selected="Application.imMain">
@@ -234,35 +211,35 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="473" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591135580987" />
-    <state width="1877" height="324" key="GridCell.Tab.0.bottom" timestamp="1591274398427">
+    <state width="1877" height="324" key="GridCell.Tab.0.bottom" timestamp="1591368012815">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="307" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591136270628" />
-    <state width="1877" height="324" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591274398427" />
-    <state width="1877" height="324" key="GridCell.Tab.0.center" timestamp="1591274398427">
+    <state width="1877" height="324" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591368012815" />
+    <state width="1877" height="324" key="GridCell.Tab.0.center" timestamp="1591368012815">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="307" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591136270628" />
-    <state width="1877" height="324" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591274398427" />
-    <state width="1877" height="324" key="GridCell.Tab.0.left" timestamp="1591274398426">
+    <state width="1877" height="324" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591368012815" />
+    <state width="1877" height="324" key="GridCell.Tab.0.left" timestamp="1591368012815">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="307" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591136270627" />
-    <state width="1877" height="324" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591274398426" />
-    <state width="1877" height="324" key="GridCell.Tab.0.right" timestamp="1591274398427">
+    <state width="1877" height="324" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591368012815" />
+    <state width="1877" height="324" key="GridCell.Tab.0.right" timestamp="1591368012815">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="307" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591136270628" />
-    <state width="1877" height="324" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591274398427" />
+    <state width="1877" height="324" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591368012815" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1591135583717">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591135583717" />
-    <state x="581" y="300" key="com.intellij.ide.util.TipDialog" timestamp="1591273665332">
+    <state x="581" y="300" key="com.intellij.ide.util.TipDialog" timestamp="1591367932690">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1591135441668" />
-    <state x="581" y="300" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591273665332" />
+    <state x="581" y="300" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591367932690" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PackItIn$imMain.ic" NAME="imMain Coverage Results" MODIFIED="1589500680205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

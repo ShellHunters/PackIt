@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceClient.icMainController">
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceClient.icMainController">
     <children>
         <AnchorPane id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" stylesheets="@icMain.css">
             <opaqueInsets>
@@ -34,6 +40,58 @@
                         <TableColumn fx:id="priceColumn" prefWidth="299.0" text="Price" />
                     </columns>
                 </TableView>
+            <JFXButton layoutX="1078.0" layoutY="72.0" onAction="#close" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #170480; -fx-background-radius: 15;" text="Return to login" textAlignment="CENTER" textFill="WHITE">
+               <effect>
+                  <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="35.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/icons/baseline_exit_to_app_white_36dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#cf8939" />
+                        <Stop color="#ff8630" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="51.0" fitWidth="64.0" layoutX="1315.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/icons/closeIconBlack.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="1313.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" prefHeight="42.0" prefWidth="53.0" style="-fx-background-color: transparent; -fx-border-radius: 100; -fx-background-radius: 100;" />
+            <JFXButton layoutX="808.0" layoutY="72.0" onAction="#requestProduct" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #170480; -fx-background-radius: 15;" text="Request for product" textAlignment="CENTER" textFill="WHITE">
+               <effect>
+                  <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/icons/baseline_add_circle_outline_white_36dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#cf8939" />
+                        <Stop color="#ff8630" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
             </children>
         </AnchorPane>
     </children>

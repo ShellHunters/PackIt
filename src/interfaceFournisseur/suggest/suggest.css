@@ -1,0 +1,14 @@
+/*FONT IMPORTATION*/
+@font-face {
+    font-family: 'Pacifico';
+    src: url('../resource/fonts/Pacifico-Regular.ttf');
+}
+
+
+#sceneName{
+    -fx-font: bolder 25px "Pacifico";
+
+}
+
+
+

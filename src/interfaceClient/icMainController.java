@@ -2,18 +2,26 @@ package interfaceClient;
 
 import Connection.ConnectionClass;
 import basicClasses.product;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
+import identification.identificationMain;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -61,7 +69,6 @@ public class icMainController implements Initializable {
     }
 
     private ObservableList<product> loadProducts() {
-        System.out.println("sosig");
         ObservableList<product> products = FXCollections.observableArrayList();
         Connection connection = ConnectionClass.getConnection();
         String query = "SELECT * FROM stock"; //Change this to read only the products who belongs to the user
@@ -82,5 +89,30 @@ public class icMainController implements Initializable {
             e.printStackTrace();
             return null;
         }
+    }
+
+
+
+
+    @FXML
+    void close(ActionEvent event) throws Exception {
+        ((Stage) stackPane.getScene().getWindow()).close();
+        Stage loginStage = new Stage();
+        identificationMain loginInterface = new identificationMain();
+        loginInterface.start(loginStage);
+
+    }
+    public void exit() {System.exit(0);}
+
+    public void requestProduct(ActionEvent event) throws IOException {
+        //        get source to change the button color
+        JFXButton source = (JFXButton) event.getSource();
+        source.getStyleClass().add("pressed");
+//        Used region for the animation
+        Region root1 = FXMLLoader.load(getClass().getResource("request/request.fxml"));
+        JFXDialog add = new JFXDialog(stackPane, root1, JFXDialog.DialogTransition.RIGHT);
+        add.show();
+        //Change back the button to default color
+        add.setOnDialogClosed(event1 ->{ source.getStyleClass().removeAll("pressed"); });
     }
 }
