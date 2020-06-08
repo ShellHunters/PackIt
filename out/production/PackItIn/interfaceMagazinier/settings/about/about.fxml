@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="992.0" style="-fx-background-color: white; -fx-background-radius: 20;" stylesheets="@about.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.settings.about.aboutController">
+   <children>
+      <Label id="Name" layoutX="212.0" layoutY="64.0" prefHeight="176.0" prefWidth="609.0" text="Pack It In " textFill="#ee974c">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Label>
+      <Label layoutX="737.0" layoutY="233.0" text="For desktop">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="434.0" layoutY="380.0" prefHeight="32.0" prefWidth="156.0" text="Vesion 1.0.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="264.0" layoutY="430.0" text="Packitin " textFill="#1d22c5">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="346.0" layoutY="430.0" prefHeight="32.0" prefWidth="82.0" text="and the ">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="426.0" layoutY="430.0" text="Packitin " textFill="#1d22c5">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="506.0" layoutY="431.0" text="logos are trademarks of ">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="314.0" layoutY="471.0" text="Digital Howlers Inc." textFill="#1d22c5">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="505.0" layoutY="472.0" text="All rights reserved.">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <HBox prefHeight="805.0" prefWidth="60.0" style="-fx-background-radius: 20;" />
+      <HBox alignment="CENTER_LEFT" layoutX="60.0" prefHeight="77.0" prefWidth="920.0">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resource/icons/baseline_contact_support_black_36dp.png" />
+               </image>
+            </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="About">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <Label layoutX="360.0" layoutY="520.0" text="for desktop is built using open source ">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="463.0" layoutY="552.0" text="software.">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="249.0" fitWidth="237.0" layoutX="4.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resource/illustration/About1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="249.0" fitWidth="237.0" layoutX="731.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resource/illustration/About2.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="274.0" layoutY="520.0" text="Packitin " textFill="#1d22c5">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="426.0" layoutY="714.0" text="All rights reserved.">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="30.0" layoutX="393.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resource/icons/baseline_copyright_black_36dp.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="443.0" layoutY="743.0" text="Packitin - 2020">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

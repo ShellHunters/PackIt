@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
+<AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
    <children>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="455.0" layoutY="5.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -18,10 +18,11 @@
          </image>
       </ImageView>
       <Label id="appName" alignment="CENTER" layoutY="50.0" prefWidth="500.0" text="Pack It In" />
-      <VBox fx:id="registerContent" alignment="TOP_CENTER" layoutY="115.0" prefHeight="500.0" prefWidth="500.0" spacing="40.0">
+      <VBox fx:id="registerContent" alignment="TOP_CENTER" layoutY="77.0" prefHeight="500.0" prefWidth="500.0" spacing="40.0">
          <children>
             <Label fx:id="status" alignment="CENTER" prefWidth="450.0" textFill="RED" />
-            <JFXTextField fx:id="nameField" focusColor="#170480" layoutX="60.0" layoutY="157.0" promptText="Full name" />
+            <JFXTextField fx:id="nameField" focusColor="#170480" promptText="Full name" />
+            <JFXTextField fx:id="shopNameField" focusColor="#170480" layoutX="60.0" layoutY="157.0" promptText="Shop name" />
             <JFXTextField fx:id="emailField" focusColor="#170480" promptText="E-Mail" />
             <JFXPasswordField fx:id="passwordField" focusColor="#170480" promptText="Password" />
             <JFXPasswordField fx:id="passwordConfirmationField" focusColor="#170480" layoutX="60.0" layoutY="232.0" promptText="Confirm your password" />

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Pacifico';
+    src: url('../resource/fonts/Pacifico-Regular.ttf');
+}
+
+
+#appName{
+    -fx-font: bolder 72px "Pacifico";
+}

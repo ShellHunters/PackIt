@@ -164,6 +164,7 @@ public class identificationController{
         Statement statement = connection.createStatement();
 
         if (!existinEmailCheck(connection)) return;
+        if (!existinShopCheck(connection)) return;
         String sql = "INSERT INTO logins (email, nom, password,shopName) VALUES ('" + emailField.getText() + "', '" + nameField.getText() + "', '" + passwordField.getText() + "','"+shopNameField.getText()+"')";
         statement.executeUpdate(sql);
         connection.close();
@@ -283,8 +284,8 @@ public class identificationController{
         properties.put("mail.smtp.host","smtp.gmail.com");
         properties.put("mail.smtp.port","587");
 
-        String myMail = "rakikoove@gmail.com";
-        String password ="13012001rafik";
+        String myMail = "packitin.contact@gmail.com";
+        String password ="shellhunters";
         String reciever = emailField.getText().toString();
         
 
@@ -326,4 +327,18 @@ public class identificationController{
         deleteErrorMessage();
         return true;
     }
+    boolean existinShopCheck(Connection connection) throws SQLException {
+        String query = "SELECT * FROM logins where shopName= ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1,shopNameField.getText());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()){
+            status.setText("Your shop name already exists");
+            shopNameField.setText("");
+            return false;
+        }
+        deleteErrorMessage();
+        return true;
+    }
+
 }

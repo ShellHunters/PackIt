@@ -1,0 +1,4 @@
+.activeButton{
+    -fx-border-width: 0 5 0 0 ;
+    -fx-border-color: #ee801b;
+}
