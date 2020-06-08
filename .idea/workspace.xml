@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/identification/identificationController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/identification/identificationController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/identification/identificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/identification/identificationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/identification/registerMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/identification/registerMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/imSettings.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/imSettings.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/imSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/imSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/imSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/imSettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/identification/identificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/identificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/settings/imSettings.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/settings/imSettings.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/settings/imSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/settings/imSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/settings/imSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/settings/imSettingsController.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -249,11 +237,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591135583717" />
-    <state x="581" y="300" key="com.intellij.ide.util.TipDialog" timestamp="1591630997599">
+    <state x="581" y="300" key="com.intellij.ide.util.TipDialog" timestamp="1591633592067">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1591135441668" />
-    <state x="581" y="300" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591630997599" />
+    <state x="581" y="300" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591633592067" />
     <state x="666" y="149" key="refactoring.ChangeSignatureDialog" timestamp="1591479277641">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
