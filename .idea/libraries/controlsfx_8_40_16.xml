@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="javax.mail-1.6.2">
+  <library name="controlsfx-8.40.16">
     <CLASSES>
-      <root url="jar://C:/Program Files/Java/Java mail/javax.mail-1.6.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/controlsfx-8.40.16.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

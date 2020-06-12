@@ -7,8 +7,14 @@
     -fx-effect: null;
 }
 
+#frame{
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0, 0, 0, 0.27), 10, 0.0 , 0 , 4);
+}
+
 .jfx-tab-pane .tab-header-background {
-    -fx-background-color: #E5ECF3;
+    -fx-background-color: white;
     -fx-effect: null;
 }
 .jfx-tab-pane .tab-headers-region {
@@ -27,19 +33,19 @@
 }
 
 .tab {
-    -fx-background-color: #E5ECF3;
+    -fx-background-color: white;
     -fx-background-radius: 20 20 0 0;
 }
 
 .tab:selected{
-    -fx-background-color: white;
+    -fx-background-color: #E5ECF3;
 }
 .jfx-tab-pane .tab:selected .tab-label{
     -fx-text-fill: #ee974c;
 }
 
 .jfx-tab-pane .tab-content-area {
-    -fx-background-color: white;
+    -fx-background-color: #E5ECF3;
 }
 
 .jfx-tab-pane .depth-container { -fx-effect: null; }
@@ -69,24 +75,33 @@
     -fx-background-color: transparent;
 }
 
+.chart .chart-title {
+    -fx-text-fill: grey;
+    -fx-font-size: 18;
+}
+
 #pane {
     -fx-background-color: linear-gradient(to right, #63b7af, #74d4c0);
     -fx-background-radius : 15 ;
+    -fx-effect: dropshadow( three-pass-box , rgba(0, 0, 0, 0.33), 5, 0.0 , 0 , 1 );
 }
 
 #pane2 {
     -fx-background-color: linear-gradient(to right, #eb6383, #fa9191);
     -fx-background-radius : 15 ;
+    -fx-effect: dropshadow( three-pass-box , rgba(0, 0, 0, 0.33), 5, 0.0 , 0 , 1 );
 }
 
 #pane3 {
     -fx-background-color: linear-gradient(to right, #f5b971, #fdd998);
     -fx-background-radius : 15 ;
+    -fx-effect: dropshadow( three-pass-box , rgba(0, 0, 0, 0.33), 5, 0.0 , 0 , 1 );
 }
 
 #pane4 {
     -fx-background-color: linear-gradient(to right, #3b6978, #84a9ac);
     -fx-background-radius : 15 ;
+    -fx-effect: dropshadow( three-pass-box , rgba(0, 0, 0, 0.33), 5, 0.0 , 0 , 1 );
 }
 
 .button {

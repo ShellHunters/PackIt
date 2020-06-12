@@ -15,6 +15,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+//import javax.mail.*;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeMessage;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -276,7 +279,7 @@ public class identificationController{
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
               code = resultSet.getString("password");
-            }    
+            }
         // creating connection with sever and host gmail services
         Properties properties = new Properties();
         properties.put("mail.smtp.auth","true");
@@ -287,7 +290,7 @@ public class identificationController{
         String myMail = "packitin.contact@gmail.com";
         String password ="shellhunters";
         String reciever = emailField.getText().toString();
-        
+
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override

@@ -2,6 +2,7 @@ package interfaceMagazinier.dashboard;
 
 import Connection.ConnectionClass;
 import com.jfoenix.controls.JFXDatePicker;
+import interfaceMagazinier.stock.imStockController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,11 +12,13 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
@@ -39,14 +42,9 @@ public class imDashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-//        imStockController.products.forEach(product -> {
-//            System.out.println("ja3far");
-//        });
-
         areaChartSetUp();
         pieChartSetUp();
-        loadStatistique();
+        loadStatistiqueFrames();
     }
 
     //region pieChart methods
@@ -62,6 +60,7 @@ public class imDashboardController implements Initializable {
                 pieChartData.add(new PieChart.Data(rs.getString("name"), rs.getInt("numberOfSells")));
             }
             pieChart.setData(pieChartData);
+            pieChart.setTitle("Most sold products");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -166,7 +165,7 @@ public class imDashboardController implements Initializable {
     //endregion
 
     //region pane stats
-    public void loadStatistique(){
+    public void loadStatistiqueFrames(){
         Connection connection = ConnectionClass.getConnection();
         try {
             String query = "Select count(barcode) from stock ";
@@ -178,30 +177,26 @@ public class imDashboardController implements Initializable {
                 totalProviders.setText("5");
             }}
         catch (SQLException e){}
+
         try {
             String query = "Select sum(profit) from sells ";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
-            if(rs.next()){
-                String sum = rs.getString("sum(profit)");
-                totalProfit.setText(sum);
-            }}
+            rs.next();
+            String sum = rs.getString(1);
+            totalProfit.setText(sum);
+            }
         catch (SQLException e){}
-        Calendar calendar= new GregorianCalendar();
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int month = calendar.get(Calendar.MONTH)+1;
-        int year = calendar.get(Calendar.YEAR);
-        String date=year+"-"+month+"-"+day;
+
         try {
-            String query = "Select sum(profit) from sells WHERE sellDate=?" ;
+            String query = "Select sum(profit) from sells WHERE sellTime > CURDATE()" ;
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1 , date);
             ResultSet rs = preparedStatement.executeQuery();
-            if(rs.next()){
-                String sum = rs.getString("sum(profit)");
-                todayProfit.setText(sum);
-            }}
-        catch (SQLException e){}
+            rs.next();
+            String sum = rs.getString(1);
+            todayProfit.setText(sum);
+            }
+        catch (SQLException e){System.out.println(e);}
     }
 
     //endregion

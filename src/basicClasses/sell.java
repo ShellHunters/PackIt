@@ -85,7 +85,7 @@ public class sell {
 
         System.out.println(id);
 
-        String query = "INSERT INTO sells(id, productCode, quantity, sellTime, sellPrice) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO sells(id, productCode, quantity, sellTime, sellPrice, profit) VALUES (?, ?, ?, ?, ?, ?)";
         int finalId = id;
         soldProducts.forEach(product -> {
             try {
@@ -95,6 +95,7 @@ public class sell {
                 ps.setString(3, String.valueOf(product.getQuantity()));
                 ps.setString(4, LocalDateTime.now().toString());
                 ps.setString(5, String.valueOf(product.getSellPrice()));
+                ps.setString(6, String.valueOf(product.getSellPrice() - product.getBuyPrice()));
                 ps.execute();
             } catch (SQLException e) {
                 e.printStackTrace();

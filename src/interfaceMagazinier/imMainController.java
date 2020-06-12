@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import identification.identificationMain;
+import interfaceMagazinier.stock.imStockController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -56,7 +57,6 @@ public class imMainController implements Initializable {
         loadContent();
 
         dashboardButton.getStyleClass().add("activeButton");
-        contentPane.getChildren().setAll(contents[1]);
         contentPane.getChildren().setAll(contents[0]);
     }
 
@@ -78,7 +78,7 @@ public class imMainController implements Initializable {
         //Right here the things u need to reload when u press a button
         try {
             contents[0] = FXMLLoader.load(getClass().getResource("dashboard/imDashboard.fxml"));
-            contents[1] = contents[1] = FXMLLoader.load(getClass().getResource("stock/imStock.fxml"));
+            contents[1] = FXMLLoader.load(getClass().getResource("stock/imStock.fxml"));
             contents[2] = FXMLLoader.load(getClass().getResource("sells/imSells.fxml"));
             contents[3] = FXMLLoader.load(getClass().getResource("providers/imProviders.fxml"));
             contents[4] = FXMLLoader.load(getClass().getResource("clients/imClients.fxml"));

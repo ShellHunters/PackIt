@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="980.0" style="-fx-background-color: white; -fx-background-radius: 20;" stylesheets="@personal.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.settings.personal.personalController">
+<AnchorPane prefHeight="800.0" prefWidth="980.0" style="-fx-background-color: white; -fx-background-radius: 20;" stylesheets="@personal.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.settings.personal.personalController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="60.0" prefHeight="77.0" prefWidth="920.0">
          <children>
