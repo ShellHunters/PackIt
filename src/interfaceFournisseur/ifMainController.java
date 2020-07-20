@@ -19,7 +19,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import Connection.* ;
+import Connector.* ;
 
 import java.io.IOException;
 import java.net.URL;

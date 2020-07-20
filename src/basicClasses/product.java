@@ -2,7 +2,11 @@ package basicClasses;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import interfaceMagazinier.providers.SendEmailController;
+import interfaceMagazinier.providers.SetQuantityController;
 import javafx.beans.property.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.time.LocalDate;
@@ -11,13 +15,54 @@ import java.util.Date;
 public class product extends RecursiveTreeObject<product> {
     private SimpleStringProperty productName;
     private SimpleIntegerProperty barcode;
-    private SimpleFloatProperty buyPrice, sellPrice;
+    private SimpleFloatProperty buyPrice, sellPrice,stockPercentage;
     private SimpleIntegerProperty quantity;
+    private SimpleBooleanProperty IfWasSent;
     private SimpleStringProperty expirationDate;
+    private Integer NeededQuantity;
+    private Integer RequiredQuantity;
+    boolean IfWasAdded;
+    public Integer getNeededQuantity () {
+        return NeededQuantity;
+    }
+
+    public void setNeededQuantity (Integer neededQuantity) {
+        NeededQuantity = neededQuantity;
+    }
+
+
+
+
+    public float getStockPercentage () {
+        return stockPercentage.get();
+    }
+
+    public SimpleFloatProperty stockPercentageProperty () {
+        return stockPercentage;
+    }
+
+    public void setStockPercentage (float stockPercentage) {
+        this.stockPercentage.set(stockPercentage);
+    }
+
+    public boolean getIfWasSent () {
+        return IfWasSent.get();
+    }
+
+    public SimpleBooleanProperty ifWasSentProperty () {
+        return IfWasSent;
+    }
+
+    public void setIfWasSent (boolean ifWasSent) {
+        this.IfWasSent.set(ifWasSent);
+    }
+
+
     private JFXCheckBox checkbox;
 
+
     //Dashboard and sells attributes
-    private int initialQuantity;
+    private Integer initialQuantity;
     private int numberOfSells;
 
 
@@ -28,11 +73,60 @@ public class product extends RecursiveTreeObject<product> {
         this.sellPrice = new SimpleFloatProperty(sellPrice);
         this.quantity = new SimpleIntegerProperty(quantity);
         this.expirationDate = new SimpleStringProperty(expirationDate);
+        NeededQuantity=0;
+        stockPercentage=new SimpleFloatProperty(100);
+        IfWasSent=new SimpleBooleanProperty(false);
         this.checkbox = new JFXCheckBox();
         //Dashboard attributes init
         initialQuantity = quantity;
         numberOfSells = 0;
 
+    }
+    public product(){
+        this.productName = new SimpleStringProperty("");
+        this.barcode = new SimpleIntegerProperty(0);
+        this.buyPrice = new SimpleFloatProperty(0);
+        this.sellPrice = new SimpleFloatProperty(0);
+        this.quantity = new SimpleIntegerProperty(0);
+        this.expirationDate = new SimpleStringProperty("");
+        NeededQuantity = 0;
+    }
+
+    public product (String ProductName, int barCode, float BuyPrice, int Quantity, float StockPercentage, boolean ifWasSent, int InitialQuantity) {
+        this.productName = new SimpleStringProperty(ProductName);
+        this.barcode = new SimpleIntegerProperty(barCode);
+        this.buyPrice = new SimpleFloatProperty(BuyPrice);
+        this.stockPercentage = new SimpleFloatProperty(StockPercentage);
+        this.quantity = new SimpleIntegerProperty(Quantity);
+        IfWasSent =new SimpleBooleanProperty( ifWasSent);
+        this.initialQuantity = InitialQuantity;
+        NeededQuantity=0;
+
+    }
+
+
+
+
+
+    /*
+    public product (String ProductName, int barCode, int Quantity, float StockPercentage, boolean ifWasSent, Integer neededQuantity) {
+        this.productName = new SimpleStringProperty(ProductName);
+        this.barcode = new SimpleIntegerProperty(barCode);
+        this.stockPercentage= new SimpleFloatProperty(StockPercentage);
+        this.stockPercentage = new SimpleFloatProperty(StockPercentage);
+        this.quantity = new SimpleIntegerProperty(Quantity);
+        IfWasSent =new SimpleBooleanProperty( ifWasSent);
+        NeededQuantity = neededQuantity;
+    }
+
+
+ */
+
+    public product (String ProductName, Integer Barcode, Integer requiredQuantity, boolean ifWasAdded) {
+        this.productName=new SimpleStringProperty(ProductName);
+        this.barcode =new SimpleIntegerProperty(Barcode);
+        RequiredQuantity = requiredQuantity;
+        IfWasAdded = ifWasAdded;
     }
 
     public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, String expirationDate, int numberOfSells) {
@@ -42,6 +136,9 @@ public class product extends RecursiveTreeObject<product> {
         this.sellPrice = new SimpleFloatProperty(sellPrice);
         this.quantity = new SimpleIntegerProperty(quantity);
         this.expirationDate = new SimpleStringProperty(expirationDate);
+        NeededQuantity=0;
+
+        IfWasSent=new SimpleBooleanProperty(false);
         this.checkbox = new JFXCheckBox();
         //Dashboard attributes init
         initialQuantity = quantity;
@@ -61,7 +158,7 @@ public class product extends RecursiveTreeObject<product> {
         this.productName.set(productName);
     }
 
-    public int getBarcode() {
+    public Integer getBarcode() {
         return barcode.get();
     }
 
@@ -97,7 +194,7 @@ public class product extends RecursiveTreeObject<product> {
         this.sellPrice.set(sellPrice);
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity.get();
     }
 
@@ -105,7 +202,7 @@ public class product extends RecursiveTreeObject<product> {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity.set(quantity);
     }
 
@@ -129,11 +226,27 @@ public class product extends RecursiveTreeObject<product> {
         this.checkbox = checkbox;
     }
 
-    public int getInitialQuantity() { return initialQuantity; }
+    public Integer getInitialQuantity() { return initialQuantity; }
 
-    public void setInitialQuantity(int initialQuantity) { this.initialQuantity = initialQuantity; }
+    public void setInitialQuantity(Integer initialQuantity) { this.initialQuantity = initialQuantity; }
 
     public int getNumberOfSells() { return numberOfSells; }
 
     public void setNumberOfSells(int numberOfSells) { this.numberOfSells = numberOfSells; }
+
+    public Integer getRequiredQuantity () {
+        return RequiredQuantity;
+    }
+
+    public void setRequiredQuantity (Integer requiredQuantity) {
+        RequiredQuantity = requiredQuantity;
+    }
+
+    public boolean getIfWasAdded () {
+        return IfWasAdded;
+    }
+
+    public void setIfWasAdded (boolean ifWasAdded) {
+        IfWasAdded = ifWasAdded;
+    }
 }

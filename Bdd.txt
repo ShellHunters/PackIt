@@ -1,0 +1,53 @@
+ProvidersInfo Table:
+
+ProvidersInfo | CREATE TABLE `ProvidersInfo` (
+  `id` int(11) NOT NULL DEFAULT 0,
+  `FirstName` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `LastName` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PhoneNumber` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Address` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `TotalFigure` float NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci |
+
+Deleted Providers:
+
+| DeletedProviders | CREATE TABLE `DeletedProviders` (
+  `id` int(11) NOT NULL DEFAULT 0,
+  `FirstName` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `LastName` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PhoneNumber` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Email` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Address` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `TotalFigure` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci |
+
+
+
+
+
+
+
+
+ProvidersCommand:
+
+ProvidersCommand | CREATE TABLE `ProvidersCommand` (
+  `id` int(11) NOT NULL,
+  `FirstName` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `LastName` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PhoneNumber` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `CommandDate` datetime NOT NULL,
+  `IdOFTheProvider` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci |
+
+ Product Command :
+ 
+ | ProductsCommand | CREATE TABLE `ProductsCommand` (
+  `id` int(11) NOT NULL,
+  `ProductName` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `IfWasAdded` tinyint(1) NOT NULL DEFAULT 0,
+  `DateOfCommand` datetime NOT NULL,
+  `RequiredQuantity` int(11) NOT NULL,
+  `barcode` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci |

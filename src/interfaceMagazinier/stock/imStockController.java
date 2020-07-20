@@ -1,12 +1,16 @@
 package interfaceMagazinier.stock;
 
-import Connection.ConnectionClass;
+import Connector.ConnectionClass;
 import basicClasses.product;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.jfoenix.controls.JFXTextField;
+import interfaceMagazinier.providers.ApplyingCommandController;
+import interfaceMagazinier.providers.SendEmailController;
+import interfaceMagazinier.providers.SendEmailMessageController;
 import interfaceMagazinier.stock.update.updateController;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -115,6 +119,7 @@ public class imStockController implements Initializable {
         JFXButton source = (JFXButton) event.getSource();
         source.getStyleClass().add("pressed");
 //        Used region for the animation
+        ApplyingCommandController.IfApplyingCommandIsOpen=false;
         Region root1 = FXMLLoader.load(getClass().getResource("add/addProduct.fxml"));
         JFXDialog add = new JFXDialog(stackPane, root1, DialogTransition.RIGHT);
         add.show();
@@ -126,9 +131,31 @@ public class imStockController implements Initializable {
         Connection connection = ConnectionClass.getConnection();
         Statement statement = connection.createStatement();
         ObservableList<product> removedProduct = FXCollections.observableArrayList();
+        System.out.println("helloooo");
         for (product bean : products )
             if (bean.getCheckbox().isSelected()) {
-                removedProduct.add(bean);
+                System.out.println("this is  "+bean.getBarcode() +"   "+ bean.getProductName()+"   "+bean.getInitialQuantity()  +"   "+bean.getStockPercentage() +"  "+bean.getQuantity() +"   "+bean.getNeededQuantity()+"  "+"  "+bean.getIfWasSent()+"  "+ bean.getBuyPrice()+"   "+bean.getSellPrice());
+      removedProduct.add(bean);
+
+      if (SendEmailController.IfTabPaneIsOpen){
+
+          if (SendEmailController.ProductList.isEmpty())
+            System.out.println("rahi khawya");
+
+         // System.out.println("this is  "+brin.getBarcode() +"   "+ brin.getProductName()+"   "+brin.getInitialQuantity()  +"   "+bean.getStockPercentage() +"  "+brin.getQuantity() +"   "+brin.getNeededQuantity()+"  "+"  "+brin.getIfWasSent()+"  "+ brin.getBuyPrice()+"   "+brin.getSellPrice());
+
+          if (SendEmailController.ProductList.contains(bean)){
+              System.out.println("true");
+              SendEmailController.ProductList.removeIf(product ->  product.getBarcode().equals(  bean.getBarcode()));
+              SendEmailController.TempoListOfProducts.removeIf(product ->  product.getBarcode().equals(  bean.getBarcode()));
+              SendEmailController.NeededProduct.removeIf(product ->  product.getBarcode().equals(  bean.getBarcode()));
+          }
+          else {
+              System.out.println("false");
+              SendEmailMessageController.ProductList.removeIf(product -> product.getBarcode().equals(bean.getBarcode()));
+          }
+      }
+
                 String sql;
                 if (!bean.getExpirationDate().equals("")) sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "')";
                 else sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "')";

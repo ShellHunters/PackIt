@@ -12,7 +12,7 @@ import java.sql.*;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import Connection.ConnectionClass ;
+import Connector.ConnectionClass ;
 public class personalController implements Initializable {
     public Label status;
     public Label status1;

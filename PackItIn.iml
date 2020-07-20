@@ -7,9 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jfoenix-8.0.8" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.48" level="project" />
-    <orderEntry type="library" name="activation-1.1.1" level="project" />
-    <orderEntry type="library" name="javax.mail" level="project" />
+    <orderEntry type="library" exported="" name="avalon-framework-4.1.3" level="application" />
+    <orderEntry type="library" exported="" name="jasperreports-6.12.2" level="application" />
+    <orderEntry type="library" exported="" name="javax.mail" level="application" />
+    <orderEntry type="library" exported="" name="jfoenix-8.0.8" level="application" />
+    <orderEntry type="library" exported="" name="mysql-connector-java-5.1.48" level="application" />
   </component>
 </module>

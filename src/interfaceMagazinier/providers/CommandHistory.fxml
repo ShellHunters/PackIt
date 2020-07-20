@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="CommandHistoryContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.CommandHistoryController">
+   <children>
+      <AnchorPane prefHeight="900.0" prefWidth="1380.0" stylesheets="@imProviders.css">
+         <children>
+            <JFXDatePicker fx:id="CommandDatePicker" layoutX="550.0" layoutY="125.0" overLay="true" prefHeight="32.0" prefWidth="243.0" promptText="Select Date Of Command" />
+            <VBox alignment="CENTER" layoutX="285.0" layoutY="192.0" prefHeight="694.0" prefWidth="869.0" styleClass="TableCotainer">
+               <children>
+                  <TableView fx:id="CommandTableView" prefHeight="690.0" prefWidth="841.0">
+                    <columns>
+                      <TableColumn fx:id="IdCol" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="DateOfCommandCol" prefWidth="237.0" text="Date Of Command" />
+                        <TableColumn fx:id="NumberOfProductsCol" prefWidth="178.0" text="Number Of Products" />
+                        <TableColumn fx:id="AllWasAddedCol" prefWidth="168.0" text="All Was Added" />
+                        <TableColumn fx:id="ExploreButtonCol" prefWidth="205.0" text="Explore" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

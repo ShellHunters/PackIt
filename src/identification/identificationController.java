@@ -1,6 +1,6 @@
 package identification;
 
-import Connection.ConnectionClass;
+import Connector.ConnectionClass;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import interfaceClient.icMain;

@@ -83,6 +83,7 @@ public class imMainController implements Initializable {
             contents[3] = FXMLLoader.load(getClass().getResource("providers/imProviders.fxml"));
             contents[4] = FXMLLoader.load(getClass().getResource("clients/imClients.fxml"));
             contents[5] = FXMLLoader.load(getClass().getResource("settings/imSettings.fxml"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }

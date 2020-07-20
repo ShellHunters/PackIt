@@ -1,0 +1,53 @@
+.DeleteDialogRoot{
+    -fx-border-width: 2px;
+-fx-border-color: #F38A8A;
+    -fx-background-radius: 20;
+        -fx-border-radius: 20;
+}
+.ConfirmDialogRoot{
+    -fx-border-width: 2px;
+    -fx-border-color: #f1c40f;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+.WarningDialogRoot{
+    -fx-border-width: 2px;
+    -fx-border-color: #f1c40f;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+.ConfirmDialogYes{
+    -fx-background-color:  #7FDA80;
+    -fx-background-radius: 35px;
+-fx-text-fill: white;
+    -fx-font: 18 'Century Gothic';
+}
+.ConfirmDialogNo{
+    -fx-background-color:  #F38A8A;
+    -fx-background-radius: 25px;
+    -fx-text-fill: white;
+    -fx-font: 18 'Century Gothic';
+}
+.DialogHeader{
+    font:37px 'Caviar Dreams';
+    -fx-font-weight: bold;
+}
+.DialogBody{
+    font:16px   'Inconsolata';
+}
+.ConfirmDialogCancel{
+-fx-border-radius: 25px;
+    -fx-background-color:  #bdc3c7 ;
+    -fx-background-radius: 25px;
+    -fx-text-fill: white;
+    -fx-font: 18 'Century Gothic';
+}
+.ConfirmDialogCancel:pressed{
+}
+.DialogOneButton{
+    -fx-border-radius: 25px;
+    -fx-background-color:  #bdc3c7 ;
+    -fx-background-radius: 25px;
+    -fx-text-fill: white;
+    -fx-font: 24 'Century Gothic';
+}

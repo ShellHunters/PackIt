@@ -2,7 +2,7 @@ package basicClasses;
 
 import java.sql.*;
 
-import Connection.ConnectionClass;
+import Connector.ConnectionClass;
 import interfaceMagazinier.stock.imStockController;
 
 import java.time.LocalDateTime;

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="ConfirmDialogRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="512.0" styleClass="ConfirmDialogRoot" stylesheets="@../StyleSheets/DialogsStyleSheets.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dialogs.Resources.Controllers.ConfirmDialogController">
+   <children>
+      <Pane prefHeight="454.0" prefWidth="512.0" />
+      <VBox alignment="CENTER" onMouseDragged="#ConfirmDialogDragged" onMousePressed="#ConfirmDialogPressed" prefHeight="456.0" prefWidth="512.0">
+         <children>
+            <ImageView fitHeight="116.0" fitWidth="118.0" opacity="0.48">
+               <image>
+                  <Image url="@../../../resource/icons/QuestionMarkIcon.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="158.0" prefWidth="512.0" spacing="30.0">
+               <children>
+                  <Label fx:id="DialogHader" styleClass="DialogHader" text="Are You Sure ?">
+                     <font>
+                        <Font name="Caviar Dreams Bold" size="37.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="DialogBody" styleClass="DialogBody" text="You Really Want To Save This information ">
+                     <font>
+                        <Font name="Inconsolata Regular" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="126.0" prefWidth="502.0" spacing="36.0">
+               <children>
+                  <JFXButton fx:id="ConfirmDialogYes" onAction="#ConfirmDialogYes" prefHeight="45.0" prefWidth="118.0" styleClass="ConfirmDialogYes" text="Yes" />
+                  <JFXButton fx:id="ConfirmDialogNo" onAction="#ConfirmDialogNo" prefHeight="45.0" prefWidth="118.0" styleClass="ConfirmDialogNo" text="No" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

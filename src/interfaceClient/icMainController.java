@@ -1,6 +1,6 @@
 package interfaceClient;
 
-import Connection.ConnectionClass;
+import Connector.ConnectionClass;
 import basicClasses.product;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;

@@ -1,8 +1,7 @@
 package interfaceMagazinier.dashboard;
 
-import Connection.ConnectionClass;
+import Connector.ConnectionClass;
 import com.jfoenix.controls.JFXDatePicker;
-import interfaceMagazinier.stock.imStockController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,15 +11,11 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 public class imDashboardController implements Initializable {
