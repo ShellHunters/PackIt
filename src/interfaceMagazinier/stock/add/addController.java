@@ -36,6 +36,7 @@ public class addController implements Initializable {
     private JFXComboBox<Provider> ProvidersComboBox;
     public static ObservableList<Provider> ProvidersListForComboBox= FXCollections.observableArrayList();
 public boolean IfFromApplyingCommand;
+Integer TheIndex;
     public addController () throws SQLException {
     }
 
@@ -77,7 +78,11 @@ public boolean IfFromApplyingCommand;
                 System.out.println("in add scene  "+totalfigure);
             ApplyingCommandController.TheProvider.setTotalFigure(totalfigure);
                 UpdateProvider(ApplyingCommandController.TheProvider.getId(),totalfigure);
-
+           product theProduct= ApplyingCommandController.ProductList.get(TheIndex);
+            theProduct.setIfWasAdded(true);
+            CommandHistoryController.command.getListOfProducts().set(TheIndex,theProduct);
+           //ApplyingCommandController.ProductList.set(TheIndex, theProduct);
+            SetThatWasAdded(barcode,CommandHistoryController.command.getId());
             ApplyingCommandController.InitTable();
         }
         else{
@@ -126,10 +131,12 @@ public boolean IfFromApplyingCommand;
             barcode.setText(ApplyingCommandController.TheProduct.getBarcode().toString());
             quantity.setText(ApplyingCommandController.TheProduct.getRequiredQuantity().toString());
             productname.setText(ApplyingCommandController.TheProduct.getProductName());
+            TheIndex=ApplyingCommandController.IndexOfProduct;
+
 
         }
         else {
-            ProvidersComboBox.setVisible(true);
+            ProvidersComboBox.setVisible(true );
 
             ProvidersComboBox.setItems(imProviderController.ProviderList);
         }
@@ -154,4 +161,15 @@ while (resultSet.next()){
       preparedStatement.setInt(2, Id);
       preparedStatement.executeUpdate();
   }
+
+    void SetThatWasAdded(Integer Barcode , Integer Id) throws SQLException {
+String Sql ="UPDATE ProductsCommand set IfWasAdded=? WHERE  id =? and barcode=?";
+Connection connection = ConnectionClass.getConnection();
+PreparedStatement preparedStatement = connection.prepareStatement(Sql);
+preparedStatement.setBoolean(1,true);
+preparedStatement.setInt(2,Id);
+preparedStatement.setInt(3,Barcode);
+
+preparedStatement.executeUpdate();
+    }
 }

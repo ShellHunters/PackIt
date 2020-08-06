@@ -57,6 +57,7 @@ public class imMainController implements Initializable {
         loadContent();
 
         dashboardButton.getStyleClass().add("activeButton");
+        System.out.println("the start "+contents[0]);
         contentPane.getChildren().setAll(contents[0]);
     }
 
@@ -78,6 +79,7 @@ public class imMainController implements Initializable {
         //Right here the things u need to reload when u press a button
         try {
             contents[0] = FXMLLoader.load(getClass().getResource("dashboard/imDashboard.fxml"));
+            System.out.println("the medium "+contents[0]);
             contents[1] = FXMLLoader.load(getClass().getResource("stock/imStock.fxml"));
             contents[2] = FXMLLoader.load(getClass().getResource("sells/imSells.fxml"));
             contents[3] = FXMLLoader.load(getClass().getResource("providers/imProviders.fxml"));

@@ -93,13 +93,13 @@ private TableView<product> ProductTableView;
 
     @FXML
     private JFXButton ApplyingAllProductsQuantity;
-  static      ObservableList<product> ProductList= FXCollections.observableArrayList();
+  public static      ObservableList<product> ProductList= FXCollections.observableArrayList();
   static  ObservableList<Provider> ProviderList= FXCollections.observableArrayList();
     public static boolean IfApplyingCommandIsOpen, IfApplyingSceneIsOpen;
 CursorPosition dragPosition = new CursorPosition();
 static public Provider TheProvider ;
 static public product TheProduct;
-public static Integer RequireQuantity;
+public static Integer RequireQuantity,IndexOfProduct;
 public static ArrayList<Provider> SelectedProvidersList = new ArrayList<Provider>();
 public static  ArrayList<product> SelectedProductList= new ArrayList<product>();
 public static  ArrayList<product> AllProducts= new ArrayList<product>();
@@ -162,12 +162,13 @@ public static String ProviderName;
                         ioException.printStackTrace();
                     }
 
-            //        IfApplyingCommandIsOpen=false;
+                  IfApplyingCommandIsOpen=false;
                 });
 
 
-if (!MyProduct.getIfWasAdded())
-                this.setGraphic(AddProductToStock);
+if (!MyProduct.getIfWasAdded()){
+    System.out.println("samaykoum  "+MyProduct.getIfWasAdded());
+                this.setGraphic(AddProductToStock);}
             else {
     this.setText("");
     this.setGraphic(null);
@@ -210,9 +211,16 @@ if (!MyProduct.getIfWasAdded())
                 setText("");
             }
             else {
-                this.isChecked.setSelected(this.getItem());
-                this.setGraphic(this.isChecked.getParent());
-                this.setText("");
+                product MyProduct = (product)    this.getTableView().getItems().get(getIndex());
+                if (!MyProduct.getIfWasAdded()) {
+                    this.isChecked.setSelected(this.getItem());
+                    this.setGraphic(this.isChecked.getParent());
+                    this.setText("");
+                }
+                else {
+                    this.setGraphic(null);
+                    this.setText("");
+                }
             }
         }
         public abstract void onUpdateRow(T row, Boolean newValue);
@@ -248,6 +256,8 @@ public static void InitTable ()  {
     SelectedProductList.clear();
     SelectedProvidersList.clear();
 ProductList.clear();
+for (product myproduct:CommandHistoryController.command.getListOfProducts())
+    System.out.println("samaykouuuummm 2 3 : "+myproduct.getIfWasAdded());
     ProductList.addAll(CommandHistoryController.command.getListOfProducts());
 
     }
@@ -268,7 +278,10 @@ void LookingList(Collection<product> TheCollection) throws SQLException, IOExcep
     IfApplyingCommandIsOpen=true;
 
     for (product myProduct : TheCollection ){
+        if (myProduct.getIfWasAdded())
+            continue;
         TheProduct = myProduct;
+
         FindTheWay(TheProduct);
     }
     IfApplyingCommandIsOpen=false;
@@ -277,6 +290,8 @@ void LookingList(Collection<product> TheCollection) throws SQLException, IOExcep
 void FindTheWay(product theProduct) throws SQLException, IOException {
     JFXDialog dialog;
     Region root1;
+    IndexOfProduct=ProductList.indexOf(theProduct);
+    System.out.println("the index is:  "+IndexOfProduct);
     if (IfInTable(theProduct.getBarcode())) {
         TheProduct.setQuantity(TheProduct.getQuantity()  +RequireQuantity);
         updateController.setProductSelected(TheProduct);

@@ -73,7 +73,7 @@
                                           <Image url="@../../resource/icons/baseline_trending_up_white_36dp.png" />
                                        </image>
                                     </ImageView>
-                                    <Text fill="WHITE" layoutX="55.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today profit" wrappingWidth="196.90380859375006">
+                                    <Text fill="WHITE" layoutX="64.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today profit" wrappingWidth="196.90380859375006">
                                        <font>
                                           <Font size="35.0" />
                                        </font>
@@ -98,7 +98,7 @@
                                           <Image url="@../../resource/icons/baseline_store_mall_directory_white_36dp.png" />
                                        </image>
                                     </ImageView>
-                                    <Text fill="WHITE" layoutX="55.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total stock" wrappingWidth="175.30377197265625">
+                                    <Text fill="WHITE" layoutX="55.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total stock" wrappingWidth="175.30377197265625">
                                        <font>
                                           <Font size="35.0" />
                                        </font>
@@ -123,7 +123,7 @@
                                           <Image url="@../../resource/icons/ventesIconWhite.png" />
                                        </image>
                                     </ImageView>
-                                    <Text fill="WHITE" layoutX="55.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total profit" wrappingWidth="175.30377197265625">
+                                    <Text fill="WHITE" layoutX="55.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total profit" wrappingWidth="175.30377197265625">
                                        <font>
                                           <Font size="35.0" />
                                        </font>

@@ -193,7 +193,7 @@ System.out.println("2 test  "+NewProduct.getBarcode());
                 System.out.println("in add scene  "+totalfigure);
                 ApplyingCommandController.TheProvider.setTotalFigure(totalfigure);
                addController. UpdateProvider(ApplyingCommandController.TheProvider.getId(),totalfigure);
-
+                ApplyingCommandController.InitTable();
             }
             ApplyingCommandController.InitTable();
         }
@@ -236,4 +236,5 @@ System.out.println("2 test  "+NewProduct.getBarcode());
             return false;
         }
     }
+
 }
