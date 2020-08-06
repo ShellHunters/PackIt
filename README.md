@@ -15,3 +15,16 @@
         ApplyingCommand: Wich by it you can apply the coming command that you've sent to the Provider So , You can add the Coming Products
     
         BDD.txt : contains the commands that you must use to create mysql tables , and avoid you to write it by your self
+        
+        
+        
+        
+        
+        
+        ####### august 06 #####
+         i add functions that help to process the adding of the product
+    if you observe you can see that if you add a product , the second time if you want to add the sa
+me product from the same command that you was added before , you can't because it will let you add just one time , this is the best way for the magaziner to know that he added the product before
+    pikta_ka
+
+        
