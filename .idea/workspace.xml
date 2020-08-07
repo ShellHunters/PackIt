@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/Email$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/Email$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/Email.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/Email.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/providers/ApplyingCommand.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/providers/ApplyingCommand.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/providers/ApplyingCommandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/providers/ApplyingCommandController.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,6 +32,10 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -39,7 +46,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -56,18 +63,6 @@
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src" />
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\sells" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Application.imMain">
     <configuration name="icMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -195,24 +190,67 @@
       <workItem from="1591996731262" duration="529000" />
       <workItem from="1591997688974" duration="898000" />
       <workItem from="1591998614453" duration="237000" />
+      <workItem from="1596750481014" duration="698000" />
+      <workItem from="1596799429310" duration="3098000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="861" y="430" width="187" height="174" key="#Custom_Plugin_Repositories" timestamp="1596749294143">
+      <screen x="0" y="0" width="1920" height="1039" />
+    </state>
+    <state x="861" y="430" width="187" height="174" key="#Custom_Plugin_Repositories/0.0.1920.1039@0.0.1920.1039" timestamp="1596749294143" />
+    <state width="1870" height="249" key="GridCell.Tab.0.bottom" timestamp="1596801759038">
+      <screen x="0" y="0" width="1920" height="1039" />
+    </state>
+    <state width="1870" height="249" key="GridCell.Tab.0.bottom/0.0.1920.1039@0.0.1920.1039" timestamp="1596801759038" />
+    <state width="1870" height="249" key="GridCell.Tab.0.center" timestamp="1596801759037">
+      <screen x="0" y="0" width="1920" height="1039" />
+    </state>
+    <state width="1870" height="249" key="GridCell.Tab.0.center/0.0.1920.1039@0.0.1920.1039" timestamp="1596801759037" />
+    <state width="1870" height="249" key="GridCell.Tab.0.left" timestamp="1596801759037">
+      <screen x="0" y="0" width="1920" height="1039" />
+    </state>
+    <state width="1870" height="249" key="GridCell.Tab.0.left/0.0.1920.1039@0.0.1920.1039" timestamp="1596801759037" />
+    <state width="1870" height="249" key="GridCell.Tab.0.right" timestamp="1596801759038">
+      <screen x="0" y="0" width="1920" height="1039" />
+    </state>
+    <state width="1870" height="249" key="GridCell.Tab.0.right/0.0.1920.1039@0.0.1920.1039" timestamp="1596801759038" />
+    <state width="1870" height="337" key="GridCell.Tab.1.bottom" timestamp="1596750463439">
+      <screen x="0" y="0" width="1920" height="1039" />
+    </state>
+    <state width="1870" height="337" key="GridCell.Tab.1.bottom/0.0.1920.1039@0.0.1920.1039" timestamp="1596750463439" />
+    <state width="1870" height="337" key="GridCell.Tab.1.center" timestamp="1596750463439">
+      <screen x="0" y="0" width="1920" height="1039" />
+    </state>
+    <state width="1870" height="337" key="GridCell.Tab.1.center/0.0.1920.1039@0.0.1920.1039" timestamp="1596750463439" />
+    <state width="1870" height="337" key="GridCell.Tab.1.left" timestamp="1596750463438">
+      <screen x="0" y="0" width="1920" height="1039" />
+    </state>
+    <state width="1870" height="337" key="GridCell.Tab.1.left/0.0.1920.1039@0.0.1920.1039" timestamp="1596750463438" />
+    <state width="1870" height="337" key="GridCell.Tab.1.right" timestamp="1596750463439">
+      <screen x="0" y="0" width="1920" height="1039" />
+    </state>
+    <state width="1870" height="337" key="GridCell.Tab.1.right/0.0.1920.1039@0.0.1920.1039" timestamp="1596750463439" />
+    <state x="441" y="154" key="SettingsEditor" timestamp="1596749668610">
+      <screen x="0" y="0" width="1920" height="1039" />
+    </state>
+    <state x="441" y="154" key="SettingsEditor/0.0.1920.1039@0.0.1920.1039" timestamp="1596749668610" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PackItIn$imMain.ic" NAME="imMain Coverage Results" MODIFIED="1589500680205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

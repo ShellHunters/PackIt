@@ -5,6 +5,7 @@ import basicClasses.Provider;
 import basicClasses.product;
 import com.jfoenix.controls.*;
 import interfaceMagazinier.stock.update.updateController;
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -93,8 +94,12 @@ private TableView<product> ProductTableView;
 
     @FXML
     private JFXButton ApplyingAllProductsQuantity;
-  public static      ObservableList<product> ProductList= FXCollections.observableArrayList();
-  static  ObservableList<Provider> ProviderList= FXCollections.observableArrayList();
+
+    @FXML
+    private JFXCheckBox NotAddedCheckBox;
+
+    public static      ObservableList<product> ProductList= FXCollections.observableArrayList();
+
     public static boolean IfApplyingCommandIsOpen, IfApplyingSceneIsOpen;
 CursorPosition dragPosition = new CursorPosition();
 static public Provider TheProvider ;
@@ -102,7 +107,9 @@ static public product TheProduct;
 public static Integer RequireQuantity,IndexOfProduct;
 public static ArrayList<Provider> SelectedProvidersList = new ArrayList<Provider>();
 public static  ArrayList<product> SelectedProductList= new ArrayList<product>();
-public static  ArrayList<product> AllProducts= new ArrayList<product>();
+public static  ObservableList<product> NotAddedList= FXCollections.observableArrayList();
+    static ArrayList<product> TempoList = new ArrayList<product>();
+
 public static String ProviderName;
     @FXML
     void ApplySelectedProducts(ActionEvent event) throws IOException, SQLException {
@@ -167,7 +174,6 @@ public static String ProviderName;
 
 
 if (!MyProduct.getIfWasAdded()){
-    System.out.println("samaykoum  "+MyProduct.getIfWasAdded());
                 this.setGraphic(AddProductToStock);}
             else {
     this.setText("");
@@ -253,11 +259,13 @@ if (!MyProduct.getIfWasAdded()){
 
     }
 public static void InitTable ()  {
+        NotAddedList.clear();
     SelectedProductList.clear();
-    SelectedProvidersList.clear();
 ProductList.clear();
 for (product myproduct:CommandHistoryController.command.getListOfProducts())
-    System.out.println("samaykouuuummm 2 3 : "+myproduct.getIfWasAdded());
+    if (!myproduct.getIfWasAdded()) {
+        NotAddedList.add(myproduct);
+    }
     ProductList.addAll(CommandHistoryController.command.getListOfProducts());
 
     }
@@ -322,6 +330,7 @@ Provider getTheProvider(Integer id) throws SQLException {
     @Override
     public void initialize (URL location, ResourceBundle resources) {
 
+NotAddedCheckBox.setSelected(false);
         try {
             TheProvider=getTheProvider(CommandHistoryController.command.getIdOfProvider());
         } catch (SQLException throwables) {
@@ -331,6 +340,9 @@ Provider getTheProvider(Integer id) throws SQLException {
         IfApplyingSceneIsOpen=true;
         IfApplyingCommandIsOpen=false;
 InitTable();
+
+if (NotAddedList.isEmpty())
+    NotAddedCheckBox.setDisable(true);
         ApplySelectedProductsButton.setDisable(true);
         RequiredQuantityCol.setCellValueFactory(new PropertyValueFactory<product, Integer>("RequiredQuantity"));
         ProductNameCol.setCellValueFactory(new PropertyValueFactory<product, String>("productName"));
@@ -361,6 +373,31 @@ InitTable();
                 }
             };
                 });
+
+        NotAddedCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+
+
+            if (newValue){
+                TempoList.clear();
+                TempoList.addAll(ProductList);
+System.out.println("hada test li kount n7awess 3lih  "+TempoList.size());
+                ProductList.clear();
+                ProductList.addAll(NotAddedList);
+
+            }
+            else{
+                System.out.println("hada test li kount n7awess 3lih 2   "+TempoList.size());
+
+                ProductList.clear();
+                ProductList.addAll(TempoList);
+            }
+
+        });
+        NotAddedList.addListener((InvalidationListener) c -> {
+NotAddedCheckBox.setDisable(NotAddedList.isEmpty());
+
+
+        });
 /*
 
         FirstCol.setCellValueFactory(new PropertyValueFactory<Provider, String>("FirstName"));
