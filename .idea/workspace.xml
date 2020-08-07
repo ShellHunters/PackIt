@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/Email$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/Email$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/Email.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/Email.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/providers/ApplyingCommand.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/providers/ApplyingCommand.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/providers/ApplyingCommandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/providers/ApplyingCommandController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/providers/SendEmailMessage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/providers/SendEmailMessage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +188,7 @@
       <workItem from="1591997688974" duration="898000" />
       <workItem from="1591998614453" duration="237000" />
       <workItem from="1596750481014" duration="698000" />
-      <workItem from="1596799429310" duration="3098000" />
+      <workItem from="1596799429310" duration="4182000" />
     </task>
     <servers />
   </component>
@@ -215,22 +212,22 @@
       <screen x="0" y="0" width="1920" height="1039" />
     </state>
     <state x="861" y="430" width="187" height="174" key="#Custom_Plugin_Repositories/0.0.1920.1039@0.0.1920.1039" timestamp="1596749294143" />
-    <state width="1870" height="249" key="GridCell.Tab.0.bottom" timestamp="1596801759038">
+    <state width="1870" height="249" key="GridCell.Tab.0.bottom" timestamp="1596802984937">
       <screen x="0" y="0" width="1920" height="1039" />
     </state>
-    <state width="1870" height="249" key="GridCell.Tab.0.bottom/0.0.1920.1039@0.0.1920.1039" timestamp="1596801759038" />
-    <state width="1870" height="249" key="GridCell.Tab.0.center" timestamp="1596801759037">
+    <state width="1870" height="249" key="GridCell.Tab.0.bottom/0.0.1920.1039@0.0.1920.1039" timestamp="1596802984937" />
+    <state width="1870" height="249" key="GridCell.Tab.0.center" timestamp="1596802984937">
       <screen x="0" y="0" width="1920" height="1039" />
     </state>
-    <state width="1870" height="249" key="GridCell.Tab.0.center/0.0.1920.1039@0.0.1920.1039" timestamp="1596801759037" />
-    <state width="1870" height="249" key="GridCell.Tab.0.left" timestamp="1596801759037">
+    <state width="1870" height="249" key="GridCell.Tab.0.center/0.0.1920.1039@0.0.1920.1039" timestamp="1596802984937" />
+    <state width="1870" height="249" key="GridCell.Tab.0.left" timestamp="1596802984935">
       <screen x="0" y="0" width="1920" height="1039" />
     </state>
-    <state width="1870" height="249" key="GridCell.Tab.0.left/0.0.1920.1039@0.0.1920.1039" timestamp="1596801759037" />
-    <state width="1870" height="249" key="GridCell.Tab.0.right" timestamp="1596801759038">
+    <state width="1870" height="249" key="GridCell.Tab.0.left/0.0.1920.1039@0.0.1920.1039" timestamp="1596802984935" />
+    <state width="1870" height="249" key="GridCell.Tab.0.right" timestamp="1596802984937">
       <screen x="0" y="0" width="1920" height="1039" />
     </state>
-    <state width="1870" height="249" key="GridCell.Tab.0.right/0.0.1920.1039@0.0.1920.1039" timestamp="1596801759038" />
+    <state width="1870" height="249" key="GridCell.Tab.0.right/0.0.1920.1039@0.0.1920.1039" timestamp="1596802984937" />
     <state width="1870" height="337" key="GridCell.Tab.1.bottom" timestamp="1596750463439">
       <screen x="0" y="0" width="1920" height="1039" />
     </state>

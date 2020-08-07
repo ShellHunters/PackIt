@@ -51,3 +51,18 @@ ProvidersCommand | CREATE TABLE `ProvidersCommand` (
   `RequiredQuantity` int(11) NOT NULL,
   `barcode` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci |
+
+
+
+stock | CREATE TABLE `stock` (
+  `barcode` int(11) NOT NULL,
+  `buyprice` float NOT NULL,
+  `expirationdate` int(11) DEFAULT NULL,
+  `name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `sellprice` float NOT NULL,
+  `numberOfSells` int(11) NOT NULL DEFAULT 0,
+  `initialQuantity` int(11) DEFAULT NULL,
+  `ifWasSent` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`barcode`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci |

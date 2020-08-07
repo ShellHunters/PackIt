@@ -61,12 +61,13 @@
                         <TextArea fx:id="ProductArea" prefHeight="87.0" prefWidth="1079.0" />
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" layoutX="14.0" layoutY="117.0" prefHeight="62.0" prefWidth="1438.0" spacing="30.0">
+                <HBox alignment="CENTER" layoutY="117.0" prefHeight="62.0" prefWidth="1380.0" spacing="30.0">
                     <children>
                         <JFXButton onAction="#AddProductOnList" text="Add Product In List" />
                         <JFXTextField fx:id="SearchForProducts" prefHeight="26.0" prefWidth="243.0" promptText="Search For The Product" />
                         <JFXButton fx:id="DeleteSelectedProductsButton" onAction="#DeleteSelectedProduct" text="Delete Selected Product" />
                         <JFXButton fx:id="ModifySelectedProductsButton" onAction="#ModifySelectedProducts" text="Modify Quanity To Selected" />
+                  <JFXButton text="Send Product (Not in List)" />
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" layoutX="3.0" layoutY="670.0" prefHeight="87.0" prefWidth="1373.0">
