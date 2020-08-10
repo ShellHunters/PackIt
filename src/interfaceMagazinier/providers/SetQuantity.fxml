@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="SetQuantityRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="266.0" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.SetQuantityController">
+    <children>
+        <Pane prefHeight="350.0" prefWidth="350.0">
+            <children>
+                <HBox alignment="CENTER" layoutX="-1.0" layoutY="106.0" prefHeight="43.0" prefWidth="262.0">
+                    <children>
+                        <JFXTextField fx:id="Quantity" labelFloat="true" onKeyPressed="#OnKeyPressed" prefHeight="33.0" prefWidth="134.0" promptText="Needed Quantity" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="-1.0" layoutY="38.0" prefHeight="58.0" prefWidth="262.0">
+                    <children>
+                        <Label fx:id="ProductName">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="1.0" layoutY="165.0" prefHeight="58.0" prefWidth="262.0" spacing="15.0">
+                    <children>
+                        <JFXButton onAction="#ConfirmQuantity" text="Confirm" />
+                        <JFXButton onAction="#Exit" text="Exit" />
+                    </children>
+                </HBox>
+            </children>
+        </Pane>
+    </children>
+    <styleClass>
+        <String fx:value="roots" />
+        <String fx:value="windows" />
+    </styleClass>
+</StackPane>

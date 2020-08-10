@@ -1,22 +1,14 @@
 package interfaceMagazinier.stock.add;
 
-import Connection.ConnectionClass;
+import Connector.ConnectionClass;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import  interfaceMagazinier.stock.imStockController;
 import basicClasses.product;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;

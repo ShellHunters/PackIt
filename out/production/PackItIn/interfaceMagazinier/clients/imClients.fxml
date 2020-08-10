@@ -1,11 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="interfaceMagazinier.clients.imClientsController" prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="1200.0" stylesheets="@imClients.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.clients.imClientsController">
+    <children>
+        <AnchorPane prefHeight="205.0" prefWidth="700.0" AnchorPane.bottomAnchor="345.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <TextField fx:id="txt_familyname" layoutX="327.0" layoutY="62.0" promptText="Family Name" />
+            <JFXButton buttonType="RAISED" layoutX="346.0" layoutY="125.0" onAction="#Add" prefHeight="50.0" prefWidth="120.0" text="Add">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#8b6d8f" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="524.0" layoutY="127.0" onAction="#Delete" prefHeight="50.0" prefWidth="120.0" text="Delete">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <TextField fx:id="txt_firstname" layoutX="706.0" layoutY="62.0" promptText="First Name" />
+            <JFXButton buttonType="RAISED" layoutX="684.0" layoutY="126.0" onAction="#Update" prefHeight="50.0" prefWidth="120.0" text="Update" />
+            <JFXTextField fx:id="searchfield" layoutX="1034.0" layoutY="164.0" promptText="Search" />
+            <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="1009.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resource/icons/searchIconBlack.png" />
+               </image>
+            </ImageView>
+            </children>
+        </AnchorPane>
+        <TableView id="table_users" fx:id="table_user" layoutY="203.0" onMouseClicked="#getSelected" prefHeight="347.0" prefWidth="724.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-24.0" AnchorPane.topAnchor="203.0">
+            <columns>
+            <TableColumn fx:id="col_id" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" resizable="false" sortable="false" text="ID" />
+                <TableColumn fx:id="col_fn" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" resizable="false" sortable="false" text="Family Name" />
+                <TableColumn fx:id="col_n" editable="false" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" resizable="false" sortable="false" text="First Name" />
+            <TableColumn fx:id="numberOfSells" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" text="Number of Sells" />
+            </columns>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+        </TableView>
+    </children>
 </AnchorPane>

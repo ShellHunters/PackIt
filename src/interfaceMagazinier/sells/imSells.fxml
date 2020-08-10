@@ -14,333 +14,351 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" stylesheets="@imSells.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.sells.imSellsController">
-    <children>
-        <TableView fx:id="sellTable" editable="true" layoutX="20.0" layoutY="350.0" prefHeight="540.0" prefWidth="930.0">
-            <columns>
-                <TableColumn fx:id="barcodeColumn" prefWidth="130.4000244140625" text="Barcode" />
-                <TableColumn fx:id="nameColumn" prefWidth="193.60009765625" text="Name" />
-                <TableColumn fx:id="quantityColumn" prefWidth="156.800048828125" text="Quantity" />
-                <TableColumn fx:id="sellpriceColumn" prefWidth="133.5999755859375" text="Price" />
-                <TableColumn fx:id="expirationdateColumn" minWidth="0.0" prefWidth="143.2000732421875" text="Expiration date" />
-                <TableColumn fx:id="selectedColumn" prefWidth="204.80002441406248" text="Selected" />
-            </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-        </TableView>
-        <GridPane layoutX="964.0" layoutY="422.0" prefHeight="469.0" prefWidth="410.0" style="-fx-background-color: transparent;">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <JFXButton fx:id="one" onAction="#oneClick" prefHeight="90.0" prefWidth="135.0" text="1" textFill="WHITE" GridPane.rowIndex="3">
-                    <font>
+<StackPane fx:id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.sells.imSellsController">
+   <children>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" stylesheets="@imSells.css">
+         <children>
+            <TableView fx:id="sellTable" editable="true" layoutX="41.0" layoutY="118.0" prefHeight="674.0" prefWidth="886.0" style="-fx-background-radius: 15;">
+               <columns>
+                  <TableColumn fx:id="barcodeColumn" prefWidth="130.4000244140625" text="Barcode" />
+                  <TableColumn fx:id="nameColumn" prefWidth="193.60009765625" text="Name" />
+                  <TableColumn fx:id="quantityColumn" prefWidth="156.800048828125" text="Quantity" />
+                  <TableColumn fx:id="sellpriceColumn" prefWidth="133.5999755859375" text="Price" />
+                  <TableColumn fx:id="expirationdateColumn" minWidth="0.0" prefWidth="143.2000732421875" text="Expiration date" />
+                  <TableColumn fx:id="selectedColumn" prefWidth="204.80002441406248" text="Selected" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <GridPane layoutX="970.0" layoutY="417.0" prefHeight="448.0" prefWidth="400.0" style="-fx-background-color: transparent;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <JFXButton fx:id="one" onAction="#oneClick" prefHeight="70.0" prefWidth="130.0" text="1" textFill="WHITE" GridPane.rowIndex="3">
+                     <font>
                         <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="six" onAction="#sixClick" prefHeight="90.0" prefWidth="135.0" text="6" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="five" onAction="#fiveClick" prefHeight="90.0" prefWidth="135.0" text="5" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="nine" onAction="#nineClick" prefHeight="90.0" prefWidth="135.0" text="9" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="four" onAction="#fourClick" prefHeight="90.0" prefWidth="135.0" text="4" textFill="WHITE" GridPane.rowIndex="2">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="clearE" onAction="#clearE" prefHeight="90.0" prefWidth="135.0" text="CE" textFill="WHITE" GridPane.columnIndex="1">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="eight" onAction="#eightClick" prefHeight="90.0" prefWidth="135.0" text="8" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="seven" onAction="#sevenClick" prefHeight="90.0" prefWidth="135.0" text="7" textFill="WHITE" GridPane.rowIndex="1">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="two" onAction="#twoClick" prefHeight="90.0" prefWidth="135.0" text="2" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="three" onAction="#threeClick" prefHeight="90.0" prefWidth="135.0" text="3" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="zero" onAction="#zeroClick" prefHeight="90.0" prefWidth="135.0" text="0" textFill="WHITE" GridPane.rowIndex="4">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="doubleZero" onAction="#doubleZeroClick" prefHeight="90.0" prefWidth="135.0" text="00" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="clear" onAction="#clearClick" prefHeight="90.0" prefWidth="135.0" text="C" textFill="WHITE">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton fx:id="tripleZero" onAction="#tripleZeroClick" prefHeight="90.0" prefWidth="135.0" text="000" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                    <font>
-                        <Font size="39.0" />
-                    </font>
-                </JFXButton>
-                  <JFXButton fx:id="repeat" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#repeatClick" prefHeight="90.0" prefWidth="135.0" text="   " textFill="WHITE" GridPane.columnIndex="2">
-                      <font>
-                          <Font size="39.0" />
-                      </font>
-               <graphic>
-                        <ImageView fitHeight="55.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../resource/icons/baseline_replay_white_36dp.png" />
-                            </image>
-                        </ImageView>
-               </graphic>
+                     </font>
                   </JFXButton>
-            </children>
-        </GridPane>
-        <JFXTextField fx:id="barcodeLabel" alignment="CENTER" focusColor="WHITE" layoutX="965.0" layoutY="349.0" prefHeight="66.0" prefWidth="326.0" promptText="  BARCODE" style="-fx-background-color: #ee974c; -jfx-focus-color: white; -fx-background-radius: 10;" unFocusColor="WHITE">
-            <font>
-                <Font name="System Bold" size="29.0" />
-            </font>
-        </JFXTextField>
-        <JFXButton fx:id="ok" layoutX="1294.0" layoutY="349.0" onAction="#okClick" prefHeight="66.0" prefWidth="79.0" text="OK" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="28.0" />
-            </font>
-            <ripplerFill>
-                <LinearGradient endX="1.0" endY="1.0">
-                    <stops>
+                  <JFXButton fx:id="six" onAction="#sixClick" prefHeight="70.0" prefWidth="130.0" text="6" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="five" onAction="#fiveClick" prefHeight="70.0" prefWidth="130.0" text="5" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="nine" onAction="#nineClick" prefHeight="70.0" prefWidth="130.0" text="9" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="four" onAction="#fourClick" prefHeight="70.0" prefWidth="130.0" text="4" textFill="WHITE" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="clearE" onAction="#clearE" prefHeight="70.0" prefWidth="130.0" text="CE" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="eight" onAction="#eightClick" prefHeight="70.0" prefWidth="130.0" text="8" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="seven" onAction="#sevenClick" prefHeight="70.0" prefWidth="130.0" text="7" textFill="WHITE" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="two" onAction="#twoClick" prefHeight="70.0" prefWidth="130.0" text="2" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="three" onAction="#threeClick" prefHeight="70.0" prefWidth="130.0" text="3" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="zero" onAction="#zeroClick" prefHeight="70.0" prefWidth="130.0" text="0" textFill="WHITE" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="doubleZero" onAction="#doubleZeroClick" prefHeight="70.0" prefWidth="130.0" text="00" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="clear" onAction="#clearClick" prefHeight="70.0" prefWidth="130.0" text="C" textFill="WHITE">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="70.0" prefWidth="130.0" text="." textFill="#170480" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="77.0" onMouseClicked="#add" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resource/icons/baseline_add_circle_outline_white_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="repeat" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#repeatClick" prefHeight="82.0" prefWidth="130.0" text="   " textFill="WHITE" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="55.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resource/icons/baseline_replay_white_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </GridPane>
+            <JFXTextField fx:id="barcodeLabel" alignment="CENTER" focusColor="WHITE" layoutX="970.0" layoutY="347.0" prefHeight="50.0" prefWidth="321.0" promptText="  BARCODE" style="-fx-background-color: #ee974c; -jfx-focus-color: white; -fx-background-radius: 10;" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="ok" layoutX="1294.0" layoutY="347.0" onAction="#okClick" prefHeight="50.0" prefWidth="79.0" text="OK" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
                         <Stop color="#cf8939" />
                         <Stop color="#ff8630" offset="1.0" />
-                    </stops>
-                </LinearGradient>
-            </ripplerFill>
-        </JFXButton>
-        <HBox fx:id="searchHbox" alignment="CENTER" layoutX="50.0" layoutY="280.0" prefWidth="300.0">
-            <children>
-                <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../resource/icons/searchIconBlack.png" />
-                    </image>
-                </ImageView>
-                <JFXTextField fx:id="searchTextField" focusColor="#ff7300" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Search" />
-            </children>
-        </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="75.0" layoutY="74.0" prefWidth="800.0" spacing="10.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="150.0" prefWidth="300.0" spacing="20.0">
-               <children>
-                    <JFXButton fx:id="printFacture" onAction="#printFacture" prefHeight="100.0" prefWidth="250.0" text="Print facture" textAlignment="CENTER" textFill="WHITE">
-                        <effect>
-                            <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
-                        </effect>
-                        <graphic>
-                            <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../../resource/icons/baseline_local_printshop_white_36dp.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <ripplerFill>
-                            <LinearGradient endX="1.0" endY="1.0">
-                                <stops>
-                                    <Stop color="#cf8939" />
-                                    <Stop color="#ff8630" offset="1.0" />
-                                </stops>
-                            </LinearGradient>
-                        </ripplerFill>
-                        <font>
-                            <Font name="System Bold" size="18.0" />
-                        </font>
-                    </JFXButton>
-                    <JFXButton onAction="#confirmSell" prefHeight="100.0" prefWidth="250.0" text="Confirm sell" textAlignment="CENTER" textFill="WHITE">
-                        <effect>
-                            <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
-                        </effect>
-                        <graphic>
-                            <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../../resource/icons/ventesIconWhite.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <ripplerFill>
-                            <LinearGradient endX="1.0" endY="1.0">
-                                <stops>
-                                    <Stop color="#cf8939" />
-                                    <Stop color="#ff8630" offset="1.0" />
-                                </stops>
-                            </LinearGradient>
-                        </ripplerFill>
-                        <font>
-                            <Font name="System Bold" size="18.0" />
-                        </font>
-                    </JFXButton>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="1293.0" layoutY="10.0" prefHeight="150.0" prefWidth="300.0" spacing="20.0">
-               <children>
-                    <JFXButton onAction="#resetTable" prefHeight="100.0" prefWidth="250.0" text="Reset Table" textAlignment="CENTER" textFill="WHITE">
-                        <effect>
-                            <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
-                        </effect>
-                        <graphic>
-                            <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../../resource/icons/baseline_update_white_36dp.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <ripplerFill>
-                            <LinearGradient endX="1.0" endY="1.0">
-                                <stops>
-                                    <Stop color="#cf8939" />
-                                    <Stop color="#ff8630" offset="1.0" />
-                                </stops>
-                            </LinearGradient>
-                        </ripplerFill>
-                        <font>
-                            <Font name="System Bold" size="18.0" />
-                        </font>
-                    </JFXButton>
-                    <JFXButton onAction="#removeProduct" prefHeight="100.0" prefWidth="250.0" text="Remove products" textAlignment="CENTER" textFill="WHITE">
-                        <effect>
-                            <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
-                        </effect>
-                        <graphic>
-                            <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../../resource/icons/baseline_delete_white_36dp.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <ripplerFill>
-                            <LinearGradient endX="1.0" endY="1.0">
-                                <stops>
-                                    <Stop color="#cf8939" />
-                                    <Stop color="#ff8630" offset="1.0" />
-                                </stops>
-                            </LinearGradient>
-                        </ripplerFill>
-                        <font>
-                            <Font name="System Bold" size="18.0" />
-                        </font>
-                    </JFXButton>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="320.0" layoutY="10.0" prefHeight="150.0" prefWidth="300.0" spacing="20.0">
-               <children>
-                  <JFXButton prefHeight="100.0" prefWidth="250.0" text="Discount" textAlignment="CENTER" textFill="WHITE">
-                     <effect>
-                        <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
-                     </effect>
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resource/icons/baseline_update_white_36dp.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <ripplerFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop color="#cf8939" />
-                              <Stop color="#ff8630" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </ripplerFill>
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton prefHeight="100.0" prefWidth="250.0" text="Loyalty card" textAlignment="CENTER" textFill="WHITE">
-                     <effect>
-                        <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
-                     </effect>
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resource/icons/baseline_description_white_36dp.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <ripplerFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop color="#cf8939" />
-                              <Stop color="#ff8630" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </ripplerFill>
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-        <Label fx:id="status" layoutX="682.0" layoutY="32.0" prefHeight="33.0" prefWidth="244.0" />
-          <Label fx:id="dateNow" prefHeight="90.0" prefWidth="376.0" textAlignment="CENTER" textFill="#34d725">
-              <font>
-                  <Font name="Tahoma Bold" size="45.0" />
-              </font>
-          </Label>
-          <Label fx:id="clockNow" alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="376.0" textAlignment="CENTER" textFill="#34d725">
-              <font>
-                  <Font name="Tahoma Bold" size="45.0" />
-              </font>
-          </Label>
-      <VBox id="pricePane" alignment="TOP_CENTER" layoutX="968.0" layoutY="10.0" prefHeight="325.0" prefWidth="400.0">
-         <children>
-            <Label text="Final price :" textAlignment="CENTER" textFill="#949494" underline="true">
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+            <HBox fx:id="searchHbox" alignment="CENTER" layoutX="50.0" layoutY="280.0" prefWidth="300.0" />
+            <Label fx:id="dateNow" prefHeight="90.0" prefWidth="376.0" textAlignment="CENTER" textFill="#34d725">
                <font>
-                  <Font size="25.0" />
+                  <Font name="Tahoma Bold" size="45.0" />
                </font>
             </Label>
-                <Label id="price" fx:id="prix" alignment="CENTER" prefHeight="75.0" prefWidth="300.0" text="00.00" textFill="#ee974c">
-                    <font>
+            <Label fx:id="clockNow" alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="376.0" textAlignment="CENTER" textFill="#34d725">
+               <font>
+                  <Font name="Tahoma Bold" size="45.0" />
+               </font>
+            </Label>
+            <VBox id="pricePane" alignment="CENTER" layoutX="969.0" layoutY="40.0" prefHeight="295.0" prefWidth="400.0" style="-fx-background-color: white;">
+               <children>
+                  <Label text="Final price :" textAlignment="CENTER" textFill="#ee974c">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label id="price" fx:id="prix" alignment="CENTER" prefHeight="75.0" prefWidth="300.0" text="00.00" textFill="#ee974c">
+                     <font>
                         <Font name="System Bold" size="60.0" />
-                    </font>
-                </Label>
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <InnerShadow color="#6f54493d" />
+               </effect>
+            </VBox>
+            <HBox alignment="CENTER" layoutX="20.0" layoutY="15.0" prefHeight="100.0" prefWidth="930.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="300.0">
+                     <children>
+                        <JFXButton onAction="#discount" prefHeight="50.0" prefWidth="280.0" text="Discount" textAlignment="CENTER" textFill="WHITE">
+                           <effect>
+                              <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                           </effect>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resource/icons/baseline_update_white_36dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <ripplerFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#cf8939" />
+                                    <Stop color="#ff8630" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </ripplerFill>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="300.0">
+                     <children>
+                        <JFXButton onAction="#card" prefHeight="50.0" prefWidth="280.0" text="Loyalty card" textAlignment="CENTER" textFill="WHITE">
+                           <effect>
+                              <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                           </effect>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resource/icons/baseline_description_white_36dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <ripplerFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#cf8939" />
+                                    <Stop color="#ff8630" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </ripplerFill>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="300.0">
+                     <children>
+                        <JFXButton onAction="#removeProduct" prefHeight="50.0" prefWidth="280.0" text="Remove products" textAlignment="CENTER" textFill="WHITE">
+                           <effect>
+                              <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                           </effect>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resource/icons/baseline_delete_white_36dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <ripplerFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#cf8939" />
+                                    <Stop color="#ff8630" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </ripplerFill>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="20.0" layoutY="785.0" prefHeight="100.0" prefWidth="930.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="300.0">
+                     <children>
+                        <JFXButton onAction="#resetTable" prefHeight="50.0" prefWidth="280.0" text="Reset Table" textAlignment="CENTER" textFill="WHITE">
+                           <effect>
+                              <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                           </effect>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resource/icons/baseline_update_white_36dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <ripplerFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#cf8939" />
+                                    <Stop color="#ff8630" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </ripplerFill>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="300.0">
+                     <children>
+                        <JFXButton onAction="#confirmSell" prefHeight="50.0" prefWidth="280.0" text="Confirm sell" textAlignment="CENTER" textFill="WHITE">
+                           <effect>
+                              <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                           </effect>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resource/icons/ventesIconWhite.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <ripplerFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#cf8939" />
+                                    <Stop color="#ff8630" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </ripplerFill>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="300.0">
+                     <children>
+                        <JFXButton fx:id="printFacture" onAction="#printFacture" prefHeight="50.0" prefWidth="280.0" text="Print facture" textAlignment="CENTER" textFill="WHITE">
+                           <effect>
+                              <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+                           </effect>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resource/icons/baseline_local_printshop_white_36dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <ripplerFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#cf8939" />
+                                    <Stop color="#ff8630" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </ripplerFill>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
-         <effect>
-            <InnerShadow color="#6f54493d" />
-         </effect>
-      </VBox>
-    </children>
-</AnchorPane>
+      </AnchorPane>
+   </children>
+</StackPane>

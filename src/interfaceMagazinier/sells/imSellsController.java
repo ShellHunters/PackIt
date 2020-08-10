@@ -1,12 +1,14 @@
 package interfaceMagazinier.sells;
 import basicClasses.product;
 import basicClasses.sell;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,7 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
-import Connection.ConnectionClass ;
+import Connector.ConnectionClass ;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -26,7 +30,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import static javafx.scene.text.Font.loadFont;
 
@@ -34,7 +37,8 @@ public class imSellsController implements Initializable {
 
     @FXML
     public TableView<product> sellTable;
-    public static ObservableList<product> sellCollection;
+    public static sell sellCollection;
+    public StackPane content;
     @FXML
     TableColumn<product, Number> barcodeColumn;
     @FXML
@@ -92,14 +96,26 @@ public class imSellsController implements Initializable {
     @FXML private JFXButton ok;
     @FXML private Label status;
     @FXML private JFXTextField barcodeLabel;
+    public static SimpleFloatProperty totalPrice = new SimpleFloatProperty(0)  ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableSetUp();
+
+        totalPrice.addListener((observableValue, number, t1) -> {
+            prix.setText(String.valueOf(totalPrice.get())) ;
+            addToTable();
+        });
+
         //  runClock();
+    }
+    public void addToTable(){
+        sellTable.setItems((ObservableList<product>) sellCollection.getSoldProducts());
     }
 
     void tableSetUp() {
+        sellCollection = new sell() ;
+
         //Table structure
         barcodeColumn.setCellValueFactory(param -> {
             return param.getValue().barcodeProperty();
@@ -125,8 +141,8 @@ public class imSellsController implements Initializable {
         selectedColumn.setCellValueFactory(new PropertyValueFactory<product, String>("checkbox"));
 
         //Search
-        sellCollection = FXCollections.observableArrayList();
 
+/*
         FilteredList<product> filteredData = new FilteredList<>(sellCollection, product -> true);
         searchTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
             filteredData.setPredicate(product -> {
@@ -139,7 +155,7 @@ public class imSellsController implements Initializable {
         }));
         SortedList<product> sortedList = new SortedList<>(filteredData);
         sortedList.comparatorProperty().bind(sellTable.comparatorProperty());
-        sellTable.setItems(sortedList);
+        sellTable.setItems(sortedList);*/
     }
 
     //date and clock
@@ -260,16 +276,17 @@ public class imSellsController implements Initializable {
         sellTable.setItems(null);
         prix.setText("00.00");
         barcodeLabel.setText("");
-        sellCollection.removeAll(sellCollection);
+        // clear
+        sellCollection = new sell() ;
     }
     public void removeProduct() {
         ObservableList<product> removedProduct = FXCollections.observableArrayList();
-        for (product bean : sellCollection )
+        for (product bean : sellCollection.getSoldProducts() )
             if (bean.getCheckbox().isSelected()) {
                 removedProduct.add(bean);
-                prix.setText(Float.toString(Float.parseFloat(prix.getText())-bean.getSellPrice()));
             }
-        sellCollection.removeAll(removedProduct) ;
+            sellCollection.removeProduct(removedProduct);
+            prix.setText(String.valueOf(sellCollection.getTotalPrice()));
 
     }
 
@@ -284,58 +301,40 @@ public class imSellsController implements Initializable {
                 alert.showAndWait();
                 barcodeLabel.setText("");
             } else {
-                Connection connection = ConnectionClass.getConnection();
-                String query = "SELECT * FROM stock where barcode=" + Integer.parseInt(barcodeLabel.getText());
-                PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet rs = preparedStatement.executeQuery();
+            Connection connection = ConnectionClass.getConnection();
+            String query = "SELECT * FROM stock where barcode=" + Integer.parseInt(barcodeLabel.getText());
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
 
-                if (rs.next()) {
-                    product newProduct;
-                    if (rs.getDate("expirationdate") == null) newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "", rs.getInt("numberOfSells"));
-                    else{
-                        newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString(), rs.getInt("numberOfSells"));
-                    }
-                    String oldValue = prix.getText();
-                    prix.setText(Float.toString(Float.parseFloat(oldValue) + newProduct.getSellPrice()));
-                    newProduct.setQuantity(1);
-                    preparedStatement.close();
-                    rs.close();
-                    barcode = barcodeLabel.getText();
-                    barcodeLabel.setText("");
-                    AtomicBoolean productAlreadyExists = new AtomicBoolean(false);
-                    sellCollection.forEach(product -> {
-                        if (product.getBarcode() == newProduct.getBarcode()) {
-                            product.setQuantity(product.getQuantity() + 1);
-                            productAlreadyExists.set(true);
-                        }
-                        return;
-                    });
-                    if (!productAlreadyExists.get()) {
-                        sellCollection.add(newProduct);
-                        sellTable.setItems(sellCollection);
-                        productAlreadyExists.set(false);
-                    }
-                } else /*if ((barcodeLabel.getText().length() > 8) || barcodeLabel.getText().length() < 6) {
-//                    Alert alert = new Alert(Alert.AlertType.ERROR);
-//                    alert.setTitle("Error");
-//                    alert.setHeaderText("");
-//                    alert.setContentText("Please entre a valid barcode");
-//                    alert.showAndWait();
-//                    barcode = barcodeLabel.getText();
-//                    barcodeLabel.setText("");
-//
-//                } else */{
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("");
-                    alert.setContentText("Product not exist ");
-                    alert.showAndWait();
-                    barcode = barcodeLabel.getText();
-                    barcodeLabel.setText("");
+            if (rs.next()) {
+                product newProduct;
+                if (rs.getDate("expirationdate") == null)
+                    newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "", rs.getInt("numberOfSells"));
+                else {
+                    newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString(), rs.getInt("numberOfSells"));
                 }
 
+                newProduct.setQuantity(1);
+                preparedStatement.close();
+                rs.close();
+                barcode = barcodeLabel.getText();
+                barcodeLabel.setText("");
+                sellCollection.addProduct(newProduct);
+                prix.setText(String.valueOf(sellCollection.getTotalPrice()));
+                sellTable.setItems((ObservableList<product>) sellCollection.getSoldProducts());}
 
-            }
+           else  {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("");
+                alert.setContentText("Product not exist ");
+                alert.showAndWait();
+                barcode = barcodeLabel.getText();
+                barcodeLabel.setText("");
+            }}
+
+
+
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -350,10 +349,10 @@ public class imSellsController implements Initializable {
 
 
     public void confirmSell(){
-        if (sellCollection != null) {
+        if (sellCollection.getSoldProducts() != null) {
             try {
-                sell newSell = new sell(sellCollection);
-                newSell.pushSell();
+                sellCollection.pushSell();
+                sellCollection = new sell();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -363,7 +362,7 @@ public class imSellsController implements Initializable {
 
     public void exportToExcel (){
 
-        Iterator<product> iterator = sellCollection.iterator() ;
+        Iterator<product> iterator = sellCollection.getSoldProducts().iterator() ;
         try {
 
             // creating excel sheet
@@ -380,7 +379,7 @@ public class imSellsController implements Initializable {
 
             //Fill the sheet from database
             int index = 1 ;
-            for (product bean : sellCollection)
+            for (product bean : sellCollection.getSoldProducts())
                 if(iterator.hasNext()){
                     XSSFRow row = sheet.createRow(index) ;
                     row.createCell(0).setCellValue(bean.getBarcode());
@@ -435,5 +434,26 @@ public class imSellsController implements Initializable {
             }
 */
         confirmSell();
+    }
+
+    public void add(ActionEvent event) throws IOException {
+        Region root1 = FXMLLoader.load(getClass().getResource("add/add.fxml"));
+        JFXDialog add = new JFXDialog(content, root1, JFXDialog.DialogTransition.RIGHT);
+        add.show();
+        //  addToTable();
+    }
+
+    public void discount(ActionEvent event) throws IOException {
+        Region root1 = FXMLLoader.load(getClass().getResource("discount/discount.fxml"));
+        JFXDialog discount = new JFXDialog(content, root1, JFXDialog.DialogTransition.RIGHT);
+        discount.show();
+        //  addToTable();
+    }
+
+    public void card(ActionEvent event) throws IOException {
+        Region root1 = FXMLLoader.load(getClass().getResource("card/card.fxml"));
+        JFXDialog card = new JFXDialog(content, root1, JFXDialog.DialogTransition.RIGHT);
+        card.show();
+        //  addToTable();
     }
 }

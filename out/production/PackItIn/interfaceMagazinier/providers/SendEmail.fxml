@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane fx:id="TheSendEmailRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" styleClass="roots" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.SendEmailController">
+    <children>
+        <StackPane prefHeight="900.0" prefWidth="1380.0" />
+        <TabPane fx:id="TheTabPaneRoot" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab fx:id="SendEmailProductsTab" text="Send Email">
+                    <content>
+                        <StackPane prefHeight="1005.0" prefWidth="1511.0">
+                            <children>
+                                <AnchorPane prefHeight="900.0" prefWidth="1380.0">
+                                    <children>
+                                        <TableView fx:id="TableOfEmail" layoutX="7.0" layoutY="67.0" prefHeight="721.0" prefWidth="1359.0" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0">
+                                            <columns>
+                                                <TableColumn fx:id="SelectedItem" maxWidth="133.0" minWidth="50.0" prefWidth="61.000030517578125" />
+                                    <TableColumn fx:id="BarcodeCol" prefWidth="178.99996948242188" text="barcode" />
+                                                <TableColumn fx:id="ProductNameCol" prefWidth="136.0" text="Product Name" />
+                                                <TableColumn fx:id="LastPriceCol" prefWidth="137.0" text="Last Buy Price" />
+                                                <TableColumn fx:id="QuantityCol" prefWidth="137.0" text="Quantity" />
+                                                <TableColumn fx:id="OriginalStockCol" prefWidth="137.0" text="Initial Value" />
+                                                <TableColumn fx:id="StockPercentageCol" prefWidth="168.0" text="Stock Percentage   %" />
+                                                <TableColumn fx:id="WasSentCol" prefWidth="190.0" text="Was Sent" />
+                                            </columns>
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                            </columnResizePolicy>
+                                        </TableView>
+                              <HBox alignment="CENTER" layoutX="28.0" layoutY="-7.0" prefHeight="65.0" prefWidth="1337.0" spacing="30.0">
+                                 <children>
+                                              <JFXTextField fx:id="SearchBox" labelFloat="true" prefHeight="40.0" prefWidth="448.0" promptText="Search Product" />
+                                              <JFXCheckBox fx:id="CheckboxNeededProduct" checkedColor="#9c2410" text="Show Needed Product" underline="true" />
+                                              <JFXCheckBox fx:id="MultipleSelectCheckBox" text="Multiple Select (Set Quantity)" underline="true" />
+                                              <JFXButton fx:id="SendEmailButton" onAction="#SendEmail" prefHeight="26.0" prefWidth="170.0" text="Send The Email" />
+                                              <JFXButton fx:id="SetMultipleQuantityButton" onAction="#SetMultipleQuantity" prefHeight="32.0" prefWidth="201.0" text="Set Multiple Quantity" />
+                                 </children>
+                              </HBox>
+                              <JFXButton layoutX="28.0" layoutY="813.0" onAction="#ReturnToProvidersInterface" text="Return To Providers Interface" />
+                              <JFXButton fx:id="ApplyingCommandButton" layoutX="1100.0" layoutY="813.0" onAction="#ApplyingCommand" prefHeight="32.0" prefWidth="230.0" text="Apply Command " />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="SendEmailMessageTab" text="Send Email Message">
+                    <content>
+                        <fx:include fx:id="TableRoot" source="SendEmailMessage.fxml" />
+                    </content>
+                </Tab>
+                <Tab fx:id="ApplyingCommandTab" text="Applying Command">
+                    <content>
+                        <fx:include fx:id="CommandHistoryContainer" source="CommandHistory.fxml" />
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

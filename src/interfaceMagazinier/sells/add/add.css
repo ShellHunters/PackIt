@@ -1,0 +1,54 @@
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: transparent;
+    -fx-effect: null;
+}
+
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: white;
+    -fx-effect: null;
+}
+.jfx-tab-pane .tab-headers-region {
+    -fx-effect: null;
+}
+
+.jfx-tab-pane .tab .tab-label {
+    -fx-font-size: 24;
+    -fx-text-fill: grey;
+}
+
+.jfx-tab-pane .tab-selected-line {
+    -fx-background-color: #ee974c;
+    -fx-effect: null;
+    -fx-pref-height: 5;
+}
+
+.tab {
+    -fx-background-color:white;
+    -fx-background-radius: 0 0 0 0;
+}
+
+.tab:selected{
+    -fx-background-color:  #E5ECF3;
+    -fx-effect: null;
+}
+.jfx-tab-pane .tab:selected .tab-label{
+    -fx-text-fill: #ee974c;
+}
+
+.jfx-tab-pane .tab-content-area{
+    -fx-background-color: #E5ECF3;
+}
+
+.jfx-tab-pane .depth-container { -fx-effect: null;  }
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #ee974c;
+}
+.check-box .box {
+    -fx-background-color: #ee974c;
+}

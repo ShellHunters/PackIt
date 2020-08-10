@@ -2,7 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdef7921-84cb-4bef-9b45-519d2648d1f7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/controlsfx_8_40_16.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackItIn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PackItIn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/Connection/ConnectionClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/sell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/basicClasses/sell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/identification/identificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/identification/identificationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceClient/icMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceClient/icMainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceClient/o.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceFournisseur/ifMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceFournisseur/ifMainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceFournisseur/o.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/clients/imClients.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/clients/imClients.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/clients/imClients.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/clients/imClients.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/clients/imClientsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/clients/imClientsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/dashboard/imDashboardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/imMaintemp.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/providers/imProviders.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/providers/imProviders.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/providers/imProviders.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/providers/imProviders.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/providers/imProvidersController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSells.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSells.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSells.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSells.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSellsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/sells/imSellsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/about/about.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/about/about.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/personal/personalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/personal/personalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/store/storeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/settings/store/storeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/add/addController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/imStockController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/update/updateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PackItIn/interfaceMagazinier/stock/update/updateController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Connection/ConnectionClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Connector/ConnectionClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basicClasses/product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basicClasses/product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basicClasses/sell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basicClasses/sell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/identification/identificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/identification/identificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceClient/icMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceClient/icMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceFournisseur/ifMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceFournisseur/ifMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/clients/imClients.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/clients/imClients.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/clients/imClients.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/clients/imClients.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/clients/imClientsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/clients/imClientsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/dashboard/imDashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/imMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/providers/imProviders.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/providers/imProviders.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/providers/imProviders.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/providers/imProviders.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/providers/imProvidersController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSells.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSells.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSells.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSells.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSellsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/sells/imSellsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/settings/about/about.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/settings/about/about.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/settings/personal/personalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/settings/personal/personalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/settings/store/storeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/settings/store/storeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/add/addController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/imStockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaceMagazinier/stock/update/updateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaceMagazinier/stock/update/updateController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,14 +74,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="CSS File" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1ZoYQRsPSukTnS5jcG54oF1aTkt" />
   <component name="ProjectLevelVcsManager">
@@ -32,29 +91,31 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/Program Files/Java/javax.mail.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/interfaceMagazinier/providers" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\basicClasses" />
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src" />
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\notification" />
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\sells" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\providers" />
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceClient" />
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src" />
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\stock" />
       <recent name="C:\Users\Nassim\Desktop\PackItIn\src\resource\icons" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\stock\add" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src" />
-      <recent name="C:\Users\Nassim\Desktop\PackItIn\src\interfaceMagazinier\sells" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -96,6 +157,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="imClients" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="interfaceMagazinier.clients.imClients" />
+      <module name="PackItIn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="basicClasses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="imMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="interfaceMagazinier.imMain" />
       <module name="PackItIn" />
@@ -112,6 +186,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.imMain" />
+        <item itemvalue="Application.imClients" />
         <item itemvalue="Application.icMain" />
         <item itemvalue="Application.identificationMain" />
       </list>
@@ -195,6 +270,46 @@
       <workItem from="1591996731262" duration="529000" />
       <workItem from="1591997688974" duration="898000" />
       <workItem from="1591998614453" duration="237000" />
+      <workItem from="1592040762534" duration="4966000" />
+      <workItem from="1592137852871" duration="104000" />
+      <workItem from="1592223180678" duration="23201000" />
+      <workItem from="1592297380083" duration="2874000" />
+      <workItem from="1592485994989" duration="4916000" />
+      <workItem from="1592659455066" duration="2129000" />
+      <workItem from="1592672837183" duration="4666000" />
+      <workItem from="1592847363613" duration="5309000" />
+      <workItem from="1592904567509" duration="11839000" />
+      <workItem from="1593010756204" duration="2829000" />
+      <workItem from="1593015953385" duration="3334000" />
+      <workItem from="1593019795758" duration="4704000" />
+      <workItem from="1593076728195" duration="7063000" />
+      <workItem from="1593096513095" duration="5667000" />
+      <workItem from="1593103323986" duration="3167000" />
+      <workItem from="1593166021591" duration="1812000" />
+      <workItem from="1593250083139" duration="6245000" />
+      <workItem from="1593278076251" duration="6080000" />
+      <workItem from="1593438894259" duration="4835000" />
+      <workItem from="1593444444280" duration="864000" />
+      <workItem from="1593446171116" duration="1262000" />
+      <workItem from="1593465936451" duration="133000" />
+      <workItem from="1593506913554" duration="594000" />
+      <workItem from="1593595620399" duration="1942000" />
+      <workItem from="1593707347106" duration="4056000" />
+      <workItem from="1593771764099" duration="1203000" />
+      <workItem from="1594131861825" duration="2330000" />
+      <workItem from="1594569426721" duration="589000" />
+      <workItem from="1594651260888" duration="6721000" />
+      <workItem from="1594662963794" duration="1087000" />
+      <workItem from="1594715961055" duration="9186000" />
+      <workItem from="1594806928792" duration="2907000" />
+      <workItem from="1596617784942" duration="2106000" />
+      <workItem from="1596621008893" duration="2334000" />
+      <workItem from="1596722993735" duration="4485000" />
+      <workItem from="1596735428902" duration="2240000" />
+      <workItem from="1596789940027" duration="4301000" />
+      <workItem from="1596794943811" duration="3713000" />
+      <workItem from="1596809363375" duration="2075000" />
+      <workItem from="1596903650930" duration="2453000" />
     </task>
     <servers />
   </component>

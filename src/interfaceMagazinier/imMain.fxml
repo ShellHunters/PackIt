@@ -33,7 +33,7 @@
                               <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="0.0" />
                            </graphic>
                         </MenuButton>
-                        <ImageView fx:id="notificationImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#notificationDisplay" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resource/icons/notificationsIconWhite.png" />
                            </image>

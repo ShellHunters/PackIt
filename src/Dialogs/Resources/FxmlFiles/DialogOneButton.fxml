@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="512.0" styleClass="WarningDialogRoot" stylesheets="@../StyleSheets/DialogsStyleSheets.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dialogs.Resources.Controllers.DialogOneController">
+    <children>
+        <Pane prefHeight="454.0" prefWidth="512.0" />
+        <VBox alignment="CENTER" onMouseDragged="#OneDialogDragged" onMousePressed="#OneDialogPressed" prefHeight="454.0" prefWidth="512.0">
+            <children>
+                <ImageView fitHeight="116.0" fitWidth="118.0" opacity="0.48">
+                    <image>
+                        <Image url="@../../../resource/icons/ExclamationMarkIcon.png" />
+                    </image>
+                </ImageView>
+                <VBox alignment="CENTER" prefHeight="162.0" prefWidth="502.0" spacing="30.0">
+                    <children>
+                        <Label fx:id="DialogHeader" styleClass="DialogHeader">
+                            <font>
+                                <Font name="Caviar Dreams Bold" size="37.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="DialogBody" styleClass="DialogBody">
+                            <font>
+                                <Font name="Inconsolata Regular" size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="132.0" prefWidth="506.0" spacing="36.0">
+                    <children>
+                        <JFXButton fx:id="DialogOneButton" onAction="#DialogOneButtonAction" prefHeight="45.0" prefWidth="170.0" styleClass="DialogOneButton" text="Ok" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

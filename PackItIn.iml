@@ -11,5 +11,6 @@
     <orderEntry type="library" name="mysql-connector-java-5.1.48" level="project" />
     <orderEntry type="library" name="activation-1.1.1" level="project" />
     <orderEntry type="library" name="javax.mail" level="project" />
+    <orderEntry type="library" name="aopalliance-1.0" level="project" />
   </component>
 </module>

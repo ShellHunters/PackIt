@@ -1,0 +1,48 @@
+
+#notification_stackpane,.list-view{
+    -fx-background-radius:15;
+}
+#notification_label{
+    -fx-font: bolder 25px "italic";
+    -fx-background-color: #ccc9bd;
+}
+.list-cell{
+    -fx-background-radius:15;
+}
+
+#hbox{
+    -fx-background-color: #ccc9bd;
+    -fx-background-radius:50;
+}
+#vBox{
+    -fx-pref-width: 270.0;
+    -fx-padding: 0 0 0 10;
+}
+#hBox{
+    -fx-alignment: center;
+    -fx-background-radius:30;
+}
+
+#hbox:hover{
+    -fx-background-color: #40bfc1;
+}
+#HBOX{
+   -fx-pref-width: 50;
+    -fx-pref-height: 50;
+    -fx-fill-height: 50;
+    -fx-fill-width: 50;
+    -fx-alignment: center;
+    -fx-background-radius: 15;
+}
+#title{
+    -fx-font-size: 16;
+    -fx-text-fill: #163143;
+}
+#description1{
+    -fx-font-size: 12;
+    -fx-text-fill: #266f8c;
+}
+#duration{
+    -fx-font-size:8;
+    -fx-text-fill: #858585;
+}

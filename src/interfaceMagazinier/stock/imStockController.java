@@ -1,6 +1,6 @@
 package interfaceMagazinier.stock;
 
-import Connection.ConnectionClass;
+import Connector.ConnectionClass;
 import basicClasses.product;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
@@ -21,10 +21,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.stage.DirectoryChooser;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -168,6 +170,12 @@ public class imStockController implements Initializable {
     }
 
     public void exportToExcel() {
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("JavaFX Projects");
+        File defaultDirectory = new File("c:/");
+        chooser.setInitialDirectory(defaultDirectory);
+        File selectedDirectory = chooser.showDialog(searchTextField.getScene().getWindow());
+        if (selectedDirectory == null) return;
         try {
             // Connect with database
             String query = "SELECT * FROM stock " ;
@@ -200,7 +208,7 @@ public class imStockController implements Initializable {
                 index ++ ;
             }
             // creating A file
-            FileOutputStream fileOutputStream = new FileOutputStream("Stock.xlsx") ;
+            FileOutputStream fileOutputStream = new FileOutputStream(selectedDirectory.getAbsolutePath() + "/stock.xlsx");
             // puting data in the file
             xssfWorkbook.write(fileOutputStream);
             fileOutputStream.close();

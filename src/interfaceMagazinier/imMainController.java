@@ -1,5 +1,6 @@
 package interfaceMagazinier;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
@@ -18,6 +19,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -29,7 +31,6 @@ public class imMainController implements Initializable {
     @FXML public Button dashboardButton, stockButton, sellsButton, providersButton, clientsButton, settingsButton;
     @FXML public JFXHamburger hamburger;
     @FXML public MenuButton menuButton;
-    @FXML public ImageView notificationImage;
     @FXML public StackPane mainStackPane;
     @FXML public AnchorPane contentPane;
 
@@ -47,12 +48,6 @@ public class imMainController implements Initializable {
                 hamburgerTransition.play();
             }
         });
-        //Notifications
-        JFXDialog notification = new JFXDialog();
-        notificationImage.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            notification.setContent(new Label("NOTIFICATIONSSQSDFQSDDFHGQSTFGQSTYFQSDF"));
-            notification.show(mainStackPane);
-        });
 
         loadContent();
 
@@ -68,6 +63,7 @@ public class imMainController implements Initializable {
         //reload content in certain cases
         if (i == 1) contents[1] = FXMLLoader.load(getClass().getResource("stock/imStock.fxml"));
         if (i == 0) contents[0] = FXMLLoader.load(getClass().getResource("dashboard/imDashboard.fxml"));
+        if (i == 4) contents[4] = FXMLLoader.load(getClass().getResource("clients/imClients.fxml"));
         buttons[i].getStyleClass().add("activeButton");
         for(j=0; j < 6; j++) if (j != i) buttons[j].getStyleClass().removeAll("activeButton");
         //SWAP CONTENT
@@ -97,5 +93,11 @@ public class imMainController implements Initializable {
 
     public void exit(){
         System.exit(0);
+    }
+
+    public void notificationDisplay() throws IOException {
+        Region root1 = FXMLLoader.load(getClass().getResource("notification/notification.fxml"));
+        JFXDialog notification = new JFXDialog(mainStackPane, root1, JFXDialog.DialogTransition.RIGHT);
+        notification.show();
     }
 }
