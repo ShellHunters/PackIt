@@ -204,13 +204,13 @@ public class notificaitonController implements Initializable {
            * ????????????????????
            * */
 
-            rs2= connection.createStatement().executeQuery("SELECT * FROM prodect.productList WHERE datediff(now(),date) <= 0");
+            rs2= connection.createStatement().executeQuery("SELECT * FROM user.stock WHERE datediff(now(),expirationdate) <= 0");
             while (rs2.next() ) {
                 description += rs2.getString(2) + " ";
             }
             if(description!="") {
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                rs1 = connection.createStatement().executeQuery("SELECT * FROM prodect.notification");
+                rs1 = connection.createStatement().executeQuery("SELECT * FROM user.notification");
                 exist = true;
                 while (rs1.next()) {
                     if (rs1.getString(1).equals("Expired Products")&&(rs1.getString(2).equals(description))) exist = false;
@@ -218,12 +218,12 @@ public class notificaitonController implements Initializable {
                 if (exist) {
                     linkedList.addFirst(new notificationItem("Expired Products",description,"few seconds","/resource/icons/expired_product_white.png"));
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    SQL = "INSERT INTO prodect.notification VALUES ('Expired Products','"+description+"',"+"now())";
+                    SQL = "INSERT INTO user.notification VALUES ('Expired Products','"+description+"',"+"now())";
                     connection.createStatement().executeUpdate(SQL);
                 }
             }
             //????????????????????????????????????????????????????????????????????????,
-            SQL ="SELECT*FROM prodect.productList WHERE DATEDIFF(date,now()) BETWEEN 1 AND 7";
+            SQL ="SELECT*FROM user.stock WHERE DATEDIFF(expirationdate,now()) BETWEEN 1 AND 7";
             description = "";
             rs2= connection.createStatement().executeQuery(SQL);
             while (rs2.next()) {
@@ -231,7 +231,7 @@ public class notificaitonController implements Initializable {
             }
             if(description!="") {
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                rs1 = connection.createStatement().executeQuery("SELECT * FROM prodect.notification");
+                rs1 = connection.createStatement().executeQuery("SELECT * FROM user.notification");
                 exist = true;
                 while (rs1.next()) {
                     if (rs1.getString(1).equals("Expired date comming")&&(rs1.getString(2).equals(description))) exist = false;
@@ -239,7 +239,7 @@ public class notificaitonController implements Initializable {
                 if (exist) {
                     linkedList.addFirst(new notificationItem("Expired date comming",description,"few seconds","/resource/icons/remand_product_White.png"));
                     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    SQL = "INSERT INTO prodect.notification VALUES ('Expired date comming','"+description+"',"+"now())";
+                    SQL = "INSERT INTO user.notification VALUES ('Expired date comming','"+description+"',"+"now())";
                     connection.createStatement().executeUpdate(SQL);
                 }
             }
