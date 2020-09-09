@@ -20,6 +20,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 
+import javax.swing.plaf.nimbus.State;
 import java.net.URL;
 import java.sql.*;
 import java.util.Collection;
@@ -43,11 +44,14 @@ public class addController implements Initializable {
     private CheckBox expirationCheck;
     @FXML
     Label errorLabel;
-    @FXML
-    private JFXComboBox<Provider> ProvidersComboBox;
+    @FXML private JFXComboBox<Provider> ProvidersComboBox;
     public static ObservableList<Provider> ProvidersListForComboBox = FXCollections.observableArrayList();
     public boolean IfFromApplyingCommand;
     Integer TheIndex;
+    private boolean addInFullStock = false;
+    private boolean addOnlyQuantity = false;
+    private boolean isAddOnlyQuantityInFullStock = false;
+    private int oldQuantity = 0;
 
     public addController() throws SQLException {
     }
@@ -61,6 +65,24 @@ public class addController implements Initializable {
 //        System.out.println("this is test in add   "+ProvidersComboBox.getValue().getFirstName()+"  "+ProvidersComboBox.getValue().getId());
 
         if (errorCheck()) return;
+
+        if (addOnlyQuantity || isAddOnlyQuantityInFullStock){
+            String tableName;
+            if (addOnlyQuantity) {
+                tableName = "stock";
+                imStockController.products.forEach(product -> {
+                    if (product.getBarcode() == Integer.parseInt(barcode.getText())){
+                        product.setQuantity(oldQuantity + Integer.parseInt(quantity.getText()));
+                        return;
+                    }
+                });
+            }
+            else tableName = "fullStock";
+
+            sql = "UPDATE "+ tableName+ " SET quantity=" + (oldQuantity + Integer.parseInt(quantity.getText())) + " WHERE barcode=" + Integer.parseInt(barcode.getText());
+            statement.execute(sql);
+            return;
+        }
 
         int barcode = Integer.parseInt(this.barcode.getText());
         float sellPrice = Float.parseFloat(this.sellprice.getText());
@@ -81,13 +103,17 @@ public class addController implements Initializable {
 
         imStockController.products.add(product);
 
-        if (expirationdateString.equals(""))
-            sql = "INSERT INTO stock (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() + "')";
-        else
-            sql = "INSERT INTO stock (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + expirationdateString + "', '" + quanity + "','" + user.getUserID() + "')";
-        statement.executeUpdate(sql);
-        if (IfFromApplyingCommand) {
+        String tableName = "stock";
+        if (addInFullStock) tableName = "fullStock";
 
+        if (expirationdateString.equals(""))
+            sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() + "')";
+        else
+            sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + expirationdateString + "', '" + quanity + "','" + user.getUserID() + "')";
+
+        statement.executeUpdate(sql);
+
+        if (IfFromApplyingCommand) {
             totalfigure = ((ApplyingCommandController.TheProvider.getTotalFigure() + (float) quanity * buyPrice));
             System.out.println("in add scene  " + totalfigure);
             ApplyingCommandController.TheProvider.setTotalFigure(totalfigure);
@@ -101,7 +127,6 @@ public class addController implements Initializable {
         } else {
             totalfigure = ((ProvidersComboBox.getValue().getTotalFigure() + (float) quanity * buyPrice));
             UpdateProvider(ProvidersComboBox.getValue().getId(), totalfigure);
-
         }
 
         resetFields();
@@ -110,10 +135,30 @@ public class addController implements Initializable {
 
         //SendEmailController.  ProductList.add(  new ProductForEmail(barcode, productname.getText() ,buyPrice , quanity, quanity , (float) 100 ,false));
         // SendEmailController.  TempoListOfProducts.add(  new ProductForEmail(barcode, productname.getText() ,buyPrice , quanity, quanity , (float) 100 ,false));
-
     }
 
-    private boolean errorCheck() {
+    private boolean errorCheck() throws SQLException {
+        Connection connection = ConnectionClass.getConnection();
+        Statement statement = connection.createStatement();
+        String query = "SELECT * FROM stock WHERE barcode=" + barcode.getText();
+        ResultSet rs = statement.executeQuery(query);
+        if (rs.next()) {
+            if (rs.getFloat("buyprice") == Float.parseFloat(buyprice.getText()) && rs.getFloat("sellprice") == Float .parseFloat(sellprice.getText())){
+                addOnlyQuantity = true;
+                oldQuantity = rs.getInt("quantity");
+            }
+            else {
+                query = "SELECT * FROM fullStock WHERE barcode=" + barcode.getText();
+                rs = statement.executeQuery(query);
+                if (rs.next()) {
+                    isAddOnlyQuantityInFullStock = true;
+                    oldQuantity = rs.getInt("quantity");
+                }
+                else addInFullStock = true;
+            }
+
+        }
+
 
         if (productname.getText().isEmpty() || barcode.getText().isEmpty() || sellprice.getText().isEmpty() || buyprice.getText().isEmpty() || quantity.getText().isEmpty()) {
             // mba3ed zideha || (ProvidersComboBox.isVisible() && ProvidersComboBox.getValue()==null)
