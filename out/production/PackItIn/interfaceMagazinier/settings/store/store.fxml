@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="980.0" style="-fx-background-color: white;" stylesheets="@store.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.settings.store.storeController">
+<AnchorPane prefHeight="800.0" prefWidth="990.0" style="-fx-background-color: white; -fx-background-radius: 20;" stylesheets="@store.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.settings.store.storeController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="60.0" prefHeight="77.0" prefWidth="920.0" style="-fx-background-radius: 20;">
          <children>
@@ -104,7 +104,7 @@
                   <Image url="@../../../resource/icons/baseline_location_on_black_36dp.png" />
                </image>
             </ImageView>
-            <ChoiceBox fx:id="Wilaya" prefHeight="35.0" prefWidth="267.0" style="-fx-background-color: white;" />
+            <ChoiceBox fx:id="wilaya" prefHeight="35.0" prefWidth="286.0" style="-fx-background-color: white;" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="566.0" layoutY="517.0" prefHeight="45.0" prefWidth="336.0" style="-fx-background-color: transparent; -fx-border-color: #274ad5; -fx-border-width: 2; -fx-border-radius: 15;">
@@ -114,22 +114,22 @@
                   <Image url="@../../../resource/icons/baseline_location_on_black_36dp.png" />
                </image>
             </ImageView>
-            <JFXTextField fx:id="city" focusColor="WHITE" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="267.0" promptText="City" unFocusColor="WHITE">
+            <JFXTextField fx:id="city" focusColor="WHITE" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="287.0" promptText="City" unFocusColor="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
             </JFXTextField>
          </children>
       </HBox>
-      <Label layoutX="567.0" layoutY="576.0" prefHeight="17.0" prefWidth="317.0" text="Street" />
-      <HBox alignment="CENTER" layoutX="566.0" layoutY="597.0" prefHeight="45.0" prefWidth="336.0" style="-fx-background-color: transparent; -fx-border-color: #274ad5; -fx-border-width: 2; -fx-border-radius: 15;">
+      <Label layoutX="567.0" layoutY="576.0" prefHeight="17.0" prefWidth="100.0" text="Street" />
+      <HBox alignment="CENTER" layoutX="566.0" layoutY="597.0" prefHeight="45.0" prefWidth="172.0" style="-fx-background-color: transparent; -fx-border-color: #274ad5; -fx-border-width: 2; -fx-border-radius: 15;">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../resource/icons/baseline_location_on_black_36dp.png" />
                </image>
             </ImageView>
-            <JFXTextField fx:id="street" focusColor="WHITE" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="267.0" promptText="Street" unFocusColor="WHITE">
+            <JFXTextField fx:id="street" focusColor="WHITE" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="132.0" promptText="Street" unFocusColor="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -143,7 +143,7 @@
                   <Image url="@../../../resource/icons/baseline_vpn_key_black_36dp.png" />
                </image>
             </ImageView>
-            <JFXPasswordField fx:id="passworrd2" focusColor="WHITE" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="270.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-radius: 70;" unFocusColor="#fffcfc">
+            <JFXPasswordField fx:id="passworrd2" focusColor="WHITE" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="287.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-radius: 70;" unFocusColor="#fffcfc">
                <font>
                   <Font size="22.0" />
                </font>
@@ -162,7 +162,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label fx:id="status1" alignment="CENTER" layoutX="572.0" layoutY="726.0" prefHeight="17.0" prefWidth="317.0" />
+      <Label fx:id="status1" alignment="CENTER" layoutX="572.0" layoutY="724.0" prefHeight="17.0" prefWidth="317.0" />
       <ImageView fitHeight="302.0" fitWidth="493.0" layoutX="461.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../resource/illustration/5245.jpg" />
@@ -173,5 +173,20 @@
             <Image url="@../../../resource/illustration/5556.jpg" />
          </image>
       </ImageView>
+      <Label layoutX="747.0" layoutY="576.0" prefHeight="17.0" prefWidth="100.0" text="Postal Zip" />
+      <HBox alignment="CENTER" layoutX="746.0" layoutY="597.0" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: transparent; -fx-border-color: #274ad5; -fx-border-width: 2; -fx-border-radius: 15;">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resource/icons/baseline_location_on_black_36dp.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="postalCode" focusColor="WHITE" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="130.0" promptText="Postal Zip" unFocusColor="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </JFXTextField>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

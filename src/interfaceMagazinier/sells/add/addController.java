@@ -3,7 +3,9 @@ package interfaceMagazinier.sells.add;
 import basicClasses.product;
 import basicClasses.sell;
 import com.jfoenix.controls.JFXTextField;
+import interfaceMagazinier.imMainController;
 import interfaceMagazinier.sells.imSellsController;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,8 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static interfaceMagazinier.sells.imSellsController.sellCollection;
 
 public class addController implements Initializable {
     public JFXTextField whieghtField;
@@ -45,8 +49,7 @@ public class addController implements Initializable {
     }
 
     public void weightedProduct2(ActionEvent event) {
-        if (checkBox2.isSelected()){
-            whieghtField2.setDisable(false);}
+        if (checkBox2.isSelected()) whieghtField2.setDisable(false);
         else whieghtField2.setDisable(true);
     }
 
@@ -55,12 +58,15 @@ public class addController implements Initializable {
     }
 
     public void addAmount(ActionEvent event) {
-        product product = new product(amountName.getText(),null,null,amountPrice.getText(),amountQuantity,null );
-        imSellsController.sellCollection.addProduct(product); ;
+        product product = new product(amountName.getText(), -1, 500, 500, 1, null);
+        sellCollection.addProduct(product);
+        sellCollection.getTotalPrice();
+        sellCollection.getSoldProducts();
 
+        imSellsController sellsController = imMainController.sellLoader.getController();
 
-
-
+        sellsController.sellTable.setItems((ObservableList<product>) sellCollection.getSoldProducts());
+        sellsController.prix.setText(String.valueOf(sellCollection.getTotalPrice()));
     }
 
     public void addExistingProduct(ActionEvent event) {

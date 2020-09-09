@@ -21,70 +21,10 @@ public class product extends RecursiveTreeObject<product> {
     private Integer NeededQuantity;
     private Integer RequiredQuantity;
     boolean IfWasAdded;
-    public Integer getNeededQuantity () {
-        return NeededQuantity;
-    }
-
-    public void setNeededQuantity (Integer neededQuantity) {
-        NeededQuantity = neededQuantity;
-    }
-
-    public product(String text, Integer integer, Object o, String text1, JFXTextField amountQuantity, Object expirationDate) {
-    }
-
-    public product(int barcode, float sellPrice, float profit, int quantity) {
-        this.barcode = new SimpleIntegerProperty(barcode);
-        this.sellPrice = new SimpleFloatProperty(sellPrice);
-        this.buyPrice = new SimpleFloatProperty(sellPrice - profit);
-        this.quantity = new SimpleIntegerProperty(quantity);
-
-        //Complete the other vars from database
-        try {
-            Connection connection = ConnectionClass.getConnection();
-            Statement statement = connection.createStatement();
-            String query = "SELECT * FROM stock WHERE barcode=" + barcode;
-            ResultSet rs = statement.executeQuery(query);
-            if (rs.next()) {
-                this.productName = new SimpleStringProperty(rs.getString("name"));
-                this.expirationDate = new SimpleStringProperty(rs.getString("expirationDate"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public float getStockPercentage () {
-        return stockPercentage.get();
-    }
-
-    public SimpleFloatProperty stockPercentageProperty () {
-        return stockPercentage;
-    }
-
-    public void setStockPercentage (float stockPercentage) {
-        this.stockPercentage.set(stockPercentage);
-    }
-
-    public boolean getIfWasSent () {
-        return IfWasSent.get();
-    }
-
-    public SimpleBooleanProperty ifWasSentProperty () {
-        return IfWasSent;
-    }
-
-    public void setIfWasSent (boolean ifWasSent) {
-        this.IfWasSent.set(ifWasSent);
-    }
-
-
     private JFXCheckBox checkbox;
-
-
     //Dashboard and sells attributes
     private Integer initialQuantity;
     private int numberOfSells;
-
 
     public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, String expirationDate) {
         this.productName = new SimpleStringProperty(productName);
@@ -102,6 +42,7 @@ public class product extends RecursiveTreeObject<product> {
         numberOfSells = 0;
 
     }
+
     public product(){
         this.productName = new SimpleStringProperty("");
         this.barcode = new SimpleIntegerProperty(0);
@@ -123,10 +64,6 @@ public class product extends RecursiveTreeObject<product> {
         NeededQuantity=0;
 
     }
-
-
-
-
 
     /*
     public product (String ProductName, int barCode, int Quantity, float StockPercentage, boolean ifWasSent, Integer neededQuantity) {
@@ -164,6 +101,61 @@ public class product extends RecursiveTreeObject<product> {
         initialQuantity = quantity;
         this.numberOfSells = numberOfSells;
 
+    }
+
+    public product(int barcode, float sellPrice, float profit, int quantity) {
+        this.barcode = new SimpleIntegerProperty(barcode);
+        this.sellPrice = new SimpleFloatProperty(sellPrice);
+        this.buyPrice = new SimpleFloatProperty(sellPrice - profit);
+        this.quantity = new SimpleIntegerProperty(quantity);
+
+        //Complete the other vars from database
+        try {
+            Connection connection = ConnectionClass.getConnection();
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM stock WHERE barcode=" + barcode;
+            ResultSet rs = statement.executeQuery(query);
+            if (rs.next()) {
+                this.productName = new SimpleStringProperty(rs.getString("name"));
+                this.expirationDate = new SimpleStringProperty(rs.getString("expirationDate"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Integer getNeededQuantity () {
+        return NeededQuantity;
+    }
+
+    public void setNeededQuantity (Integer neededQuantity) {
+        NeededQuantity = neededQuantity;
+    }
+
+
+
+    public float getStockPercentage () {
+        return stockPercentage.get();
+    }
+
+    public SimpleFloatProperty stockPercentageProperty () {
+        return stockPercentage;
+    }
+
+    public void setStockPercentage (float stockPercentage) {
+        this.stockPercentage.set(stockPercentage);
+    }
+
+    public boolean getIfWasSent () {
+        return IfWasSent.get();
+    }
+
+    public SimpleBooleanProperty ifWasSentProperty () {
+        return IfWasSent;
+    }
+
+    public void setIfWasSent (boolean ifWasSent) {
+        this.IfWasSent.set(ifWasSent);
     }
 
     public String getProductName() {
@@ -270,3 +262,4 @@ public class product extends RecursiveTreeObject<product> {
         IfWasAdded = ifWasAdded;
     }
 }
+

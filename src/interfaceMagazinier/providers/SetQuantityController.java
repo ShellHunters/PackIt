@@ -27,15 +27,16 @@ public class SetQuantityController implements Initializable {
     @FXML
     private StackPane SetQuantityRoot;
     public static boolean IfExit, IfExitToModifySendEmailMessage;
-public static product Product=new product();
+    public static product Product = new product();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         SendEmailController.ForceCheck.set(true);
-        IfExit=false;
-        IfExitToModifySendEmailMessage =false;
+        IfExit = false;
+        IfExitToModifySendEmailMessage = false;
         if (SendEmailMessageController.IfEmailMessageIsOpen)
             Quantity.setText(SendEmailMessageController.Quantity);
-        ProductName.setText("Product : "+ SendEmailController.ProductName);
+        ProductName.setText("Product : " + SendEmailController.ProductName);
         Quantity.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
@@ -51,39 +52,39 @@ public static product Product=new product();
     public void ConfirmQuantity() {
         if (!Quantity.getText().equals("")) {
 
-            if (SendEmailMessageController.IfMultipleProductSelect.get()){
-               // System.out.println("Test 1 In SetQuantity \n");
+            if (SendEmailMessageController.IfMultipleProductSelect.get()) {
+                // System.out.println("Test 1 In SetQuantity \n");
                 int i;
                 Iterator<product> iterator = SendEmailMessageController.SelectedProductList.iterator();
-                while (iterator.hasNext()){
+                while (iterator.hasNext()) {
                     product infoProduct = iterator.next();
-                    i=SendEmailMessageController.ProductList.indexOf(infoProduct);
-                //    System.out.println("Test 1 In SetQuantity   "+ i+"\n");
+                    i = SendEmailMessageController.ProductList.indexOf(infoProduct);
+                    //    System.out.println("Test 1 In SetQuantity   "+ i+"\n");
 
-                    infoProduct.setNeededQuantity(Integer.parseInt( Quantity.getText()));
+                    infoProduct.setNeededQuantity(Integer.parseInt(Quantity.getText()));
                     SendEmailMessageController.ProductList.set(i, infoProduct);
                     iterator.remove();
                 }
                 SendEmailMessageController.SelectedProductList.clear();
             }
-            if (SendEmailMessageController.IfEmailMessageIsOpen ){
-              //  System.out.println("Test 2 In SetQuantity \n");
+            if (SendEmailMessageController.IfEmailMessageIsOpen) {
+                //  System.out.println("Test 2 In SetQuantity \n");
 
-                int i= SendEmailMessageController.ProductList.indexOf(  SendEmailMessageController.infoProducts);
-                SendEmailMessageController.infoProducts.setNeededQuantity(Integer.parseInt( Quantity.getText()));
+                int i = SendEmailMessageController.ProductList.indexOf(SendEmailMessageController.infoProducts);
+                SendEmailMessageController.infoProducts.setNeededQuantity(Integer.parseInt(Quantity.getText()));
 
                 SendEmailMessageController.ProductList.set(i, SendEmailMessageController.infoProducts);
-                System.out.println("Test 2 In SetQuantity  " + i +"\n");
+                System.out.println("Test 2 In SetQuantity  " + i + "\n");
 
             }
             if (SendEmailController.IfMultipleSelected) {
                 Iterator<product> iterator = MultipleSelectionList.iterator();
-               // System.out.println("Test 3 In SetQuantity");
+                // System.out.println("Test 3 In SetQuantity");
 
-                while (iterator.hasNext()){
-                    product product=iterator.next();
-                    product.setNeededQuantity(Integer.parseInt( Quantity.getText()));
-                   SendEmailMessageController.ProductList.add(product);
+                while (iterator.hasNext()) {
+                    product product = iterator.next();
+                    product.setNeededQuantity(Integer.parseInt(Quantity.getText()));
+                    SendEmailMessageController.ProductList.add(product);
 
 
                     SendEmailController.ProductList.remove(product);
@@ -95,34 +96,31 @@ public static product Product=new product();
                 }
 
                 SendEmailController.ForceCheckForMultipleSelectCheckbox.set(false);
-            }
+            } else {
+                //   System.out.println("Test 4 In SetQuantity");
 
-            else {
-             //   System.out.println("Test 4 In SetQuantity");
-
-                if (!SendEmailMessageController.IfEmailMessageIsOpen && !SendEmailMessageController.IfMultipleProductSelect.get() ) {
+                if (!SendEmailMessageController.IfEmailMessageIsOpen && !SendEmailMessageController.IfMultipleProductSelect.get()) {
                     theProduct.setNeededQuantity(Integer.parseInt(Quantity.getText()));
-SendEmailMessageController.ProductList.add(theProduct);
+                    SendEmailMessageController.ProductList.add(theProduct);
 
                     SendEmailController.ProductList.remove(theProduct);
                     SendEmailController.NeededProduct.remove(theProduct);
                     SendEmailController.TempoListOfProducts.remove(theProduct);
-          ;
+                    ;
                 }
             }
 
 
-
             SendEmailController.InitValues();
             SendEmailMessageController.IfMultipleProductSelect.set(false);
-            SendEmailMessageController.IfEmailMessageIsOpen=false;
-            SendEmailController.ForDisableSetQuantityButton.set( true);
+            SendEmailMessageController.IfEmailMessageIsOpen = false;
+            SendEmailController.ForDisableSetQuantityButton.set(true);
             SendEmailController.ForDisableMultipleCheck.set(false);
-            if ( SendEmailMessageController.IfNeededProductBoxIsChecked)
-                SendEmailController.ForDisableMultipleCheck.set(NeededProduct.size()<2);
+            if (SendEmailMessageController.IfNeededProductBoxIsChecked)
+                SendEmailController.ForDisableMultipleCheck.set(NeededProduct.size() < 2);
 
-            else SendEmailController.ForDisableMultipleCheck.set(SendEmailController.ProductList.size()<2);
-            SendEmailMessageController.IfModifyIsClicled=false;
+            else SendEmailController.ForDisableMultipleCheck.set(SendEmailController.ProductList.size() < 2);
+            SendEmailMessageController.IfModifyIsClicled = false;
             SetQuantityRoot.getScene().getWindow().hide();
         }
 
@@ -135,11 +133,11 @@ SendEmailMessageController.ProductList.add(theProduct);
         IfExitToModifySendEmailMessage = SendEmailMessageController.IfModifyIsClicled;
 
         SendEmailMessageController.IfMultipleProductSelect.set(false);
-        SendEmailMessageController.IfEmailMessageIsOpen=false;
-        SendEmailMessageController.IfModifyIsClicled=false;
-        IfExitToModifySendEmailMessage =true;
+        SendEmailMessageController.IfEmailMessageIsOpen = false;
+        SendEmailMessageController.IfModifyIsClicled = false;
+        IfExitToModifySendEmailMessage = true;
         if (!IfMultipleSelected)
-        SendEmailController.ForceCheck.set(false);
+            SendEmailController.ForceCheck.set(false);
         IfExit = true;
         // ProductForEmail.IfWasSentVerify=false;
         SetQuantityRoot.getScene().getWindow().hide();

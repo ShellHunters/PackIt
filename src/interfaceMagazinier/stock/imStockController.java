@@ -2,6 +2,7 @@ package interfaceMagazinier.stock;
 
 import Connector.ConnectionClass;
 import basicClasses.product;
+import basicClasses.user;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
@@ -32,6 +33,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+
+
 
 public class imStockController implements Initializable {
     @FXML StackPane stackPane;
@@ -90,10 +93,15 @@ public class imStockController implements Initializable {
     private ObservableList<product> loadProducts() {
         ObservableList<product> products = FXCollections.observableArrayList();
         Connection connection = ConnectionClass.getConnection();
-        String query = "SELECT * FROM stock"; //Change this to read only the products who belongs to the user
+        //Change this to read only the products who belongs to the user
+
         try {
+            String query = "SELECT * FROM stock where userID="+String.valueOf(user.getUserID());
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
+
+
+
             while (rs.next()){
                 product newProduct;
                 try {
@@ -132,13 +140,14 @@ public class imStockController implements Initializable {
             if (bean.getCheckbox().isSelected()) {
                 removedProduct.add(bean);
                 String sql;
-                if (!bean.getExpirationDate().equals("")) sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "')";
-                else sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "')";
+                if (!bean.getExpirationDate().equals("")) sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "','"+user.getUserID()+"')";
+                else sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "','"+user.getUserID()+"')";
                 statement.executeUpdate(sql);
 
-                String sqlDelete = "DELETE FROM stock WHERE barcode=?"   ;
+                String sqlDelete = "DELETE FROM stock WHERE barcode=? and userID=?"   ;
                 PreparedStatement pst = connection.prepareStatement(sqlDelete);
                 pst.setInt(1,bean.getBarcode());
+                pst.setInt(2,user.getUserID());
                 pst.executeUpdate();
                 pst.close() ;
             }

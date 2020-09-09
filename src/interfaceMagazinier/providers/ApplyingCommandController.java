@@ -5,6 +5,7 @@ import basicClasses.Provider;
 import basicClasses.product;
 import com.jfoenix.controls.*;
 import interfaceMagazinier.stock.update.updateController;
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,35 +38,35 @@ public class ApplyingCommandController implements Initializable {
 
 
     @FXML
-    private StackPane ApplyingCommandContainer;
-/*
-    @FXML
-    private JFXTextField SearchProviderTextField;
+    private StackPane applyingCommandContainer;
+    /*
+        @FXML
+        private JFXTextField SearchProviderTextField;
 
-    @FXML
-    private JFXDatePicker CommandDatePicker;
+        @FXML
+        private JFXDatePicker CommandDatePicker;
 
-    @FXML
-    public TableView<Provider >  ProvidersTableView;
+        @FXML
+        public TableView<Provider >  ProvidersTableView;
 
-    @FXML
-    public TableColumn<Provider, Boolean> SelectedItem;
+        @FXML
+        public TableColumn<Provider, Boolean> SelectedItem;
 
-    @FXML
-    public TableColumn<Provider, String> FirstCol;
+        @FXML
+        public TableColumn<Provider, String> FirstCol;
 
-    @FXML
-    public TableColumn<Provider, String> LastCol;
-    @FXML
-    public TableColumn<Provider, String> PhoneCol;
-    @FXML
-    public TableColumn<Provider, String> EmailCol;
+        @FXML
+        public TableColumn<Provider, String> LastCol;
+        @FXML
+        public TableColumn<Provider, String> PhoneCol;
+        @FXML
+        public TableColumn<Provider, String> EmailCol;
 
- */
-@FXML
-private TableView<product> ProductTableView;
+     */
     @FXML
-    private TableColumn<product, Boolean> SelectedCommandCol;
+    private TableView<product> ProductTableView;
+    @FXML
+    private TableColumn<product, Boolean> selectedCommandCol;
 
     @FXML
     private TableColumn<product, String> ProductNameCol;
@@ -80,42 +81,49 @@ private TableView<product> ProductTableView;
     private TableColumn<product, Boolean> SetRequiredButtonCol;
 
     @FXML
-    private JFXButton ApplySelectedProductsButton;
+    private JFXButton applySelectedProductsButton;
 
     @FXML
     private JFXButton SetRequiredQuantityButton;
 
     @FXML
-    private JFXTextField SearchCommandTextField;
+    private JFXTextField searchCommandTextField;
 
     @FXML
     private Label ProviderNameLabel;
 
     @FXML
-    private JFXButton ApplyingAllProductsQuantity;
-  public static      ObservableList<product> ProductList= FXCollections.observableArrayList();
-  static  ObservableList<Provider> ProviderList= FXCollections.observableArrayList();
-    public static boolean IfApplyingCommandIsOpen, IfApplyingSceneIsOpen;
-CursorPosition dragPosition = new CursorPosition();
-static public Provider TheProvider ;
-static public product TheProduct;
-public static Integer RequireQuantity,IndexOfProduct;
-public static ArrayList<Provider> SelectedProvidersList = new ArrayList<Provider>();
-public static  ArrayList<product> SelectedProductList= new ArrayList<product>();
-public static  ArrayList<product> AllProducts= new ArrayList<product>();
-public static String ProviderName;
+    private JFXButton applyingAllProductsButton;
+
     @FXML
-    void ApplySelectedProducts(ActionEvent event) throws IOException, SQLException {
+    private JFXCheckBox NotAddedCheckBox;
 
-        System.out.println("the Size  "+SelectedProductList.size());
+    public static ObservableList<product> ProductList = FXCollections.observableArrayList();
+
+    public static boolean IfApplyingCommandIsOpen, IfApplyingSceneIsOpen;
+    CursorPosition dragPosition = new CursorPosition();
+    static public Provider TheProvider;
+    static public product TheProduct;
+    public static Integer RequireQuantity, IndexOfProduct;
+    public static ArrayList<Provider> SelectedProvidersList = new ArrayList<Provider>();
+    public static ArrayList<product> SelectedProductList = new ArrayList<product>();
+    public static ArrayList<product> TempoProductList = new ArrayList<product>();
+    public static ObservableList<product> NotAddedList = FXCollections.observableArrayList();
+    static ArrayList<product> TempoList = new ArrayList<product>();
+
+    public static String ProviderName;
+
+    @FXML
+    void applySelectedProducts(ActionEvent event) throws IOException, SQLException {
+
+        System.out.println("the Size  " + SelectedProductList.size());
         LookingList(SelectedProductList);
-
 
 
     }
 
     @FXML
-    void ApplyingAllProducts(ActionEvent event) throws IOException, SQLException {
+    void applyingAllProducts(ActionEvent event) throws IOException, SQLException {
         try {
             LookingList(ProductList);
         } catch (SQLException throwables) {
@@ -127,11 +135,14 @@ public static String ProviderName;
     }
 
 
-    class CursorPosition {double x,y;}
-    public void Exit () {
-       Stage stage= (Stage)  ApplyingCommandContainer.getScene().getWindow();
-        IfApplyingSceneIsOpen=false;
-       stage.close();
+    class CursorPosition {
+        double x, y;
+    }
+
+    public void Exit() {
+        Stage stage = (Stage) applyingCommandContainer.getScene().getWindow();
+        IfApplyingSceneIsOpen = false;
+        stage.close();
     }
 
     public class CustomButtonCell<T, S> extends TableCell<T, S> {
@@ -139,21 +150,19 @@ public static String ProviderName;
 
 
         @Override
-        protected void updateItem (S item, boolean empty) {
+        protected void updateItem(S item, boolean empty) {
 
             super.updateItem(item, empty);
-            if (empty || item == null ) {
+            if (empty || item == null) {
                 this.setText("");
                 this.setGraphic(null);
-            }
+            } else {
+                product MyProduct = (product) this.getTableView().getItems().get(getIndex());
+                AddProductToStock.setOnAction(e -> {
+                    TheProduct = (product) this.getTableView().getItems().get(getIndex());
+                    System.out.println(TheProduct.getProductName());
 
-
-            else   {
-                product MyProduct = (product)    this.getTableView().getItems().get(getIndex());
-                AddProductToStock.setOnAction(e->{
-                 TheProduct = (product)    this.getTableView().getItems().get(getIndex());
-
-                    IfApplyingCommandIsOpen=true;
+                    IfApplyingCommandIsOpen = true;
                     try {
                         FindTheWay(TheProduct);
                     } catch (SQLException throwables) {
@@ -162,24 +171,25 @@ public static String ProviderName;
                         ioException.printStackTrace();
                     }
 
-                  IfApplyingCommandIsOpen=false;
+                    IfApplyingCommandIsOpen = false;
                 });
 
 
-if (!MyProduct.getIfWasAdded()){
-    System.out.println("samaykoum  "+MyProduct.getIfWasAdded());
-                this.setGraphic(AddProductToStock);}
-            else {
-    this.setText("");
-    this.setGraphic(null);
-}
+                if (!MyProduct.getIfWasAdded()) {
+                    this.setGraphic(AddProductToStock);
+                } else {
+                    this.setText("");
+                    this.setGraphic(null);
+                }
 
             }
 
         }
     }
-    public  abstract class JFXCheckboxCell<T> extends TableCell<T, Boolean> {
+
+    public abstract class JFXCheckboxCell<T> extends TableCell<T, Boolean> {
         protected JFXCheckBox isChecked = new JFXCheckBox();
+
         public JFXCheckboxCell() {
             HBox hbox = new HBox();
             hbox.getChildren().addAll(this.isChecked);
@@ -209,20 +219,19 @@ if (!MyProduct.getIfWasAdded()){
             if (item == null || empty) {
                 setGraphic(null);
                 setText("");
-            }
-            else {
-                product MyProduct = (product)    this.getTableView().getItems().get(getIndex());
+            } else {
+                product MyProduct = (product) this.getTableView().getItems().get(getIndex());
                 if (!MyProduct.getIfWasAdded()) {
                     this.isChecked.setSelected(this.getItem());
                     this.setGraphic(this.isChecked.getParent());
                     this.setText("");
-                }
-                else {
+                } else {
                     this.setGraphic(null);
                     this.setText("");
                 }
             }
         }
+
         public abstract void onUpdateRow(T row, Boolean newValue);
 
         public abstract void onUpdateEntity(T entity);
@@ -231,19 +240,20 @@ if (!MyProduct.getIfWasAdded()){
 
         }
     }
+
     boolean IfInTable(Integer Barcode) throws SQLException {
 
         Connection connection = ConnectionClass.getConnection();
-        String  Sql="SELECT  * FROM stock WHERE barcode=?";
+        String Sql = "SELECT  * FROM stock WHERE barcode=?";
         PreparedStatement preparedStatement = connection.prepareStatement(Sql);
-        preparedStatement.setInt(1,Barcode);
+        preparedStatement.setInt(1, Barcode);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()){
-            System.out.println("we find the barcode  "+Barcode);
-            RequireQuantity=TheProduct.getRequiredQuantity();
+        if (resultSet.next()) {
+            System.out.println("we find the barcode  " + Barcode);
+            RequireQuantity = TheProduct.getRequiredQuantity();
             try {
                 TheProduct = new product(resultSet.getString("name"), resultSet.getInt("barcode"), resultSet.getFloat("buyprice"), resultSet.getFloat("sellprice"), resultSet.getInt("quantity"), resultSet.getDate("expirationdate").toString());
-            } catch (Exception e){
+            } catch (Exception e) {
                 TheProduct = new product(resultSet.getString("name"), resultSet.getInt("barcode"), resultSet.getFloat("buyprice"), resultSet.getFloat("sellprice"), resultSet.getInt("quantity"), "");
             }
 
@@ -252,115 +262,154 @@ if (!MyProduct.getIfWasAdded()){
         return false;
 
     }
-public static void InitTable ()  {
-    SelectedProductList.clear();
-    SelectedProvidersList.clear();
-ProductList.clear();
-for (product myproduct:CommandHistoryController.command.getListOfProducts())
-    System.out.println("samaykouuuummm 2 3 : "+myproduct.getIfWasAdded());
-    ProductList.addAll(CommandHistoryController.command.getListOfProducts());
+
+    public static void InitTable() {
+        TempoProductList.clear();
+        NotAddedList.clear();
+        SelectedProductList.clear();
+        ProductList.clear();
+        for (product myproduct : CommandHistoryController.command.getListOfProducts())
+            if (!myproduct.getIfWasAdded()) {
+                NotAddedList.add(myproduct);
+            }
+        ProductList.addAll(CommandHistoryController.command.getListOfProducts());
 
     }
 
 
-    public void SceneDraggedMouse( MouseEvent mouseEvent) {
-        Stage stage = (Stage) ApplyingCommandContainer.getScene().getWindow();
+    public void SceneDraggedMouse(MouseEvent mouseEvent) {
+        Stage stage = (Stage) applyingCommandContainer.getScene().getWindow();
         stage.setX(mouseEvent.getScreenX() + dragPosition.x);
-        stage  .setY(mouseEvent.getScreenY() + dragPosition.y);
+        stage.setY(mouseEvent.getScreenY() + dragPosition.y);
     }
 
     public void ScenePressedMouse(MouseEvent mouseEvent) {
-        Stage stage = (Stage) ApplyingCommandContainer.getScene().getWindow();
+        Stage stage = (Stage) applyingCommandContainer.getScene().getWindow();
         dragPosition.x = stage.getX() - mouseEvent.getScreenX();
         dragPosition.y = stage.getY() - mouseEvent.getScreenY();
     }
-void LookingList(Collection<product> TheCollection) throws SQLException, IOException {
-    IfApplyingCommandIsOpen=true;
 
-    for (product myProduct : TheCollection ){
-        if (myProduct.getIfWasAdded())
-            continue;
-        TheProduct = myProduct;
+    void LookingList(Collection<product> TheCollection) throws SQLException, IOException {
+        IfApplyingCommandIsOpen = true;
 
-        FindTheWay(TheProduct);
-    }
-    IfApplyingCommandIsOpen=false;
+        for (product myProduct : TheCollection) {
+            if (myProduct.getIfWasAdded())
+                continue;
+            TheProduct = myProduct;
 
-}
-void FindTheWay(product theProduct) throws SQLException, IOException {
-    JFXDialog dialog;
-    Region root1;
-    IndexOfProduct=ProductList.indexOf(theProduct);
-    System.out.println("the index is:  "+IndexOfProduct);
-    if (IfInTable(theProduct.getBarcode())) {
-        TheProduct.setQuantity(TheProduct.getQuantity()  +RequireQuantity);
-        updateController.setProductSelected(TheProduct);
-        root1    = FXMLLoader.load(getClass().getResource("/interfaceMagazinier/stock/update/updateProduct.fxml"));
+            FindTheWay(TheProduct);
+        }
+        IfApplyingCommandIsOpen = false;
 
     }
-    else {
-        root1 = FXMLLoader.load(getClass().getResource("/interfaceMagazinier/stock/add/addProduct.fxml"));
+
+    void FindTheWay(product theProduct) throws SQLException, IOException {
+        JFXDialog dialog;
+        Region root1;
+        IndexOfProduct = ProductList.indexOf(theProduct);
+        System.out.println("the index is:  " + IndexOfProduct);
+        if (IfInTable(theProduct.getBarcode())) {
+            if (TheProduct != null)
+                TheProduct.setQuantity(TheProduct.getQuantity() + RequireQuantity);
+            else
+                System.out.println(TheProduct);
+            updateController.setProductSelected(TheProduct);
+            root1 = FXMLLoader.load(getClass().getResource("/interfaceMagazinier/stock/update/updateProduct.fxml"));
+
+        } else {
+            root1 = FXMLLoader.load(getClass().getResource("/interfaceMagazinier/stock/add/addProduct.fxml"));
+        }
+        dialog = new JFXDialog(applyingCommandContainer, root1, JFXDialog.DialogTransition.RIGHT);
+        dialog.show();
     }
-    dialog = new JFXDialog(ApplyingCommandContainer, root1, JFXDialog.DialogTransition.RIGHT);
-    dialog.show();
-}
-Provider getTheProvider(Integer id) throws SQLException {
-        Provider provider=null;
-        String Sql ="SELECT  * from ProvidersInfo where id=?";
+
+    Provider getTheProvider(Integer id) throws SQLException {
+        Provider provider = null;
+        String Sql = "SELECT  * from ProvidersInfo where id=?";
         Connection connection = ConnectionClass.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(Sql);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next())
-            provider=new Provider(id,resultSet.getString(2),resultSet.getString(3), resultSet.getFloat(7));
-            return  provider;
+            provider = new Provider(id, resultSet.getString(2), resultSet.getString(3), resultSet.getFloat(7));
+        return provider;
 
-}
-
+    }
 
 
     @Override
-    public void initialize (URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
 
+        NotAddedCheckBox.setSelected(false);
+        System.out.println("hada houwa test aaa " + CommandHistoryController.command.getIdOfProvider());
         try {
-            TheProvider=getTheProvider(CommandHistoryController.command.getIdOfProvider());
+            TheProvider = getTheProvider(CommandHistoryController.command.getIdOfProvider());
+            if (TheProvider != null)
+                ProviderNameLabel.setText("The Command Provider:  " + TheProvider.getLastName() + " " + TheProvider.getFirstName());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        ProviderNameLabel.setText("The Command Provider:  "+TheProvider.getLastName()+" "+TheProvider.getFirstName());
-        IfApplyingSceneIsOpen=true;
-        IfApplyingCommandIsOpen=false;
-InitTable();
-        ApplySelectedProductsButton.setDisable(true);
+
+        IfApplyingSceneIsOpen = true;
+        IfApplyingCommandIsOpen = false;
+        InitTable();
+
+        NotAddedCheckBox.setDisable(NotAddedList.isEmpty());
+        applySelectedProductsButton.setDisable(true);
+        applyingAllProductsButton.setDisable(NotAddedList.isEmpty());
         RequiredQuantityCol.setCellValueFactory(new PropertyValueFactory<product, Integer>("RequiredQuantity"));
         ProductNameCol.setCellValueFactory(new PropertyValueFactory<product, String>("productName"));
-     //   NumberOfProductsCol.setCellValueFactory(new PropertyValueFactory<Command, Integer>("SizeOfProduct"));
+        //   NumberOfProductsCol.setCellValueFactory(new PropertyValueFactory<Command, Integer>("SizeOfProduct"));
         SetRequiredButtonCol.setCellValueFactory(call -> new SimpleBooleanProperty(true).asObject());
 
         SetRequiredButtonCol.setCellFactory(call -> {
             return new CustomButtonCell<>();
         });
 
-        SelectedCommandCol.setCellValueFactory(call -> new SimpleBooleanProperty(false).asObject());
+        selectedCommandCol.setCellValueFactory(call -> new SimpleBooleanProperty(false).asObject());
 
-        SelectedCommandCol.setCellFactory(call -> {
+        selectedCommandCol.setCellFactory(call -> {
             return new JFXCheckboxCell() {
 
                 @Override
-                public void onUpdateRow (Object row, Boolean newValue) {
-                product theProduct = (product)    this.getTableView().getItems().get(getIndex());
-                if (newValue)
-                SelectedProductList.add(theProduct);
-                else  SelectedProductList.remove(theProduct);
-                    ApplySelectedProductsButton.setDisable(SelectedProductList.isEmpty());
+                public void onUpdateRow(Object row, Boolean newValue) {
+                    product theProduct = (product) this.getTableView().getItems().get(getIndex());
+                    if (newValue)
+                        SelectedProductList.add(theProduct);
+                    else SelectedProductList.remove(theProduct);
+                    applySelectedProductsButton.setDisable(SelectedProductList.isEmpty());
                 }
 
                 @Override
-                public void onUpdateEntity (Object entity) {
+                public void onUpdateEntity(Object entity) {
 
                 }
             };
-                });
+        });
+
+        NotAddedCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+
+
+            if (newValue) {
+                TempoList.clear();
+                TempoList.addAll(ProductList);
+                System.out.println("hada test li kount n7awess 3lih  " + TempoList.size());
+                ProductList.clear();
+                ProductList.addAll(NotAddedList);
+
+            } else {
+                System.out.println("hada test li kount n7awess 3lih 2   " + TempoList.size());
+
+                ProductList.clear();
+                ProductList.addAll(TempoList);
+            }
+
+        });
+        NotAddedList.addListener((InvalidationListener) c -> {
+            NotAddedCheckBox.setDisable(NotAddedList.isEmpty());
+            applyingAllProductsButton.setDisable(NotAddedList.isEmpty());
+
+        });
 /*
 
         FirstCol.setCellValueFactory(new PropertyValueFactory<Provider, String>("FirstName"));
@@ -393,7 +442,7 @@ InitTable();
 
  */
         FilteredList<product> ProductResults = new FilteredList<>(ProductList, b -> true);
-        SearchCommandTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
+        searchCommandTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
             ProductResults.setPredicate(product -> {
                 if (newValue == null || newValue.isEmpty())
                     return true;

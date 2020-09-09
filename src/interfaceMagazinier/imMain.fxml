@@ -15,10 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
 
-<StackPane id="mainFrame" fx:id="mainStackPane" stylesheets="@imMain.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.imMainController">
+<StackPane id="mainFrame" fx:id="mainStackPane" stylesheets="@imMain.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.imMainController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0">
+      <AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0">
          <children>
             <VBox id="sideMenu" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="220.0">
                <children>
@@ -33,7 +34,7 @@
                               <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="0.0" />
                            </graphic>
                         </MenuButton>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#notificationDisplay" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="notificationImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resource/icons/notificationsIconWhite.png" />
                            </image>
@@ -46,15 +47,8 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resource/icons/accountIconWhite.png" />
-                     </image>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </ImageView>
-                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="220.0" text="Nom Prenom">
+                  <Circle fx:id="imageCircle" fill="DODGERBLUE" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label fx:id="username" alignment="CENTER" prefHeight="50.0" prefWidth="220.0" text="Nom Prenom">
                      <VBox.margin>
                         <Insets bottom="80.0" />
                      </VBox.margin>

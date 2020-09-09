@@ -51,7 +51,7 @@ public class ModifyProviderController implements Initializable {
     public JFXButton DeleteProvider;
 
     @FXML
-    public void ExitModify () throws IOException, SQLException {
+    public void ExitModify() throws IOException, SQLException {
         if (!hasAnythingChanged()) {
             initDialogWithShow(ModifyRoot.getScene().getWindow(), AlertTypeDialog.WARNING);
             if (SAVEBUTTON.get()) {
@@ -72,7 +72,7 @@ public class ModifyProviderController implements Initializable {
             imProviderController.ModifyDialog.close();
     }
 
-    public void DeleteProvider () throws IOException, SQLException {
+    public void DeleteProvider() throws IOException, SQLException {
         initDialogWithShow(ModifyRoot.getScene().getWindow(), AlertTypeDialog.DELETE);
         if (DELETEBUTTON.get()) {
             DeleteProviders(imProviderController.provider.getId());
@@ -83,7 +83,7 @@ public class ModifyProviderController implements Initializable {
     }
 
     @FXML
-    public void ConfirmModify () throws IOException, SQLException {
+    public void ConfirmModify() throws IOException, SQLException {
         if (FinalValidity(ModifyEmailField, ModifyPhoneField, ModifyFirstField, ModifyLastField, ModifyAddrField, imProviderController.provider.getEmail(), imProviderController.provider.getPhoneNumber())) {
             ErrorMessage.setText("");
             initDialogWithShow(ModifyRoot.getScene().getWindow(), AlertTypeDialog.CONFIRMATION);
@@ -100,7 +100,7 @@ public class ModifyProviderController implements Initializable {
 
 
     @Override
-    public void initialize (URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
 
         ModifyAddrField.setText(imProviderController.provider.getAddress());
         ModifyFirstField.setText(imProviderController.provider.getFirstName());
@@ -112,21 +112,21 @@ public class ModifyProviderController implements Initializable {
 
         this.ModifyFirstField.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed (ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 imProviderController.ModifyDialog.setOverlayClose(hasAnythingChanged());
                 ConfirmModify.setDisable(hasAnythingChanged());
             }
         });
         this.ModifyLastField.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed (ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 imProviderController.ModifyDialog.setOverlayClose(hasAnythingChanged());
                 ConfirmModify.setDisable(hasAnythingChanged());
             }
         });
         this.ModifyEmailField.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed (ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 imProviderController.ModifyDialog.setOverlayClose(hasAnythingChanged());
                 ConfirmModify.setDisable(hasAnythingChanged());
 
@@ -134,14 +134,14 @@ public class ModifyProviderController implements Initializable {
         });
         this.ModifyPhoneField.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed (ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 imProviderController.ModifyDialog.setOverlayClose(hasAnythingChanged());
                 ConfirmModify.setDisable(hasAnythingChanged());
             }
         });
         this.ModifyAddrField.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed (ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 imProviderController.ModifyDialog.setOverlayClose(hasAnythingChanged());
                 ConfirmModify.setDisable(hasAnythingChanged());
 
@@ -154,7 +154,7 @@ public class ModifyProviderController implements Initializable {
     }
 
 
-    public boolean hasAnythingChanged () {
+    public boolean hasAnythingChanged() {
         boolean FirstChanged = this.ModifyFirstField.getText().equals(imProviderController.provider.getFirstName());
         boolean LastChanged = this.ModifyLastField.getText().equals(imProviderController.provider.getLastName());
         boolean EmailChanged = this.ModifyEmailField.getText().equals(imProviderController.provider.getEmail());
@@ -164,23 +164,23 @@ public class ModifyProviderController implements Initializable {
     }
 
 
-    static boolean VerifyValidateEmail (JFXTextField textField) {
+    static boolean VerifyValidateEmail(JFXTextField textField) {
         return Pattern.matches("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9-[-]]+([.][a-zA-Z]+)+", textField.getText());
 
     }
 
-    static boolean VerifyValidatePhone (JFXTextField textField) {
+    static boolean VerifyValidatePhone(JFXTextField textField) {
 
         return Pattern.matches("^[0][765][0-9]{8}", textField.getText());
     }
 
-    public static String ErrorString (JFXTextField textField, JFXTextField textField2, JFXTextField textField3, JFXTextField textField4, JFXTextField textField5, String itsInfos, String itsInfo2) throws SQLException {
+    public static String ErrorString(JFXTextField textField, JFXTextField textField2, JFXTextField textField3, JFXTextField textField4, JFXTextField textField5, String itsInfos, String itsInfo2) throws SQLException {
 
-        if (( !VerifyValidateEmail(textField) ) && ( !VerifyValidatePhone(textField2) ) && textField3.getText().isEmpty() && textField4.getText().isEmpty() && textField5.getText().isEmpty())
+        if ((!VerifyValidateEmail(textField)) && (!VerifyValidatePhone(textField2)) && textField3.getText().isEmpty() && textField4.getText().isEmpty() && textField5.getText().isEmpty())
             return "Incomplete Information";
         else if (textField3.getText().isEmpty() || textField4.getText().isEmpty() || textField5.getText().isEmpty())
             return "Incomplete Information";
-        else if (( !VerifyValidateEmail(textField) ) && ( !VerifyValidatePhone(textField2) ))
+        else if ((!VerifyValidateEmail(textField)) && (!VerifyValidatePhone(textField2)))
             return "The Email & Phone Number Is Invalid";
         else if (!VerifyValidateEmail(textField))
             return "The Email Is Invalid";
@@ -196,12 +196,12 @@ public class ModifyProviderController implements Initializable {
 
     }
 
-    public static boolean FinalValidity (JFXTextField textField, JFXTextField textField2, JFXTextField textField3, JFXTextField textField4, JFXTextField textField5, String itsInfos, String itsInfos2) throws SQLException {
+    public static boolean FinalValidity(JFXTextField textField, JFXTextField textField2, JFXTextField textField3, JFXTextField textField4, JFXTextField textField5, String itsInfos, String itsInfos2) throws SQLException {
 
-        return ( VerifyValidateEmail(textField) && VerifyValidatePhone(textField2) && !textField3.getText().isEmpty() && !textField4.getText().isEmpty() && !textField5.getText().isEmpty() && !VerifyIfExist("Email", textField.getText(), itsInfos) && !VerifyIfExist("PhoneNumber", textField2.getText(), itsInfos2) );
+        return (VerifyValidateEmail(textField) && VerifyValidatePhone(textField2) && !textField3.getText().isEmpty() && !textField4.getText().isEmpty() && !textField5.getText().isEmpty() && !VerifyIfExist("Email", textField.getText(), itsInfos) && !VerifyIfExist("PhoneNumber", textField2.getText(), itsInfos2));
     }
 
-    void UpdateElements () throws SQLException {
+    void UpdateElements() throws SQLException {
         String SqlQuarry = "UPDATE ProvidersInfo set FirstName=? , LastName=? ,  PhoneNumber=? , Email=? , Address=? WHERE id=?";
         Connection connection = ConnectionClass.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SqlQuarry);
@@ -216,7 +216,7 @@ public class ModifyProviderController implements Initializable {
         imProviderController.InitTable();
     }
 
-    public static void DeleteProviders (int Id) throws SQLException {
+    public static void DeleteProviders(int Id) throws SQLException {
         String DeleteQuarry = "DELETE FROM ProvidersInfo WHERE id=?";
         String CopyQuarry = "INSERT INTO DeletedProviders SELECT * FROM ProvidersInfo WHERE id=?";
         Connection CopyConnection = ConnectionClass.getConnection();
@@ -232,7 +232,7 @@ public class ModifyProviderController implements Initializable {
         imProviderController.InitTable();
     }
 
-    static boolean VerifyIfExist (String Column, String Content, String ItsInformation) {
+    static boolean VerifyIfExist(String Column, String Content, String ItsInformation) {
         Provider provider;
         Iterator<Provider> providerIterator = imProviderController.ProviderList.iterator();
 
@@ -260,11 +260,11 @@ public class ModifyProviderController implements Initializable {
         } else return false;
     }
 
-    public static void InsertOnlyNumber (JFXTextField textField) {
+    public static void InsertOnlyNumber(JFXTextField textField) {
         textField.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed (ObservableValue<? extends String> observable, String oldValue,
-                                 String newValue) {
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
                 if (!newValue.matches("\\d*"))
                     textField.setText(newValue.replaceAll("[^\\d]", ""));
 
@@ -274,11 +274,11 @@ public class ModifyProviderController implements Initializable {
 
     }
 
-    public static void InsertOnlyCharacter (JFXTextField textField) {
+    public static void InsertOnlyCharacter(JFXTextField textField) {
         textField.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed (ObservableValue<? extends String> observable, String oldValue,
-                                 String newValue) {
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
                 if (!newValue.matches("\\sa-zA-Z*"))
                     textField.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
 
@@ -289,7 +289,7 @@ public class ModifyProviderController implements Initializable {
 
     }
 
-    public static void SetFirstCharToUpper (JFXTextField textField) {
+    public static void SetFirstCharToUpper(JFXTextField textField) {
         String output = textField.getText().substring(0, 1).toUpperCase() + textField.getText().substring(1);
         textField.setText(output);
     }

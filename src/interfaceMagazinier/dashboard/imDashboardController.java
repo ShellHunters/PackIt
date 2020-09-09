@@ -3,6 +3,7 @@ package interfaceMagazinier.dashboard;
 import Connector.ConnectionClass;
 import basicClasses.product;
 import basicClasses.sell;
+import basicClasses.user;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
@@ -73,9 +74,12 @@ public class imDashboardController implements Initializable {
         sells = FXCollections.observableArrayList();
         try {
             Connection connection = ConnectionClass.getConnection();
-            Statement statement = connection.createStatement();
-            String query = "SELECT * FROM sells";
-            ResultSet rs = statement.executeQuery(query);
+            String query = "SELECT * FROM sells where userID=?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, user.getUserID());
+            ResultSet rs = statement.executeQuery();
+
+
 
             while (rs.next()){
                 int id =  rs.getInt("id");
@@ -121,11 +125,12 @@ public class imDashboardController implements Initializable {
     private void pieChartSetUp(){
         //get data from database
         Connection connection = ConnectionClass.getConnection();
-        String query = "SELECT * FROM stock ORDER BY numberOfSells DESC LIMIT 6";
+        String query = "SELECT * FROM stock  where userID=? ORDER BY numberOfSells DESC LIMIT 6 ";
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
+            PreparedStatement statement= connection.prepareStatement(query);
+            statement.setInt(1,user.getUserID());
+            ResultSet rs = statement.executeQuery();
             while (rs.next()){
                 pieChartData.add(new PieChart.Data(rs.getString("name"), rs.getInt("numberOfSells")));
             }
@@ -171,9 +176,11 @@ public class imDashboardController implements Initializable {
 
     private void areaChartGetData() throws SQLException {
         Connection connection = ConnectionClass.getConnection();
-        Statement statement = connection.createStatement();
-        String query = "SELECT * FROM sells";
-        ResultSet rs = statement.executeQuery(query);
+        String query = "SELECT * FROM sells where userID=?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1,user.getUserID());
+        ResultSet rs = statement.executeQuery();
+
         while (rs.next()) {
             //Need local date to access parts of date and time (day, mounth, year, hours, minutes and seconds)
             LocalDate sellDate = rs.getDate("sellTime").toLocalDate();
@@ -291,8 +298,9 @@ public class imDashboardController implements Initializable {
     public void loadStatistiqueFrames(){
         Connection connection = ConnectionClass.getConnection();
         try {
-            String query = "Select count(barcode) from stock ";
+            String query = "Select count(barcode) from stock where userID=? ";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,user.getUserID());
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()){
                 String sum = rs.getString("count(barcode)");
@@ -302,8 +310,9 @@ public class imDashboardController implements Initializable {
         catch (SQLException e){}
 
         try {
-            String query = "Select sum(profit) from sells ";
+            String query = "Select sum(profit) from sells where userID=?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,user.getUserID());
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             String sum = rs.getString(1);
@@ -312,8 +321,9 @@ public class imDashboardController implements Initializable {
         catch (SQLException e){}
 
         try {
-            String query = "Select sum(profit) from sells WHERE sellTime > CURDATE()" ;
+            String query = "Select sum(profit) from sells WHERE sellTime > CURDATE() and userID=?" ;
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,user.getUserID());
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             String sum = rs.getString(1);

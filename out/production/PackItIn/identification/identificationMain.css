@@ -21,3 +21,14 @@
     -fx-text-fill: white;
     -fx-font-size: 24;
 }
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #ee974c;
+}
+.check-box .box {
+    -fx-background-color: #ee974c;
+}

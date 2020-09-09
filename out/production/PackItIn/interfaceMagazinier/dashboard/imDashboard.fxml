@@ -61,9 +61,9 @@
                                     </VBox>
                                  </children>
                               </Pane>
-                              <Pane id="frame" layoutX="20.0" layoutY="20.0">
+                              <Pane id="frame" layoutX="20.0" layoutY="20.0" prefHeight="400.0" prefWidth="400.0">
                                  <children>
-                                    <PieChart fx:id="pieChart" prefHeight="400.0" prefWidth="400.0" />
+                                    <PieChart fx:id="pieChart" labelsVisible="false" layoutX="25.0" layoutY="25.0" prefHeight="350.0" prefWidth="350.0" />
                                     <Circle fill="#f3f3f3" layoutX="200.0" layoutY="185.0" radius="50.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
                                  </children>
                               </Pane>

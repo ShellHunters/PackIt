@@ -37,7 +37,7 @@ public class InfoProvidersController implements Initializable {
     @FXML
     public JFXTextField PhoneField;
     @FXML
-    public  Label ErrorMessage;
+    public Label ErrorMessage;
     @FXML
     public JFXTextField AddrField;
     @FXML
@@ -47,9 +47,10 @@ public class InfoProvidersController implements Initializable {
     @FXML
     public JFXButton AddProvider;
     CursorPosition dragPosition = new CursorPosition();
+
     @FXML
     public void AddProvider(ActionEvent event) throws SQLException, IOException {
-        if (ModifyProviderController.FinalValidity(EmailField, PhoneField, FirstField, LastField, AddrField,"","")) {
+        if (ModifyProviderController.FinalValidity(EmailField, PhoneField, FirstField, LastField, AddrField, "", "")) {
             ErrorMessage.setText("");
             ShowAllDialogs.initDialogWithShow(InfoRoot.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.CONFIRMATION);
             if (ShowAllDialogs.YESBUTTON.get()) {
@@ -57,11 +58,11 @@ public class InfoProvidersController implements Initializable {
                 ModifyProviderController.SetFirstCharToUpper(LastField);
                 AddNewProvider();
             }
-        }
-        else
-            ErrorMessage.setText(ModifyProviderController.ErrorString(EmailField, PhoneField, FirstField, LastField, AddrField,"",""));
+        } else
+            ErrorMessage.setText(ModifyProviderController.ErrorString(EmailField, PhoneField, FirstField, LastField, AddrField, "", ""));
 
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         AddProvider.setDisable(VerifyIfEmpty());
@@ -103,30 +104,27 @@ public class InfoProvidersController implements Initializable {
     }
 
 
-
-
     @FXML
     void ExitProviderInfo(ActionEvent event) throws IOException, SQLException {
         if (!VerifyIfEmpty()) {
             ShowAllDialogs.initDialogWithShow(InfoRoot.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.WARNING);
             if (ShowAllDialogs.SAVEBUTTON.get()) {
-                if (ModifyProviderController.FinalValidity(EmailField, PhoneField, FirstField, LastField, AddrField,"","")) {
+                if (ModifyProviderController.FinalValidity(EmailField, PhoneField, FirstField, LastField, AddrField, "", "")) {
                     ErrorMessage.setText("");
                     ModifyProviderController.SetFirstCharToUpper(FirstField);
                     ModifyProviderController.SetFirstCharToUpper(LastField);
                     AddNewProvider();
-                }
-                else
-                    ErrorMessage.setText(ModifyProviderController.ErrorString(EmailField, PhoneField, FirstField, LastField, AddrField,"",""));
+                } else
+                    ErrorMessage.setText(ModifyProviderController.ErrorString(EmailField, PhoneField, FirstField, LastField, AddrField, "", ""));
 
             }
             if (ShowAllDialogs.EXITBUTTON.get())
                 imProviderController.AddProviderStage.close();
 
-        }
-        else
+        } else
             imProviderController.AddProviderStage.close();
     }
+
     public void SceneDraggedMouse(MouseEvent mouseEvent) {
         imProviderController.AddProviderStage.setX(mouseEvent.getScreenX() + dragPosition.x);
         imProviderController.AddProviderStage.setY(mouseEvent.getScreenY() + dragPosition.y);
@@ -137,10 +135,14 @@ public class InfoProvidersController implements Initializable {
         dragPosition.y = imProviderController.AddProviderStage.getY() - mouseEvent.getScreenY();
     }
 
-    class CursorPosition {double x,y;}
-    public    boolean VerifyIfEmpty() {
-        return FirstField.getText().isEmpty() && LastField.getText().isEmpty() && EmailField.getText().isEmpty() && PhoneField.getText().isEmpty() && AddrField.getText().isEmpty() ;
+    class CursorPosition {
+        double x, y;
     }
+
+    public boolean VerifyIfEmpty() {
+        return FirstField.getText().isEmpty() && LastField.getText().isEmpty() && EmailField.getText().isEmpty() && PhoneField.getText().isEmpty() && AddrField.getText().isEmpty();
+    }
+
     void AddNewProvider() {
         try {
             Connection conn = ConnectionClass.getConnection();

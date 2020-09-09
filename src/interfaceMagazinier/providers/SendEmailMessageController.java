@@ -18,10 +18,18 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 import sun.invoke.empty.Empty;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,43 +37,40 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SendEmailMessageController implements Initializable {
 
     @FXML
     private StackPane SendEmailMessageRoot;
-/*
+    /*
+        @FXML
+
+        public TableView<Provider> EmailProvidersTable;
+
+
+        @FXML
+        public TableColumn<Provider, Boolean> SelectedItem;
+
+
+        @FXML
+        public TableColumn<Provider, String> FirstCol;
+
+        @FXML
+        public TableColumn<Provider, String> LastCol;
+        @FXML
+        public TableColumn<Provider, Boolean> DeleteCol;
+
+
+        @FXML
+        public TableColumn<Provider, String> PhoneCol;
+        @FXML
+        public TableColumn<Provider, String> EmailCol;
+
+
+     */
     @FXML
-
-    public TableView<Provider> EmailProvidersTable;
-
-
-    @FXML
-    public TableColumn<Provider, Boolean> SelectedItem;
-
-
-    @FXML
-    public TableColumn<Provider, String> FirstCol;
-
-    @FXML
-    public TableColumn<Provider, String> LastCol;
-    @FXML
-    public TableColumn<Provider, Boolean> DeleteCol;
-
-
-    @FXML
-    public TableColumn<Provider, String> PhoneCol;
-    @FXML
-    public TableColumn<Provider, String> EmailCol;
-
-
- */
-@FXML
-private JFXComboBox<Provider> ProviderCombobox;
+    private JFXComboBox<Provider> ProviderCombobox;
 
 
     @FXML
@@ -139,7 +144,7 @@ private JFXComboBox<Provider> ProviderCombobox;
     public static product infoProducts;
     public ArrayList<Provider> DeletedProvidersList = new ArrayList<Provider>();
     public static ArrayList<product> SelectedProductList = new ArrayList<product>();
-    public static ArrayList<product>TotalProducts=new ArrayList<product>();
+    public static ArrayList<product> TotalProducts = new ArrayList<product>();
 
     public static ObservableList<Provider> ProvidersList = FXCollections.observableArrayList();
     public static ObservableList<product> ProductList = FXCollections.observableArrayList();
@@ -147,15 +152,14 @@ private JFXComboBox<Provider> ProviderCombobox;
     SortedList<product> SortedProductsResult = new SortedList<>(ProductsResults);
 
     public static ArrayList<Provider> TempProvidersList = new ArrayList<Provider>();
-    public static boolean IfEmailMessageIsOpen ,IfStageIsLoaded,IfNeededProductBoxIsChecked,IfSendEmailMessageIsLoaded, IfModifyIsClicled;
-    public static SimpleBooleanProperty ForDisableModifyButton=new SimpleBooleanProperty();
-    public static SimpleBooleanProperty AddProviderButtonClicked=new SimpleBooleanProperty();
-    public static SimpleBooleanProperty AddProductButtonClicked=new SimpleBooleanProperty();
-    public static SimpleBooleanProperty   IfMultipleProductSelect=new SimpleBooleanProperty();
-    public static String    msgRecipients;
+    public static boolean IfEmailMessageIsOpen, IfStageIsLoaded, IfNeededProductBoxIsChecked, IfSendEmailMessageIsLoaded, IfModifyIsClicled;
+    public static SimpleBooleanProperty ForDisableModifyButton = new SimpleBooleanProperty();
+    public static SimpleBooleanProperty AddProviderButtonClicked = new SimpleBooleanProperty();
+    public static SimpleBooleanProperty AddProductButtonClicked = new SimpleBooleanProperty();
+    public static SimpleBooleanProperty IfMultipleProductSelect = new SimpleBooleanProperty();
+    public static String msgRecipients;
 
-    public static String Quantity,msgSubject,msgContent;
-
+    public static String Quantity, msgSubject, msgContent;
 
 
     public abstract class JFXCheckboxCell<T> extends TableCell<T, Boolean> {
@@ -205,39 +209,40 @@ private JFXComboBox<Provider> ProviderCombobox;
 
         }
     }
-/*
-    public class CustomButtonCell<T, S> extends TableCell<T, S> {
-        private JFXButton DeleteButton = new JFXButton("Delete");
+
+    /*
+        public class CustomButtonCell<T, S> extends TableCell<T, S> {
+            private JFXButton DeleteButton = new JFXButton("Delete");
 
 
-        @Override
-        protected void updateItem(S item, boolean empty) {
+            @Override
+            protected void updateItem(S item, boolean empty) {
 
-            super.updateItem(item, empty);
-            if (empty || item == null) {
-                this.setText("");
-                this.setGraphic(null);
-            } else {
-                DeleteButton.setId("DeleteButton");
-                DeleteButton.setOnAction(event -> {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    this.setText("");
+                    this.setGraphic(null);
+                } else {
+                    DeleteButton.setId("DeleteButton");
+                    DeleteButton.setOnAction(event -> {
 
-                    providers = (Provider) this.getTableView().getItems().get(getIndex());
-                    imProviderController.ProviderList.add(providers);
-                    TempProvidersList.add(providers);
+                        providers = (Provider) this.getTableView().getItems().get(getIndex());
+                        imProviderController.ProviderList.add(providers);
+                        TempProvidersList.add(providers);
 
-                    ProvidersList.remove(providers);
-                    DeletedProvidersList.clear();
-                    DeleteSelectedProvidersButton.setDisable(true);
-                });
-                this.DeleteButton.setText("Delete");
-                this.setGraphic(DeleteButton);
+                        ProvidersList.remove(providers);
+                        DeletedProvidersList.clear();
+                        DeleteSelectedProvidersButton.setDisable(true);
+                    });
+                    this.DeleteButton.setText("Delete");
+                    this.setGraphic(DeleteButton);
+                }
             }
+
+
         }
 
-
-    }
-
- */
+     */
     public class CustomButtonDeleteCell<T, S> extends TableCell<T, S> {
         private JFXButton DeleteButton = new JFXButton("Delete");
 
@@ -252,8 +257,8 @@ private JFXComboBox<Provider> ProviderCombobox;
             } else {
                 DeleteButton.setId("DeleteButton");
                 DeleteButton.setOnAction(event -> {
-                    if (ProductList.size() ==1)
-                        infoProducts=ProductList.get(0);
+                    if (ProductList.size() == 1)
+                        infoProducts = ProductList.get(0);
                     else infoProducts = (product) this.getTableView().getItems().get(getIndex());
                     DeleteIndividualProduct(infoProducts);
 
@@ -269,6 +274,7 @@ private JFXComboBox<Provider> ProviderCombobox;
 
 
     }
+
     public class CustomButtonModifyCell<T, S> extends TableCell<T, S> {
         private JFXButton ModifyButton = new JFXButton("Modify");
 
@@ -282,9 +288,9 @@ private JFXComboBox<Provider> ProviderCombobox;
                 this.setGraphic(null);
             } else {
                 ModifyButton.setOnAction(event -> {
-                    if (ProductList.size() ==1)
-                        infoProducts=ProductList.get(0);
-                    else  infoProducts = (product) this.getTableView().getItems().get(getIndex());
+                    if (ProductList.size() == 1)
+                        infoProducts = ProductList.get(0);
+                    else infoProducts = (product) this.getTableView().getItems().get(getIndex());
 
 
                     ModifyProductMethod(infoProducts);
@@ -302,19 +308,19 @@ private JFXComboBox<Provider> ProviderCombobox;
     public void initialize(URL location, ResourceBundle resources) {
         SendEmailMessageButton.setDisable(true);
         ProviderCombobox.setItems(imProviderController.ProviderList);
-        IfModifyIsClicled=false;
-        IfSendEmailMessageIsLoaded=true;
-        IfStageIsLoaded=true;
-      //  AddProviderButtonClicked.set(false);
+        IfModifyIsClicled = false;
+        IfSendEmailMessageIsLoaded = false;
+        IfStageIsLoaded = true;
+        //  AddProviderButtonClicked.set(false);
 //        DeleteSelectedContext.setDisable(true);
         ForDisableButtons(true);
-        IfNeededProductBoxIsChecked=false;
+        IfNeededProductBoxIsChecked = false;
         TotalProducts.clear();
         SelectedProductList.clear();
-        IfEmailMessageIsOpen=false;
+        IfEmailMessageIsOpen = false;
         SendEmailMessageController.ProductList.clear();
         IfMultipleProductSelect.set(false);
-        infoProducts=new product();
+        infoProducts = new product();
         //ForDisableModifyButton.set(false);
         ProvidersList.clear();
 //        DeleteSelectedProvidersButton.setDisable(true);
@@ -442,7 +448,7 @@ private JFXComboBox<Provider> ProviderCombobox;
                     return true;
                 else if (infoProduct.getBarcode().toString().toLowerCase().contains(lowerCaseFilter))
                     return true;
-                else if (String.valueOf( infoProduct.getNeededQuantity()).toLowerCase().contains(lowerCaseFilter))
+                else if (String.valueOf(infoProduct.getNeededQuantity()).toLowerCase().contains(lowerCaseFilter))
                     return true;
                 else if (infoProduct.getQuantity().toString().toLowerCase().contains(lowerCaseFilter))
                     return true;
@@ -492,8 +498,6 @@ private JFXComboBox<Provider> ProviderCombobox;
         ForDisableModifyButton.set(true);
 
 
-
-
     }
 /*
     public void DeleteSelectedProviders() throws IOException {
@@ -519,6 +523,7 @@ private JFXComboBox<Provider> ProviderCombobox;
     public void DeleteSelectedProductContext() {
         DeleteSelectedProduct();
     }
+
     public void AddProductOnList(ActionEvent actionEvent) {
         AddProductButtonClicked.set(false);
         AddProductButtonClicked.set(true);
@@ -527,10 +532,10 @@ private JFXComboBox<Provider> ProviderCombobox;
 
     public void DeleteSelectedProduct() {
         ProductList.removeAll(SelectedProductList);
-        Iterator<product>infoProductIterator;
-        infoProductIterator=SelectedProductList.iterator();
-      //  System.out.println(SelectedProductList.size());
-        while (infoProductIterator.hasNext()){
+        Iterator<product> infoProductIterator;
+        infoProductIterator = SelectedProductList.iterator();
+        //  System.out.println(SelectedProductList.size());
+        while (infoProductIterator.hasNext()) {
             product infoProduct = infoProductIterator.next();
             DeleteIndividualProduct(infoProduct);
 
@@ -538,7 +543,6 @@ private JFXComboBox<Provider> ProviderCombobox;
 
         ForDisableButtons(true);
     }
-
 
 
     public void ModifySelectedProducts() {
@@ -549,6 +553,7 @@ private JFXComboBox<Provider> ProviderCombobox;
         SendEmailController.InitSetQuantity(SendEmailMessageRoot.getScene().getWindow());
 
     }
+
     public void ModifyContextProductList(ActionEvent actionEvent) {
         infoProducts = ProductTable.getItems().get(ProductTable.getSelectionModel().getSelectedIndex());
 
@@ -559,15 +564,17 @@ private JFXComboBox<Provider> ProviderCombobox;
     }
 
 
-    public void RefreshTextArea(){
-        String string="The Needed  Products :";
-        ProductArea.setText(string +"\n");
-        for (product infoProduct: ProductList){
-            ProductArea.appendText("\n  "+"The Product Name :  "+infoProduct.getProductName() + "   " + " , The Needed Quantity : "+infoProduct.getNeededQuantity() + "\n");
+    public void RefreshTextArea() {
+        String string = "The Needed  Products :";
+        ProductArea.setText(string + "\n");
+        for (product infoProduct : ProductList) {
+            ProductArea.appendText("\n  " + "The Product Name :  " + infoProduct.getProductName() + "   " + " , The Needed Quantity : " + infoProduct.getNeededQuantity() + "\n");
         }
-    }  public void SendEmailMessage(ActionEvent actionEvent) throws SQLException, IOException {
-        if (ProviderCombobox.getValue() == null )
-                ShowAllDialogs.initDialogWithShow(SendEmailMessageRoot.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.ONEBUTTON);
+    }
+
+    public void SendEmailMessage(ActionEvent actionEvent) throws SQLException, IOException {
+        if (ProviderCombobox.getValue() == null)
+            ShowAllDialogs.initDialogWithShow(SendEmailMessageRoot.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.ONEBUTTON);
         else {
             msgContent = "\n " + MessageArea.getText() + "\n \n \n" + ProductArea.getText();
             msgSubject = SubjectMessageTextField.getText();
@@ -579,14 +586,15 @@ private JFXComboBox<Provider> ProviderCombobox;
         }
 
  */
-            msgRecipients=ProviderCombobox.getValue().getEmail();
+            msgRecipients = ProviderCombobox.getValue().getEmail();
             MessageArea.setDisable(true);
             ProductArea.setDisable(true);
-            Email.send();
+
+            //Email.send();
             DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date();
-             System.out.println("the date test   "+dateformat.format(System.currentTimeMillis()));
-            InsertProductToCommand(ProductList, ProviderCombobox.getValue(),dateformat.format(System.currentTimeMillis()));
+            //System.out.println("the date test   "+dateformat.format(System.currentTimeMillis()));
+            InsertProductToCommand(ProductList, ProviderCombobox.getValue(), dateformat.format(System.currentTimeMillis()));
             if (Email.ItSent) {
                 for (product infoProduct : ProductList) {
                     infoProduct.setIfWasSent(true);
@@ -598,96 +606,125 @@ private JFXComboBox<Provider> ProviderCombobox;
 
             }
         }
+
+        String path = "C:\\Users\\Nassim\\Desktop\\PackItIn\\src\\resource\\File\\Blank_A4.jasper";
+
+        try {
+            // Path documentPath
+            // HashMap<String, Object> params
+            // JRDataSource jasperDataSource/
+            // Indentation CTRL + ALT + L
+            Path documentPath = Paths.get(path);
+            Map<String, Object> params = new HashMap<>();
+            params.put("ProviderName", "Hamouda"); // get it from login
+            JREmptyDataSource emptyDatasource = new JREmptyDataSource();
+            JRBeanCollectionDataSource jasperDataSource = new JRBeanCollectionDataSource(ProductList);
+            params.put("DataSource", jasperDataSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(documentPath.toAbsolutePath().toString(), params, emptyDatasource);
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }
-    void ForDisableButtons(boolean state){
+
+    void ForDisableButtons(boolean state) {
         DeleteSelectedProductsButton.setDisable(state);
         ModifySelectedProductsButton.setDisable(state);
         DeleteSelectedProductContext.setDisable(state);
         ModifySelectedProductContext.setDisable(state);
 
     }
-    public  void ModifyProductMethod(product infoProducts){
-        IfEmailMessageIsOpen=true;
-        IfModifyIsClicled=true;
-        Quantity=String.valueOf( infoProducts.getNeededQuantity());
-        SendEmailController.ProductName=infoProducts.getProductName();
+
+    public void ModifyProductMethod(product infoProducts) {
+        IfEmailMessageIsOpen = true;
+        IfModifyIsClicled = true;
+        Quantity = String.valueOf(infoProducts.getNeededQuantity());
+        SendEmailController.ProductName = infoProducts.getProductName();
         SendEmailController.InitSetQuantity(SendEmailMessageRoot.getScene().getWindow());
         if (SetQuantityController.IfExitToModifySendEmailMessage) {
-           // System.out.println("In The Condition Iffff");
+            // System.out.println("In The Condition Iffff");
 
-        }
-        else {
-         //   System.out.println("The Enter COndition Elssse");
+        } else {
+            //   System.out.println("The Enter COndition Elssse");
 
             ForDisableButtons(true);
             SelectedProductList.clear();
         }
     }
-    void EmailWasSent(Integer barcode){
+
+    void EmailWasSent(Integer barcode) {
         Connection connection = ConnectionClass.getConnection();
-        String Sql ="UPDATE stock set IfWasSent=? WHERE barcode=?";
+        String Sql = "UPDATE stock set IfWasSent=? WHERE barcode=?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(Sql);
-            preparedStatement.setInt(2,barcode);
-            preparedStatement.setBoolean(1,true);
+            preparedStatement.setInt(2, barcode);
+            preparedStatement.setBoolean(1, true);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
     }
-    void DeleteIndividualProduct(product infoProducts){
+
+    void DeleteIndividualProduct(product infoProducts) {
         infoProducts.setNeededQuantity(0);
         ProductList.remove(infoProducts);
         SendEmailController.ProductList.add(infoProducts);
         SendEmailController.TempoListOfProducts.add(infoProducts);
-        if (infoProducts.getStockPercentage()<=20)
+        if (infoProducts.getStockPercentage() <= 20)
             SendEmailController.NeededProduct.add(infoProducts);
         SelectedProductList.clear();
     }
-    void InsertProductToCommand(ObservableList<product> ProductList,Provider provider , String Date) throws SQLException {
 
-        Connection connection =ConnectionClass.getConnection();
-      //  Connection connection2 =ConnectionClass.getConnection();
+    void InsertProductToCommand(ObservableList<product> ProductList, Provider provider, String Date) throws SQLException {
+
+        Connection connection = ConnectionClass.getConnection();
+        //  Connection connection2 =ConnectionClass.getConnection();
 
         String Sql = "INSERT INTO ProductsCommand (id,ProductName,DateOfCommand,RequiredQuantity,barcode) values (?,?,?,?,?)";
-      String Sql2="INSERT INTO ProvidersCommand (id,FirstName,LastName,PhoneNumber,CommandDate,Email,IdOFTheProvider) values (?,?,?,?,?,?,?)";
-String Sql3 ="SELECT * FROM ProductsCommand WHERE id = (SELECT MAX(id) FROM ProductsCommand)";
-int id=1;
+        String Sql2 = "INSERT INTO ProvidersCommand (id,FirstName,LastName,PhoneNumber,CommandDate,Email,IdOFTheProvider) values (?,?,?,?,?,?,?)";
+        String Sql3 = "SELECT * FROM ProductsCommand WHERE id = (SELECT MAX(id) FROM ProductsCommand)";
+        int id = 1;
 
         PreparedStatement preparedStatement = connection.prepareStatement(Sql3);
-       // PreparedStatement preparedStatement2 = connection2.prepareStatement(Sql2);
-     //   PreparedStatement preparedStatement3 = connectio
+        // PreparedStatement preparedStatement2 = connection2.prepareStatement(Sql2);
+        //   PreparedStatement preparedStatement3 = connectio
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next())
-            id+=resultSet.getInt(1);
-        System.out.println("lwelwelel test  "+id);
+            id += resultSet.getInt(1);
+        //System.out.println("lwelwelel test  "+id);
         preparedStatement = connection.prepareStatement(Sql);
+        Command command = new Command(id, Date, provider.getId(), provider, ProductList, ProductList.size());
+        CommandHistoryController.CommandList.add(command);
 
-        for (product Product : ProductList){
-            System.out.println("lwelwelel test  "+id +"   "+Product.getProductName()+"    "+Product.getNeededQuantity()+"   " +Product.getBarcode() + "    "+Date) ;
+        CommandHistoryController.CommandHashMap.put(id, command);
+        for (product Product : ProductList) {
+            // System.out.println("lwelwelel test  "+id +"   "+Product.getProductName()+"    "+Product.getNeededQuantity()+"   " +Product.getBarcode() + "    "+Date) ;
 
-            preparedStatement.setInt(1,id);
-            preparedStatement.setString(2,Product.getProductName());
-            preparedStatement.setString(3,Date);
-            preparedStatement.setInt(4,Product.getNeededQuantity());
-            preparedStatement.setInt(5,Product.getBarcode());
-preparedStatement.executeUpdate();
+
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, Product.getProductName());
+            preparedStatement.setString(3, Date);
+            preparedStatement.setInt(4, Product.getNeededQuantity());
+            preparedStatement.setInt(5, Product.getBarcode());
+            preparedStatement.executeUpdate();
         }
         preparedStatement = connection.prepareStatement(Sql2);
 
-          //  System.out.println("lwelwelel test  "+id +"   "+Product.getProductName()+"    "+Product.getNeededQuantity()+"   " +Product.getBarcode() + "    "+Date) ;
+        //  System.out.println("lwelwelel test  "+id +"   "+Product.getProductName()+"    "+Product.getNeededQuantity()+"   " +Product.getBarcode() + "    "+Date) ;
 
-            preparedStatement.setInt(1,id);
-            preparedStatement.setString(2,provider.getFirstName());
-            preparedStatement.setString(3,provider.getLastName());
-            preparedStatement.setString(4,provider.getPhoneNumber());
-            preparedStatement.setString(5,Date);
-            preparedStatement.setString(6,provider.getEmail());
-            preparedStatement.setInt(7,provider.getId());
+        preparedStatement.setInt(1, id);
+        preparedStatement.setString(2, provider.getFirstName());
+        preparedStatement.setString(3, provider.getLastName());
+        preparedStatement.setString(4, provider.getPhoneNumber());
+        preparedStatement.setString(5, Date);
+        preparedStatement.setString(6, provider.getEmail());
+        preparedStatement.setInt(7, provider.getId());
 
 
-            preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
 
     }
+
 }

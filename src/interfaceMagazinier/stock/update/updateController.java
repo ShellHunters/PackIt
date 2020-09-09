@@ -2,6 +2,7 @@ package interfaceMagazinier.stock.update;
 
 import Connector.ConnectionClass;
 import basicClasses.product;
+import basicClasses.user;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -50,7 +51,7 @@ public class updateController implements Initializable {
 
         //update product
         Connection connection = ConnectionClass.getConnection();
-        String query = "Update stock set name=?, barcode=? , buyprice=? , sellprice=? , quantity=? ,expirationdate=? where barcode='"+productSelected.getBarcode()+"'" ;
+        String query = "Update stock set name=?, barcode=? , buyprice=? , sellprice=? , quantity=? ,expirationdate=? where barcode=? and userID=? " ;
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,productname.getText());
         System.out.println(barcode.getText());
@@ -60,6 +61,8 @@ public class updateController implements Initializable {
         pst.setString(5,String.valueOf(quantity.getText()));
         if (expirationdate.getValue() == null) {pst.setNull(6, Types.DATE);}
         else { pst.setString(6,expirationdate.getValue().toString());}
+        pst.setInt(7,productSelected.getBarcode());
+        pst.setInt(8, user.getUserID());
         pst.execute() ;
 
         productSelected.setBarcode(Integer.parseInt(barcode.getText()));
@@ -71,9 +74,7 @@ public class updateController implements Initializable {
     }
 
 
-    private boolean errorCheck() throws SQLException {
-
-
+    private boolean errorCheck() {
         if (productname.getText().isEmpty() || barcode.getText().isEmpty() || sellprice.getText().isEmpty() || buyprice.getText().isEmpty() || quantity.getText().isEmpty()){
             errorLabel.setTextFill(Paint.valueOf("red"));
             errorLabel.setText("Fill all the text fields");
@@ -84,15 +85,7 @@ public class updateController implements Initializable {
             errorLabel.setText("Some text fields must be numbers only");
             return true;
         }
-        Connection connection = ConnectionClass.getConnection();
-        String query = "SELECT * FROM stock where barcode= ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, barcode.getText());
-        ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()){
-            errorLabel.setText("This barcode "+ barcode.getText() + " already exists");
-            return true;
-        }
+
         errorLabel.setTextFill(Paint.valueOf("green"));
         errorLabel.setText("product updated succefully");
         return false;

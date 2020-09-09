@@ -118,12 +118,14 @@ public class sell {
 
             //changing the quantity and the number of sells
             // REMARQUE : Number of sells is correct because we used the second constructor (which includes the number of sells) to add the products to the list.
-            String query = "UPDATE stock SET numberOfSells=?, quantity=? WHERE barcode=" + product.getBarcode();
+            String query = "UPDATE stock SET numberOfSells=?, quantity=? WHERE barcode=? and userID=?" ;
             PreparedStatement numberOfSellsStatement;
             try {
                 numberOfSellsStatement = connection.prepareStatement(query);
                 numberOfSellsStatement.setInt(1, product.getNumberOfSells() + product.getQuantity());
                 numberOfSellsStatement.setInt(2, newQuantity.get());
+                numberOfSellsStatement.setInt(3,product.getBarcode());
+                numberOfSellsStatement.setInt(4,user.getUserID());
                 numberOfSellsStatement.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -131,7 +133,7 @@ public class sell {
         });
 
         //GetLast ID Sell
-        String idQuery = "SELECT * FROM sells WHERE id = ( SELECT MAX( id ) FROM sells )";
+        String idQuery = "SELECT * FROM sells WHERE id = ( SELECT MAX( id ) FROM sells ) and userID="+user.getUserID();
         Statement idStatement = connection.createStatement();
         ResultSet rs = idStatement.executeQuery(idQuery);
 
@@ -140,7 +142,7 @@ public class sell {
             id = rs.getInt("id") + 1;
         }
 
-        String query = "INSERT INTO sells(id, productCode, quantity, sellTime, sellPrice, profit, clientid) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO sells(id, productCode, quantity, sellTime, sellPrice, profit, clientid,userID) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
         int finalId = id;
         String sellTime = LocalDateTime.now().toString();
         soldProducts.forEach(product -> {
@@ -153,6 +155,7 @@ public class sell {
                 ps.setString(5, String.valueOf(product.getSellPrice()));
                 ps.setString(6, String.valueOf((product.getSellPrice() - product.getBuyPrice()) * product.getQuantity()));
                 ps.setString(7, String.valueOf(clientID));
+                ps.setInt(8,user.getUserID());
                 ps.execute();
             } catch (SQLException e) {
                 e.printStackTrace();

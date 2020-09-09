@@ -40,7 +40,7 @@ public class imProviderController implements Initializable {
     @FXML
     public JFXTextField SearchBox;
     @FXML
-    public TableView<Provider > AllProvidersTable;
+    public TableView<Provider> AllProvidersTable;
 
     @FXML
     public TableColumn<Provider, Boolean> SelectedItem;
@@ -82,16 +82,16 @@ public class imProviderController implements Initializable {
     private MenuItem DeleteSelectedContext;
     public AnchorPane ModifyContainer;
     public static AnchorPane ProvidersRootContainerTemp = new AnchorPane();
-    public static StackPane test=new StackPane();
+    public static StackPane test = new StackPane();
     public static Provider provider = null;
-    public static  ObservableList<Provider> ProviderList  = FXCollections.observableArrayList();
+    public static ObservableList<Provider> ProviderList = FXCollections.observableArrayList();
     public static ArrayList<Provider> SelectedProvider = new ArrayList<Provider>();
     public static ArrayList<Provider> SelectedProvidersListForEmail = new ArrayList<Provider>();
     public static ArrayList<Provider> SelectedProvidersForTheListOfEmail = new ArrayList<Provider>();
     public static ArrayList<Provider> SelectedProvidersLoadEmail = new ArrayList<Provider>();
 
     public static Stage AddProviderStage;
-    public  static  SimpleBooleanProperty ForDisableButtons = new SimpleBooleanProperty(true);
+    public static SimpleBooleanProperty ForDisableButtons = new SimpleBooleanProperty(true);
 
 
     void LoadModifyProviderScene() throws IOException {
@@ -103,7 +103,7 @@ public class imProviderController implements Initializable {
 
     public void AddProviders(ActionEvent event) throws IOException {
 
-        if (SendEmailMessageController.ForDisableModifyButton.get()){
+        if (SendEmailMessageController.ForDisableModifyButton.get()) {
             for (Provider provider : SelectedProvidersForTheListOfEmail) {
                 if (!SendEmailMessageController.ProvidersList.contains(provider))
                     SendEmailMessageController.ProvidersList.add(provider);
@@ -115,8 +115,7 @@ public class imProviderController implements Initializable {
             ProviderList.removeAll(SelectedProvidersForTheListOfEmail);
             ProviderList.removeAll(SelectedProvidersListForEmail);
 
-        }
-        else {
+        } else {
             AnchorPane root = FXMLLoader.load(getClass().getResource("InfoProviders.fxml"));
             Scene scene = new Scene(root);
             AddProviderStage = new Stage();
@@ -127,9 +126,6 @@ public class imProviderController implements Initializable {
         }
 
     }
-
-
-
 
 
     public void ModifyContextList(ActionEvent event) throws IOException {
@@ -145,7 +141,8 @@ public class imProviderController implements Initializable {
             ModifyProviderController.DeleteProviders(provider.getId());
         }
     }
-    public static Provider SetInfo(int id , String FirstName ,String LastName , String PhoneNumber , String Email , String Address ,float TotalFigure ) {
+
+    public static Provider SetInfo(int id, String FirstName, String LastName, String PhoneNumber, String Email, String Address, float TotalFigure) {
         Provider ProviderForList = new Provider();
         ProviderForList.setId(id);
         ProviderForList.setFirstName(FirstName);
@@ -153,18 +150,18 @@ public class imProviderController implements Initializable {
         ProviderForList.setPhoneNumber(PhoneNumber);
         ProviderForList.setEmail(Email);
         ProviderForList.setAddress(Address);
-            ProviderForList.setTotalFigure(TotalFigure);
+        ProviderForList.setTotalFigure(TotalFigure);
         return ProviderForList;
 
     }
 
     public void DeleteSelected(ActionEvent event) throws SQLException, IOException {
         ShowAllDialogs.initDialogWithShow(TableRoot.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.DELETE);
-        Iterator<Provider> iterator=SelectedProvider.iterator();
+        Iterator<Provider> iterator = SelectedProvider.iterator();
         if (ShowAllDialogs.DELETEBUTTON.get()) {
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Provider pro = iterator.next();
-                System.out.println(" "+pro.getId() );
+                System.out.println(" " + pro.getId());
                 ModifyProviderController.DeleteProviders(pro.getId());
                 iterator.remove();
             }
@@ -175,19 +172,19 @@ public class imProviderController implements Initializable {
     public void SendEmail(ActionEvent actionEvent) throws IOException {
 
 
-          //  ProviderList.removeAll(SelectedProvider);
-         //   SendEmailMessageController.TempProvidersList.addAll(ProviderList);
-           // SelectedProvider.clear();
-            SendEmailController.IfTabPaneIsOpen=true;
-            AnchorPane root = FXMLLoader.load(getClass().getResource("SendEmail.fxml"));
-            ProvidersRoot.getChildren().setAll(root);
-
+        //  ProviderList.removeAll(SelectedProvider);
+        //   SendEmailMessageController.TempProvidersList.addAll(ProviderList);
+        // SelectedProvider.clear();
+        SendEmailController.IfTabPaneIsOpen = true;
+        AnchorPane root = FXMLLoader.load(getClass().getResource("SendEmail.fxml"));
+        ProvidersRoot.getChildren().setAll(root);
 
 
     }
 
-    public  abstract class JFXCheckboxCell<T> extends TableCell<T, Boolean> {
-        protected  JFXCheckBox isChecked = new JFXCheckBox();
+    public abstract class JFXCheckboxCell<T> extends TableCell<T, Boolean> {
+        protected JFXCheckBox isChecked = new JFXCheckBox();
+
         public JFXCheckboxCell() {
             HBox hbox = new HBox();
             hbox.getChildren().addAll(this.isChecked);
@@ -217,13 +214,13 @@ public class imProviderController implements Initializable {
             if (item == null || empty) {
                 setGraphic(null);
                 setText("");
-            }
-            else {
+            } else {
                 this.isChecked.setSelected(this.getItem());
                 this.setGraphic(this.isChecked.getParent());
                 this.setText("");
             }
         }
+
         public abstract void onUpdateRow(T row, Boolean newValue);
 
         public abstract void onUpdateEntity(T entity);
@@ -234,7 +231,6 @@ public class imProviderController implements Initializable {
     }
 
 
-
     public class CustomButtonCell<T, S> extends TableCell<T, S> {
         private Button ModifyButton = new Button("Modify");
 
@@ -243,45 +239,45 @@ public class imProviderController implements Initializable {
         protected void updateItem(S item, boolean empty) {
 
             super.updateItem(item, empty);
-            if (empty || item == null ){
+            if (empty || item == null) {
                 this.setText("");
                 this.setGraphic(null);
             } else {
-            //    if( !SendEmailMessageController.ForDisableModifyButton.get())
-                    ModifyButton.setId("EditButton");
+                //    if( !SendEmailMessageController.ForDisableModifyButton.get())
+                ModifyButton.setId("EditButton");
                 ModifyButton.setOnAction(event -> {
 
                     provider = (Provider) this.getTableView().getItems().get(getIndex());
-                   // if( SendEmailMessageController.ForDisableModifyButton.get()){
-                     //   SendEmailMessageController.ProvidersList.add(provider);
-                     //   ProviderList.remove(provider);
+                    // if( SendEmailMessageController.ForDisableModifyButton.get()){
+                    //   SendEmailMessageController.ProvidersList.add(provider);
+                    //   ProviderList.remove(provider);
 
-                   // else {
+                    // else {
 
-                        try {
-                            LoadModifyProviderScene();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                    try {
+                        LoadModifyProviderScene();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
 
                 });
-             //   if (SendEmailController.IfTabPaneIsOpen)
-               //     ModifyButton.setText("Add Provider");
+                //   if (SendEmailController.IfTabPaneIsOpen)
+                //     ModifyButton.setText("Add Provider");
                 this.setGraphic(ModifyButton);
             }
         }
 
 
     }
+
     public static void InitTable() throws SQLException {
-   //     SelectedProvidersForTheListOfEmail.clear();
+        //     SelectedProvidersForTheListOfEmail.clear();
         SelectedProvidersListForEmail.clear();
         ProviderList.clear();
-        if (SendEmailController.IfTabPaneIsOpen){
+        if (SendEmailController.IfTabPaneIsOpen) {
             ProviderList.addAll(SendEmailMessageController.TempProvidersList);
-        }
-        else   {
+        } else {
             String sql = "SELECT * FROM ProvidersInfo";
             Connection connection = Connector.ConnectionClass.getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery(sql);
@@ -293,17 +289,18 @@ public class imProviderController implements Initializable {
         }
 
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (SendEmailController.IfTabPaneIsOpen) {
-SendEmailButton.setVisible(false);
-DeleteSelectedButton.setVisible(false);
+            SendEmailButton.setVisible(false);
+            DeleteSelectedButton.setVisible(false);
 
 
         }
-        ProvidersRootContainerTemp =ProvidersRoot;
+        ProvidersRootContainerTemp = ProvidersRoot;
         if (!SendEmailController.IfTabPaneIsOpen)
-            SendEmailMessageController.TableProviderContainer=TableRoot;
+            SendEmailMessageController.TableProviderContainer = TableRoot;
         DeleteSelectedContext.setDisable(true);
         DeleteSelectedButton.setDisable(true);
         ForDisableButtons.set(false);
@@ -327,7 +324,7 @@ DeleteSelectedButton.setVisible(false);
         SelectedItem.setCellFactory(call -> {
             return new JFXCheckboxCell() {
                 @Override
-                public void onUpdateRow (Object row, Boolean newValue) {
+                public void onUpdateRow(Object row, Boolean newValue) {
 
                     if (newValue) {
 
@@ -339,28 +336,25 @@ DeleteSelectedButton.setVisible(false);
                         SelectedProvider.add(provider);
                         System.out.println("Teeessst");
                     }
-                 //   SelectedProvidersLoadEmail.add(provider);
-                 else
+                    //   SelectedProvidersLoadEmail.add(provider);
+                    else {
 
-                {
+                        provider = (Provider) this.getTableView().getItems().get(getIndex());
+                        //     if( SendEmailMessageController.ForDisableModifyButton.get())
+                        //      SelectedProvidersForTheListOfEmail.remove(provider);
 
-                    provider = (Provider) this.getTableView().getItems().get(getIndex());
-                    //     if( SendEmailMessageController.ForDisableModifyButton.get())
-                    //      SelectedProvidersForTheListOfEmail.remove(provider);
+                        //    else{
+                        SelectedProvider.remove(provider);
+                        System.out.println("Teeessst");
+                    }
+                    //  SelectedProvidersLoadEmail.remove(provider);
 
-                    //    else{
-                    SelectedProvider.remove(provider);
-                    System.out.println("Teeessst");
+                    //   if( !SendEmailMessageController.ForDisableModifyButton.get()) {
+                    DeleteSelectedButton.setDisable(SelectedProvider.isEmpty());
+                    DeleteSelectedContext.setDisable(SelectedProvider.isEmpty());
+
+
                 }
-                  //  SelectedProvidersLoadEmail.remove(provider);
-
-                //   if( !SendEmailMessageController.ForDisableModifyButton.get()) {
-                        DeleteSelectedButton.setDisable(SelectedProvider.isEmpty());
-                        DeleteSelectedContext.setDisable(SelectedProvider.isEmpty());
-
-
-
-        }
 
                 @Override
                 public void onUpdateEntity(Object entity) {
@@ -391,7 +385,7 @@ DeleteSelectedButton.setVisible(false);
                     return true;
                 else if (provider.getLastName().toLowerCase().contains(lowerCaseFilter))
                     return true;
-                else if (String.valueOf( provider.getTotalFigure()).toLowerCase().contains(lowerCaseFilter))
+                else if (String.valueOf(provider.getTotalFigure()).toLowerCase().contains(lowerCaseFilter))
                     return true;
                 else if (provider.getAddress().toLowerCase().contains(lowerCaseFilter))
                     return true;

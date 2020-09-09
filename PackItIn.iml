@@ -11,6 +11,10 @@
     <orderEntry type="library" name="mysql-connector-java-5.1.48" level="project" />
     <orderEntry type="library" name="activation-1.1.1" level="project" />
     <orderEntry type="library" name="javax.mail" level="project" />
+    <orderEntry type="library" name="joda-time-2.10.6-javadoc" level="project" />
+    <orderEntry type="library" name="bcprov-jdk15on-1.64" level="project" />
+    <orderEntry type="library" name="jfoenix-9.0.9" level="project" />
+    <orderEntry type="library" name="javax.mail-1.6.21" level="project" />
     <orderEntry type="library" name="aopalliance-1.0" level="project" />
   </component>
 </module>

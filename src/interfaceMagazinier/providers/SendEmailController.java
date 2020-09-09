@@ -56,12 +56,12 @@ public class SendEmailController implements Initializable {
     @FXML
     private JFXCheckBox MultipleSelectCheckBox;
     @FXML
-    private    JFXButton SendEmailButton;
+    private JFXButton SendEmailButton;
     @FXML
     private TableView<product> TableOfEmail;
 
     @FXML
-    private TableColumn<product,Boolean> SelectedItem;
+    private TableColumn<product, Boolean> SelectedItem;
     @FXML
     private TableColumn<product, Integer> BarcodeCol;
 
@@ -92,34 +92,43 @@ public class SendEmailController implements Initializable {
     @FXML
     private JFXButton DeleteSelectedProvidersButton;
     public static Provider providers;
-    public static product  theProduct=new product();
+    public static product theProduct = new product();
     public static ObservableList<Provider> ProvidersList = FXCollections.observableArrayList();
-    public static boolean IfMultipleSelected  , TheOldValue;
-    public static  String ProductName;
-    public static ObservableList<product> ProductList  = FXCollections.observableArrayList();
-    public static ArrayList<product> NeededProduct  = new ArrayList<product>();
+    public static boolean IfMultipleSelected, TheOldValue;
+    public static String ProductName;
+    public static ObservableList<product> ProductList = FXCollections.observableArrayList();
+    public static ArrayList<product> NeededProduct = new ArrayList<product>();
     public static ArrayList<product> TempoListOfProducts = new ArrayList<product>();
-    public static ArrayList<product> MultipleSelectionList  = new ArrayList<product>();
-    public  static  SimpleBooleanProperty ForceCheck = new SimpleBooleanProperty(true);
-    public  static  SimpleBooleanProperty ForceCheckForMultipleSelectCheckbox = new SimpleBooleanProperty(true);
-    public  static  SimpleBooleanProperty ForDisableSetQuantityButton = new SimpleBooleanProperty(true);
-    public  static  SimpleBooleanProperty ForDisableMultipleCheck = new SimpleBooleanProperty(true);
+    public static ArrayList<product> MultipleSelectionList = new ArrayList<product>();
+    public static SimpleBooleanProperty ForceCheck = new SimpleBooleanProperty(true);
+    public static SimpleBooleanProperty ForceCheckForMultipleSelectCheckbox = new SimpleBooleanProperty(true);
+    public static SimpleBooleanProperty ForDisableSetQuantityButton = new SimpleBooleanProperty(true);
+    public static SimpleBooleanProperty ForDisableMultipleCheck = new SimpleBooleanProperty(true);
     public static boolean IfTabPaneIsOpen;
 
-    public void ApplyingCommand () {
+    public void ApplyingCommand() {
+        System.out.println("the size of the tab pane " + TheTabPaneRoot.getTabs().size());
+        //System.out.println("the tab 1  "+TheTabPaneRoot.getTabs().get(1).getGraphic());
+        // System.out.println("the tab 2  "+TheTabPaneRoot.getTabs().get(2).getGraphic());
+        //System.out.println("the tab 3  "+TheTabPaneRoot.getTabs().get(3).getGraphic());
+
         if (!CommandHistoryController.IfApplyingCommandIsOpen) {
+
+            System.out.println("I will there " + ApplyingCommandTab);
+
             TheTabPaneRoot.getTabs().add(ApplyingCommandTab);
-            CommandHistoryController.IfApplyingCommandIsOpen= true;
-            TheTabPaneRoot.getSelectionModel().select(ApplyingCommandTab);
-        }
-else {
-            TheTabPaneRoot.getSelectionModel().select(ApplyingCommandTab);
+            System.out.println("the size of the tab pane " + TheTabPaneRoot.getTabs().size());
+            CommandHistoryController.IfApplyingCommandIsOpen = true;
 
         }
+
+        TheTabPaneRoot.getSelectionModel().select(ApplyingCommandTab);
+
     }
 
-    public  abstract class JFXCheckboxProductCell<T> extends TableCell<T, Boolean> {
-        protected  JFXCheckBox isChecked = new JFXCheckBox();
+    public abstract class JFXCheckboxProductCell<T> extends TableCell<T, Boolean> {
+        protected JFXCheckBox isChecked = new JFXCheckBox();
+
         public JFXCheckboxProductCell() {
             HBox hbox = new HBox();
             hbox.getChildren().addAll(this.isChecked);
@@ -139,12 +148,12 @@ else {
                     this.onUpdateEntity(row);
                 })).start();
             });
-ForceCheck.addListener((observable, oldValue, newValue) ->{
-    if (!newValue){
-        isChecked.setSelected(false);
-    }
+            ForceCheck.addListener((observable, oldValue, newValue) -> {
+                if (!newValue) {
+                    isChecked.setSelected(false);
+                }
 
-} );
+            });
         }
 
         @Override
@@ -154,13 +163,13 @@ ForceCheck.addListener((observable, oldValue, newValue) ->{
             if (item == null || empty) {
                 setGraphic(null);
                 setText("");
-            }
-            else {
+            } else {
                 this.isChecked.setSelected(this.getItem());
                 this.setGraphic(this.isChecked.getParent());
                 this.setText("");
             }
         }
+
         public abstract void onUpdateRow(T row, Boolean newValue);
 
         public abstract void onUpdateEntity(T entity);
@@ -171,14 +180,14 @@ ForceCheck.addListener((observable, oldValue, newValue) ->{
     }
 
 
-
     public void SendEmail(ActionEvent actionEvent) throws IOException {
 
 
-
-
-
-        TheTabPaneRoot.getTabs().add(SendEmailMessageTab);
+        if (!SendEmailMessageController.IfSendEmailMessageIsLoaded) {
+            System.out.println("the size of the tab pane " + TheTabPaneRoot.getTabs().size());
+            TheTabPaneRoot.getTabs().add(SendEmailMessageTab);
+            SendEmailMessageController.IfSendEmailMessageIsLoaded = true;
+        }
         TheTabPaneRoot.getSelectionModel().select(SendEmailMessageTab);
     }
 
@@ -186,18 +195,18 @@ ForceCheck.addListener((observable, oldValue, newValue) ->{
         Integer size = MultipleSelectionList.size();
         ProductName = size.toString() + "  Products";
 
-            InitSetQuantity(TheSendEmailRoot.getScene().getWindow());
-            if (!SetQuantityController.IfExit) {
-                if (SendEmailMessageController.IfSendEmailMessageIsLoaded) {
-                    TheTabPaneRoot.getTabs().add(SendEmailMessageTab);
-                    SendEmailMessageController.IfSendEmailMessageIsLoaded = false;
-                    TheTabPaneRoot.getSelectionModel().select(SendEmailMessageTab);
-                }
+        InitSetQuantity(TheSendEmailRoot.getScene().getWindow());
+        if (!SetQuantityController.IfExit) {
+            if (!SendEmailMessageController.IfSendEmailMessageIsLoaded) {
+                TheTabPaneRoot.getTabs().add(SendEmailMessageTab);
+                SendEmailMessageController.IfSendEmailMessageIsLoaded = true;
+                TheTabPaneRoot.getSelectionModel().select(SendEmailMessageTab);
             }
-
+        }
 
 
     }
+
     public static void InitSetQuantity(Window owner) {
         StackPane root = null;
         try {
@@ -205,7 +214,7 @@ ForceCheck.addListener((observable, oldValue, newValue) ->{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Scene scene =new Scene(root);
+        Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         Stage stage = new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -215,7 +224,8 @@ ForceCheck.addListener((observable, oldValue, newValue) ->{
         stage.initOwner(owner);
         stage.showAndWait();
     }
-    public  void InitTable() throws SQLException {
+
+    public void InitTable() throws SQLException {
         TempoListOfProducts.clear();
         MultipleSelectionList.clear();
         NeededProduct.clear();
@@ -224,35 +234,38 @@ ForceCheck.addListener((observable, oldValue, newValue) ->{
         Connection connection = Connector.ConnectionClass.getConnection();
         ResultSet resultSet = connection.createStatement().executeQuery(sql);
         while (resultSet.next()) {
-            float Percentage=(float) (resultSet.getInt(5)*100)/resultSet.getInt(8);
-           // System.out.println("this is hbal test  "+resultSet.getInt(8) + "ber ber "+Percentage);
+            float Percentage = (float) (resultSet.getInt(5) * 100) / resultSet.getInt(8);
+            // System.out.println("this is hbal test  "+resultSet.getInt(8) + "ber ber "+Percentage);
             if (resultSet.getBoolean(9))
                 WasSentCol.getStyleClass().add("ItWasSent");
             else WasSentCol.getStyleClass().add("ItWasntSent");
 //            String theDate=resultSet.getDate(3).toString();
-          //  System.out.println("tajrouba   "+theDate);
-         //   System.out.println("this is 3333333333hbal test  "+resultSet.getInt(5));
-          //  System.out.println("hada hballllllll fga3333333  "+ resultSet.getInt(1) + "   "+ resultSet.getString(4)+ "   "+resultSet.getFloat(2) + "   "+ resultSet.getInt(5)+ "   "+resultSet.getInt(8)+ "   "+Percentage + "   "+resultSet.getBoolean(9));
-            if (Percentage <= 20 )
-                NeededProduct.add( new product( resultSet.getString(4),resultSet.getInt(1) ,resultSet.getFloat(2) , resultSet.getInt(5) , Percentage ,resultSet.getBoolean(9), resultSet.getInt(8) ));
+            //  System.out.println("tajrouba   "+theDate);
+            //   System.out.println("this is 3333333333hbal test  "+resultSet.getInt(5));
+            //  System.out.println("hada hballllllll fga3333333  "+ resultSet.getInt(1) + "   "+ resultSet.getString(4)+ "   "+resultSet.getFloat(2) + "   "+ resultSet.getInt(5)+ "   "+resultSet.getInt(8)+ "   "+Percentage + "   "+resultSet.getBoolean(9));
+            if (Percentage <= 20)
+                NeededProduct.add(new product(resultSet.getString(4), resultSet.getInt(1), resultSet.getFloat(2), resultSet.getInt(5), Percentage, resultSet.getBoolean(9), resultSet.getInt(8)));
 
-            ProductList.add(  new product( resultSet.getString(4),resultSet.getInt(1) ,resultSet.getFloat(2) , resultSet.getInt(5) , Percentage ,resultSet.getBoolean(9), resultSet.getInt(8) ));
-            TempoListOfProducts.add( new product( resultSet.getString(4),resultSet.getInt(1) ,resultSet.getFloat(2) , resultSet.getInt(5) , Percentage ,resultSet.getBoolean(9), resultSet.getInt(8)));
+            ProductList.add(new product(resultSet.getString(4), resultSet.getInt(1), resultSet.getFloat(2), resultSet.getInt(5), Percentage, resultSet.getBoolean(9), resultSet.getInt(8)));
+            TempoListOfProducts.add(new product(resultSet.getString(4), resultSet.getInt(1), resultSet.getFloat(2), resultSet.getInt(5), Percentage, resultSet.getBoolean(9), resultSet.getInt(8)));
 
         }
 
     }
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         InitValues();
-CommandHistoryController.IfApplyingCommandIsOpen=false;
+
+
+        CommandHistoryController.IfApplyingCommandIsOpen = false;
         SetMultipleQuantityButton.setDisable(true);
         MultipleSelectCheckBox.setSelected(false);
         TheTabPaneRoot.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
-        TheTabPaneRoot.getTabs().removeAll(SendEmailMessageTab,ApplyingCommandTab);
+        TheTabPaneRoot.getTabs().removeAll(SendEmailMessageTab, ApplyingCommandTab);
+
+        System.out.println(TheTabPaneRoot.getTabs().size());
         /*
         SendEmailMessageController.AddProviderButtonClicked.addListener((observable, oldValue, newValue) -> {
             if (newValue) {
@@ -277,21 +290,32 @@ CommandHistoryController.IfApplyingCommandIsOpen=false;
                 TheTabPaneRoot.getSelectionModel().select(SendEmailProductsTab);
             }
         });
-        SendEmailMessageTab.setOnCloseRequest(e->{SendEmailMessageController.IfEmailMessageIsOpen=false;
-            System.out.println("Hellllooooo");});
+        SendEmailMessageTab.setOnCloseRequest(e -> {
+            SendEmailMessageController.IfEmailMessageIsOpen = false;
+            System.out.println("Hellllooooo");
+        });
         /*
         AddProviderToListTab.setOnCloseRequest(event ->{SendEmailMessageController.ForDisableModifyButton.set(false) ;
             SendEmailMessageController.IfStageIsLoaded=true; });
 
          */
-        SendEmailProductsTab.setOnCloseRequest(e->{SendEmailMessageController.IfSendEmailMessageIsLoaded=true;
+
+        System.out.println("hadi tab pane " + TheTabPaneRoot);
+        SendEmailProductsTab.setOnCloseRequest(e -> {
+            SendEmailMessageController.IfSendEmailMessageIsLoaded = false;
             try {
                 ReturnToProvidersInterface();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
         });
-        ApplyingCommandTab.setOnCloseRequest(e->CommandHistoryController.IfApplyingCommandIsOpen=false);
+        ApplyingCommandTab.setOnCloseRequest(e -> {
+                    CommandHistoryController.IfApplyingCommandIsOpen = false;
+                    System.out.println("this is the second place");
+
+
+                }
+        );
 
         try {
             InitTable();
@@ -303,10 +327,10 @@ CommandHistoryController.IfApplyingCommandIsOpen=false;
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 ForceCheckForMultipleSelectCheckbox.set(MultipleSelectCheckBox.isSelected());
                 IfMultipleSelected = newValue;
-if (!newValue){
-    ForceCheck.set(false);
-    MultipleSelectionList.clear();
-}
+                if (!newValue) {
+                    ForceCheck.set(false);
+                    MultipleSelectionList.clear();
+                }
 
 
             }
@@ -316,25 +340,23 @@ if (!newValue){
         SelectedItem.setCellFactory(call -> {
             return new JFXCheckboxProductCell<product>() {
                 @Override
-                public void onUpdateRow (product row, Boolean newValue) {
-                    if (newValue){
-                         theProduct=(product) this.getTableView().getItems().get(getIndex());
+                public void onUpdateRow(product row, Boolean newValue) {
+                    if (newValue) {
+                        theProduct = (product) this.getTableView().getItems().get(getIndex());
                         if (IfMultipleSelected) {
                             SendEmailController.MultipleSelectionList.add(theProduct);
-ProductName=String.valueOf( MultipleSelectionList.size());
+                            ProductName = String.valueOf(MultipleSelectionList.size());
+
+                        } else {
+
+                            ProductName = theProduct.getProductName();
+
+                            InitSetQuantity(TheSendEmailRoot.getScene().getWindow());
 
                         }
-                        else  {
 
-                           ProductName=theProduct.getProductName();
-
-                                InitSetQuantity(TheSendEmailRoot.getScene().getWindow());
-
-                            }
-
-                    }
-                    else {
-                        if (IfMultipleSelected){
+                    } else {
+                        if (IfMultipleSelected) {
                             MultipleSelectionList.remove(theProduct);
                         }
 
@@ -345,12 +367,12 @@ ProductName=String.valueOf( MultipleSelectionList.size());
                 }
 
                 @Override
-                public void onUpdateEntity (product entity) {
+                public void onUpdateEntity(product entity) {
 
                 }
 
-                };
-            });
+            };
+        });
 
         BarcodeCol.setCellValueFactory(new PropertyValueFactory<product, Integer>("barcode"));
         ProductNameCol.setCellValueFactory(new PropertyValueFactory<product, String>("productName"));
@@ -367,18 +389,18 @@ ProductName=String.valueOf( MultipleSelectionList.size());
                 String lowerCaseFilter = newValue.toLowerCase();
                 if (product.getProductName().toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;
-                else if (String.valueOf( product.getBarcode()).toLowerCase().indexOf(lowerCaseFilter) != -1)
+                else if (String.valueOf(product.getBarcode()).toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;
-                else if (String.valueOf( product.getBuyPrice()).toLowerCase().indexOf(lowerCaseFilter) != -1)
+                else if (String.valueOf(product.getBuyPrice()).toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;
-                else if (String.valueOf( product.getInitialQuantity()).toLowerCase().indexOf(lowerCaseFilter) != -1)
+                else if (String.valueOf(product.getInitialQuantity()).toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;
-                else if (String.valueOf( product.getQuantity()).toLowerCase().indexOf(lowerCaseFilter) != -1)
+                else if (String.valueOf(product.getQuantity()).toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;
-                else if (String.valueOf( product.getStockPercentage()).toLowerCase().indexOf(lowerCaseFilter) != -1)
+                else if (String.valueOf(product.getStockPercentage()).toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;
-                //else if (product.getProductType().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                  //  return true;
+                    //else if (product.getProductType().toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    //  return true;
                 else
                     return false;
             });
@@ -390,15 +412,14 @@ ProductName=String.valueOf( MultipleSelectionList.size());
         CheckboxNeededProduct.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                SendEmailMessageController.IfNeededProductBoxIsChecked=CheckboxNeededProduct.isSelected();
+                SendEmailMessageController.IfNeededProductBoxIsChecked = CheckboxNeededProduct.isSelected();
                 if (newValue) {
 
 
                     ProductList.clear();
 
                     ProductList.addAll(NeededProduct);
-                }
-                else {
+                } else {
                     ProductList.clear();
                     ProductList.addAll(TempoListOfProducts);
                 }
@@ -413,31 +434,31 @@ ProductName=String.valueOf( MultipleSelectionList.size());
 
         });
         ForceCheckForMultipleSelectCheckbox.addListener((observable, oldValue, newValue) -> {
-            if (!newValue){
+            if (!newValue) {
                 if (IfMultipleSelected)
-                MultipleSelectCheckBox.setSelected(false);
+                    MultipleSelectCheckBox.setSelected(false);
             }
-            
+
         });
     }
 
 
-
     public void ReturnToProvidersInterface() throws IOException {
         SendEmailMessageController.ForDisableModifyButton.set(false);
-        IfTabPaneIsOpen=false;
+        IfTabPaneIsOpen = false;
         SendEmailMessageController.TempProvidersList.clear();
-        AnchorPane Container =FXMLLoader.load(getClass().getResource("imProviders.fxml"));
+        AnchorPane Container = FXMLLoader.load(getClass().getResource("imProviders.fxml"));
 
         TheSendEmailRoot.getChildren().setAll(Container);
 
     }
-    public static void InitValues(){
+
+    public static void InitValues() {
         ForDisableMultipleCheck.set(false);
         ForDisableSetQuantityButton.set(true);
         ForceCheckForMultipleSelectCheckbox.set(false);
         ForceCheck.set(true);
-        TheOldValue = false ;
+        TheOldValue = false;
     }
 
 

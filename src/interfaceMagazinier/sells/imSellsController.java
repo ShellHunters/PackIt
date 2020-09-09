@@ -1,6 +1,8 @@
 package interfaceMagazinier.sells;
+
 import basicClasses.product;
 import basicClasses.sell;
+import basicClasses.user;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.SimpleFloatProperty;
@@ -18,20 +20,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
-import Connector.ConnectionClass ;
+import Connector.ConnectionClass;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.*;
-
-import static javafx.scene.text.Font.loadFont;
 
 public class imSellsController implements Initializable {
 
@@ -87,34 +88,42 @@ public class imSellsController implements Initializable {
     private JFXButton doubleZero;
     @FXML
     private JFXButton clear;
-    @FXML Label dateNow ;
-    @FXML Label clockNow ;
+    @FXML
+    Label dateNow;
+    @FXML
+    Label clockNow;
     @FXML
     private JFXButton tripleZero;
-    @FXML private HBox searchHbox ;
-    @FXML private Label prix  ;
-    @FXML private JFXButton ok;
-    @FXML private Label status;
-    @FXML private JFXTextField barcodeLabel;
-    public static SimpleFloatProperty totalPrice = new SimpleFloatProperty(0)  ;
+    @FXML
+    private HBox searchHbox;
+    @FXML
+    public Label prix;
+    @FXML
+    private JFXButton ok;
+    @FXML
+    private Label status;
+    @FXML
+    private JFXTextField barcodeLabel;
+    public static SimpleFloatProperty totalPrice = new SimpleFloatProperty(0);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableSetUp();
 
         totalPrice.addListener((observableValue, number, t1) -> {
-            prix.setText(String.valueOf(totalPrice.get())) ;
+            prix.setText(String.valueOf(totalPrice.get()));
             addToTable();
         });
 
         //  runClock();
     }
-    public void addToTable(){
+
+    public void addToTable() {
         sellTable.setItems((ObservableList<product>) sellCollection.getSoldProducts());
     }
 
     void tableSetUp() {
-        sellCollection = new sell() ;
+        sellCollection = new sell();
 
         //Table structure
         barcodeColumn.setCellValueFactory(param -> {
@@ -186,8 +195,9 @@ public class imSellsController implements Initializable {
     }*/
 
     // calculatrice
-    String barcode="";
-    public void repeatClick(){
+    String barcode = "";
+
+    public void repeatClick() {
         barcodeLabel.setText(barcode);
     }
 
@@ -209,6 +219,7 @@ public class imSellsController implements Initializable {
         barcodeLabel.setText(oldValue + set);
 
     }
+
     public void oneClick() {
         String oldValue = barcodeLabel.getText().toString();
         String set = "1";
@@ -266,27 +277,30 @@ public class imSellsController implements Initializable {
     public void clearClick() {
         barcodeLabel.setText("");
     }
-    public void clearE(){
-        String oldValue= barcodeLabel.getText();
+
+    public void clearE() {
+        String oldValue = barcodeLabel.getText();
         int length = oldValue.length();
-        barcodeLabel.setText(oldValue.substring(0,length-1));
+        barcodeLabel.setText(oldValue.substring(0, length - 1));
     }
-    public void resetTable () {
+
+    public void resetTable() {
 
         sellTable.setItems(null);
         prix.setText("00.00");
         barcodeLabel.setText("");
         // clear
-        sellCollection = new sell() ;
+        sellCollection = new sell();
     }
+
     public void removeProduct() {
         ObservableList<product> removedProduct = FXCollections.observableArrayList();
-        for (product bean : sellCollection.getSoldProducts() )
+        for (product bean : sellCollection.getSoldProducts())
             if (bean.getCheckbox().isSelected()) {
                 removedProduct.add(bean);
             }
-            sellCollection.removeProduct(removedProduct);
-            prix.setText(String.valueOf(sellCollection.getTotalPrice()));
+        sellCollection.removeProduct(removedProduct);
+        prix.setText(String.valueOf(sellCollection.getTotalPrice()));
 
     }
 
@@ -301,41 +315,42 @@ public class imSellsController implements Initializable {
                 alert.showAndWait();
                 barcodeLabel.setText("");
             } else {
-            Connection connection = ConnectionClass.getConnection();
-            String query = "SELECT * FROM stock where barcode=" + Integer.parseInt(barcodeLabel.getText());
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet rs = preparedStatement.executeQuery();
+                Connection connection = ConnectionClass.getConnection();
+                String query = "SELECT * FROM stock where barcode=? and userID=?";
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, Integer.parseInt(barcodeLabel.getText()));
+                preparedStatement.setInt(2, user.getUserID());
+                ResultSet rs = preparedStatement.executeQuery();
 
-            if (rs.next()) {
-                product newProduct;
-                if (rs.getDate("expirationdate") == null)
-                    newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "", rs.getInt("numberOfSells"));
-                else {
-                    newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString(), rs.getInt("numberOfSells"));
+                if (rs.next()) {
+                    product newProduct;
+                    if (rs.getDate("expirationdate") == null)
+                        newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "", rs.getInt("numberOfSells"));
+                    else {
+                        newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString(), rs.getInt("numberOfSells"));
+                    }
+
+                    newProduct.setQuantity(1);
+                    preparedStatement.close();
+                    rs.close();
+                    barcode = barcodeLabel.getText();
+                    barcodeLabel.setText("");
+                    sellCollection.addProduct(newProduct);
+                    prix.setText(String.valueOf(sellCollection.getTotalPrice()));
+                    sellTable.setItems((ObservableList<product>) sellCollection.getSoldProducts());
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("");
+                    alert.setContentText("Product not exist ");
+                    alert.showAndWait();
+                    barcode = barcodeLabel.getText();
+                    barcodeLabel.setText("");
                 }
-
-                newProduct.setQuantity(1);
-                preparedStatement.close();
-                rs.close();
-                barcode = barcodeLabel.getText();
-                barcodeLabel.setText("");
-                sellCollection.addProduct(newProduct);
-                prix.setText(String.valueOf(sellCollection.getTotalPrice()));
-                sellTable.setItems((ObservableList<product>) sellCollection.getSoldProducts());}
-
-           else  {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("");
-                alert.setContentText("Product not exist ");
-                alert.showAndWait();
-                barcode = barcodeLabel.getText();
-                barcodeLabel.setText("");
-            }}
+            }
 
 
-
-        }catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("");
@@ -346,9 +361,7 @@ public class imSellsController implements Initializable {
         }
     }
 
-
-
-    public void confirmSell(){
+    public void confirmSell() {
         if (sellCollection.getSoldProducts() != null) {
             try {
                 sellCollection.pushSell();
@@ -360,80 +373,40 @@ public class imSellsController implements Initializable {
         }
     }
 
-    public void exportToExcel (){
 
-        Iterator<product> iterator = sellCollection.getSoldProducts().iterator() ;
+    public void printFacture() {
+
+
+        String path = "src\\resource\\File\\facture1_2.jasper";
+
+
         try {
+            // Path documentPath
+            // HashMap<String, Object> params
+            // JRDataSource jasperDataSource/
+            // Indentation CTRL + ALT + L
 
-            // creating excel sheet
-            XSSFWorkbook xssfWorkbook = new XSSFWorkbook() ;
-            XSSFSheet sheet = xssfWorkbook.createSheet("Facture") ;
-
-            //Create and Fill the first row of sheet
-            XSSFRow header = sheet.createRow(0) ;
-            header.createCell(0).setCellValue("Barcode");
-            header.createCell(1).setCellValue("Name");
-            header.createCell(2).setCellValue("Quantity");
-            header.createCell(4).setCellValue("Price");
-            header.createCell(5).setCellValue("Expiration Date ");
-
-            //Fill the sheet from database
-            int index = 1 ;
-            for (product bean : sellCollection.getSoldProducts())
-                if(iterator.hasNext()){
-                    XSSFRow row = sheet.createRow(index) ;
-                    row.createCell(0).setCellValue(bean.getBarcode());
-                    row.createCell(1).setCellValue(bean.getProductName());
-                    row.createCell(2).setCellValue(bean.getQuantity());
-                    row.createCell(3).setCellValue(bean.getSellPrice());
-                    row.createCell(5).setCellValue(bean.getExpirationDate());
-                    index ++ ;
-                    iterator.next();
-                }
-            // creating A file
-            FileOutputStream fileOutputStream = new FileOutputStream("Facture.xlsx") ;
-            // puting data in the file
-            xssfWorkbook.write(fileOutputStream);
-            fileOutputStream.close();
-            // Alert About succes of operation
-            Alert alert = new Alert(Alert.AlertType.INFORMATION) ;
-            alert.setHeaderText(null);
-            alert.setContentText("Facture has been exported to excel file succefully");
-            alert.showAndWait();
+            Path documentPath = Paths.get(path);
+            Map<String, Object> params = new HashMap<>();
+            params.put("Cashier", "Moncif Bendada"); // get it from login
+            params.put("Numfacture", "00001");
+            params.put("Total", String.valueOf(sellCollection.getTotalPrice()));
+            JREmptyDataSource emptyDatasource = new JREmptyDataSource();
 
 
-        } catch ( IOException ex) {
-            ex.printStackTrace();
-        }
-
-    }
-
-
-    public void printFacture()  {
-/*
-            try {
-                JasperReport jr = JasperCompileManager.compileReport("src/resource/File/Blank_A4.jrxml") ;
-                HashMap<String,Object> input = new HashMap<>() ;
-              //  input.put("Cashier","Moncif Bendada") ; // get it from login
-               // input.put("Numfacture","00001");
-              //  input.put("Total",prix.getText());
-                for (product bean:sellCollection) {
-                    input.put("productName",bean.getProductName());
-                    input.put("barcode",Integer.toString(bean.getBarcode()));
-                    input.put("sellPrice",Float.toString(bean.getSellPrice()));
-                    input.put("quantity",Integer.toString(bean.getQuantity()));
-                }
-
-                //JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(sellCollection);
-                JasperPrint fillReport = JasperFillManager.fillReport(jr,input);
-                JasperViewer.viewReport(fillReport,false);
-
-
-            } catch (JRException e) {
-                e.printStackTrace();
+            JRBeanCollectionDataSource jasperDataSource = new JRBeanCollectionDataSource(sellCollection.getSoldProducts());
+            if (sellCollection.getSoldProducts().isEmpty()) {
+                JasperPrint jasperPrint = JasperFillManager.fillReport(path, params, emptyDatasource);
+                JasperViewer.viewReport(jasperPrint, false);
+            } else {
+                JasperPrint jasperPrint = JasperFillManager.fillReport(documentPath.toAbsolutePath().toString(), params, jasperDataSource);
+                JasperViewer.viewReport(jasperPrint, false);
+                confirmSell();
             }
-*/
-        confirmSell();
+
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }
 
     public void add(ActionEvent event) throws IOException {

@@ -10,19 +10,21 @@ import java.util.ResourceBundle;
 
 public class discountController implements Initializable {
 
-    @FXML private JFXTextField discountPercent;
-    @FXML private JFXTextField discountDA;
+    @FXML
+    private JFXTextField discountPercent;
+    @FXML
+    private JFXTextField discountDA;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         textfieldsSetUp();
     }
 
-    private void textfieldsSetUp(){
+    private void textfieldsSetUp() {
 
     }
 
-    public void apply(){
+    public void apply() {
         float oldValue = imSellsController.sellCollection.getTotalPrice();
         float discount = Float.parseFloat(discountPercent.getText());
         float newValue = oldValue - oldValue * discount / 100;

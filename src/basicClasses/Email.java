@@ -1,7 +1,7 @@
 package basicClasses;
 
 import interfaceMagazinier.providers.SendEmailMessageController;
-import org.omg.CORBA.TRANSACTION_UNAVAILABLE;
+
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

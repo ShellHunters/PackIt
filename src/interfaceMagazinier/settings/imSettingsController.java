@@ -42,9 +42,9 @@ public class imSettingsController implements Initializable {
         Button buttons[] = {personalButton,shopButton, securityButton, termButton, aboutButton, contactButton};
         while (i<6 && event.getSource() != buttons[i]) i++;
         //reload content in certain cases
-        if (i == 2) contents[2] = FXMLLoader.load(getClass().getResource("security/security.fxml"));
+       /* if (i == 2) contents[2] = FXMLLoader.load(getClass().getResource("security/security.fxml"));
         if (i == 1) contents[1] = FXMLLoader.load(getClass().getResource("store/store.fxml"));
-        if (i == 0) contents[0] = FXMLLoader.load(getClass().getResource("personal/personal.fxml"));
+        if (i == 0) contents[0] = FXMLLoader.load(getClass().getResource("personal/personal.fxml"));*/
         buttons[i].getStyleClass().add("activeButton");
         for(j=0; j < 6; j++) if (j != i) buttons[j].getStyleClass().removeAll("activeButton");
         //SWAP CONTENT

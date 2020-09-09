@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -11,23 +12,24 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="ApplyingCommandContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#SceneDraggedMouse" onMousePressed="#ScenePressedMouse" prefHeight="900.0" prefWidth="1600.0" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.ApplyingCommandController">
+<StackPane fx:id="applyingCommandContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#SceneDraggedMouse" onMousePressed="#ScenePressedMouse" prefHeight="800.0" prefWidth="1200.0" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.ApplyingCommandController">
    <children>
-      <AnchorPane prefHeight="900.0" prefWidth="1600.0" stylesheets="@imProviders.css">
+      <AnchorPane maxHeight="800.0" maxWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" stylesheets="@imProviders.css">
          <children>
-            <Button fx:id="ExitTop" layoutX="1546.0" layoutY="2.0" minWidth="46.0" mnemonicParsing="false" onAction="#Exit" prefHeight="48.0" prefWidth="46.0" styleClass="CloseButton" />
-            <HBox alignment="CENTER" layoutX="193.0" layoutY="87.0" prefHeight="89.0" prefWidth="1216.0" spacing="50.0">
+            <Button fx:id="ExitTop" layoutX="1140.0" layoutY="10.0" minWidth="46.0" mnemonicParsing="false" onAction="#Exit" prefHeight="50.0" prefWidth="50.0" styleClass="CloseButton" />
+            <HBox alignment="CENTER" layoutY="25.0" prefHeight="89.0" prefWidth="1200.0" spacing="50.0">
                <children>
-                  <JFXButton fx:id="ApplySelectedProductsButton" onAction="#ApplySelectedProducts" text="Apply Selected Products" />
-                  <JFXTextField fx:id="SearchCommandTextField" promptText="Search Command" />
-                  <JFXButton fx:id="ApplyingAllProductsQuantity" onAction="#ApplyingAllProducts" text="Applying All Products" />
+                  <JFXButton fx:id="applySelectedProductsButton" onAction="#applySelectedProducts" text="Apply Selected Products" />
+                  <JFXTextField fx:id="searchCommandTextField" promptText="Search Command" />
+                  <JFXButton fx:id="applyingAllProductsButton" onAction="#applyingAllProducts" text="Applying All Products" />
+                  <JFXCheckBox fx:id="NotAddedCheckBox" text="Show Not Added Products" />
                </children>
             </HBox>
-            <HBox layoutX="253.0" layoutY="249.0" prefHeight="600.0" prefWidth="1095.0" styleClass="TableCotainer">
+            <HBox layoutX="50.0" layoutY="175.0" prefHeight="600.0" prefWidth="1100.0" styleClass="TableCotainer">
                <children>
-                  <TableView fx:id="ProductTableView" prefHeight="563.0" prefWidth="1091.0">
+                  <TableView fx:id="ProductTableView" prefHeight="563.0" prefWidth="1100.0">
                     <columns>
-                      <TableColumn fx:id="SelectedCommandCol" prefWidth="88.0" />
+                      <TableColumn fx:id="selectedCommandCol" prefWidth="88.0" />
                         <TableColumn fx:id="ProductNameCol" prefWidth="250.0" text="Product Name" />
                       <TableColumn fx:id="RequiredQuantityCol" prefWidth="367.0" text="Required Quantity" />
                         <TableColumn fx:id="SetRequiredButtonCol" prefWidth="384.0" text="Set Required" />
@@ -35,7 +37,7 @@
                   </TableView>
                </children>
             </HBox>
-            <Label fx:id="ProviderNameLabel" layoutX="550.0" layoutY="186.0" prefHeight="32.0" prefWidth="503.0">
+            <Label fx:id="ProviderNameLabel" layoutX="350.0" layoutY="120.0" prefHeight="32.0" prefWidth="500.0">
                <font>
                   <Font name="ADAM.CGPRO" size="20.0" />
                </font></Label>
