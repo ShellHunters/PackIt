@@ -69,6 +69,7 @@ public class addController implements Initializable {
         if (addOnlyQuantity || isAddOnlyQuantityInFullStock){
             String tableName;
             if (addOnlyQuantity) {
+                addOnlyQuantity = false;
                 tableName = "stock";
                 imStockController.products.forEach(product -> {
                     if (product.getBarcode() == Integer.parseInt(barcode.getText())){
@@ -77,7 +78,10 @@ public class addController implements Initializable {
                     }
                 });
             }
-            else tableName = "fullStock";
+            else {
+                isAddOnlyQuantityInFullStock = false;
+                tableName = "fullStock";
+            }
 
             sql = "UPDATE "+ tableName+ " SET quantity=" + (oldQuantity + Integer.parseInt(quantity.getText())) + " WHERE barcode=" + Integer.parseInt(barcode.getText());
             statement.execute(sql);
@@ -105,6 +109,7 @@ public class addController implements Initializable {
 
         String tableName = "stock";
         if (addInFullStock) tableName = "fullStock";
+        addInFullStock = false;
 
         if (expirationdateString.equals(""))
             sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() + "')";
@@ -148,7 +153,7 @@ public class addController implements Initializable {
                 oldQuantity = rs.getInt("quantity");
             }
             else {
-                query = "SELECT * FROM fullStock WHERE barcode=" + barcode.getText();
+                query = "SELECT * FROM fullStock WHERE barcode=" + barcode.getText() + " AND sellPrice=" + sellprice.getText() +" AND buyPrice=" + buyprice.getText();
                 rs = statement.executeQuery(query);
                 if (rs.next()) {
                     isAddOnlyQuantityInFullStock = true;
@@ -156,7 +161,6 @@ public class addController implements Initializable {
                 }
                 else addInFullStock = true;
             }
-
         }
 
 
