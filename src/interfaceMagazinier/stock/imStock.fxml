@@ -14,7 +14,7 @@
 
 <StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.stock.imStockController">
     <children>
-        <AnchorPane id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" stylesheets="@imStock.css">
+        <AnchorPane id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="904.0" prefWidth="1401.0" stylesheets="@imStock.css">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -87,15 +87,16 @@
                         </JFXButton>
                     </children>
                 </HBox>
-                <TableView fx:id="table" editable="true" layoutX="40.0" layoutY="170.0" prefHeight="690.0" prefWidth="1300.0">
+                <TableView fx:id="table" editable="true" layoutX="40.0" layoutY="170.0" prefHeight="690.0" prefWidth="1337.0">
                     <columns>
-                        <TableColumn fx:id="barcodeColumn" prefWidth="199.0" text="Barcode" />
-                        <TableColumn fx:id="nameColumn" prefWidth="269.0" text="Name" />
-                        <TableColumn fx:id="quantityColumn" prefWidth="149.0" text="Quantity" />
-                        <TableColumn fx:id="buypriceColumn" prefWidth="169.0" text="Buy  price" />
-                        <TableColumn fx:id="sellpriceColumn" prefWidth="169.0" text="Sell price" />
-                        <TableColumn fx:id="expirationdateColumn" prefWidth="199.0" text="Expiration date" />
                         <TableColumn fx:id="selectedColumn" prefWidth="139.0" text="Selected" />
+                        <TableColumn fx:id="barcodeColumn" prefWidth="208.0" text="Barcode" />
+                        <TableColumn fx:id="nameColumn" prefWidth="158.0" text="Name" />
+                        <TableColumn fx:id="quantityColumn" prefWidth="251.0" text="Quantity" />
+                        <TableColumn fx:id="buypriceColumn" prefWidth="143.0" text="Buy  price" />
+                        <TableColumn fx:id="sellpriceColumn" prefWidth="159.0" text="Sell price" />
+                        <TableColumn fx:id="expirationdateColumn" minWidth="0.0" prefWidth="145.0" text="Expiration date" />
+                  <TableColumn fx:id="detailsColumn" maxWidth="300.0" prefWidth="132.0" text="Details" />
                     </columns>
                 </TableView>
             </children>

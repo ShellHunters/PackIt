@@ -51,6 +51,7 @@ public class product extends RecursiveTreeObject<product> {
         this.quantity = new SimpleIntegerProperty(0);
         this.expirationDate = new SimpleStringProperty("");
         NeededQuantity = 0;
+        numberOfSells = 0;
     }
 
     public product (String ProductName, int barCode, float BuyPrice, int Quantity, float StockPercentage, boolean ifWasSent, int InitialQuantity) {
@@ -62,6 +63,7 @@ public class product extends RecursiveTreeObject<product> {
         IfWasSent =new SimpleBooleanProperty( ifWasSent);
         this.initialQuantity = InitialQuantity;
         NeededQuantity=0;
+        numberOfSells = 0;
 
     }
 
@@ -84,6 +86,7 @@ public class product extends RecursiveTreeObject<product> {
         this.barcode =new SimpleIntegerProperty(Barcode);
         RequiredQuantity = requiredQuantity;
         IfWasAdded = ifWasAdded;
+        numberOfSells = 0;
     }
 
     public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, String expirationDate, int numberOfSells) {

@@ -12,7 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 

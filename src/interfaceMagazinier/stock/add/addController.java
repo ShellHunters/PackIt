@@ -20,7 +20,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 
-import javax.swing.plaf.nimbus.State;
 import java.net.URL;
 import java.sql.*;
 import java.util.Collection;
@@ -63,12 +62,11 @@ public class addController implements Initializable {
         Statement statement = connection.createStatement();
         String sql;
 //        System.out.println("this is test in add   "+ProvidersComboBox.getValue().getFirstName()+"  "+ProvidersComboBox.getValue().getId());
-
         if (errorCheck()) return;
-
         if (addOnlyQuantity || isAddOnlyQuantityInFullStock){
             String tableName;
             if (addOnlyQuantity) {
+                addOnlyQuantity = false;
                 tableName = "stock";
                 imStockController.products.forEach(product -> {
                     if (product.getBarcode() == Integer.parseInt(barcode.getText())){
@@ -77,13 +75,14 @@ public class addController implements Initializable {
                     }
                 });
             }
-            else tableName = "fullStock";
-
+            else {
+                isAddOnlyQuantityInFullStock = false;
+                tableName = "fullStock";
+            }
             sql = "UPDATE "+ tableName+ " SET quantity=" + (oldQuantity + Integer.parseInt(quantity.getText())) + " WHERE barcode=" + Integer.parseInt(barcode.getText());
             statement.execute(sql);
             return;
         }
-
         int barcode = Integer.parseInt(this.barcode.getText());
         float sellPrice = Float.parseFloat(this.sellprice.getText());
         float buyPrice = Float.parseFloat(buyprice.getText());
@@ -91,28 +90,22 @@ public class addController implements Initializable {
         String expirationdateString;
         if (expirationdate.getValue() != null) expirationdateString = expirationdate.getValue().toString();
         else expirationdateString = "";
-
         product product = new product(productname.getText(), barcode, sellPrice, buyPrice, quanity, expirationdateString);
-
         if (SendEmailController.IfTabPaneIsOpen) {
             SendEmailController.ProductList.add(product);
             product brin = SendEmailController.ProductList.get(SendEmailController.ProductList.size() - 1);
             //   System.out.println("this is  my test "+brin.getBarcode() +"   "+ brin.getProductName()+"   "+brin.getInitialQuantity()  +"   "+brin.getStockPercentage() +"  "+brin.getQuantity() +"   "+brin.getNeededQuantity()+"  "+brin.getExpirationDate()+"   "+brin.getIfWasSent()+"  "+ brin.getBuyPrice()+"   "+brin.getSellPrice() +"  "+brin.getNumberOfSells());
             SendEmailController.TempoListOfProducts.add(product);
         }
-
         imStockController.products.add(product);
-
         String tableName = "stock";
         if (addInFullStock) tableName = "fullStock";
-
+        addInFullStock = false;
         if (expirationdateString.equals(""))
             sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() + "')";
         else
             sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + expirationdateString + "', '" + quanity + "','" + user.getUserID() + "')";
-
         statement.executeUpdate(sql);
-
         if (IfFromApplyingCommand) {
             totalfigure = ((ApplyingCommandController.TheProvider.getTotalFigure() + (float) quanity * buyPrice));
             System.out.println("in add scene  " + totalfigure);
@@ -128,11 +121,9 @@ public class addController implements Initializable {
             totalfigure = ((ProvidersComboBox.getValue().getTotalFigure() + (float) quanity * buyPrice));
             UpdateProvider(ProvidersComboBox.getValue().getId(), totalfigure);
         }
-
         resetFields();
         connection.close();
         // SendEmailController. NeededProduct.add( new ProductForEmail(barcode, productname.getText() ,buyPrice , quanity, quanity , (float) 100 ,false));
-
         //SendEmailController.  ProductList.add(  new ProductForEmail(barcode, productname.getText() ,buyPrice , quanity, quanity , (float) 100 ,false));
         // SendEmailController.  TempoListOfProducts.add(  new ProductForEmail(barcode, productname.getText() ,buyPrice , quanity, quanity , (float) 100 ,false));
     }
@@ -148,7 +139,7 @@ public class addController implements Initializable {
                 oldQuantity = rs.getInt("quantity");
             }
             else {
-                query = "SELECT * FROM fullStock WHERE barcode=" + barcode.getText();
+                query = "SELECT * FROM fullStock WHERE barcode=" + barcode.getText() + " AND sellPrice=" + sellprice.getText() +" AND buyPrice=" + buyprice.getText();
                 rs = statement.executeQuery(query);
                 if (rs.next()) {
                     isAddOnlyQuantityInFullStock = true;

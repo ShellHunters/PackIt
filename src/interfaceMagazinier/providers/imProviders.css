@@ -30,7 +30,7 @@
 
 .Titles{
     -fx-font-family:"ADAM.CG PRO";
-    -fx-font-size: 50px;
+    -fx-font-size: 40px;
     -fx-padding: 30px;
 }
 .ErrorMessage{

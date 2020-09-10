@@ -11,48 +11,54 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ModifyRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="875.0" prefWidth="598.0" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.ModifyProviderController">
+<AnchorPane fx:id="ModifyRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="784.0" prefWidth="536.0" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.ModifyProviderController">
     <children>
-        <StackPane fx:id="DialogContainer" prefHeight="875.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-        <Pane prefHeight="875.0" prefWidth="598.0">
-            <children>
-                <Button layoutX="538.0" layoutY="14.0" minWidth="46.0" mnemonicParsing="false" onAction="#ExitModify" prefHeight="48.0" prefWidth="46.0" styleClass="CloseButton" />
-                <JFXTextField fx:id="ModifyFirstField" labelFloat="true" layoutX="23.0" layoutY="263.0" prefHeight="48.0" prefWidth="248.0" promptText="First Name">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </JFXTextField>
-                <JFXTextField fx:id="ModifyLastField" labelFloat="true" layoutX="326.0" layoutY="263.0" prefHeight="48.0" prefWidth="248.0" promptText="Last Name">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </JFXTextField>
-                <JFXTextField fx:id="ModifyEmailField" labelFloat="true" layoutX="23.0" layoutY="362.0" prefHeight="48.0" prefWidth="552.0" promptText="Email">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </JFXTextField>
-                <JFXTextField fx:id="ModifyPhoneField" labelFloat="true" layoutX="23.0" layoutY="463.0" prefHeight="48.0" prefWidth="552.0" promptText="Phone Number">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </JFXTextField>
-                <JFXTextField fx:id="ModifyAddrField" labelFloat="true" layoutX="23.0" layoutY="565.0" prefHeight="48.0" prefWidth="552.0" promptText="Address">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </JFXTextField>
-                <JFXButton fx:id="ConfirmModify" layoutX="104.0" layoutY="658.0" onAction="#ConfirmModify" prefHeight="48.0" prefWidth="113.0" styleClass="btn2" text="Confirm" />
-                <JFXButton fx:id="ExitModify" layoutX="381.0" layoutY="658.0" onAction="#ExitModify" prefHeight="48.0" prefWidth="88.0" ripplerFill="#00000011" styleClass="ExitButton" text="Exit" />
-                <JFXButton fx:id="DeleteProvider" layoutX="250.0" layoutY="658.0" onAction="#DeleteProvider" prefHeight="48.0" prefWidth="96.0" styleClass="DeleteButton" text="Delete" />
-                <Label layoutX="29.0" layoutY="58.0" prefHeight="187.0" prefWidth="538.0" styleClass="Titles" stylesheets="@imProviders.css" text="Modify  Provider" textAlignment="JUSTIFY" />
-                <HBox alignment="CENTER" layoutX="7.0" layoutY="751.0" prefHeight="82.0" prefWidth="584.0" styleClass="ErrorMessage">
-                    <children>
-                        <Label fx:id="ErrorMessage" styleClass="ErrorMessage" />
-                    </children>
-                </HBox>
-            </children>
-        </Pane>
+        <StackPane fx:id="DialogContainer" prefHeight="875.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+              <Pane prefHeight="793.0" prefWidth="530.0">
+                  <children>
+                      <Button layoutX="469.0" layoutY="14.0" minWidth="46.0" mnemonicParsing="false" onAction="#ExitModify" prefHeight="48.0" prefWidth="46.0" styleClass="CloseButton" />
+                      <JFXTextField fx:id="ModifyFirstField" labelFloat="true" layoutX="22.0" layoutY="191.0" prefHeight="48.0" prefWidth="248.0" promptText="First Name">
+                          <font>
+                              <Font size="25.0" />
+                          </font>
+                      </JFXTextField>
+                      <JFXTextField fx:id="ModifyLastField" labelFloat="true" layoutX="325.0" layoutY="191.0" prefHeight="48.0" prefWidth="204.0" promptText="Last Name">
+                          <font>
+                              <Font size="25.0" />
+                          </font>
+                      </JFXTextField>
+                      <JFXTextField fx:id="ModifyEmailField" labelFloat="true" layoutX="22.0" layoutY="290.0" prefHeight="48.0" prefWidth="504.0" promptText="Email">
+                          <font>
+                              <Font size="25.0" />
+                          </font>
+                      </JFXTextField>
+                      <JFXTextField fx:id="ModifyPhoneField" labelFloat="true" layoutX="22.0" layoutY="391.0" prefHeight="48.0" prefWidth="504.0" promptText="Phone Number">
+                          <font>
+                              <Font size="25.0" />
+                          </font>
+                      </JFXTextField>
+                      <JFXTextField fx:id="ModifyAddrField" labelFloat="true" layoutX="22.0" layoutY="493.0" prefHeight="48.0" prefWidth="504.0" promptText="Address">
+                          <font>
+                              <Font size="25.0" />
+                          </font>
+                      </JFXTextField>
+                      <Label layoutX="39.0" layoutY="38.0" prefHeight="121.0" prefWidth="442.0" styleClass="Titles" stylesheets="@imProviders.css" text="Modify  Provider" textAlignment="JUSTIFY" />
+                      <HBox alignment="CENTER" layoutX="-3.0" layoutY="682.0" prefHeight="82.0" prefWidth="530.0" styleClass="ErrorMessage">
+                          <children>
+                              <Label fx:id="ErrorMessage" styleClass="ErrorMessage" />
+                          </children>
+                      </HBox>
+                  <HBox alignment="CENTER" layoutX="6.0" layoutY="582.0" prefHeight="100.0" prefWidth="518.0" spacing="40.0">
+                     <children>
+                            <JFXButton fx:id="ConfirmModify" onAction="#ConfirmModify" prefHeight="48.0" prefWidth="113.0" styleClass="btn2" text="Confirm" />
+                            <JFXButton fx:id="ExitModify" onAction="#ExitModify" prefHeight="48.0" prefWidth="88.0" ripplerFill="#00000011" styleClass="ExitButton" text="Exit" />
+                            <JFXButton fx:id="DeleteProvider" onAction="#DeleteProvider" prefHeight="48.0" prefWidth="96.0" styleClass="DeleteButton" text="Delete" />
+                     </children>
+                  </HBox>
+                  </children>
+              </Pane>
+         </children></StackPane>
     </children>
     <styleClass>
         <String fx:value="StyleRoots" />

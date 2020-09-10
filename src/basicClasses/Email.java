@@ -10,8 +10,8 @@ import java.util.Properties;
 
 public class Email {
     public static boolean ItSent =false;
-    private static final String senderMail="";
-    private static final String senderPassword="";
+    private static final String senderMail="abdelkader.piktaaek@gmail.com ";
+    private static final String senderPassword="benzema1999";
     static public void send() {
         System.out.println("Prepare sending msg ...");
         Properties properties = new Properties();
