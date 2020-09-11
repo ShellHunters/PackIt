@@ -112,7 +112,7 @@ public class addController implements Initializable {
             SendEmailController.TempoListOfProducts.add(product);
         }
 
-        imStockController.products.add(product); //COULD HAVE A BUG IF THERE IS NOT A CONDIDITION
+        if (!addInFullStock) imStockController.products.add(product);
 
         String tableName = "stock";
         if (addInFullStock) tableName = "fullStock";
@@ -179,13 +179,12 @@ public class addController implements Initializable {
         }
 
 
-        if (productname.getText().isEmpty() || barcode.getText().isEmpty() || sellprice.getText().isEmpty() || buyprice.getText().isEmpty() || quantity.getText().isEmpty()) {
+        if (productname.getText().isEmpty() || barcode.getText().isEmpty() || sellprice.getText().isEmpty() || buyprice.getText().isEmpty() || quantity.getText().isEmpty()||(!containerName.isDisable() &&(containerName.getText().isEmpty()||floorNumber.getText().isEmpty()))) {
             // mba3ed zideha || (ProvidersComboBox.isVisible() && ProvidersComboBox.getValue()==null)
             errorLabel.setTextFill(Paint.valueOf("red"));
             errorLabel.setText("Fill all the text fields and informations");
             return true;
         } else if (!barcode.getText().matches("[0-9]*") || !quantity.getText().matches("[0-9]*") || !sellprice.getText().matches("[0-9]*\\.?[0-9]+") || !buyprice.getText().matches("[0-9]*\\.?[0-9]+") || !floorNumber.getText().matches("[0-9]*")|| (!containerName.isDisable() && !floorNumber.getText().matches("[0-9]*"))) {
-
             errorLabel.setTextFill(Paint.valueOf("red"));
             errorLabel.setText("Some text fields must be numbers only");
             return true;
