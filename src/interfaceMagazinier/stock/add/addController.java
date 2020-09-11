@@ -20,7 +20,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 
-import javax.swing.plaf.nimbus.State;
 import java.net.URL;
 import java.sql.*;
 import java.util.Collection;
@@ -44,7 +43,14 @@ public class addController implements Initializable {
     private CheckBox expirationCheck;
     @FXML
     Label errorLabel;
-    @FXML private JFXComboBox<Provider> ProvidersComboBox;
+    @FXML
+    private JFXComboBox<Provider> ProvidersComboBox;
+    @FXML
+    private CheckBox placeCheck;
+    @FXML
+    private JFXTextField containerName;
+    @FXML
+    private JFXTextField floorNumber;
     public static ObservableList<Provider> ProvidersListForComboBox = FXCollections.observableArrayList();
     public boolean IfFromApplyingCommand;
     Integer TheIndex;
@@ -65,7 +71,6 @@ public class addController implements Initializable {
 //        System.out.println("this is test in add   "+ProvidersComboBox.getValue().getFirstName()+"  "+ProvidersComboBox.getValue().getId());
 
         if (errorCheck()) return;
-
         if (addOnlyQuantity || isAddOnlyQuantityInFullStock){
             String tableName;
             if (addOnlyQuantity) {
@@ -82,7 +87,6 @@ public class addController implements Initializable {
                 isAddOnlyQuantityInFullStock = false;
                 tableName = "fullStock";
             }
-
             sql = "UPDATE "+ tableName+ " SET quantity=" + (oldQuantity + Integer.parseInt(quantity.getText())) + " WHERE barcode=" + Integer.parseInt(barcode.getText());
             statement.execute(sql);
             return;
@@ -99,26 +103,38 @@ public class addController implements Initializable {
         product product = new product(productname.getText(), barcode, sellPrice, buyPrice, quanity, expirationdateString);
 
         if (SendEmailController.IfTabPaneIsOpen) {
+
             SendEmailController.ProductList.add(product);
             product brin = SendEmailController.ProductList.get(SendEmailController.ProductList.size() - 1);
+
             //   System.out.println("this is  my test "+brin.getBarcode() +"   "+ brin.getProductName()+"   "+brin.getInitialQuantity()  +"   "+brin.getStockPercentage() +"  "+brin.getQuantity() +"   "+brin.getNeededQuantity()+"  "+brin.getExpirationDate()+"   "+brin.getIfWasSent()+"  "+ brin.getBuyPrice()+"   "+brin.getSellPrice() +"  "+brin.getNumberOfSells());
+
             SendEmailController.TempoListOfProducts.add(product);
         }
 
-        imStockController.products.add(product);
+        imStockController.products.add(product); //COULD HAVE A BUG IF THERE IS NOT A CONDIDITION
 
         String tableName = "stock";
         if (addInFullStock) tableName = "fullStock";
         addInFullStock = false;
 
-        if (expirationdateString.equals(""))
-            sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() + "')";
-        else
-            sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + expirationdateString + "', '" + quanity + "','" + user.getUserID() + "')";
+        if (expirationdateString.equals("")) {
+            if (containerName.getText().isEmpty())
+                sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() +  "')";
+            else
 
-        statement.executeUpdate(sql);
+                sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID,floor,containerName) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() + "','" + Integer.parseInt(floorNumber.getText()) + "','" + containerName.getText() + "')";
 
+        } else {
+            if (containerName.getText().isEmpty())
+            sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + expirationdateString + "', '" + quanity + "','" + user.getUserID() +  "')";
+            else
+                sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity,userID,floor,containerName) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + expirationdateString + "', '" + quanity + "','" + user.getUserID() + "','" + Integer.parseInt(floorNumber.getText()) + "','" + containerName.getText() + "')";
+
+        }
+            statement.executeUpdate(sql);
         if (IfFromApplyingCommand) {
+
             totalfigure = ((ApplyingCommandController.TheProvider.getTotalFigure() + (float) quanity * buyPrice));
             System.out.println("in add scene  " + totalfigure);
             ApplyingCommandController.TheProvider.setTotalFigure(totalfigure);
@@ -133,11 +149,9 @@ public class addController implements Initializable {
             totalfigure = ((ProvidersComboBox.getValue().getTotalFigure() + (float) quanity * buyPrice));
             UpdateProvider(ProvidersComboBox.getValue().getId(), totalfigure);
         }
-
         resetFields();
         connection.close();
         // SendEmailController. NeededProduct.add( new ProductForEmail(barcode, productname.getText() ,buyPrice , quanity, quanity , (float) 100 ,false));
-
         //SendEmailController.  ProductList.add(  new ProductForEmail(barcode, productname.getText() ,buyPrice , quanity, quanity , (float) 100 ,false));
         // SendEmailController.  TempoListOfProducts.add(  new ProductForEmail(barcode, productname.getText() ,buyPrice , quanity, quanity , (float) 100 ,false));
     }
@@ -161,6 +175,7 @@ public class addController implements Initializable {
                 }
                 else addInFullStock = true;
             }
+
         }
 
 
@@ -169,7 +184,8 @@ public class addController implements Initializable {
             errorLabel.setTextFill(Paint.valueOf("red"));
             errorLabel.setText("Fill all the text fields and informations");
             return true;
-        } else if (!barcode.getText().matches("[0-9]*") || !quantity.getText().matches("[0-9]*") || !sellprice.getText().matches("[0-9]*\\.?[0-9]+") || !buyprice.getText().matches("[0-9]*\\.?[0-9]+")) {
+        } else if (!barcode.getText().matches("[0-9]*") || !quantity.getText().matches("[0-9]*") || !sellprice.getText().matches("[0-9]*\\.?[0-9]+") || !buyprice.getText().matches("[0-9]*\\.?[0-9]+") || !floorNumber.getText().matches("[0-9]*")|| (!containerName.isDisable() && !floorNumber.getText().matches("[0-9]*"))) {
+
             errorLabel.setTextFill(Paint.valueOf("red"));
             errorLabel.setText("Some text fields must be numbers only");
             return true;
@@ -241,10 +257,23 @@ public class addController implements Initializable {
     @FXML
     private void checkboxAction() {
         if (expirationCheck.isSelected()) {
-            expirationdate.setVisible(true);
+            expirationdate.setDisable(false);
         }
         if (!expirationCheck.isSelected()) {
-            expirationdate.setVisible(false);
+            expirationdate.setDisable(true);
+        }
+    }
+
+    @FXML
+    private void placeAction() {
+        if (placeCheck.isSelected()) {
+            containerName.setDisable(false);
+            floorNumber.setDisable(false);
+        }
+        if (!placeCheck.isSelected()) {
+            containerName.setDisable(true);
+            floorNumber.setDisable(true);
+
         }
     }
 }

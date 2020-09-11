@@ -39,8 +39,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SendEmailController implements Initializable {
+
+
+
     @FXML
     AnchorPane TheSendEmailRoot;
+
 
     @FXML
     private TabPane TheTabPaneRoot;
@@ -198,6 +202,8 @@ public class SendEmailController implements Initializable {
         InitSetQuantity(TheSendEmailRoot.getScene().getWindow());
         if (!SetQuantityController.IfExit) {
             if (!SendEmailMessageController.IfSendEmailMessageIsLoaded) {
+
+
                 TheTabPaneRoot.getTabs().add(SendEmailMessageTab);
                 SendEmailMessageController.IfSendEmailMessageIsLoaded = true;
                 TheTabPaneRoot.getSelectionModel().select(SendEmailMessageTab);
@@ -447,7 +453,7 @@ public class SendEmailController implements Initializable {
         SendEmailMessageController.ForDisableModifyButton.set(false);
         IfTabPaneIsOpen = false;
         SendEmailMessageController.TempProvidersList.clear();
-        AnchorPane Container = FXMLLoader.load(getClass().getResource("imProviders.fxml"));
+        StackPane Container = FXMLLoader.load(getClass().getResource("imProviders.fxml"));
 
         TheSendEmailRoot.getChildren().setAll(Container);
 

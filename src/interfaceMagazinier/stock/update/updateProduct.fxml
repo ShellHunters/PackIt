@@ -4,13 +4,18 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.stock.update.updateController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.stock.update.updateController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="500.0" spacing="50.0">
+      <VBox alignment="TOP_CENTER" prefHeight="850.0" prefWidth="500.0" spacing="45.0">
          <children>
             <Label fx:id="errorLabel" alignment="CENTER" prefWidth="300.0" textFill="RED" />
             <JFXTextField fx:id="productname" focusColor="#ee801b" prefWidth="400.0" promptText="Product name" />
@@ -18,8 +23,26 @@
             <JFXTextField fx:id="quantity" focusColor="#ee801b" layoutX="60.0" layoutY="373.0" prefWidth="400.0" promptText="Quantity" />
             <JFXTextField fx:id="buyprice" focusColor="#ee801b" layoutX="60.0" layoutY="401.0" prefWidth="400.0" promptText="Buy price" />
             <JFXTextField fx:id="sellprice" focusColor="#ee801b" layoutX="60.0" layoutY="430.0" prefWidth="400.0" promptText="Sell price" />
+            <CheckBox fx:id="expirationCheck" mnemonicParsing="false" onAction="#checkboxAction" selected="true" text="The product has an expiration date" />
             <JFXDatePicker fx:id="expirationdate" defaultColor="#ee801b" prefWidth="400.0" promptText="Expiration date" />
-            <JFXButton onAction="#updateProduct" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ee801b;" text="Update product" />
+            <CheckBox fx:id="placeCheck" mnemonicParsing="false" onAction="#placeAction" selected="true" text="Add the place of product " />
+            <HBox alignment="CENTER_LEFT" spacing="30.0">
+               <children>
+                  <JFXTextField fx:id="containerName" prefHeight="25.0" prefWidth="197.0" promptText="Container Name" />
+                  <JFXTextField fx:id="floorNumber" prefHeight="25.0" prefWidth="179.0" promptText="Floor number" />
+               </children>
+            </HBox>
+            <JFXButton onAction="#updateProduct" prefHeight="34.0" prefWidth="140.0" style="-fx-background-color: #ee801b;" text="Update product" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resource/icons/baseline_done_white_36dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></JFXButton>
          </children>
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />

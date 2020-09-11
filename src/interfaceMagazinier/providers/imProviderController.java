@@ -70,7 +70,7 @@ public class imProviderController implements Initializable {
     private JFXButton AddProvidersButton;
 
     @FXML
-    public StackPane TableRoot;
+    public StackPane ProvidersRootStackPane;
     @FXML
     private HBox SearchBoxContainer;
     @FXML
@@ -81,7 +81,7 @@ public class imProviderController implements Initializable {
     @FXML
     private MenuItem DeleteSelectedContext;
     public AnchorPane ModifyContainer;
-    public static AnchorPane ProvidersRootContainerTemp = new AnchorPane();
+    public static StackPane ProvidersRootContainerTemp = new StackPane();
     public static StackPane test = new StackPane();
     public static Provider provider = null;
     public static ObservableList<Provider> ProviderList = FXCollections.observableArrayList();
@@ -96,7 +96,7 @@ public class imProviderController implements Initializable {
 
     void LoadModifyProviderScene() throws IOException {
         ModifyContainer = FXMLLoader.load(getClass().getResource("ModifyProviders.fxml"));
-        ModifyDialog = new JFXDialog(TableRoot, ModifyContainer, JFXDialog.DialogTransition.BOTTOM);
+        ModifyDialog = new JFXDialog(ProvidersRootStackPane, ModifyContainer, JFXDialog.DialogTransition.BOTTOM);
 
         ModifyDialog.show();
     }
@@ -133,7 +133,7 @@ public class imProviderController implements Initializable {
     }
 
     public void DeleteContextList(ActionEvent event) throws SQLException, IOException {
-        ShowAllDialogs.initDialogWithShow(TableRoot.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.DELETE);
+        ShowAllDialogs.initDialogWithShow(ProvidersRootStackPane.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.DELETE);
         if (ShowAllDialogs.DELETEBUTTON.get()) {
             Provider provider = new Provider();
 
@@ -156,7 +156,7 @@ public class imProviderController implements Initializable {
     }
 
     public void DeleteSelected(ActionEvent event) throws SQLException, IOException {
-        ShowAllDialogs.initDialogWithShow(TableRoot.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.DELETE);
+        ShowAllDialogs.initDialogWithShow(ProvidersRootStackPane.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.DELETE);
         Iterator<Provider> iterator = SelectedProvider.iterator();
         if (ShowAllDialogs.DELETEBUTTON.get()) {
             while (iterator.hasNext()) {
@@ -177,7 +177,7 @@ public class imProviderController implements Initializable {
         // SelectedProvider.clear();
         SendEmailController.IfTabPaneIsOpen = true;
         AnchorPane root = FXMLLoader.load(getClass().getResource("SendEmail.fxml"));
-        ProvidersRoot.getChildren().setAll(root);
+        ProvidersRootContainerTemp.getChildren().setAll(root);
 
 
     }
@@ -298,9 +298,9 @@ public class imProviderController implements Initializable {
 
 
         }
-        ProvidersRootContainerTemp = ProvidersRoot;
-        if (!SendEmailController.IfTabPaneIsOpen)
-            SendEmailMessageController.TableProviderContainer = TableRoot;
+        ProvidersRootContainerTemp = ProvidersRootStackPane;
+   //     if (!SendEmailController.IfTabPaneIsOpen)
+     //       SendEmailMessageController.TableProviderContainer = TableRoot;
         DeleteSelectedContext.setDisable(true);
         DeleteSelectedButton.setDisable(true);
         ForDisableButtons.set(false);

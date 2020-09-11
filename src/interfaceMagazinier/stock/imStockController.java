@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.jfoenix.controls.JFXTextField;
 import interfaceMagazinier.stock.update.updateController;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -15,9 +16,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Region;
@@ -35,10 +34,11 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 
-
 public class imStockController implements Initializable {
     @FXML StackPane stackPane;
     @FXML TableView<product> table;
+    public StackPane fullStockCoutainer;
+    public static JFXDialog fullStockDialog;
     public static ObservableList<product> products;
     @FXML TableColumn<product, Number> barcodeColumn;
     @FXML TableColumn<product, String> nameColumn;
@@ -48,18 +48,58 @@ public class imStockController implements Initializable {
     @FXML TableColumn<product, String> expirationdateColumn;
     @FXML TableColumn selectedColumn;
     @FXML JFXTextField searchTextField;
-
+    @FXML
+    public TableColumn<product, Boolean> detailsColumn;
+public static Integer indexOfProduct;
+public static product theFullStockProduct;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        shortcutSetUp();
         tableSetUp();
+    }
+    public class CustomButtonCell<T, S> extends TableCell<T, S> {
+        private Button Details = new Button("Details");
+
+
+        @Override
+        protected void updateItem(S item, boolean empty) {
+
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                this.setText("");
+                this.setGraphic(null);
+            } else {
+                Details.setOnAction(event->{
+                try {
+                    indexOfProduct= this.getIndex();
+                    System.out.println("the index "+indexOfProduct);
+                    theFullStockProduct= (product) this.getTableView().getItems().get(this.getIndex());
+                    showFullStock();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                });
+                this.setGraphic(Details);
+            }
+        }
+
+
     }
 
     void shortcutSetUp(){
         stackPane.getScene().setOnKeyPressed(event -> {
         });
     }
+public void showFullStock() throws IOException {
 
+    fullStockCoutainer = FXMLLoader.load(getClass().getResource("fullStock/fullStock.fxml"));
+    fullStockDialog = new JFXDialog(stackPane, fullStockCoutainer, DialogTransition.BOTTOM);
+
+    fullStockDialog.show();
+
+
+}
     void tableSetUp(){
         //Table structure
         barcodeColumn.setCellValueFactory(param -> { return param.getValue().barcodeProperty(); });
@@ -70,7 +110,10 @@ public class imStockController implements Initializable {
         sellpriceColumn.setCellValueFactory(param -> { return  param.getValue().sellPriceProperty(); });
         expirationdateColumn.setCellValueFactory(param -> { return param.getValue().expirationDateProperty(); });
         selectedColumn.setCellValueFactory(new PropertyValueFactory<product,String>("checkbox"));
-
+        detailsColumn.setCellValueFactory(call -> new SimpleBooleanProperty(true).asObject());
+        detailsColumn.setCellFactory(call -> {
+            return new CustomButtonCell<>();
+        });
         //Table content
         products = FXCollections.observableArrayList();
         products = loadProducts();
@@ -140,14 +183,14 @@ public class imStockController implements Initializable {
             if (bean.getCheckbox().isSelected()) {
                 removedProduct.add(bean);
                 String sql;
-                if (!bean.getExpirationDate().equals("")) sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "','"+user.getUserID()+"')";
-                else sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "','"+user.getUserID()+"')";
+                if (!bean.getExpirationDate().equals("")) sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "','"+ user.getUserID()+"')";
+                else sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "','"+ user.getUserID()+"')";
                 statement.executeUpdate(sql);
 
                 String sqlDelete = "DELETE FROM stock WHERE barcode=? and userID=?"   ;
                 PreparedStatement pst = connection.prepareStatement(sqlDelete);
                 pst.setInt(1,bean.getBarcode());
-                pst.setInt(2,user.getUserID());
+                pst.setInt(2, user.getUserID());
                 pst.executeUpdate();
                 pst.close() ;
             }

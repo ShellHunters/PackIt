@@ -300,7 +300,6 @@ public class ApplyingCommandController implements Initializable {
             FindTheWay(TheProduct);
         }
         IfApplyingCommandIsOpen = false;
-
     }
 
     void FindTheWay(product theProduct) throws SQLException, IOException {
@@ -308,17 +307,8 @@ public class ApplyingCommandController implements Initializable {
         Region root1;
         IndexOfProduct = ProductList.indexOf(theProduct);
         System.out.println("the index is:  " + IndexOfProduct);
-        if (IfInTable(theProduct.getBarcode())) {
-            if (TheProduct != null)
-                TheProduct.setQuantity(TheProduct.getQuantity() + RequireQuantity);
-            else
                 System.out.println(TheProduct);
-            updateController.setProductSelected(TheProduct);
-            root1 = FXMLLoader.load(getClass().getResource("/interfaceMagazinier/stock/update/updateProduct.fxml"));
-
-        } else {
-            root1 = FXMLLoader.load(getClass().getResource("/interfaceMagazinier/stock/add/addProduct.fxml"));
-        }
+        root1 = FXMLLoader.load(getClass().getResource("/interfaceMagazinier/stock/add/addProduct.fxml"));
         dialog = new JFXDialog(applyingCommandContainer, root1, JFXDialog.DialogTransition.RIGHT);
         dialog.show();
     }

@@ -590,7 +590,7 @@ public class SendEmailMessageController implements Initializable {
             MessageArea.setDisable(true);
             ProductArea.setDisable(true);
 
-            //Email.send();
+            Email.send();
             DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date();
             //System.out.println("the date test   "+dateformat.format(System.currentTimeMillis()));
@@ -606,7 +606,7 @@ public class SendEmailMessageController implements Initializable {
 
             }
         }
-
+/*
         String path = "C:\\Users\\Nassim\\Desktop\\PackItIn\\src\\resource\\File\\Blank_A4.jasper";
 
         try {
@@ -626,6 +626,8 @@ public class SendEmailMessageController implements Initializable {
         } catch (JRException e) {
             e.printStackTrace();
         }
+
+ */
     }
 
     void ForDisableButtons(boolean state) {
