@@ -11,6 +11,7 @@ import interfaceMagazinier.providers.ApplyingCommandController;
 import interfaceMagazinier.providers.CommandHistoryController;
 import interfaceMagazinier.providers.SendEmailController;
 import interfaceMagazinier.providers.imProviderController;
+import interfaceMagazinier.settings.preference.preferencesController;
 import interfaceMagazinier.stock.imStockController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,6 +43,8 @@ public class addController implements Initializable {
     @FXML
     private CheckBox expirationCheck;
     @FXML
+    private JFXComboBox<String> productTypeComboBox;
+    @FXML
     Label errorLabel;
     @FXML
     private JFXComboBox<Provider> ProvidersComboBox;
@@ -71,23 +74,22 @@ public class addController implements Initializable {
 //        System.out.println("this is test in add   "+ProvidersComboBox.getValue().getFirstName()+"  "+ProvidersComboBox.getValue().getId());
 
         if (errorCheck()) return;
-        if (addOnlyQuantity || isAddOnlyQuantityInFullStock){
+        if (addOnlyQuantity || isAddOnlyQuantityInFullStock) {
             String tableName;
             if (addOnlyQuantity) {
                 addOnlyQuantity = false;
                 tableName = "stock";
                 imStockController.products.forEach(product -> {
-                    if (product.getBarcode() == Integer.parseInt(barcode.getText())){
+                    if (product.getBarcode() == Integer.parseInt(barcode.getText())) {
                         product.setQuantity(oldQuantity + Integer.parseInt(quantity.getText()));
                         return;
                     }
                 });
-            }
-            else {
+            } else {
                 isAddOnlyQuantityInFullStock = false;
                 tableName = "fullStock";
             }
-            sql = "UPDATE "+ tableName+ " SET quantity=" + (oldQuantity + Integer.parseInt(quantity.getText())) + " WHERE barcode=" + Integer.parseInt(barcode.getText());
+            sql = "UPDATE " + tableName + " SET quantity=" + (oldQuantity + Integer.parseInt(quantity.getText())) + " WHERE barcode=" + Integer.parseInt(barcode.getText());
             statement.execute(sql);
             return;
         }
@@ -120,19 +122,19 @@ public class addController implements Initializable {
 
         if (expirationdateString.equals("")) {
             if (containerName.getText().isEmpty())
-                sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() +  "')";
+                sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID, productType) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() + "','" + productTypeComboBox.getValue() + "')";
             else
 
-                sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID,floor,containerName) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() + "','" + Integer.parseInt(floorNumber.getText()) + "','" + containerName.getText() + "')";
+                sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity, initialQuantity,userID,floor,containerName, productType) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + quanity + "','" + user.getUserID() + "','" + Integer.parseInt(floorNumber.getText()) + "','" + containerName.getText() + "','" + productTypeComboBox.getValue() + "')";
 
         } else {
             if (containerName.getText().isEmpty())
-            sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity,userID) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + expirationdateString + "', '" + quanity + "','" + user.getUserID() +  "')";
+                sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity,userID, productType) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + expirationdateString + "', '" + quanity + "','" + user.getUserID() + "','" + productTypeComboBox.getValue() + "')";
             else
-                sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity,userID,floor,containerName) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + expirationdateString + "', '" + quanity + "','" + user.getUserID() + "','" + Integer.parseInt(floorNumber.getText()) + "','" + containerName.getText() + "')";
+                sql = "INSERT INTO " + tableName + " (name,barcode,buyprice , sellprice, quantity,expirationdate, initialQuantity,userID,floor,containerName, productType) VALUES ('" + productname.getText() + "', '" + barcode + "', '" + buyPrice + "', '" + sellPrice + "', '" + quanity + "', '" + expirationdateString + "', '" + quanity + "','" + user.getUserID() + "','" + Integer.parseInt(floorNumber.getText()) + "','" + containerName.getText() + "','" + productTypeComboBox.getValue() +  "')";
 
         }
-            statement.executeUpdate(sql);
+        statement.executeUpdate(sql);
         if (IfFromApplyingCommand) {
 
             totalfigure = ((ApplyingCommandController.TheProvider.getTotalFigure() + (float) quanity * buyPrice));
@@ -157,43 +159,45 @@ public class addController implements Initializable {
     }
 
     private boolean errorCheck() throws SQLException {
+        if (productname.getText().isEmpty() || barcode.getText().isEmpty() || sellprice.getText().isEmpty() || buyprice.getText().isEmpty() || quantity.getText().isEmpty() || (!containerName.isDisable() && (containerName.getText().isEmpty() || floorNumber.getText().isEmpty()))) {
+            // mba3ed zideha || (ProvidersComboBox.isVisible() && ProvidersComboBox.getValue()==null)
+            errorLabel.setTextFill(Paint.valueOf("red"));
+            errorLabel.setText("Fill all the text fields and informations");
+            return true;
+        }
+        if (!barcode.getText().matches("[0-9]*") || !quantity.getText().matches("[0-9]*") || !sellprice.getText().matches("[0-9]*\\.?[0-9]+") || !buyprice.getText().matches("[0-9]*\\.?[0-9]+") || !floorNumber.getText().matches("[0-9]*") || (!containerName.isDisable() && !floorNumber.getText().matches("[0-9]*"))) {
+            errorLabel.setTextFill(Paint.valueOf("red"));
+            errorLabel.setText("Some text fields must be numbers only");
+            return true;
+        }
+        errorLabel.setTextFill(Paint.valueOf("green"));
+        errorLabel.setText("product added succefully");
+
         Connection connection = ConnectionClass.getConnection();
         Statement statement = connection.createStatement();
         String query = "SELECT * FROM stock WHERE barcode=" + barcode.getText();
         ResultSet rs = statement.executeQuery(query);
         if (rs.next()) {
-            if (rs.getFloat("buyprice") == Float.parseFloat(buyprice.getText()) && rs.getFloat("sellprice") == Float .parseFloat(sellprice.getText())){
+            if (rs.getString("name").equals(productname.getText()) && rs.getInt("barcode") == Integer.parseInt(barcode.getText())) {
+                errorLabel.setTextFill(Paint.valueOf("red"));
+                errorLabel.setText("The barcode is already used for an other product");
+            }
+            if (rs.getFloat("buyprice") == Float.parseFloat(buyprice.getText()) && rs.getFloat("sellprice") == Float.parseFloat(sellprice.getText())) {
                 addOnlyQuantity = true;
                 oldQuantity = rs.getInt("quantity");
-            }
-            else {
-                query = "SELECT * FROM fullStock WHERE barcode=" + barcode.getText() + " AND sellPrice=" + sellprice.getText() +" AND buyPrice=" + buyprice.getText();
+            } else {
+                query = "SELECT * FROM fullStock WHERE barcode=" + barcode.getText() + " AND sellPrice=" + sellprice.getText() + " AND buyPrice=" + buyprice.getText();
                 rs = statement.executeQuery(query);
                 if (rs.next()) {
                     isAddOnlyQuantityInFullStock = true;
                     oldQuantity = rs.getInt("quantity");
-                }
-                else addInFullStock = true;
+                } else addInFullStock = true;
             }
 
         }
-
-
-        if (productname.getText().isEmpty() || barcode.getText().isEmpty() || sellprice.getText().isEmpty() || buyprice.getText().isEmpty() || quantity.getText().isEmpty()||(!containerName.isDisable() &&(containerName.getText().isEmpty()||floorNumber.getText().isEmpty()))) {
-            // mba3ed zideha || (ProvidersComboBox.isVisible() && ProvidersComboBox.getValue()==null)
-            errorLabel.setTextFill(Paint.valueOf("red"));
-            errorLabel.setText("Fill all the text fields and informations");
-            return true;
-        } else if (!barcode.getText().matches("[0-9]*") || !quantity.getText().matches("[0-9]*") || !sellprice.getText().matches("[0-9]*\\.?[0-9]+") || !buyprice.getText().matches("[0-9]*\\.?[0-9]+") || !floorNumber.getText().matches("[0-9]*")|| (!containerName.isDisable() && !floorNumber.getText().matches("[0-9]*"))) {
-            errorLabel.setTextFill(Paint.valueOf("red"));
-            errorLabel.setText("Some text fields must be numbers only");
-            return true;
-        } else {
-            errorLabel.setTextFill(Paint.valueOf("green"));
-            errorLabel.setText("product added succefully");
-            return false;
-        }
+        return false;
     }
+
 
     private void resetFields() {
         productname.setText("");
@@ -207,19 +211,20 @@ public class addController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         IfFromApplyingCommand = ApplyingCommandController.IfApplyingCommandIsOpen;
+
+
         if (ApplyingCommandController.IfApplyingCommandIsOpen) {
             ProvidersComboBox.setVisible(false);
             barcode.setText(ApplyingCommandController.TheProduct.getBarcode().toString());
             quantity.setText(ApplyingCommandController.TheProduct.getRequiredQuantity().toString());
             productname.setText(ApplyingCommandController.TheProduct.getProductName());
             TheIndex = ApplyingCommandController.IndexOfProduct;
-
-
         } else {
             ProvidersComboBox.setVisible(true);
-
             ProvidersComboBox.setItems(imProviderController.ProviderList);
         }
+
+        productTypeComboBox.setItems(preferencesController.productTypes);
     }
 
     public static void LoadProviders(Collection<Provider> ProviderList) throws SQLException {

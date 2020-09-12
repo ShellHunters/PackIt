@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.stock.add.addController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.stock.add.addController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="-3.0" prefHeight="541.0" prefWidth="500.0" spacing="35.0">
+      <VBox alignment="TOP_CENTER" layoutY="-3.0" prefHeight="541.0" prefWidth="500.0" spacing="30.0">
          <children>
             <Label fx:id="errorLabel" alignment="CENTER" prefWidth="400.0" textFill="RED" />
             <JFXTextField fx:id="productname" focusColor="#ee801b" prefHeight="25.0" prefWidth="226.0" promptText="Product name" />
@@ -25,6 +25,7 @@
             <JFXTextField fx:id="buyprice" focusColor="#ee801b" layoutX="60.0" layoutY="401.0" prefHeight="25.0" prefWidth="209.0" promptText="Buy price" />
             <JFXTextField fx:id="sellprice" focusColor="#ee801b" layoutX="60.0" layoutY="430.0" prefWidth="400.0" promptText="Sell price" />
             <JFXComboBox fx:id="ProvidersComboBox" labelFloat="true" prefWidth="400.0" promptText="Select TheProvider" />
+            <JFXComboBox fx:id="productTypeComboBox" prefWidth="400.0" promptText="Product type" />
             <CheckBox fx:id="expirationCheck" mnemonicParsing="false" onAction="#checkboxAction" selected="true" text="The product has an expiration date" />
             <JFXDatePicker fx:id="expirationdate" defaultColor="#ee801b" editable="false" prefWidth="400.0" promptText="Expiration date" />
             <CheckBox fx:id="placeCheck" mnemonicParsing="false" onAction="#placeAction" selected="true" text="Add the place of product " />
@@ -48,7 +49,7 @@
             </JFXButton>
          </children>
          <padding>
-            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+            <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
          </padding>
       </VBox>
    </children>

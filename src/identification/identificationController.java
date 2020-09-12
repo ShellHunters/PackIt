@@ -8,6 +8,8 @@ import com.jfoenix.controls.JFXTextField;
 import interfaceClient.icMain;
 import interfaceFournisseur.ifMain;
 import interfaceMagazinier.imMain;
+import interfaceMagazinier.settings.preference.preferencesController;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,6 +67,7 @@ public class identificationController  implements Initializable {
     @FXML
     public VBox loginContent;
     private static String emailFromLogin, passwordFromLogin;
+
     Preferences preferences ;
 
     public identificationController() throws IOException, ClassNotFoundException {
@@ -182,6 +185,7 @@ public class identificationController  implements Initializable {
             passwordFieldMain.setText("");
         } else {
             user.setUserID(resultSet.getInt("id"));
+
             status.setTextFill(Color.GREEN);
             status.setText("Login successful..Redirecting...");
             //getting data to user class
@@ -192,6 +196,7 @@ public class identificationController  implements Initializable {
             if (saveMe.isSelected()) {
                  preferences.put("username",emailFieldMain.getText());
                  preferences.put("password",passwordFieldMain.getText());
+                 preferences.putBoolean("rememberme", true);
             }
             else {
                 preferences.clear();
@@ -199,6 +204,8 @@ public class identificationController  implements Initializable {
             emailFromLogin = emailFieldMain.getText();
             passwordFromLogin= passwordFieldMain.getText();
 
+            //Load preferences
+            loadPreferences();
 
             //Linking between interface and login
             ((Stage) identificationContainer.getScene().getWindow()).close();
@@ -210,6 +217,20 @@ public class identificationController  implements Initializable {
 
 
         }
+    }
+
+    private void loadPreferences() throws SQLException {
+        preferencesController.productTypes = FXCollections.observableArrayList();
+        Connection connection = ConnectionClass.getConnection();
+        String query = "SELECT productType FROM productTypes WHERE userID=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, String.valueOf(user.getUserID()));
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()){
+            preferencesController.productTypes.add(rs.getString("productType"));
+        }
+
     }
 
     @FXML
@@ -449,6 +470,7 @@ public class identificationController  implements Initializable {
         if (preferences!= null)
             if((preferences.get("username", null) != null) && (preferences.get("password", null) != null))
             {
+                saveMe.setSelected(preferences.getBoolean("rememberme", true));
                 emailFieldMain.setText(preferences.get("username",null));
                 passwordFieldMain.setText(preferences.get("password",null));
                 view.setDisable(true);

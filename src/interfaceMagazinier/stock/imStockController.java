@@ -35,28 +35,40 @@ import java.util.ResourceBundle;
 
 
 public class imStockController implements Initializable {
-    @FXML StackPane stackPane;
-    @FXML TableView<product> table;
+    @FXML
+    StackPane stackPane;
+    @FXML
+    TableView<product> table;
     public StackPane fullStockCoutainer;
     public static JFXDialog fullStockDialog;
     public static ObservableList<product> products;
-    @FXML TableColumn<product, Number> barcodeColumn;
-    @FXML TableColumn<product, String> nameColumn;
-    @FXML TableColumn<product, Number> quantityColumn;
-    @FXML TableColumn<product, Number> buypriceColumn;
-    @FXML TableColumn<product, Number> sellpriceColumn;
-    @FXML TableColumn<product, String> expirationdateColumn;
-    @FXML TableColumn selectedColumn;
-    @FXML JFXTextField searchTextField;
+    @FXML
+    TableColumn<product, Number> barcodeColumn;
+    @FXML
+    TableColumn<product, String> nameColumn;
+    @FXML
+    TableColumn<product, Number> quantityColumn;
+    @FXML
+    TableColumn<product, Number> buypriceColumn;
+    @FXML
+    TableColumn<product, Number> sellpriceColumn;
+    @FXML
+    TableColumn<product, String> expirationdateColumn;
+    @FXML
+    TableColumn selectedColumn;
+    @FXML
+    JFXTextField searchTextField;
     @FXML
     public TableColumn<product, Boolean> detailsColumn;
-public static Integer indexOfProduct;
-public static product theFullStockProduct;
+    public static Integer indexOfProduct;
+    public static product theFullStockProduct;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        shortcutSetUp();
         tableSetUp();
     }
+
     public class CustomButtonCell<T, S> extends TableCell<T, S> {
         private Button Details = new Button("Details");
 
@@ -69,15 +81,15 @@ public static product theFullStockProduct;
                 this.setText("");
                 this.setGraphic(null);
             } else {
-                Details.setOnAction(event->{
-                try {
-                    indexOfProduct= this.getIndex();
-                    System.out.println("the index "+indexOfProduct);
-                    theFullStockProduct= (product) this.getTableView().getItems().get(this.getIndex());
-                    showFullStock();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Details.setOnAction(event -> {
+                    try {
+                        indexOfProduct = this.getIndex();
+                        System.out.println("the index " + indexOfProduct);
+                        theFullStockProduct = (product) this.getTableView().getItems().get(this.getIndex());
+                        showFullStock();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                 });
                 this.setGraphic(Details);
@@ -87,29 +99,43 @@ public static product theFullStockProduct;
 
     }
 
-    void shortcutSetUp(){
+    void shortcutSetUp() {
         stackPane.getScene().setOnKeyPressed(event -> {
         });
     }
-public void showFullStock() throws IOException {
 
-    fullStockCoutainer = FXMLLoader.load(getClass().getResource("fullStock/fullStock.fxml"));
-    fullStockDialog = new JFXDialog(stackPane, fullStockCoutainer, DialogTransition.BOTTOM);
+    public void showFullStock() throws IOException {
 
-    fullStockDialog.show();
+        fullStockCoutainer = FXMLLoader.load(getClass().getResource("fullStock/fullStock.fxml"));
+        fullStockDialog = new JFXDialog(stackPane, fullStockCoutainer, DialogTransition.BOTTOM);
+
+        fullStockDialog.show();
 
 
-}
-    void tableSetUp(){
+    }
+
+    void tableSetUp() {
         //Table structure
-        barcodeColumn.setCellValueFactory(param -> { return param.getValue().barcodeProperty(); });
-        nameColumn.setCellValueFactory(param -> { return  param.getValue().productNameProperty(); });
+        barcodeColumn.setCellValueFactory(param -> {
+            return param.getValue().barcodeProperty();
+        });
+        nameColumn.setCellValueFactory(param -> {
+            return param.getValue().productNameProperty();
+        });
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        quantityColumn.setCellValueFactory(param -> { return param.getValue().quantityProperty(); });
-        buypriceColumn.setCellValueFactory(param -> { return param.getValue().buyPriceProperty(); });
-        sellpriceColumn.setCellValueFactory(param -> { return  param.getValue().sellPriceProperty(); });
-        expirationdateColumn.setCellValueFactory(param -> { return param.getValue().expirationDateProperty(); });
-        selectedColumn.setCellValueFactory(new PropertyValueFactory<product,String>("checkbox"));
+        quantityColumn.setCellValueFactory(param -> {
+            return param.getValue().quantityProperty();
+        });
+        buypriceColumn.setCellValueFactory(param -> {
+            return param.getValue().buyPriceProperty();
+        });
+        sellpriceColumn.setCellValueFactory(param -> {
+            return param.getValue().sellPriceProperty();
+        });
+        expirationdateColumn.setCellValueFactory(param -> {
+            return param.getValue().expirationDateProperty();
+        });
+        selectedColumn.setCellValueFactory(new PropertyValueFactory<product, String>("checkbox"));
         detailsColumn.setCellValueFactory(call -> new SimpleBooleanProperty(true).asObject());
         detailsColumn.setCellFactory(call -> {
             return new CustomButtonCell<>();
@@ -139,17 +165,16 @@ public void showFullStock() throws IOException {
         //Change this to read only the products who belongs to the user
 
         try {
-            String query = "SELECT * FROM stock where userID="+String.valueOf(user.getUserID());
+            String query = "SELECT * FROM stock where userID=" + String.valueOf(user.getUserID());
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
 
-
-            while (rs.next()){
+            while (rs.next()) {
                 product newProduct;
                 try {
                     newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString());
-                } catch (Exception e){
+                } catch (Exception e) {
                     newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "");
                 }
                 newProduct.setInitialQuantity(rs.getInt("initialQuantity"));
@@ -172,34 +197,38 @@ public void showFullStock() throws IOException {
         JFXDialog add = new JFXDialog(stackPane, root1, DialogTransition.RIGHT);
         add.show();
         //Change back the button to default color
-        add.setOnDialogClosed(event1 ->{ source.getStyleClass().removeAll("pressed"); });
+        add.setOnDialogClosed(event1 -> {
+            source.getStyleClass().removeAll("pressed");
+        });
     }
 
-    public void removeProduct() throws SQLException{
+    public void removeProduct() throws SQLException {
         Connection connection = ConnectionClass.getConnection();
         Statement statement = connection.createStatement();
         ObservableList<product> removedProduct = FXCollections.observableArrayList();
-        for (product bean : products )
+        for (product bean : products)
             if (bean.getCheckbox().isSelected()) {
                 removedProduct.add(bean);
                 String sql;
-                if (!bean.getExpirationDate().equals("")) sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "', '" + bean.getExpirationDate() + "','"+ user.getUserID()+"')";
-                else sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" +bean.getBuyPrice() + "', '" +bean.getQuantity()+ "','"+ user.getUserID()+"')";
+                if (!bean.getExpirationDate().equals(""))
+                    sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" + bean.getBuyPrice() + "', '" + bean.getQuantity() + "', '" + bean.getExpirationDate() + "','" + user.getUserID() + "')";
+                else
+                    sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" + bean.getBuyPrice() + "', '" + bean.getQuantity() + "','" + user.getUserID() + "')";
                 statement.executeUpdate(sql);
 
-                String sqlDelete = "DELETE FROM stock WHERE barcode=? and userID=?"   ;
+                String sqlDelete = "DELETE FROM stock WHERE barcode=? and userID=?";
                 PreparedStatement pst = connection.prepareStatement(sqlDelete);
-                pst.setInt(1,bean.getBarcode());
+                pst.setInt(1, bean.getBarcode());
                 pst.setInt(2, user.getUserID());
                 pst.executeUpdate();
-                pst.close() ;
+                pst.close();
             }
-        products.removeAll(removedProduct) ;
+        products.removeAll(removedProduct);
     }
 
     public void updateProduct(javafx.event.ActionEvent event) throws IOException {
         ObservableList<product> updatedProduct = FXCollections.observableArrayList();
-        for (product updated : products )
+        for (product updated : products)
             if (updated.getCheckbox().isSelected()) {
                 updateController.setProductSelected(updated);
                 updatedProduct.add(updated);
@@ -230,16 +259,16 @@ public void showFullStock() throws IOException {
         if (selectedDirectory == null) return;
         try {
             // Connect with database
-            String query = "SELECT * FROM stock " ;
-            PreparedStatement  pst = ConnectionClass.getConnection().prepareStatement(query) ;
-            ResultSet rs = pst.executeQuery() ;
+            String query = "SELECT * FROM stock ";
+            PreparedStatement pst = ConnectionClass.getConnection().prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
 
             // creating excel sheet
-            XSSFWorkbook xssfWorkbook = new XSSFWorkbook() ;
-            XSSFSheet sheet = xssfWorkbook.createSheet("Stock") ;
+            XSSFWorkbook xssfWorkbook = new XSSFWorkbook();
+            XSSFSheet sheet = xssfWorkbook.createSheet("Stock");
 
             //Create and Fill the first row of sheet
-            XSSFRow header = sheet.createRow(0) ;
+            XSSFRow header = sheet.createRow(0);
             header.createCell(0).setCellValue("Barcode");
             header.createCell(1).setCellValue("Name");
             header.createCell(2).setCellValue("Quantity");
@@ -248,16 +277,16 @@ public void showFullStock() throws IOException {
             header.createCell(5).setCellValue("Expiration Date ");
 
             //Fill the sheet from database
-            int index = 1 ;
+            int index = 1;
             while (rs.next()) {
-                XSSFRow row = sheet.createRow(index) ;
+                XSSFRow row = sheet.createRow(index);
                 row.createCell(0).setCellValue(rs.getString("barcode"));
                 row.createCell(1).setCellValue(rs.getString("name"));
                 row.createCell(2).setCellValue(rs.getString("quantity"));
                 row.createCell(3).setCellValue(rs.getString("buyprice"));
                 row.createCell(4).setCellValue(rs.getString("sellprice"));
                 row.createCell(5).setCellValue(rs.getString("expirationdate"));
-                index ++ ;
+                index++;
             }
             // creating A file
             FileOutputStream fileOutputStream = new FileOutputStream(selectedDirectory.getAbsolutePath() + "/stock.xlsx");
@@ -265,7 +294,7 @@ public void showFullStock() throws IOException {
             xssfWorkbook.write(fileOutputStream);
             fileOutputStream.close();
             // Alert About succes of operation
-            Alert alert = new Alert(Alert.AlertType.INFORMATION) ;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setContentText("Stock has been exported to excel file succefully");
             alert.showAndWait();
