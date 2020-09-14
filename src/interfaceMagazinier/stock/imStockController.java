@@ -179,6 +179,8 @@ public class imStockController implements Initializable {
                 }
                 newProduct.setInitialQuantity(rs.getInt("initialQuantity"));
                 newProduct.setNumberOfSells(rs.getInt("numberOfSells"));
+                if (rs.getString("productType") != null) newProduct.setProductType(rs.getString("productType"));
+
                 products.add(newProduct);
             }
             return products;

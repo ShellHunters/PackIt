@@ -16,28 +16,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 
 //import javax.mail.*;
 //import javax.mail.internet.InternetAddress;
 //import javax.mail.internet.MimeMessage;
-import javax.imageio.ImageIO;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.awt.image.RenderedImage;
 import java.io.*;
 import java.net.URL;
 import java.sql.*;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.prefs.Preferences;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -204,8 +199,10 @@ public class identificationController  implements Initializable {
             emailFromLogin = emailFieldMain.getText();
             passwordFromLogin= passwordFieldMain.getText();
 
-            //Load preferences
-            loadPreferences();
+            //set preferences
+            preferencesController.setDiscountAmount(resultSet.getInt("discountAmount"));
+            preferencesController.setNumberOfSellsForDiscount(resultSet.getInt("numberOfSellsForDiscount"));
+            loadProductTypePreferences();
 
             //Linking between interface and login
             ((Stage) identificationContainer.getScene().getWindow()).close();
@@ -219,7 +216,7 @@ public class identificationController  implements Initializable {
         }
     }
 
-    private void loadPreferences() throws SQLException {
+    private void loadProductTypePreferences() throws SQLException {
         preferencesController.productTypes = FXCollections.observableArrayList();
         Connection connection = ConnectionClass.getConnection();
         String query = "SELECT productType FROM productTypes WHERE userID=?";
@@ -230,7 +227,6 @@ public class identificationController  implements Initializable {
         while (rs.next()){
             preferencesController.productTypes.add(rs.getString("productType"));
         }
-
     }
 
     @FXML

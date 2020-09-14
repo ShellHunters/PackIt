@@ -1,7 +1,6 @@
 package interfaceMagazinier.settings.preference;
 
 import Connector.ConnectionClass;
-import basicClasses.client;
 import basicClasses.user;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,13 +11,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Paint;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -32,17 +29,31 @@ public class preferencesController implements Initializable {
     private TableView<String> productTypeTable;
     @FXML
     private TableColumn<String, String> productTypeColumn;
+    @FXML
+    private JFXTextField numberOfSellsForDiscountTextField;
+    @FXML
+    private JFXTextField discountAmountTextField;
+    @FXML
+    private Label saveLabel;
 
     public static ObservableList<String> productTypes;
+    private static int numberOfSellsForDiscount;
+    private static int discountAmount;
+
+    public static void setNumberOfSellsForDiscount(int numberOfSellsForDiscount) {
+        preferencesController.numberOfSellsForDiscount = numberOfSellsForDiscount;
+    }
+
+    public static void setDiscountAmount(int discountAmount) {
+        preferencesController.discountAmount = discountAmount;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableSetUp();
-    }
-
-    private void tableSetUp() {
         productTypeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
         productTypeTable.setItems(productTypes);
+        numberOfSellsForDiscountTextField.setText(String.valueOf(numberOfSellsForDiscount));
+        discountAmountTextField.setText(String.valueOf(discountAmount));
     }
 
     @FXML
@@ -103,4 +114,19 @@ public class preferencesController implements Initializable {
         if (index < 0) return;
         productTypeTextField.setText(productTypeTable.getItems().get(index));
     }
+
+    @FXML
+    void save() throws SQLException {
+        Connection connection = ConnectionClass.getConnection();
+        String query = "UPDATE logins SET numberOfSellsForDiscount=?, discountAmount=? WHERE id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, numberOfSellsForDiscountTextField.getText());
+        preparedStatement.setString(2, discountAmountTextField.getText());
+        preparedStatement.setInt(3, user.getUserID());
+        preparedStatement.executeUpdate();
+
+        saveLabel.setTextFill(Paint.valueOf("green"));
+        saveLabel.setText("Preferences updated successfully");
+    }
+
 }

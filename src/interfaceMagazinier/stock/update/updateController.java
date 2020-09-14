@@ -3,8 +3,11 @@ package interfaceMagazinier.stock.update;
 import Connector.ConnectionClass;
 import basicClasses.product;
 import basicClasses.user;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import interfaceMagazinier.settings.preference.preferencesController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,7 +37,10 @@ public class updateController implements Initializable {
     private JFXDatePicker expirationdate;
     @FXML
     private Label errorLabel;
-    public static product productSelected;
+    @FXML
+    private JFXComboBox<String> productTypeComboBox;
+    @FXML
+    private JFXCheckBox productTypeCheck;
     @FXML
     private CheckBox placeCheck;
     @FXML
@@ -43,7 +49,7 @@ public class updateController implements Initializable {
     private JFXTextField floorNumber;
     @FXML
     private CheckBox expirationCheck;
-
+    public static product productSelected;
 
     public static product getProductSelected() {
         return productSelected;
@@ -55,12 +61,20 @@ public class updateController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        productTypeComboBox.setItems(preferencesController.productTypes);
+        if (productSelected.getProductName() == null) productTypeComboBox.setValue(null);
+        else if (preferencesController.productTypes.contains(productSelected.getProductType())) productTypeComboBox.setValue(productSelected.getProductType());
+        else productTypeComboBox.setValue(null);
+
         productname.setText(productSelected.getProductName());
         barcode.setText((String.valueOf(productSelected.getBarcode())));
         sellprice.setText(String.valueOf(productSelected.getSellPrice()));
         buyprice.setText(String.valueOf(productSelected.getBuyPrice()));
         quantity.setText(String.valueOf(productSelected.getQuantity()));
-        if (productSelected.getExpirationDate() == "") expirationdate.setValue(null);
+        if (productSelected.getExpirationDate() == ""){
+            expirationdate.setValue(null);
+            expirationCheck.setSelected(false);
+        }
         else expirationdate.setValue(LocalDate.parse(productSelected.getExpirationDate()));
     }
 
@@ -70,7 +84,7 @@ public class updateController implements Initializable {
 
         //update product
         Connection connection = ConnectionClass.getConnection();
-        String query = "Update stock set name=?, barcode=? , buyprice=? , sellprice=? , quantity=? ,expirationdate=?,floor=?,containerName=?  where barcode=? and userID=? ";
+        String query = "Update stock set name=?, barcode=? , buyprice=? , sellprice=? , quantity=? ,expirationdate=?,floor=?,containerName=?, productType=?  where barcode=? and userID=? ";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1, productname.getText());
         pst.setString(2, barcode.getText());
@@ -82,18 +96,16 @@ public class updateController implements Initializable {
         } else {
             pst.setString(6, expirationdate.getValue().toString());
         }
-        if (containerName.isDisable())
-        {
-            pst.setNull(7,Types.INTEGER);
+        if (containerName.isDisable()) {
+            pst.setNull(7, Types.INTEGER);
             pst.setNull(8, Types.VARCHAR);
+        } else {
+            pst.setInt(7, Integer.parseInt(floorNumber.getText()));
+            pst.setString(8, containerName.getText());
         }
-        else
-            {
-                pst.setInt(7,Integer.parseInt(floorNumber.getText()));
-                pst.setString(8,containerName.getText());
-            }
-        pst.setInt(9, productSelected.getBarcode());
-        pst.setInt(10, user.getUserID());
+        pst.setString(9, productTypeComboBox.getValue());
+        pst.setInt(10, productSelected.getBarcode());
+        pst.setInt(11, user.getUserID());
         pst.execute();
 
         productSelected.setBarcode(Integer.parseInt(barcode.getText()));
@@ -109,42 +121,60 @@ public class updateController implements Initializable {
     private boolean errorCheck() throws SQLException {
 
 
-        if (productname.getText().isEmpty() || barcode.getText().isEmpty() || sellprice.getText().isEmpty() || buyprice.getText().isEmpty() || quantity.getText().isEmpty() ||(!containerName.isDisable() &&(containerName.getText().isEmpty()||floorNumber.getText().isEmpty()))) {
+        if (productname.getText().isEmpty()
+                || barcode.getText().isEmpty()
+                || sellprice.getText().isEmpty()
+                || buyprice.getText().isEmpty()
+                || quantity.getText().isEmpty()
+                || (!containerName.isDisable() && (containerName.getText().isEmpty() || floorNumber.getText().isEmpty()))
+                || (!expirationdate.isDisable() && expirationdate.getValue() == null)
+                || (!productTypeComboBox.isDisable() && productTypeComboBox.getValue() == null)) {
             errorLabel.setTextFill(Paint.valueOf("red"));
-            errorLabel.setText("Fill all the text fields");
+            errorLabel.setText("Fill all the text fields and informations");
             return true;
         }
-        if (!barcode.getText().matches("[0-9]*") || !quantity.getText().matches("[0-9]*") || !sellprice.getText().matches("[0-9]*\\.?[0-9]+") || !buyprice.getText().matches("[0-9]*\\.?[0-9]+") || (!containerName.isDisable() && !floorNumber.getText().matches("[0-9]*"))) {
+        if (!barcode.getText().matches("[0-9]*")
+                || !quantity.getText().matches("[0-9]*")
+                || !sellprice.getText().matches("[0-9]*\\.?[0-9]+")
+                || !buyprice.getText().matches("[0-9]*\\.?[0-9]+")
+                || !floorNumber.getText().matches("[0-9]*")
+                || (!containerName.isDisable() && !floorNumber.getText().matches("[0-9]*"))) {
             errorLabel.setTextFill(Paint.valueOf("red"));
             errorLabel.setText("Some text fields must be numbers only");
             return true;
         }
-
+        Connection connection = ConnectionClass.getConnection();
+        Statement statement = connection.createStatement();
+        String query = "SELECT * FROM stock WHERE barcode=" + barcode.getText();
+        ResultSet rs = statement.executeQuery(query);
+        if (rs.next()) {
+            if (!rs.getString("name").equals(productname.getText()) && rs.getInt("barcode") == Integer.parseInt(barcode.getText())) {
+                errorLabel.setTextFill(Paint.valueOf("red"));
+                errorLabel.setText("The barcode is already used for an other product");
+            }
+            if (rs.getString("name").equals(productname.getText()) && rs.getInt("barcode") != Integer.parseInt(barcode.getText())) {
+                errorLabel.setTextFill(Paint.valueOf("red"));
+                errorLabel.setText("This product already exists with an other barcode");
+            }
+        }
         errorLabel.setTextFill(Paint.valueOf("green"));
         errorLabel.setText("product updated succefully");
         return false;
     }
 
     @FXML
-    private void checkboxAction() {
-        if (expirationCheck.isSelected()) {
-            expirationdate.setDisable(false);
-        }
-        if (!expirationCheck.isSelected()) {
-            expirationdate.setDisable(true);
-        }
+    private void expirationCheckAction() {
+        expirationdate.setDisable(!expirationCheck.isSelected());
     }
 
     @FXML
-    private void placeAction() {
-        if (placeCheck.isSelected()) {
-            containerName.setDisable(false);
-            floorNumber.setDisable(false);
-        }
-        if (!placeCheck.isSelected()) {
-            containerName.setDisable(true);
-            floorNumber.setDisable(true);
+    private void placeCheckAction() {
+        containerName.setDisable(!placeCheck.isSelected());
+        floorNumber.setDisable(!placeCheck.isSelected());
+    }
 
-        }
+    @FXML
+    private void productTypeCheckAction() {
+        productTypeComboBox.setDisable(!productTypeCheck.isSelected());
     }
 }
