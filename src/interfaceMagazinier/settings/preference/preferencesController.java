@@ -37,15 +37,23 @@ public class preferencesController implements Initializable {
     private Label saveLabel;
 
     public static ObservableList<String> productTypes;
-    private static int numberOfSellsForDiscount;
-    private static int discountAmount;
+    public static int numberOfSellsForDiscount;
+    public static int discountAmount;
 
     public static void setNumberOfSellsForDiscount(int numberOfSellsForDiscount) {
         preferencesController.numberOfSellsForDiscount = numberOfSellsForDiscount;
     }
 
+    public static int getNumberOfSellsForDiscount() {
+        return numberOfSellsForDiscount;
+    }
+
     public static void setDiscountAmount(int discountAmount) {
         preferencesController.discountAmount = discountAmount;
+    }
+
+    public static int getDiscountAmount() {
+        return discountAmount;
     }
 
     @Override
@@ -109,7 +117,7 @@ public class preferencesController implements Initializable {
     }
 
     @FXML
-    void getSelected(javafx.scene.input.MouseEvent mouseEvent){
+    void getSelected(javafx.scene.input.MouseEvent mouseEvent) {
         int index = productTypeTable.getSelectionModel().getSelectedIndex();
         if (index < 0) return;
         productTypeTextField.setText(productTypeTable.getItems().get(index));

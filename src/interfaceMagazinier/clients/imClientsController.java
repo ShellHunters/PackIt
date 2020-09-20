@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class imClientsController implements Initializable {
 
-    ObservableList<client> listM;
+    public ObservableList<client> listM;
     ObservableList<client> Data;
     int index = -1;
     Connection conn = null;
