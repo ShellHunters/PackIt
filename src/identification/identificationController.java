@@ -244,7 +244,7 @@ public class identificationController  implements Initializable {
 
         if (!existinEmailCheck(connection)) return;
         if (!existinShopCheck(connection)) return;
-        FileInputStream fis = new FileInputStream("src\\resource\\pictures\\Avatar.jpg");
+        FileInputStream fis = new FileInputStream("src/resource/pictures/Avatar.jpg");
         String query = "INSERT INTO logins(email, nom, password, shopname, image) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement pstmt = connection.prepareStatement(query);
         pstmt.setString(1, emailField.getText());

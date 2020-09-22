@@ -3,6 +3,7 @@ package interfaceMagazinier.providers;
 import Connector.ConnectionClass;
 import basicClasses.Provider;
 import basicClasses.product;
+import basicClasses.user;
 import com.jfoenix.controls.*;
 import interfaceMagazinier.stock.update.updateController;
 import javafx.beans.InvalidationListener;
@@ -250,7 +251,7 @@ public class ApplyingCommandController implements Initializable {
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             System.out.println("we find the barcode  " + Barcode);
-            RequireQuantity = TheProduct.getRequiredQuantity();
+            RequireQuantity = TheProduct.getNeededQuantity();
             try {
                 TheProduct = new product(resultSet.getString("name"), resultSet.getInt("barcode"), resultSet.getFloat("buyprice"), resultSet.getFloat("sellprice"), resultSet.getInt("quantity"), resultSet.getDate("expirationdate").toString());
             } catch (Exception e) {
@@ -315,10 +316,11 @@ public class ApplyingCommandController implements Initializable {
 
     Provider getTheProvider(Integer id) throws SQLException {
         Provider provider = null;
-        String Sql = "SELECT  * from ProvidersInfo where id=?";
+        String Sql = "SELECT  * from ProvidersInfo where id=? and userID=?";
         Connection connection = ConnectionClass.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(Sql);
         preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, user.getUserID());
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next())
             provider = new Provider(id, resultSet.getString(2), resultSet.getString(3), resultSet.getFloat(7));
@@ -347,7 +349,7 @@ public class ApplyingCommandController implements Initializable {
         NotAddedCheckBox.setDisable(NotAddedList.isEmpty());
         applySelectedProductsButton.setDisable(true);
         applyingAllProductsButton.setDisable(NotAddedList.isEmpty());
-        RequiredQuantityCol.setCellValueFactory(new PropertyValueFactory<product, Integer>("RequiredQuantity"));
+        RequiredQuantityCol.setCellValueFactory(new PropertyValueFactory<product, Integer>("NeededQuantity"));
         ProductNameCol.setCellValueFactory(new PropertyValueFactory<product, String>("productName"));
         //   NumberOfProductsCol.setCellValueFactory(new PropertyValueFactory<Command, Integer>("SizeOfProduct"));
         SetRequiredButtonCol.setCellValueFactory(call -> new SimpleBooleanProperty(true).asObject());
@@ -441,7 +443,7 @@ public class ApplyingCommandController implements Initializable {
                 //  return true;
                 if (product.getProductName().toLowerCase().contains(lowerCaseFilter))
                     return true;
-                else return String.valueOf(product.getRequiredQuantity()).toLowerCase().contains(lowerCaseFilter);
+                else return String.valueOf(product.getNeededQuantity()).toLowerCase().contains(lowerCaseFilter);
             });
         }));
 

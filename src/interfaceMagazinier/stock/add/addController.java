@@ -182,7 +182,7 @@ public class addController implements Initializable {
         if (ApplyingCommandController.IfApplyingCommandIsOpen) {
             ProvidersComboBox.setVisible(false);
             barcode.setText(ApplyingCommandController.TheProduct.getBarcode().toString());
-            quantity.setText(ApplyingCommandController.TheProduct.getRequiredQuantity().toString());
+            quantity.setText(ApplyingCommandController.TheProduct.getNeededQuantity().toString());
             productname.setText(ApplyingCommandController.TheProduct.getProductName());
             TheIndex = ApplyingCommandController.IndexOfProduct;
 
@@ -194,34 +194,26 @@ public class addController implements Initializable {
         }
     }
 
-    public static void LoadProviders(Collection<Provider> ProviderList) throws SQLException {
-        ProviderList.clear();
-        Connection connection = ConnectionClass.getConnection();
-        String Sql = "SELECT * FROM ProvidersInfo";
-        PreparedStatement preparedStatement = connection.prepareStatement(Sql);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            ProviderList.add(new Provider(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getFloat(7)));
-        }
-    }
+
 
     public static void UpdateProvider(Integer Id, float TotalFigure) throws SQLException {
-        String Sql = "UPDATE ProvidersInfo set TotalFigure=? WHERE id=?";
+        String Sql = "UPDATE ProvidersInfo set TotalFigure=? WHERE id=? and userID=?";
         Connection connection = ConnectionClass.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(Sql);
         preparedStatement.setFloat(1, TotalFigure);
         preparedStatement.setInt(2, Id);
+        preparedStatement.setInt(3, user.getUserID());
         preparedStatement.executeUpdate();
     }
 
     void SetThatWasAdded(Integer Barcode, Integer Id) throws SQLException {
-        String Sql = "UPDATE ProductsCommand set IfWasAdded=? WHERE  id =? and barcode=?";
+        String Sql = "UPDATE ProductsCommand set IfWasAdded=? WHERE  id =? and barcode=? and userID=?";
         Connection connection = ConnectionClass.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(Sql);
         preparedStatement.setBoolean(1, true);
         preparedStatement.setInt(2, Id);
         preparedStatement.setInt(3, Barcode);
-
+        preparedStatement.setInt(4, user.getUserID());
         preparedStatement.executeUpdate();
     }
 

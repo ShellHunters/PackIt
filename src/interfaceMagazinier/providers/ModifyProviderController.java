@@ -3,6 +3,7 @@ package interfaceMagazinier.providers;
 import Connector.ConnectionClass;
 import Dialogs.Resources.Controllers.ShowAllDialogs;
 import basicClasses.Provider;
+import basicClasses.user;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ChangeListener;
@@ -202,7 +203,7 @@ public class ModifyProviderController implements Initializable {
     }
 
     void UpdateElements() throws SQLException {
-        String SqlQuarry = "UPDATE ProvidersInfo set FirstName=? , LastName=? ,  PhoneNumber=? , Email=? , Address=? WHERE id=?";
+        String SqlQuarry = "UPDATE ProvidersInfo set FirstName=? , LastName=? ,  PhoneNumber=? , Email=? , Address=? WHERE id=? and userID=?";
         Connection connection = ConnectionClass.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SqlQuarry);
         preparedStatement.setString(1, ModifyFirstField.getText());
@@ -211,21 +212,24 @@ public class ModifyProviderController implements Initializable {
         preparedStatement.setString(4, ModifyEmailField.getText());
         preparedStatement.setString(5, ModifyAddrField.getText());
         preparedStatement.setInt(6, imProviderController.provider.getId());
+        preparedStatement.setInt(7, user.getUserID());
         preparedStatement.executeUpdate();
         imProviderController.ProviderList.clear();
         imProviderController.InitTable();
     }
 
     public static void DeleteProviders(int Id) throws SQLException {
-        String DeleteQuarry = "DELETE FROM ProvidersInfo WHERE id=?";
-        String CopyQuarry = "INSERT INTO DeletedProviders SELECT * FROM ProvidersInfo WHERE id=?";
+        String DeleteQuarry = "DELETE FROM ProvidersInfo WHERE id=? and userID=?";
+        String CopyQuarry = "INSERT INTO DeletedProviders SELECT * FROM ProvidersInfo WHERE id=? and userID=?";
         Connection CopyConnection = ConnectionClass.getConnection();
         Connection DeleteConnection = ConnectionClass.getConnection();
         PreparedStatement CopyStatement = CopyConnection.prepareStatement(CopyQuarry);
         CopyStatement.setInt(1, Id);
+        CopyStatement.setInt(2, user.getUserID());
         CopyStatement.execute();
         PreparedStatement DeleteStatement = DeleteConnection.prepareStatement(DeleteQuarry);
         DeleteStatement.setInt(1, Id);
+        DeleteStatement.setInt(2,user.getUserID());
         DeleteStatement.executeUpdate();
 
         imProviderController.ProviderList.clear();

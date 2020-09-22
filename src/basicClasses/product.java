@@ -19,7 +19,6 @@ public class product extends RecursiveTreeObject<product> {
     private SimpleBooleanProperty IfWasSent;
     private SimpleStringProperty expirationDate;
     private Integer NeededQuantity;
-    private Integer RequiredQuantity;
     boolean IfWasAdded;
     private JFXCheckBox checkbox;
     //Dashboard and sells attributes
@@ -81,10 +80,10 @@ public class product extends RecursiveTreeObject<product> {
 
  */
 
-    public product (String ProductName, Integer Barcode, Integer requiredQuantity, boolean ifWasAdded) {
+    public product (String ProductName, Integer Barcode, Integer neededQuantity, boolean ifWasAdded) {
         this.productName=new SimpleStringProperty(ProductName);
         this.barcode =new SimpleIntegerProperty(Barcode);
-        RequiredQuantity = requiredQuantity;
+        NeededQuantity = neededQuantity;
         IfWasAdded = ifWasAdded;
         numberOfSells = 0;
     }
@@ -132,7 +131,7 @@ public class product extends RecursiveTreeObject<product> {
     }
 
     public void setNeededQuantity (Integer neededQuantity) {
-        NeededQuantity = neededQuantity;
+        NeededQuantity  =neededQuantity;
     }
 
 
@@ -249,13 +248,9 @@ public class product extends RecursiveTreeObject<product> {
 
     public void setNumberOfSells(int numberOfSells) { this.numberOfSells = numberOfSells; }
 
-    public Integer getRequiredQuantity () {
-        return RequiredQuantity;
-    }
 
-    public void setRequiredQuantity (Integer requiredQuantity) {
-        RequiredQuantity = requiredQuantity;
-    }
+
+
 
     public boolean getIfWasAdded () {
         return IfWasAdded;

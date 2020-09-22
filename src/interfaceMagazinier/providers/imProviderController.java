@@ -2,6 +2,7 @@ package interfaceMagazinier.providers;
 
 import Dialogs.Resources.Controllers.ShowAllDialogs;
 import basicClasses.Provider;
+import basicClasses.user;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDialog;
@@ -278,7 +279,7 @@ public class imProviderController implements Initializable {
         if (SendEmailController.IfTabPaneIsOpen) {
             ProviderList.addAll(SendEmailMessageController.TempProvidersList);
         } else {
-            String sql = "SELECT * FROM ProvidersInfo";
+            String sql = "SELECT  * from ProvidersInfo where userID="+user.getUserID();
             Connection connection = Connector.ConnectionClass.getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery(sql);
             while (resultSet.next()) {

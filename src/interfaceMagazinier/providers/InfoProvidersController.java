@@ -4,6 +4,7 @@ import Connector.ConnectionClass;
 import Dialogs.Resources.Controllers.ShowAllDialogs;
 
 
+import basicClasses.user;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ChangeListener;
@@ -146,7 +147,7 @@ public class InfoProvidersController implements Initializable {
     void AddNewProvider() {
         try {
             Connection conn = ConnectionClass.getConnection();
-            String sql2 = "INSERT INTO ProvidersInfo (FirstName, LastName,PhoneNumber,Email,Address) VALUES (?,?,?,?,?);";
+            String sql2 = "INSERT INTO ProvidersInfo (FirstName, LastName,PhoneNumber,Email,Address,userID) VALUES (?,?,?,?,?,?);";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql2);
             preparedStatement.setString(1, FirstField.getText());
@@ -157,7 +158,7 @@ public class InfoProvidersController implements Initializable {
             preparedStatement.setString(4, EmailField.getText());
 
             preparedStatement.setString(5, AddrField.getText());
-
+            preparedStatement.setInt(6, user.getUserID());
 
             preparedStatement.executeUpdate();
             imProviderController.InitTable();
