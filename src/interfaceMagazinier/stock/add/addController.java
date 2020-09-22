@@ -87,6 +87,7 @@ public class addController implements Initializable {
                 imStockController.products.forEach(product -> {
                     if (product.getBarcode() == Integer.parseInt(barcode.getText())) {
                         product.setQuantity(oldQuantity + Integer.parseInt(quantity.getText()));
+                        product.setInitialQuantity(product.getQuantity());
                         return;
                     }
                 });
@@ -94,7 +95,7 @@ public class addController implements Initializable {
                 isAddOnlyQuantityInFullStock = false;
                 tableName = "fullStock";
             }
-            sql = "UPDATE " + tableName + " SET quantity=" + (oldQuantity + Integer.parseInt(quantity.getText())) + " WHERE barcode=" + Integer.parseInt(barcode.getText());
+            sql = "UPDATE " + tableName + " SET quantity=" + (oldQuantity + Integer.parseInt(quantity.getText())) + ", initialQuantity=" + (oldQuantity + Integer.parseInt(quantity.getText())) + " WHERE barcode=" + Integer.parseInt(barcode.getText());
             statement.execute(sql);
             return;
         }
@@ -127,7 +128,8 @@ public class addController implements Initializable {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, barcode);
         preparedStatement.setString(2, buyprice.getText());
-        if (!expirationdateString.equals("") && expirationCheck.isSelected()) preparedStatement.setString(3, expirationdateString);
+        if (!expirationdateString.equals("") && expirationCheck.isSelected())
+            preparedStatement.setString(3, expirationdateString);
         else preparedStatement.setNull(3, Types.DATE);
         preparedStatement.setString(4, productname.getText());
         preparedStatement.setInt(5, quanity);
@@ -174,7 +176,7 @@ public class addController implements Initializable {
                 || (!containerName.isDisable() && (containerName.getText().isEmpty() || floorNumber.getText().isEmpty()))
                 || (!expirationdate.isDisable() && expirationdate.getValue() == null)
                 || (!productTypeComboBox.isDisable() && productTypeComboBox.getValue() == null)
-                || (!providersComboBox.isDisable() && providersComboBox.getValue()==null)) {
+                || (!providersComboBox.isDisable() && providersComboBox.getValue() == null)) {
             errorLabel.setTextFill(Paint.valueOf("red"));
             errorLabel.setText("Fill all the text fields and informations");
             return true;
