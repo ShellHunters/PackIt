@@ -8,34 +8,31 @@ import com.jfoenix.controls.JFXTextField;
 import interfaceClient.icMain;
 import interfaceFournisseur.ifMain;
 import interfaceMagazinier.imMain;
+import interfaceMagazinier.settings.preference.preferencesController;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 
 //import javax.mail.*;
 //import javax.mail.internet.InternetAddress;
 //import javax.mail.internet.MimeMessage;
-import javax.imageio.ImageIO;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.awt.image.RenderedImage;
 import java.io.*;
 import java.net.URL;
 import java.sql.*;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.prefs.Preferences;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -65,6 +62,7 @@ public class identificationController  implements Initializable {
     @FXML
     public VBox loginContent;
     private static String emailFromLogin, passwordFromLogin;
+
     Preferences preferences ;
 
     public identificationController() throws IOException, ClassNotFoundException {
@@ -182,6 +180,7 @@ public class identificationController  implements Initializable {
             passwordFieldMain.setText("");
         } else {
             user.setUserID(resultSet.getInt("id"));
+
             status.setTextFill(Color.GREEN);
             status.setText("Login successful..Redirecting...");
             //getting data to user class
@@ -192,6 +191,7 @@ public class identificationController  implements Initializable {
             if (saveMe.isSelected()) {
                  preferences.put("username",emailFieldMain.getText());
                  preferences.put("password",passwordFieldMain.getText());
+                 preferences.putBoolean("rememberme", true);
             }
             else {
                 preferences.clear();
@@ -199,6 +199,10 @@ public class identificationController  implements Initializable {
             emailFromLogin = emailFieldMain.getText();
             passwordFromLogin= passwordFieldMain.getText();
 
+            //set preferences
+            preferencesController.setDiscountAmount(resultSet.getInt("discountAmount"));
+            preferencesController.setNumberOfSellsForDiscount(resultSet.getInt("numberOfSellsForDiscount"));
+            loadProductTypePreferences();
 
             //Linking between interface and login
             ((Stage) identificationContainer.getScene().getWindow()).close();
@@ -209,6 +213,19 @@ public class identificationController  implements Initializable {
             userInterface.start(userStage);
 
 
+        }
+    }
+
+    private void loadProductTypePreferences() throws SQLException {
+        preferencesController.productTypes = FXCollections.observableArrayList();
+        Connection connection = ConnectionClass.getConnection();
+        String query = "SELECT productType FROM productTypes WHERE userID=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, String.valueOf(user.getUserID()));
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()){
+            preferencesController.productTypes.add(rs.getString("productType"));
         }
     }
 
@@ -449,6 +466,7 @@ public class identificationController  implements Initializable {
         if (preferences!= null)
             if((preferences.get("username", null) != null) && (preferences.get("password", null) != null))
             {
+                saveMe.setSelected(preferences.getBoolean("rememberme", true));
                 emailFieldMain.setText(preferences.get("username",null));
                 passwordFieldMain.setText(preferences.get("password",null));
                 view.setDisable(true);

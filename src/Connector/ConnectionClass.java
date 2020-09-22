@@ -7,12 +7,12 @@ public class ConnectionClass {
     static public Connection connection;
     static public Connection getConnection(){
         String dbName="user";
-        String userName="piktaka";
+        String userName="root";
         String password="";
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName,userName,password);
+            connection= DriverManager.getConnection("jdbc:mysql://localhost/"+dbName,userName,password);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -14,7 +14,7 @@ public class user {
     private static String fullName;
     private static String email;
     private static String phoneNumber, password,shopName;
-    private static int userID ;
+    private static int userID;
 
     public static int getUserID() {
         return userID;

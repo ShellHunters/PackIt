@@ -20,6 +20,7 @@ public class product extends RecursiveTreeObject<product> {
     private SimpleStringProperty expirationDate;
     private Integer NeededQuantity;
     boolean IfWasAdded;
+    private SimpleStringProperty productType;
     private JFXCheckBox checkbox;
     //Dashboard and sells attributes
     private Integer initialQuantity;
@@ -39,7 +40,7 @@ public class product extends RecursiveTreeObject<product> {
         //Dashboard attributes init
         initialQuantity = quantity;
         numberOfSells = 0;
-
+        productType= new SimpleStringProperty();
     }
 
     public product(){
@@ -51,6 +52,7 @@ public class product extends RecursiveTreeObject<product> {
         this.expirationDate = new SimpleStringProperty("");
         NeededQuantity = 0;
         numberOfSells = 0;
+        productType= new SimpleStringProperty();
     }
 
     public product (String ProductName, int barCode, float BuyPrice, int Quantity, float StockPercentage, boolean ifWasSent, int InitialQuantity) {
@@ -63,7 +65,7 @@ public class product extends RecursiveTreeObject<product> {
         this.initialQuantity = InitialQuantity;
         NeededQuantity=0;
         numberOfSells = 0;
-
+        productType= new SimpleStringProperty();
     }
 
     /*
@@ -86,6 +88,7 @@ public class product extends RecursiveTreeObject<product> {
         NeededQuantity = neededQuantity;
         IfWasAdded = ifWasAdded;
         numberOfSells = 0;
+        productType= new SimpleStringProperty();
     }
 
     public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, String expirationDate, int numberOfSells) {
@@ -102,7 +105,7 @@ public class product extends RecursiveTreeObject<product> {
         //Dashboard attributes init
         initialQuantity = quantity;
         this.numberOfSells = numberOfSells;
-
+        productType= new SimpleStringProperty();
     }
 
     public product(int barcode, float sellPrice, float profit, int quantity) {
@@ -110,7 +113,7 @@ public class product extends RecursiveTreeObject<product> {
         this.sellPrice = new SimpleFloatProperty(sellPrice);
         this.buyPrice = new SimpleFloatProperty(sellPrice - profit);
         this.quantity = new SimpleIntegerProperty(quantity);
-
+        productType= new SimpleStringProperty();
         //Complete the other vars from database
         try {
             Connection connection = ConnectionClass.getConnection();
@@ -258,6 +261,18 @@ public class product extends RecursiveTreeObject<product> {
 
     public void setIfWasAdded (boolean ifWasAdded) {
         IfWasAdded = ifWasAdded;
+    }
+
+    public String getProductType() {
+        return productType.get();
+    }
+
+    public SimpleStringProperty productTypeProperty() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType.set(productType);
     }
 }
 

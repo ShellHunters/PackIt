@@ -23,7 +23,8 @@ public class imSettingsController implements Initializable {
     public Button aboutButton;
     public Button contactButton;
     public Button personalButton;
-    Node contents[] = new Node[6];
+    public Button preferenceButton;
+    Node contents[] = new Node[7];
 
 
 
@@ -39,14 +40,14 @@ public class imSettingsController implements Initializable {
     public void button(ActionEvent event) throws IOException {
         //Change color to current button pressed
         int i = 0,j;
-        Button buttons[] = {personalButton,shopButton, securityButton, termButton, aboutButton, contactButton};
-        while (i<6 && event.getSource() != buttons[i]) i++;
+        Button buttons[] = {personalButton,shopButton, securityButton, termButton, aboutButton, contactButton,preferenceButton};
+        while (i<7 && event.getSource() != buttons[i]) i++;
         //reload content in certain cases
        /* if (i == 2) contents[2] = FXMLLoader.load(getClass().getResource("security/security.fxml"));
         if (i == 1) contents[1] = FXMLLoader.load(getClass().getResource("store/store.fxml"));
         if (i == 0) contents[0] = FXMLLoader.load(getClass().getResource("personal/personal.fxml"));*/
         buttons[i].getStyleClass().add("activeButton");
-        for(j=0; j < 6; j++) if (j != i) buttons[j].getStyleClass().removeAll("activeButton");
+        for(j=0; j <7; j++) if (j != i) buttons[j].getStyleClass().removeAll("activeButton");
         //SWAP CONTENT
         contentPane.getChildren().setAll(contents[i]);
     }
@@ -59,6 +60,8 @@ public class imSettingsController implements Initializable {
             contents[2] = FXMLLoader.load(getClass().getResource("security/security.fxml"));
             contents[3] = FXMLLoader.load(getClass().getResource("term/term.fxml"));
             contents[5] = FXMLLoader.load(getClass().getResource("contact/contact.fxml"));
+            contents[6] = FXMLLoader.load(getClass().getResource("preference/preferences.fxml"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }

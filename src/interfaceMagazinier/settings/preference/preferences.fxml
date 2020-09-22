@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: white; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.settings.preference.preferencesController">
+   <children>
+      <VBox>
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-radius: 20;">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resource/icons/parametresIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Preferences">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+            <VBox alignment="TOP_CENTER" maxWidth="400.0" prefHeight="400.0" prefWidth="0.0" spacing="15.0">
+               <padding>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+               </padding>
+               <children>
+                  <Label text="Product types" />
+                  <Label fx:id="errorLabel" />
+                  <JFXTextField fx:id="productTypeTextField" maxWidth="150.0" prefWidth="150.0" promptText="Product Type" />
+                  <HBox alignment="CENTER" spacing="100.0">
+                     <children>
+                        <JFXButton onAction="#addType" text="Add type" />
+                        <JFXButton layoutX="10.0" layoutY="10.0" onAction="#deleteType" text="Delete type" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="productTypeTable" editable="true" onMouseClicked="#getSelected" prefHeight="400.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="productTypeColumn" editable="false" prefWidth="300.0" text="Product type" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+               <children>
+                  <Label text="Loyality card" />
+                  <Label fx:id="saveLabel" layoutX="777.0" layoutY="10.0" />
+                  <JFXTextField fx:id="numberOfSellsForDiscountTextField" maxWidth="300.0" prefWidth="300.0" promptText="Number of sells before discount" />
+                  <JFXTextField fx:id="discountAmountTextField" maxWidth="300.0" prefWidth="300.0" promptText="discount amount" />
+                  <JFXButton onAction="#save" text="Save" />
+               </children>
+               <padding>
+                  <Insets left="600.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

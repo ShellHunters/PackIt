@@ -51,6 +51,18 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button id="button" fx:id="preferenceButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="80.0" prefWidth="276.0" style="-fx-background-color: white;" text="Preference">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resource/icons/parametresIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button id="button" fx:id="securityButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#button" prefHeight="80.0" prefWidth="276.0" style="-fx-background-color: white;" text="Security and login">
                      <font>
                         <Font name="System Bold" size="20.0" />
