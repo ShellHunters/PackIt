@@ -12,7 +12,7 @@ public class notificationItem {
         this.titel_text = titel;
         this.description_text = description;
         this.duration_text = duration;
-        this.image_item = new Image(image_url);
+        this.image_item = new Image(image_url, 30, 30, true, true);
     }
 
     public Image getImage_item() {
