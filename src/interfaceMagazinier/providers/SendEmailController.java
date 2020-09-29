@@ -2,6 +2,7 @@ package interfaceMagazinier.providers;
 
 import basicClasses.Provider;
 import basicClasses.product;
+import basicClasses.user;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
@@ -31,10 +32,13 @@ import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -109,7 +113,7 @@ public class SendEmailController implements Initializable {
     public static SimpleBooleanProperty ForDisableSetQuantityButton = new SimpleBooleanProperty(true);
     public static SimpleBooleanProperty ForDisableMultipleCheck = new SimpleBooleanProperty(true);
     public static boolean IfTabPaneIsOpen;
-
+ public  static DecimalFormat df = new DecimalFormat("0.00");
     public void ApplyingCommand() {
         System.out.println("the size of the tab pane " + TheTabPaneRoot.getTabs().size());
         //System.out.println("the tab 1  "+TheTabPaneRoot.getTabs().get(1).getGraphic());
@@ -236,11 +240,14 @@ public class SendEmailController implements Initializable {
         MultipleSelectionList.clear();
         NeededProduct.clear();
         ProductList.clear();
-        String sql = "SELECT * FROM stock";
+        String sql = "SELECT * FROM stock where userID=?";
         Connection connection = Connector.ConnectionClass.getConnection();
-        ResultSet resultSet = connection.createStatement().executeQuery(sql);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, user.getUserID());
+        ResultSet resultSet=preparedStatement.executeQuery();
         while (resultSet.next()) {
-            float Percentage = (float) (resultSet.getInt(5) * 100) / resultSet.getInt(8);
+            df.setRoundingMode(RoundingMode.UP);
+            float Percentage = Float.parseFloat( df.format( (float) (resultSet.getInt(5) * 100) / resultSet.getInt(8)));
             // System.out.println("this is hbal test  "+resultSet.getInt(8) + "ber ber "+Percentage);
             if (resultSet.getBoolean(9))
                 WasSentCol.getStyleClass().add("ItWasSent");

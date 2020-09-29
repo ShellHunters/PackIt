@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
+import java.math.RoundingMode;
 import java.net.URL;
 import java.sql.*;
 import java.util.Collection;
@@ -150,7 +151,8 @@ public class addController implements Initializable {
         if (IfFromApplyingCommand) {
             totalfigure = ((ApplyingCommandController.TheProvider.getTotalFigure() + (float) quanity * buyPrice));
             System.out.println("in add scene  " + totalfigure);
-            ApplyingCommandController.TheProvider.setTotalFigure(totalfigure);
+           SendEmailController. df.setRoundingMode(RoundingMode.UP);
+            ApplyingCommandController.TheProvider.setTotalFigure(Float.parseFloat( SendEmailController.df.format( totalfigure));
             UpdateProvider(ApplyingCommandController.TheProvider.getId(), totalfigure);
             product theProduct = ApplyingCommandController.ProductList.get(TheIndex);
             theProduct.setIfWasAdded(true);
