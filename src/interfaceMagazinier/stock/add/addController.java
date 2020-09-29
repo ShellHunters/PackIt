@@ -110,8 +110,14 @@ public class addController implements Initializable {
         else expirationdateString = "";
 
         product product = new product(productname.getText(), barcode, sellPrice, buyPrice, quanity, expirationdateString);
+        product.setContainerName(containerName.getText());
         System.out.println("solved " + productTypeComboBox.getValue());
         product.setProductType(productTypeComboBox.getValue());
+        try {
+            product.setFloor(Integer.parseInt(floorNumber.getText()));
+        }catch (Exception e){
+
+        }
 
         if (SendEmailController.IfTabPaneIsOpen) {
             SendEmailController.ProductList.add(product);

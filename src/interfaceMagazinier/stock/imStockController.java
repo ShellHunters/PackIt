@@ -7,9 +7,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.jfoenix.controls.JFXTextField;
+import interfaceMagazinier.settings.preference.preferencesController;
 import interfaceMagazinier.stock.update.updateController;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -25,6 +28,7 @@ import javafx.stage.DirectoryChooser;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.controlsfx.control.CheckComboBox;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -57,16 +61,54 @@ public class imStockController implements Initializable {
     @FXML
     TableColumn selectedColumn;
     @FXML
+    TableColumn<product, String> floorColumn;
+    @FXML
+    TableColumn<product, String> ContainerColumn;
+    @FXML
     JFXTextField searchTextField;
+    @FXML
+    CheckComboBox typeCheckComboBox;
     @FXML
     public TableColumn<product, Boolean> detailsColumn;
     public static Integer indexOfProduct;
     public static product theFullStockProduct;
+    private SortedList<product> sortedList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        shortcutSetUp();
         tableSetUp();
+        filterSetUp();
+    }
+
+    private void filterSetUp() {
+        FilteredList<product> filteredData = new FilteredList<>(products, product -> true);
+        searchTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(product -> {
+                if (newValue == null || newValue.isEmpty()) return true;
+                String lowercaseFilter = newValue.toLowerCase();
+                if (product.getProductName().toLowerCase().contains(lowercaseFilter)) return true;
+                else if (Integer.toString(product.getBarcode()).contains(lowercaseFilter)) return true;
+                else return false;
+            });
+        }));
+
+        typeCheckComboBox.getItems().setAll(preferencesController.productTypes);
+        typeCheckComboBox.getItems().add("Others");
+        for (int i = 0; i < typeCheckComboBox.getItems().size(); i++) typeCheckComboBox.getCheckModel().check(i);
+
+        FilteredList<product> filteredDataSecond = new FilteredList<>(filteredData, product -> true);
+        typeCheckComboBox.getCheckModel().getCheckedIndices().addListener((ListChangeListener) c -> {
+            filteredDataSecond.setPredicate(product -> {
+                if (typeCheckComboBox.getCheckModel().isChecked("Others") && product.getProductType().equals("")) return true;
+                if (typeCheckComboBox.getCheckModel().getCheckedItems().contains(product.getProductType())) return true;
+                return false;
+            });
+        });
+
+        sortedList = new SortedList<>(filteredDataSecond);
+        sortedList.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedList);
     }
 
     public class CustomButtonCell<T, S> extends TableCell<T, S> {
@@ -135,6 +177,14 @@ public class imStockController implements Initializable {
         expirationdateColumn.setCellValueFactory(param -> {
             return param.getValue().expirationDateProperty();
         });
+        ContainerColumn.setCellValueFactory(param -> {
+            return param.getValue().containerNameProperty();
+        });
+        floorColumn.setCellValueFactory(param -> {
+            //Darte had el khourti hnaya bsh ki ikoun l floor number null f el bdd ma3awedhach bzwara automatiquement. syi egla3 star li tahte had el comment chouf wesh ysra f stock bsh tfham
+            if (param.getValue().getFloor() == 0) return new SimpleStringProperty("");
+            return new SimpleStringProperty(String.valueOf(param.getValue().getFloor()));
+        });
         selectedColumn.setCellValueFactory(new PropertyValueFactory<product, String>("checkbox"));
         detailsColumn.setCellValueFactory(call -> new SimpleBooleanProperty(true).asObject());
         detailsColumn.setCellFactory(call -> {
@@ -143,20 +193,6 @@ public class imStockController implements Initializable {
         //Table content
         products = FXCollections.observableArrayList();
         products = loadProducts();
-
-        FilteredList<product> filteredData = new FilteredList<>(products, product -> true);
-        searchTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(product -> {
-                if (newValue == null || newValue.isEmpty()) return true;
-                String lowercaseFilter = newValue.toLowerCase();
-                if (product.getProductName().toLowerCase().contains(lowercaseFilter)) return true;
-                else if (Integer.toString(product.getBarcode()).contains(lowercaseFilter)) return true;
-                else return false;
-            });
-        }));
-        SortedList<product> sortedList = new SortedList<>(filteredData);
-        sortedList.comparatorProperty().bind(table.comparatorProperty());
-        table.setItems(sortedList);
     }
 
     private ObservableList<product> loadProducts() {
@@ -180,6 +216,12 @@ public class imStockController implements Initializable {
                 newProduct.setInitialQuantity(rs.getInt("initialQuantity"));
                 newProduct.setNumberOfSells(rs.getInt("numberOfSells"));
                 if (rs.getString("productType") != null) newProduct.setProductType(rs.getString("productType"));
+                else newProduct.setProductType("");
+                if (rs.getString("containerName") != null) {
+                    newProduct.setContainerName(rs.getString("containerName"));
+                }
+                else newProduct.setContainerName("");
+                newProduct.setFloor(rs.getInt("floor"));
 
                 products.add(newProduct);
             }
