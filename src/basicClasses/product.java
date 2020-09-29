@@ -27,6 +27,11 @@ public class product extends RecursiveTreeObject<product> {
     private int numberOfSells;
     private SimpleStringProperty containerName;
     private SimpleIntegerProperty floor;
+    private SimpleIntegerProperty totalStock;
+private boolean confirmedCommand;
+public SimpleStringProperty providerEmail ;
+
+
 
     public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, String expirationDate) {
         this.productName = new SimpleStringProperty(productName);
@@ -45,6 +50,8 @@ public class product extends RecursiveTreeObject<product> {
         productType = new SimpleStringProperty();
         containerName = new SimpleStringProperty();
         floor = new SimpleIntegerProperty();
+        totalStock= new SimpleIntegerProperty();
+        providerEmail = new SimpleStringProperty();
     }
 
     public product() {
@@ -59,6 +66,8 @@ public class product extends RecursiveTreeObject<product> {
         productType = new SimpleStringProperty();
         containerName = new SimpleStringProperty();
         floor = new SimpleIntegerProperty();
+        totalStock= new SimpleIntegerProperty();
+        providerEmail = new SimpleStringProperty();
     }
 
     public product(String ProductName, int barCode, float BuyPrice, int Quantity, float StockPercentage, boolean ifWasSent, int InitialQuantity) {
@@ -74,6 +83,8 @@ public class product extends RecursiveTreeObject<product> {
         productType = new SimpleStringProperty();
         containerName = new SimpleStringProperty();
         floor = new SimpleIntegerProperty();
+        totalStock= new SimpleIntegerProperty();
+        providerEmail = new SimpleStringProperty();
     }
 
     /*
@@ -90,15 +101,18 @@ public class product extends RecursiveTreeObject<product> {
 
  */
 
-    public product(String ProductName, Integer Barcode, Integer neededQuantity, boolean ifWasAdded) {
+    public product(String ProductName, Integer Barcode, Integer neededQuantity, boolean ifWasAdded , boolean ConfirmedCommand) {
         this.productName = new SimpleStringProperty(ProductName);
         this.barcode = new SimpleIntegerProperty(Barcode);
         NeededQuantity = neededQuantity;
         IfWasAdded = ifWasAdded;
         numberOfSells = 0;
+        confirmedCommand=ConfirmedCommand;
         productType = new SimpleStringProperty();
         containerName = new SimpleStringProperty();
         floor = new SimpleIntegerProperty();
+        totalStock= new SimpleIntegerProperty();
+        providerEmail = new SimpleStringProperty();
     }
 
     public product(String productName, int barcode, float buyPrice, float sellPrice, int quantity, String expirationDate, int numberOfSells) {
@@ -109,6 +123,7 @@ public class product extends RecursiveTreeObject<product> {
         this.quantity = new SimpleIntegerProperty(quantity);
         this.expirationDate = new SimpleStringProperty(expirationDate);
         NeededQuantity = 0;
+        totalStock= new SimpleIntegerProperty();
 
         IfWasSent = new SimpleBooleanProperty(false);
         this.checkbox = new JFXCheckBox();
@@ -128,6 +143,8 @@ public class product extends RecursiveTreeObject<product> {
         productType = new SimpleStringProperty();
         containerName = new SimpleStringProperty();
         floor = new SimpleIntegerProperty();
+        totalStock= new SimpleIntegerProperty();
+        providerEmail = new SimpleStringProperty();
         //Complete the other vars from database
         try {
             Connection connection = ConnectionClass.getConnection();
@@ -315,6 +332,38 @@ public class product extends RecursiveTreeObject<product> {
 
     public void setFloor(int floor) {
         this.floor.set(floor);
+    }
+
+    public boolean isConfirmedCommand () {
+        return confirmedCommand;
+    }
+
+    public void setConfirmedCommand (boolean confirmedCommand) {
+        this.confirmedCommand = confirmedCommand;
+    }
+
+    public Integer getTotalStock () {
+        return totalStock.get();
+    }
+
+    public SimpleIntegerProperty totalStockProperty () {
+        return totalStock;
+    }
+
+    public void setTotalStock (int TotalStock) {
+        this.totalStock.set(TotalStock);
+    }
+
+    public String getProviderEmail () {
+        return providerEmail.get();
+    }
+
+    public SimpleStringProperty providerEmailProperty () {
+        return providerEmail;
+    }
+
+    public void setProviderEmail (String providerEmail) {
+        this.providerEmail.set(providerEmail);
     }
 }
 

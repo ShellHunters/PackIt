@@ -176,7 +176,7 @@ public class ApplyingCommandController implements Initializable {
                 });
 
 
-                if (!MyProduct.getIfWasAdded()) {
+                if (!MyProduct.getIfWasAdded() && MyProduct.isConfirmedCommand()) {
                     this.setGraphic(AddProductToStock);
                 } else {
                     this.setText("");
@@ -222,14 +222,13 @@ public class ApplyingCommandController implements Initializable {
                 setText("");
             } else {
                 product MyProduct = (product) this.getTableView().getItems().get(getIndex());
-                if (!MyProduct.getIfWasAdded()) {
+                if (!MyProduct.getIfWasAdded() && MyProduct.isConfirmedCommand()) {
                     this.isChecked.setSelected(this.getItem());
                     this.setGraphic(this.isChecked.getParent());
-                    this.setText("");
                 } else {
                     this.setGraphic(null);
-                    this.setText("");
                 }
+                this.setText("");
             }
         }
 

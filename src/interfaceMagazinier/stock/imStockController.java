@@ -51,7 +51,7 @@ public class imStockController implements Initializable {
     @FXML
     TableColumn<product, String> nameColumn;
     @FXML
-    TableColumn<product, Number> quantityColumn;
+    TableColumn<product, Number> totalQuantityColumn;
     @FXML
     TableColumn<product, Number> buypriceColumn;
     @FXML
@@ -81,6 +81,21 @@ public class imStockController implements Initializable {
         filterSetUp();
     }
 
+    Integer loadFullStockForProduct(Integer barcode) throws SQLException {
+       String Sql="select sum(quantity) from fullStock where userID=? and barcode=?";
+
+       Connection connection= ConnectionClass.getConnection();
+       PreparedStatement preparedStatement =connection.prepareStatement(Sql);
+preparedStatement.setInt(1,user.getUserID());
+        preparedStatement.setInt(2,barcode);
+ResultSet resultSet = preparedStatement.executeQuery();
+
+if (resultSet.next()){
+    return resultSet.getInt(1);
+
+}
+else return 0;
+    }
     private void filterSetUp() {
         FilteredList<product> filteredData = new FilteredList<>(products, product -> true);
         searchTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
@@ -165,8 +180,8 @@ public class imStockController implements Initializable {
             return param.getValue().productNameProperty();
         });
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        quantityColumn.setCellValueFactory(param -> {
-            return param.getValue().quantityProperty();
+        totalQuantityColumn.setCellValueFactory(param -> {
+            return param.getValue().totalStockProperty();
         });
         buypriceColumn.setCellValueFactory(param -> {
             return param.getValue().buyPriceProperty();
@@ -215,6 +230,9 @@ public class imStockController implements Initializable {
                 }
                 newProduct.setInitialQuantity(rs.getInt("initialQuantity"));
                 newProduct.setNumberOfSells(rs.getInt("numberOfSells"));
+
+                newProduct.setTotalStock(  loadFullStockForProduct(rs.getInt("barcode"))+rs.getInt("quantity"));
+                newProduct.setProviderEmail(rs.getString("providerEmail"));
                 if (rs.getString("productType") != null) newProduct.setProductType(rs.getString("productType"));
                 else newProduct.setProductType("");
                 if (rs.getString("containerName") != null) {

@@ -12,10 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.StackPane;
 
@@ -54,6 +51,13 @@ public class fullStockController implements Initializable {
     TableColumn<product, Number> sellpriceColumn;
     @FXML
     TableColumn<product, String> expirationdateColumn;
+
+    @FXML
+    private Label productProviderLabel;
+    @FXML
+    private Label productLabel;
+    @FXML
+    private TableColumn<product, String> providerEmailColumn;
     @FXML
     public TableColumn<Provider, Boolean> applyingProductColumn;
     public static product fullStackApplyProduct;
@@ -75,10 +79,13 @@ public class fullStockController implements Initializable {
                     System.out.println("the index of apply " + fullStockProductList);
 
                     fullStackApplyProduct = (product) this.getTableView().getItems().get(index);
+                    fullStackApplyProduct.setTotalStock(imStockController.theFullStockProduct.getTotalStock());
                     products.set(imStockController.indexOfProduct, fullStackApplyProduct);
 
                     fullStockProductList.set(index, imStockController.theFullStockProduct);
                     try {
+                        productLabel.setText("Product : [ " +fullStackApplyProduct.getProductName()+" ]  Quantity : { "+fullStackApplyProduct.getQuantity()+" }");
+                        productProviderLabel.setText("Provider Of the Product: "+fullStackApplyProduct.getProviderEmail());
                         overriding(imStockController.theFullStockProduct, fullStackApplyProduct);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
@@ -114,9 +121,21 @@ public class fullStockController implements Initializable {
                     newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), rs.getDate("expirationdate").toString());
                 } catch (Exception e) {
                     newProduct = new product(rs.getString("name"), rs.getInt("barcode"), rs.getFloat("buyprice"), rs.getFloat("sellprice"), rs.getInt("quantity"), "");
+
                 }
+                newProduct.setProviderEmail(rs.getString("providerEmail"));
                 newProduct.setInitialQuantity(rs.getInt("initialQuantity"));
                 newProduct.setNumberOfSells(rs.getInt("numberOfSells"));
+
+
+                if (rs.getString("productType") != null) newProduct.setProductType(rs.getString("productType"));
+                else newProduct.setProductType("");
+                if (rs.getString("containerName") != null) {
+                    newProduct.setContainerName(rs.getString("containerName"));
+                }
+                else newProduct.setContainerName("");
+                newProduct.setFloor(rs.getInt("floor"));
+                newProduct.setProviderEmail(rs.getString("providerEmail"));
                 products.add(newProduct);
             }
             return products;
@@ -135,7 +154,7 @@ public class fullStockController implements Initializable {
         }
 
         Connection connection = ConnectionClass.getConnection();
-        String Sql = "UPDATE  fullStock set buyprice=? , sellprice=? , numberOfSells=? , initialQuantity=? , quantity=? , expirationdate=? WHERE userID=? AND barcode=? and buyprice=? and sellprice=?";
+        String Sql = "UPDATE  fullStock set buyprice=? , sellprice=? , numberOfSells=? , initialQuantity=? , quantity=? , expirationdate=? , floor=?,containerName=?,providerEmail=? WHERE userID=? AND barcode=? and buyprice=? and sellprice=?";
         PreparedStatement preparedStatement = connection.prepareStatement(Sql);
         preparedStatement.setFloat(1, theFullStockProduct.getBuyPrice());
         preparedStatement.setFloat(2, theFullStockProduct.getSellPrice());
@@ -143,13 +162,16 @@ public class fullStockController implements Initializable {
         preparedStatement.setInt(4, theFullStockProduct.getInitialQuantity());
         preparedStatement.setInt(5, theFullStockProduct.getQuantity());
         preparedStatement.setString(6, theFullStockProduct.getExpirationDate());
-        preparedStatement.setInt(7, user.getUserID());
-        preparedStatement.setInt(8, theFullStockProduct.getBarcode());
-        preparedStatement.setFloat(9, theFullStockApplyProduct.getBuyPrice());
-        preparedStatement.setFloat(10, theFullStockApplyProduct.getSellPrice());
+        preparedStatement.setInt(7, theFullStockProduct.getFloor());
+        preparedStatement.setString(8, theFullStockProduct.getContainerName());
+        preparedStatement.setString(9, theFullStockProduct.getProviderEmail());
+        preparedStatement.setInt(10, user.getUserID());
+        preparedStatement.setInt(11, theFullStockProduct.getBarcode());
+        preparedStatement.setFloat(12, theFullStockApplyProduct.getBuyPrice());
+        preparedStatement.setFloat(13, theFullStockApplyProduct.getSellPrice());
         preparedStatement.executeUpdate();
 
-        Sql = "UPDATE  stock set buyprice=? , sellprice=? , numberOfSells=? , initialQuantity=? , quantity=? , expirationdate=? WHERE userID=? AND barcode=?";
+        Sql = "UPDATE  stock set buyprice=? , sellprice=? , numberOfSells=? , initialQuantity=? , quantity=? , expirationdate=?,  floor=?,containerName=?,providerEmail=? WHERE userID=? AND barcode=?";
         preparedStatement = connection.prepareStatement(Sql);
 
         preparedStatement.setFloat(1, theFullStockApplyProduct.getBuyPrice());
@@ -158,8 +180,11 @@ public class fullStockController implements Initializable {
         preparedStatement.setInt(4, theFullStockApplyProduct.getInitialQuantity());
         preparedStatement.setInt(5, theFullStockApplyProduct.getQuantity());
         preparedStatement.setString(6, theFullStockApplyProduct.getExpirationDate());
-        preparedStatement.setInt(7, user.getUserID());
-        preparedStatement.setInt(8, theFullStockApplyProduct.getBarcode());
+        preparedStatement.setInt(7, theFullStockApplyProduct.getFloor());
+        preparedStatement.setString(8, theFullStockApplyProduct.getContainerName());
+        preparedStatement.setString(9, theFullStockApplyProduct.getProviderEmail());
+        preparedStatement.setInt(10, user.getUserID());
+        preparedStatement.setInt(11, theFullStockApplyProduct.getBarcode());
         preparedStatement.executeUpdate();
 
 
@@ -186,6 +211,11 @@ public class fullStockController implements Initializable {
         expirationdateColumn.setCellValueFactory(param -> {
             return param.getValue().expirationDateProperty();
         });
+        providerEmailColumn.setCellValueFactory(param -> {
+            return param.getValue().providerEmailProperty();
+        });
+
+
         applyingProductColumn.setCellValueFactory(call -> new SimpleBooleanProperty(true).asObject());
         applyingProductColumn.setCellFactory(call -> {
             return new CustomButtonCell<>();
@@ -198,6 +228,8 @@ public class fullStockController implements Initializable {
             throwables.printStackTrace();
         }
         table.setItems(fullStockProductList);
+       productLabel.setText("Product : [ " +imStockController.theFullStockProduct.getProductName()+" ]  Quantity : { "+imStockController.theFullStockProduct.getQuantity()+" }");
+        productProviderLabel.setText("Provider Of the Product: "+imStockController.theFullStockProduct.getProviderEmail());
     }
 
 }

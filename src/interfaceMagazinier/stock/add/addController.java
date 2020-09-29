@@ -67,7 +67,7 @@ public class addController implements Initializable {
     private boolean addOnlyQuantity = false;
     private boolean isAddOnlyQuantityInFullStock = false;
     private int oldQuantity = 0;
-
+private String providerEmail;
     public addController() throws SQLException {
     }
 
@@ -130,8 +130,31 @@ public class addController implements Initializable {
         String tableName = "stock";
         if (addInFullStock) tableName = "fullStock";
         addInFullStock = false;
+        if (IfFromApplyingCommand) {
+            totalfigure = ((ApplyingCommandController.TheProvider.getTotalFigure() + (float) quanity * buyPrice));
+            System.out.println("in add scene  " + totalfigure);
+         //   addProvider(ApplyingCommandController.TheProvider.getEmail(),tableName);
 
-        String query = "INSERT INTO " + tableName + " (barcode, buyprice, expirationdate, name, quantity, sellprice, initialQuantity, userID, floor, containerName, productType) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            SendEmailController. df.setRoundingMode(RoundingMode.UP);
+            ApplyingCommandController.TheProvider.setTotalFigure(Float.parseFloat( SendEmailController.df.format( totalfigure)));
+            providerEmail=ApplyingCommandController.TheProvider.getEmail();
+            UpdateProvider(ApplyingCommandController.TheProvider.getId(), totalfigure);
+
+            product theProduct = ApplyingCommandController.ProductList.get(TheIndex);
+            theProduct.setIfWasAdded(true);
+            CommandHistoryController.command.getListOfProducts().set(TheIndex, theProduct);
+            //ApplyingCommandController.ProductList.set(TheIndex, theProduct);
+            SetThatWasAdded(barcode, CommandHistoryController.command.getId());
+            ApplyingCommandController.InitTable();
+        } else if (providerCheck.isSelected()) {
+            totalfigure = ((providersComboBox.getValue().getTotalFigure() + (float) quanity * buyPrice));
+            providerEmail=providersComboBox.getValue().getEmail();
+
+            UpdateProvider(providersComboBox.getValue().getId(), totalfigure);
+        }
+
+
+        String query = "INSERT INTO " + tableName + " (barcode, buyprice, expirationdate, name, quantity, sellprice, initialQuantity, userID, floor, containerName, productType,providerEmail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, barcode);
         preparedStatement.setString(2, buyprice.getText());
@@ -151,25 +174,10 @@ public class addController implements Initializable {
         else preparedStatement.setNull(10, Types.VARCHAR);
         if (productTypeComboBox.getValue() != null) preparedStatement.setString(11, productTypeComboBox.getValue());
         else preparedStatement.setNull(11, Types.VARCHAR);
-
+if (providerEmail!=null)
+    preparedStatement.setString(12,providerEmail);
         preparedStatement.execute();
 
-        if (IfFromApplyingCommand) {
-            totalfigure = ((ApplyingCommandController.TheProvider.getTotalFigure() + (float) quanity * buyPrice));
-            System.out.println("in add scene  " + totalfigure);
-           SendEmailController. df.setRoundingMode(RoundingMode.UP);
-            ApplyingCommandController.TheProvider.setTotalFigure(Float.parseFloat( SendEmailController.df.format( totalfigure));
-            UpdateProvider(ApplyingCommandController.TheProvider.getId(), totalfigure);
-            product theProduct = ApplyingCommandController.ProductList.get(TheIndex);
-            theProduct.setIfWasAdded(true);
-            CommandHistoryController.command.getListOfProducts().set(TheIndex, theProduct);
-            //ApplyingCommandController.ProductList.set(TheIndex, theProduct);
-            SetThatWasAdded(barcode, CommandHistoryController.command.getId());
-            ApplyingCommandController.InitTable();
-        } else if (providerCheck.isSelected()) {
-            totalfigure = ((providersComboBox.getValue().getTotalFigure() + (float) quanity * buyPrice));
-            UpdateProvider(providersComboBox.getValue().getId(), totalfigure);
-        }
 
         resetFields();
         connection.close();
@@ -236,8 +244,37 @@ public class addController implements Initializable {
         quantity.setText("");
         expirationdate.setValue(null);
     }
+void addProvider(String email, String tableName) throws SQLException {
+    String Sql;
+    Connection connection = ConnectionClass.getConnection();
+ //   PreparedStatement preparedStatement;
+    Statement statement = connection.createStatement();
 
-    @Override
+if (tableName.equals("stock")){
+     Sql="update "+tableName+"set providerEmail="+"'"+email+"' where barcode="+barcode.getText();//+"and userID=?";
+    //preparedStatement = connection.prepareStatement(Sql);
+  //  preparedStatement.setString(1, email);
+statement.executeUpdate(Sql);
+
+    System.out.println("hada houwa le ttest " + email);
+   // preparedStatement.setInt(2, user.getUserID());
+}
+/*
+else {
+    Sql = "update " + tableName + "set providerEmail='" + email + "'" + " where barcode="+barcode.getText()+" and buyprice=? and sellprice=? and userID=?";
+    preparedStatement = connection.prepareStatement(Sql);
+
+
+    preparedStatement.setInt(1, Integer.parseInt(buyprice.getText()));
+    preparedStatement.setInt(2, Integer.parseInt(sellprice.getText()));
+    preparedStatement.setInt(3, user.getUserID());
+
+
+}
+    preparedStatement.executeUpdate();
+
+ */
+}    @Override
     public void initialize(URL location, ResourceBundle resources) {
         IfFromApplyingCommand = ApplyingCommandController.IfApplyingCommandIsOpen;
 

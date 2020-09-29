@@ -94,7 +94,7 @@
                         <TableColumn fx:id="selectedColumn" prefWidth="100.0" text="Selected" />
                         <TableColumn fx:id="barcodeColumn" prefWidth="150.0" text="Barcode" />
                         <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Name" />
-                        <TableColumn fx:id="quantityColumn" prefWidth="150.0" text="Quantity" />
+                        <TableColumn fx:id="totalQuantityColumn" prefWidth="150.0" text="TotalQuantity" />
                         <TableColumn fx:id="buypriceColumn" prefWidth="150.0" text="Buy  price" />
                         <TableColumn fx:id="sellpriceColumn" prefWidth="150.0" text="Sell price" />
                         <TableColumn fx:id="expirationdateColumn" minWidth="0.0" prefWidth="145.0" text="Expiration date" />

@@ -10,8 +10,8 @@ import java.util.Properties;
 
 public class Email {
     public static boolean ItSent =false;
-    private static final String senderMail="abdelkader.piktaaek@gmail.com ";
-    private static final String senderPassword="benzema1999";
+    public static  String senderMail;
+    public static  String senderPassword;
     static public void send() {
         System.out.println("Prepare sending msg ...");
         Properties properties = new Properties();
@@ -35,7 +35,7 @@ public class Email {
 
         } catch (MessagingException me) {
             me.printStackTrace();
-            ItSent= true;
+            ItSent= false;
         }
     }
     private static Message prepareMessage(Session session){

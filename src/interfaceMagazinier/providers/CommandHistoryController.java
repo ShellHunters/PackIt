@@ -4,6 +4,7 @@ import Connector.ConnectionClass;
 import basicClasses.Command;
 import basicClasses.Provider;
 import basicClasses.product;
+import basicClasses.user;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXDialog;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -122,11 +123,15 @@ public class CommandHistoryController implements Initializable {
         Integer ID;
         Connection connection = ConnectionClass.getConnection();
         Connection connection2 = ConnectionClass.getConnection();
-        String Sql2 = "SELECT * FROM  ProvidersCommand";
-        String Sql = "SELECT * FROM  ProductsCommand";
+        String Sql2 = "SELECT * FROM  ProvidersCommand where userID=?";
+
+        String Sql = "SELECT * FROM  ProductsCommand where userID=?";
+
         //String Sql3="SELECT IdOFTheProvider FROM ProvidersCommand WHERE id=?";
         PreparedStatement preparedStatement2 = connection2.prepareStatement(Sql2);
+        preparedStatement2.setInt(1,user.getUserID());
         PreparedStatement preparedStatement = connection.prepareStatement(Sql);
+        preparedStatement.setInt(1,user.getUserID());
         ResultSet resultSet2 = preparedStatement2.executeQuery();
         /*
         (new Thread(() -> {
@@ -168,7 +173,7 @@ public class CommandHistoryController implements Initializable {
             // if (!CommandHashMap.containsKey(ID))
             //CommandHashMap.put(ID,  new Command(ID, new  product(resultSet.getString(2),resultSet.getInt(6),resultSet.getInt(5),resultSet.getBoolean(3))));
 
-            CommandHashMap.get(ID).addListProducts(new product(resultSet.getString(2), resultSet.getInt(6), resultSet.getInt(5), resultSet.getBoolean(3)));
+            CommandHashMap.get(ID).addListProducts(new product(resultSet.getString(2), resultSet.getInt(6), resultSet.getInt(5), resultSet.getBoolean(3),resultSet.getBoolean(8)));
 
         }
 /*

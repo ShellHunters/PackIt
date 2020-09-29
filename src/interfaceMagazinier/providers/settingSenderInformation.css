@@ -1,0 +1,42 @@
+/*FONT IMPORTATION*/
+@font-face {
+    font-family: 'Pacifico';
+    src: url('../resource/fonts/Pacifico-Regular.ttf');
+}
+
+
+#sceneName{
+    -fx-font: bolder 25px "Pacifico";
+
+}
+
+
+.button{
+    -fx-background-color: #170480;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-font-size: 16px;
+
+}
+
+.button:pressed{
+    -fx-background-color: #ee974c;
+}
+
+.button:hover{
+    -fx-background-color: #ee974c;
+}
+
+.ErrorMessage{
+    -fx-font-family: 'Roboto Mono for Powerline';
+    -fx-text-fill: red;
+    -fx-font-size: 20;
+
+}
+
+.ValidateMessage{
+    -fx-font-family: 'Roboto Mono for Powerline';
+    -fx-text-fill: limegreen;
+    -fx-font-size: 20;
+
+}

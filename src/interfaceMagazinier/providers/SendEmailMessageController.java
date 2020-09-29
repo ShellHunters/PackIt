@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -138,6 +139,9 @@ public class SendEmailMessageController implements Initializable {
 
     @FXML
     private TextArea MessageArea;
+
+
+
     @FXML
     private JFXButton SendEmailMessageButton;
     public static Provider providers;
@@ -158,7 +162,9 @@ public class SendEmailMessageController implements Initializable {
     public static SimpleBooleanProperty AddProductButtonClicked = new SimpleBooleanProperty();
     public static SimpleBooleanProperty IfMultipleProductSelect = new SimpleBooleanProperty();
     public static String msgRecipients;
-
+    public static Provider tempoProvider;
+public static JFXDialog settingInfoDialog;
+public static SimpleBooleanProperty forDisablingTextArea = new SimpleBooleanProperty();
     public static String Quantity, msgSubject, msgContent;
 
 
@@ -306,6 +312,7 @@ public class SendEmailMessageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        forDisablingTextArea.set(true);
         SendEmailMessageButton.setDisable(true);
         ProviderCombobox.setItems(imProviderController.ProviderList);
         IfModifyIsClicled = false;
@@ -589,22 +596,19 @@ public class SendEmailMessageController implements Initializable {
             msgRecipients = ProviderCombobox.getValue().getEmail();
             MessageArea.setDisable(true);
             ProductArea.setDisable(true);
+            tempoProvider= ProviderCombobox.getValue();
+            ShowSettingInformation ();
+System.out.println("after it this is the value "+Email.ItSent);
 
-            Email.send();
-            DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = new Date();
             //System.out.println("the date test   "+dateformat.format(System.currentTimeMillis()));
-            InsertProductToCommand(ProductList, ProviderCombobox.getValue(), dateformat.format(System.currentTimeMillis()));
-            if (Email.ItSent) {
-                for (product infoProduct : ProductList) {
-                    infoProduct.setIfWasSent(true);
-                    EmailWasSent(infoProduct.getBarcode());
-                }
+            forDisablingTextArea.addListener((observable, oldValue, newValue) -> {
+if (!forDisablingTextArea.get()) {
+    MessageArea.setDisable(forDisablingTextArea.get());
+    ProductArea.setDisable(forDisablingTextArea.get());
+}
+            });
 
-                MessageArea.setDisable(false);
-                ProductArea.setDisable(false);
-
-            }
+            forDisablingTextArea.set(true);
         }
 /*
         String path = "C:\\Users\\Nassim\\Desktop\\PackItIn\\src\\resource\\File\\Blank_A4.jasper";
@@ -678,18 +682,25 @@ public class SendEmailMessageController implements Initializable {
             SendEmailController.NeededProduct.add(infoProducts);
         SelectedProductList.clear();
     }
+public  void ShowSettingInformation () throws IOException {
+        StackPane stackPane = FXMLLoader.load(getClass().getResource("settingSenderInformation.fxml"));
+    settingInfoDialog= new JFXDialog(SendEmailMessageRoot,stackPane,JFXDialog.DialogTransition.RIGHT);
+    settingInfoDialog.show();
 
-    void InsertProductToCommand(ObservableList<product> ProductList, Provider provider, String Date) throws SQLException {
+
+}
+  public static  void InsertProductToCommand(ObservableList<product> ProductList, Provider provider, String Date) throws SQLException {
 
         Connection connection = ConnectionClass.getConnection();
         //  Connection connection2 =ConnectionClass.getConnection();
 
-        String Sql = "INSERT INTO ProductsCommand (id,ProductName,DateOfCommand,RequiredQuantity,barcode) values (?,?,?,?,?)";
-        String Sql2 = "INSERT INTO ProvidersCommand (id,FirstName,LastName,PhoneNumber,CommandDate,Email,IdOFTheProvider) values (?,?,?,?,?,?,?)";
-        String Sql3 = "SELECT * FROM ProductsCommand WHERE id = (SELECT MAX(id) FROM ProductsCommand)";
+        String Sql = "INSERT INTO ProductsCommand (id,ProductName,DateOfCommand,RequiredQuantity,barcode,userID) values (?,?,?,?,?,?)";
+        String Sql2 = "INSERT INTO ProvidersCommand (id,FirstName,LastName,PhoneNumber,CommandDate,Email,IdOFTheProvider,userID) values (?,?,?,?,?,?,?,?)";
+        String Sql3 = "SELECT * FROM ProductsCommand WHERE id = (SELECT MAX(id) FROM ProductsCommand) and userID=?";
         int id = 1;
 
         PreparedStatement preparedStatement = connection.prepareStatement(Sql3);
+        preparedStatement.setInt(1,user.getUserID());
         // PreparedStatement preparedStatement2 = connection2.prepareStatement(Sql2);
         //   PreparedStatement preparedStatement3 = connectio
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -710,6 +721,7 @@ public class SendEmailMessageController implements Initializable {
             preparedStatement.setString(3, Date);
             preparedStatement.setInt(4, Product.getNeededQuantity());
             preparedStatement.setInt(5, Product.getBarcode());
+            preparedStatement.setInt(6, user.getUserID());
             preparedStatement.executeUpdate();
         }
         preparedStatement = connection.prepareStatement(Sql2);
@@ -723,6 +735,7 @@ public class SendEmailMessageController implements Initializable {
         preparedStatement.setString(5, Date);
         preparedStatement.setString(6, provider.getEmail());
         preparedStatement.setInt(7, provider.getId());
+        preparedStatement.setInt(8, user.getUserID());
 
 
         preparedStatement.executeUpdate();

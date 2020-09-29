@@ -69,7 +69,7 @@ public class sell {
         this.totalPrice = new SimpleFloatProperty(this.totalPrice.get() + product.getSellPrice());
         this.totalProfit = new SimpleFloatProperty(this.totalProfit.get() + product.getSellPrice() - product.getBuyPrice());
         this.soldProducts.forEach(product1 -> {
-            if (product1.getBarcode() == product.getBarcode()){
+            if (product1.getBarcode().equals(product.getBarcode())){
                 product1.setQuantity(product1.getQuantity() + 1);
                 b.set(false);
                 return;
@@ -110,7 +110,7 @@ public class sell {
              //reminder nassim : if u have time add a soldQUantity field in the product class and adjust this function
              AtomicInteger newQuantity = new AtomicInteger();
              imStockController.products.forEach(originalProduct -> {
-                 if (originalProduct.getBarcode() == product.getBarcode()){
+                 if (originalProduct.getBarcode().equals(product.getBarcode())){
                      newQuantity.set(originalProduct.getQuantity() - product.getQuantity());
                      return;
                  }
