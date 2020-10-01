@@ -10,6 +10,8 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -74,18 +76,22 @@ public class fullStockController implements Initializable {
                 this.setText("");
                 this.setGraphic(null);
             } else {
+                product MyProduct = (product) this.getTableView().getItems().get(getIndex());
                 ApplyButton.setOnAction(event -> {
                     Integer index = this.getIndex();
                     System.out.println("the index of apply " + fullStockProductList);
 
                     fullStackApplyProduct = (product) this.getTableView().getItems().get(index);
+                    product zeroElement=(product) this.getTableView().getItems().get(0);
+
                     fullStackApplyProduct.setTotalStock(imStockController.theFullStockProduct.getTotalStock());
+                    fullStockProductList.set(index,zeroElement);
+                    fullStockProductList.set(0,fullStackApplyProduct );
                     products.set(imStockController.indexOfProduct, fullStackApplyProduct);
 
-                    fullStockProductList.set(index, imStockController.theFullStockProduct);
+
                     try {
-                        productLabel.setText("Product : [ " +fullStackApplyProduct.getProductName()+" ]  Quantity : { "+fullStackApplyProduct.getQuantity()+" }");
-                        productProviderLabel.setText("Provider Of the Product: "+fullStackApplyProduct.getProviderEmail());
+
                         overriding(imStockController.theFullStockProduct, fullStackApplyProduct);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
@@ -93,10 +99,18 @@ public class fullStockController implements Initializable {
                     product tempoProduct = fullStackApplyProduct;
                     fullStackApplyProduct = theFullStockProduct;
                     theFullStockProduct = tempoProduct;
+                    imStockController.buyPriceProduct=theFullStockProduct.getBuyPrice();
+                    imStockController.sellPriceProduct=theFullStockProduct.getSellPrice();
+
+
 
                 });
-
-                this.setGraphic(ApplyButton);
+if (MyProduct.getBuyPrice()==imStockController.buyPriceProduct&&MyProduct.getSellPrice()==imStockController.sellPriceProduct)
+{
+    this.setText("");
+    this.setGraphic(null);
+}
+              else  this.setGraphic(ApplyButton);
             }
         }
 
@@ -222,14 +236,49 @@ public class fullStockController implements Initializable {
         });
 
         fullStockProductList.clear();
+
         try {
+            fullStockProductList.add(imStockController.theFullStockProduct);
             fullStockProductList.addAll(searchInFullStockTable(imStockController.theFullStockProduct.getBarcode()));
+            for (product Myproduct :fullStockProductList){
+
+                System.out.println("sell price "+Myproduct.getSellPrice() +" Buy price "+Myproduct.getBuyPrice());
+
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        table.setItems(fullStockProductList);
-       productLabel.setText("Product : [ " +imStockController.theFullStockProduct.getProductName()+" ]  Quantity : { "+imStockController.theFullStockProduct.getQuantity()+" }");
-        productProviderLabel.setText("Provider Of the Product: "+imStockController.theFullStockProduct.getProviderEmail());
+
+
+        FilteredList<product> Results = new FilteredList<>(fullStockProductList, b -> true);
+        searchTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
+            Results.setPredicate(product -> {
+                if (newValue == null || newValue.isEmpty())
+                    return true;
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (product.getProductName().toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else if (String.valueOf(product.getBarcode()).toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else if (String.valueOf(product.getBuyPrice()).toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else if (String.valueOf(product.getInitialQuantity()).toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else if (String.valueOf(product.getQuantity()).toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else if (String.valueOf(product.getStockPercentage()).toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    return true;
+                    //else if (product.getProductType().toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    //  return true;
+                else
+                    return false;
+            });
+        }));
+
+        SortedList<product> SortedResult = new SortedList<>(Results);
+        SortedResult.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(SortedResult);
+        System.out.println("initialize");
     }
 
 }

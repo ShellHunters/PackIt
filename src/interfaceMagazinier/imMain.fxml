@@ -17,7 +17,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 
-<StackPane id="mainFrame" fx:id="mainStackPane" stylesheets="@imMain.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.imMainController">
+<StackPane id="mainFrame" fx:id="mainStackPane" stylesheets="@imMain.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.imMainController">
    <children>
       <AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0">
          <children>
@@ -34,14 +34,23 @@
                               <JFXHamburger fx:id="hamburger" alignment="CENTER" prefHeight="0.0" />
                            </graphic>
                         </MenuButton>
-                        <ImageView fx:id="notificationImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resource/icons/notificationsIconWhite.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="45.0" />
-                           </HBox.margin>
-                        </ImageView>
+                        <StackPane prefHeight="45.0" prefWidth="39.0">
+                           <children>
+                              <ImageView id="notification" fx:id="notificationImage" fitHeight="40.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../../../run/media/pikta_ka/HBCD_PE_X64/notificationPro/src/resource/icons/notificationsIconWhite.png" />
+                                 </image>
+                              </ImageView>
+                              <Label id="cont_notification" fx:id="notification_cont">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <StackPane.margin>
+                                    <Insets bottom="25.0" left="16.0" />
+                                 </StackPane.margin>
+                              </Label>
+                           </children>
+                        </StackPane>
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />

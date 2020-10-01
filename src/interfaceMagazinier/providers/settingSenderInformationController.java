@@ -2,6 +2,7 @@ package interfaceMagazinier.providers;
 
 import basicClasses.Email;
 import basicClasses.product;
+import basicClasses.user;
 import javafx.event.ActionEvent;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -98,6 +99,7 @@ boolean verifyIfEmpty(){
     @Override
     public void initialize (URL location, ResourceBundle resources) {
         errorLabel.setText("");
+        emailTextField.setText(user.getEmail());
 passwordField.textProperty().addListener((observable, oldValue, newValue) ->{
 
     SendEmailMessageController.settingInfoDialog.setOverlayClose(verifyIfEmpty());

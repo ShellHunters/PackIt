@@ -33,7 +33,7 @@ public class addController implements Initializable {
     @FXML
     JFXTextField productname;
     @FXML
-    JFXTextField barcode;
+  public   JFXTextField barcode;
     @FXML
     JFXTextField sellprice;
     @FXML
@@ -179,8 +179,29 @@ if (providerEmail!=null)
         preparedStatement.execute();
 
 
-        resetFields();
+
         connection.close();
+        int i=0;
+        System.out.println("testing barcode "+(barcode));
+
+        for (product myProduct : imStockController.products){
+            if (myProduct.getBarcode().equals(barcode))
+            {
+
+                if (myProduct.getTotalStock()!=null)
+                myProduct.setTotalStock(myProduct.getTotalStock()+Integer.parseInt( this.quantity.getText()));
+                else
+                    myProduct.setTotalStock(myProduct.getQuantity()+Integer.parseInt( this.quantity.getText()));
+                imStockController.products.set(i, myProduct);
+                break;
+            }
+
+                i++;
+
+        }
+
+
+        resetFields();
     }
 
     private boolean errorCheck() throws SQLException {

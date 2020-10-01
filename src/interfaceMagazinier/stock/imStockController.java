@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.jfoenix.controls.JFXTextField;
 import interfaceMagazinier.settings.preference.preferencesController;
+import interfaceMagazinier.stock.fullStock.fullStockController;
 import interfaceMagazinier.stock.update.updateController;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -30,6 +31,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.controlsfx.control.CheckComboBox;
 
+import java.awt.geom.FlatteningPathIterator;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -71,6 +73,7 @@ public class imStockController implements Initializable {
     @FXML
     public TableColumn<product, Boolean> detailsColumn;
     public static Integer indexOfProduct;
+    public static Float buyPriceProduct,sellPriceProduct;
     public static product theFullStockProduct;
     private SortedList<product> sortedList;
 
@@ -79,6 +82,7 @@ public class imStockController implements Initializable {
 //        shortcutSetUp();
         tableSetUp();
         filterSetUp();
+
     }
 
     Integer loadFullStockForProduct(Integer barcode) throws SQLException {
@@ -143,6 +147,8 @@ else return 0;
                         indexOfProduct = this.getIndex();
                         System.out.println("the index " + indexOfProduct);
                         theFullStockProduct = (product) this.getTableView().getItems().get(this.getIndex());
+                        buyPriceProduct=theFullStockProduct.getBuyPrice();
+                                sellPriceProduct=theFullStockProduct.getSellPrice();
                         showFullStock();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -167,6 +173,13 @@ else return 0;
         fullStockDialog = new JFXDialog(stackPane, fullStockCoutainer, DialogTransition.BOTTOM);
 
         fullStockDialog.show();
+        fullStockDialog.setOnDialogClosed(event -> {
+            theFullStockProduct=null;
+            fullStockController.fullStackApplyProduct=null;
+            sellPriceProduct=null;
+            buyPriceProduct=null;
+            System.out.println("abdelkader boussaid");
+        });
 
 
     }

@@ -1,5 +1,6 @@
 
-#notification_stackpane,.list-view{
+#notification_stackpane,#content,.list-view{
+    -fx-background-color: transparent;
     -fx-background-radius:15;
 }
 #notification_label{
@@ -9,27 +10,25 @@
 .list-cell{
     -fx-background-radius:15;
 }
-
+.list-cell:selected{
+    -fx-text-fill: #f5f0e3;
+    -fx-background-color: #ee974c;
+}
 #hbox{
     -fx-background-color: #ccc9bd;
     -fx-background-radius:50;
+    -fx-alignment: center;
 }
 #vBox{
     -fx-pref-width: 270.0;
     -fx-padding: 0 0 0 10;
 }
-#hBox{
-    -fx-alignment: center;
-    -fx-background-radius:30;
-}
-
 #hbox:hover{
-    -fx-background-color: #40bfc1;
+    -fx-background-color: #ee974c;
 }
 #HBOX{
    -fx-pref-width: 50;
     -fx-pref-height: 50;
-    -fx-fill-height: 50;
     -fx-fill-width: 50;
     -fx-alignment: center;
     -fx-background-radius: 15;
@@ -40,7 +39,7 @@
 }
 #description1{
     -fx-font-size: 12;
-    -fx-text-fill: #266f8c;
+    -fx-text-fill: #170480;
 }
 #duration{
     -fx-font-size:8;

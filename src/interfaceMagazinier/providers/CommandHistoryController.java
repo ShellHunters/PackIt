@@ -173,7 +173,7 @@ public class CommandHistoryController implements Initializable {
             // if (!CommandHashMap.containsKey(ID))
             //CommandHashMap.put(ID,  new Command(ID, new  product(resultSet.getString(2),resultSet.getInt(6),resultSet.getInt(5),resultSet.getBoolean(3))));
 
-            CommandHashMap.get(ID).addListProducts(new product(resultSet.getString(2), resultSet.getInt(6), resultSet.getInt(5), resultSet.getBoolean(3),resultSet.getBoolean(8)));
+            CommandHashMap.get(ID).addListProducts(new product(resultSet.getString(2), resultSet.getInt(6), resultSet.getInt(5), resultSet.getBoolean(3)));
 
         }
 /*

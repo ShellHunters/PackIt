@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 
 public class product extends RecursiveTreeObject<product> {
     private SimpleStringProperty productName;
@@ -28,7 +29,7 @@ public class product extends RecursiveTreeObject<product> {
     private SimpleStringProperty containerName;
     private SimpleIntegerProperty floor;
     private SimpleIntegerProperty totalStock;
-private boolean confirmedCommand;
+
 public SimpleStringProperty providerEmail ;
 
 
@@ -101,13 +102,13 @@ public SimpleStringProperty providerEmail ;
 
  */
 
-    public product(String ProductName, Integer Barcode, Integer neededQuantity, boolean ifWasAdded , boolean ConfirmedCommand) {
+    public product(String ProductName, Integer Barcode, Integer neededQuantity, boolean ifWasAdded ) {
         this.productName = new SimpleStringProperty(ProductName);
         this.barcode = new SimpleIntegerProperty(Barcode);
         NeededQuantity = neededQuantity;
         IfWasAdded = ifWasAdded;
         numberOfSells = 0;
-        confirmedCommand=ConfirmedCommand;
+
         productType = new SimpleStringProperty();
         containerName = new SimpleStringProperty();
         floor = new SimpleIntegerProperty();
@@ -158,6 +159,35 @@ public SimpleStringProperty providerEmail ;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean equals (Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        product product = (product) o;
+        return IfWasAdded == product.IfWasAdded &&
+                numberOfSells == product.numberOfSells &&
+                Objects.equals(productName, product.productName) &&
+                Objects.equals(barcode, product.barcode) &&
+                Objects.equals(buyPrice, product.buyPrice) &&
+                Objects.equals(sellPrice, product.sellPrice) &&
+                Objects.equals(stockPercentage, product.stockPercentage) &&
+                Objects.equals(quantity, product.quantity) &&
+                Objects.equals(IfWasSent, product.IfWasSent) &&
+                Objects.equals(expirationDate, product.expirationDate) &&
+                Objects.equals(NeededQuantity, product.NeededQuantity) &&
+                Objects.equals(productType, product.productType) &&
+                Objects.equals(initialQuantity, product.initialQuantity) &&
+                Objects.equals(containerName, product.containerName) &&
+                Objects.equals(floor, product.floor) &&
+                Objects.equals(totalStock, product.totalStock) &&
+                Objects.equals(providerEmail, product.providerEmail);
+    }
+
+    @Override
+    public int hashCode () {
+        return Objects.hash(productName, barcode, buyPrice, sellPrice, stockPercentage, quantity, IfWasSent, expirationDate, NeededQuantity, IfWasAdded, productType, checkbox, initialQuantity, numberOfSells, containerName, floor, totalStock, providerEmail);
     }
 
     public Integer getNeededQuantity() {
@@ -334,13 +364,7 @@ public SimpleStringProperty providerEmail ;
         this.floor.set(floor);
     }
 
-    public boolean isConfirmedCommand () {
-        return confirmedCommand;
-    }
 
-    public void setConfirmedCommand (boolean confirmedCommand) {
-        this.confirmedCommand = confirmedCommand;
-    }
 
     public Integer getTotalStock () {
         return totalStock.get();
