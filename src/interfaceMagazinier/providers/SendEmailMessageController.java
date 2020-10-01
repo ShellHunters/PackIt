@@ -687,6 +687,8 @@ public  void ShowSettingInformation () throws IOException {
     settingInfoDialog= new JFXDialog(SendEmailMessageRoot,stackPane,JFXDialog.DialogTransition.RIGHT);
     settingInfoDialog.show();
 
+    settingInfoDialog.setOnDialogClosed(e->forDisablingTextArea.set(false));
+
 
 }
   public static  void InsertProductToCommand(ObservableList<product> ProductList, Provider provider, String Date) throws SQLException {

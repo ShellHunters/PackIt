@@ -79,6 +79,7 @@ public class imProviderController implements Initializable {
     @FXML
     public ContextMenu ContextList;
     public static JFXDialog ModifyDialog;
+    public static JFXDialog infoProviderDialog;
     @FXML
     private MenuItem DeleteSelectedContext;
     public AnchorPane ModifyContainer;
@@ -104,27 +105,10 @@ public class imProviderController implements Initializable {
 
     public void AddProviders(ActionEvent event) throws IOException {
 
-        if (SendEmailMessageController.ForDisableModifyButton.get()) {
-            for (Provider provider : SelectedProvidersForTheListOfEmail) {
-                if (!SendEmailMessageController.ProvidersList.contains(provider))
-                    SendEmailMessageController.ProvidersList.add(provider);
-            }
-            for (Provider provider : SelectedProvidersListForEmail) {
-                if (!SendEmailMessageController.ProvidersList.contains(provider))
-                    SendEmailMessageController.ProvidersList.add(provider);
-            }
-            ProviderList.removeAll(SelectedProvidersForTheListOfEmail);
-            ProviderList.removeAll(SelectedProvidersListForEmail);
-
-        } else {
             AnchorPane root = FXMLLoader.load(getClass().getResource("InfoProviders.fxml"));
-            Scene scene = new Scene(root);
-            AddProviderStage = new Stage();
-            AddProviderStage.initStyle(StageStyle.TRANSPARENT);
+          infoProviderDialog=new JFXDialog(ProvidersRootStackPane,root,JFXDialog.DialogTransition.LEFT);
+        infoProviderDialog.show();
 
-            AddProviderStage.setScene(scene);
-            AddProviderStage.show();
-        }
 
     }
 

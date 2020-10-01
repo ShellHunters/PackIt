@@ -85,6 +85,8 @@ SendEmailMessageController.forDisablingTextArea.set(false);
     @FXML
         public void exit ( ActionEvent event){
         SendEmailMessageController.settingInfoDialog.close();
+
+        SendEmailMessageController.forDisablingTextArea.set(false);
         }
 
     static boolean VerifyValidateEmail(JFXTextField textField) {

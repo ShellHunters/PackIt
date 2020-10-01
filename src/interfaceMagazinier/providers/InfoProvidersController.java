@@ -22,6 +22,8 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+import static interfaceMagazinier.providers.imProviderController.infoProviderDialog;
+
 public class InfoProvidersController implements Initializable {
 
     @FXML
@@ -70,18 +72,21 @@ public class InfoProvidersController implements Initializable {
         FirstField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                infoProviderDialog.setOverlayClose(VerifyIfEmpty());
                 AddProvider.setDisable(VerifyIfEmpty());
             }
         });
         this.LastField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                infoProviderDialog.setOverlayClose(VerifyIfEmpty());
                 AddProvider.setDisable(VerifyIfEmpty());
             }
         });
         this.EmailField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                infoProviderDialog.setOverlayClose(VerifyIfEmpty());
                 AddProvider.setDisable(VerifyIfEmpty());
 
             }
@@ -89,12 +94,14 @@ public class InfoProvidersController implements Initializable {
         this.PhoneField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                infoProviderDialog.setOverlayClose(VerifyIfEmpty());
                 AddProvider.setDisable(VerifyIfEmpty());
             }
         });
         this.AddrField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                infoProviderDialog.setOverlayClose(VerifyIfEmpty());
                 AddProvider.setDisable(VerifyIfEmpty());
 
             }
