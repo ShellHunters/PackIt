@@ -1,11 +1,15 @@
 package interfaceClient;
 
+import interfaceClient.add.addController;
 import Connector.ConnectionClass;
 import basicClasses.product;
+import basicClasses.sell;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
 import identification.identificationMain;
+import interfaceMagazinier.stock.imStockController;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -14,16 +18,28 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class icMainController implements Initializable {
@@ -34,10 +50,105 @@ public class icMainController implements Initializable {
     @FXML TableColumn<product, String> nameColumn;
     @FXML TableColumn<product, Number> priceColumn;
     @FXML JFXTextField searchTextField;
+    @FXML
+    public TableColumn<product, Boolean> addColumn;
+    public StackPane addCoutainer;
+    public static JFXDialog addDialog;
+    public static Integer indexOfProduct;
+    public static sell sellColletion = new sell() ;
+    public static product clientProduct ;
+    public static int neededQuantity ;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableSetUp();
+
+    }
+
+    public class CustomButtonCell<T, S> extends TableCell<T, S> {
+        private Button add = new Button("Add");
+        @Override
+        protected void updateItem(S item, boolean empty) {
+
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                this.setText("");
+                this.setGraphic(null);
+            } else {
+                add.setOnAction(event -> {
+                    try {
+                     indexOfProduct = this.getIndex() ;
+                     clientProduct= (product) this.getTableView().getItems().get(this.getIndex());
+                     addProduct();
+                     sellColletion.addtocommande(clientProduct);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                });
+                this.setGraphic(add);
+
+
+            }
+        }
+
+
+
+    }
+    public double  totalprice()
+    {
+        double totalPrice = 0;
+        for (product bean : sellColletion.getSoldProducts())
+        {
+            totalPrice= totalPrice+(bean.getQuantity()*bean.getSellPrice());
+        }
+        return totalPrice ;
+    }
+    public void printCommande() {
+
+
+        String path = "src/resource/File/commande.jasper";
+
+
+        try {
+            // Path documentPath
+            // HashMap<String, Object> params
+            // JRDataSource jasperDataSource/
+            // Indentation CTRL + ALT + L
+
+            Path documentPath = Paths.get(path);
+            Map<String, Object> params = new HashMap<>();
+            params.put("Total",String.valueOf(totalprice()));
+            JREmptyDataSource emptyDatasource = new JREmptyDataSource();
+
+
+            JRBeanCollectionDataSource jasperDataSource = new JRBeanCollectionDataSource(sellColletion.getSoldProducts());
+            if (sellColletion.getSoldProducts().isEmpty()) {
+                JasperPrint jasperPrint = JasperFillManager.fillReport(path, params, emptyDatasource);
+                JasperViewer.viewReport(jasperPrint, false);
+            } else {
+                JasperPrint jasperPrint = JasperFillManager.fillReport(documentPath.toAbsolutePath().toString(), params, jasperDataSource);
+                JasperViewer.viewReport(jasperPrint, false);
+
+            }
+            sellColletion= new sell() ;
+
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void addProduct() throws IOException {
+
+        addCoutainer = FXMLLoader.load(getClass().getResource("add/add.fxml"));
+        addDialog = new JFXDialog(stackPane, addCoutainer, JFXDialog.DialogTransition.BOTTOM);
+
+        addDialog.show();
+
+
     }
 
     void tableSetUp(){
@@ -48,6 +159,10 @@ public class icMainController implements Initializable {
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         priceColumn.setCellValueFactory(param -> { return  param.getValue().sellPriceProperty(); });
+        addColumn.setCellValueFactory(call -> new SimpleBooleanProperty(true).asObject());
+        addColumn.setCellFactory(call -> {
+            return new icMainController.CustomButtonCell();
+        });
 
         //Table content
         products = FXCollections.observableArrayList();

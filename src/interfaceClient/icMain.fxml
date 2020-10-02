@@ -16,14 +16,14 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceClient.icMainController">
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceClient.icMainController">
     <children>
         <AnchorPane id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" stylesheets="@icMain.css">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
             <children>
-                  <HBox alignment="CENTER" layoutX="40.0" layoutY="72.0" prefHeight="50.0" prefWidth="300.0">
+                  <HBox alignment="CENTER" layoutX="105.0" layoutY="66.0" prefHeight="50.0" prefWidth="300.0">
                       <children>
                           <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -33,14 +33,15 @@
                           <JFXTextField fx:id="searchTextField" focusColor="#ff7300" prefWidth="150.0" promptText="Search" />
                       </children>
                   </HBox>
-                <TableView fx:id="table" editable="true" layoutX="40.0" layoutY="170.0" prefHeight="690.0" prefWidth="1300.0">
-                    <columns>
-                        <TableColumn fx:id="barcodeColumn" prefWidth="199.0" text="Barcode" />
-                        <TableColumn fx:id="nameColumn" prefWidth="800.0" text="Name" />
-                        <TableColumn fx:id="priceColumn" prefWidth="299.0" text="Price" />
-                    </columns>
-                </TableView>
-            <JFXButton layoutX="1078.0" layoutY="72.0" onAction="#close" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #170480; -fx-background-radius: 15;" text="Return to login" textAlignment="CENTER" textFill="WHITE">
+            <TableView fx:id="table" editable="true" layoutX="130.0" layoutY="149.0" prefHeight="629.0" prefWidth="1121.0">
+               <columns>
+                  <TableColumn fx:id="barcodeColumn" prefWidth="301.0" text="Barcode" />
+                  <TableColumn fx:id="nameColumn" prefWidth="273.0" text="Name" />
+                  <TableColumn fx:id="priceColumn" prefWidth="287.0" text="Price" />
+                  <TableColumn fx:id="addColumn" maxWidth="300.0" prefWidth="258.0" text="Add to order list" />
+               </columns>
+            </TableView>
+            <JFXButton layoutX="1001.0" layoutY="56.0" onAction="#close" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #170480; -fx-background-radius: 15;" text="Return to login" textAlignment="CENTER" textFill="WHITE">
                <effect>
                   <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
                </effect>
@@ -69,14 +70,37 @@
                </image>
             </ImageView>
             <Button layoutX="1313.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" prefHeight="42.0" prefWidth="53.0" style="-fx-background-color: transparent; -fx-border-radius: 100; -fx-background-radius: 100;" />
-            <JFXButton layoutX="808.0" layoutY="72.0" onAction="#requestProduct" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #170480; -fx-background-radius: 15;" text="Request for product" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton layoutX="130.0" layoutY="809.0" onAction="#requestProduct" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #170480; -fx-background-radius: 15;" text="Request for product" textAlignment="CENTER" textFill="WHITE">
                <effect>
                   <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
                </effect>
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resource/icons/baseline_add_circle_outline_white_36dp.png" />
+                        <Image url="@../resource/icons/fournisseursIconWhite.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#cf8939" />
+                        <Stop color="#ff8630" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="1001.0" layoutY="809.0" onAction="#printCommande" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #170480; -fx-background-radius: 15;" text="Print order list" textAlignment="CENTER" textFill="WHITE">
+               <effect>
+                  <DropShadow color="#ed944c4d" height="23.0" offsetX="1.0" offsetY="1.0" radius="11.0" width="23.0" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/icons/baseline_local_printshop_white_36dp.png" />
                      </image>
                   </ImageView>
                </graphic>

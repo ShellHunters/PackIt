@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="stackpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="320.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceClient.add.addController">
+   <children>
+      <AnchorPane id="mainFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="322.0" style="-fx-background-color: rgb(239, 242, 249);">
+         <children>
+            <JFXButton id="" layoutX="101.0" layoutY="213.0" onAction="#confirm" prefHeight="39.0" prefWidth="131.0" style="-fx-background-color: #ee974c; -fx-background-radius: 10;" text="Confirm" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resource/icons/baseline_done_white_36dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label id="sceneName" alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="31.0" prefWidth="240.0" text="Needed quantity" textFill="#ee974c" />
+            <TextField fx:id="quantity" alignment="CENTER" layoutX="68.0" layoutY="117.0" prefHeight="39.0" prefWidth="196.0" promptText="Quantity">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Label fx:id="status" layoutX="64.0" layoutY="77.0" prefHeight="17.0" prefWidth="204.0" textFill="RED">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <stylesheets>
+            <URL value="@add.css" />
+         </stylesheets>
+      </AnchorPane>
+   </children>
+</StackPane>

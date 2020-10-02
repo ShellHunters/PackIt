@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
@@ -39,6 +40,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
+
+import static interfaceMagazinier.providers.SendEmailController.controllerOfSendEmail;
 
 public class SendEmailMessageController implements Initializable {
 
@@ -531,9 +534,18 @@ public static SimpleBooleanProperty forDisablingTextArea = new SimpleBooleanProp
         DeleteSelectedProduct();
     }
 
-    public void AddProductOnList(ActionEvent actionEvent) {
+    public void AddProductOnList(ActionEvent actionEvent) throws IOException {
+/*
         AddProductButtonClicked.set(false);
         AddProductButtonClicked.set(true);
+
+
+ */
+System.out.println("abdelkader boussaid dahmouni");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SendEmail.fxml"));
+     //   loader.setController(SendEmailMessageController);
+        controllerOfSendEmail     = loader.getController();
+controllerOfSendEmail.setApplyTab();
 
     }
 

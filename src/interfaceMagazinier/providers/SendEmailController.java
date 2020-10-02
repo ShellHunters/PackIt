@@ -113,6 +113,7 @@ public class SendEmailController implements Initializable {
     public static SimpleBooleanProperty ForDisableSetQuantityButton = new SimpleBooleanProperty(true);
     public static SimpleBooleanProperty ForDisableMultipleCheck = new SimpleBooleanProperty(true);
     public static boolean IfTabPaneIsOpen;
+     static SendEmailController controllerOfSendEmail;
  public  static DecimalFormat df = new DecimalFormat("0.00");
     public void ApplyingCommand() {
         System.out.println("the size of the tab pane " + TheTabPaneRoot.getTabs().size());
@@ -265,11 +266,16 @@ public class SendEmailController implements Initializable {
         }
 
     }
-
+public void setApplyTab(){
+    TheTabPaneRoot.getSelectionModel().select(SendEmailProductsTab);
+}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         InitValues();
+
+
 
 
         CommandHistoryController.IfApplyingCommandIsOpen = false;

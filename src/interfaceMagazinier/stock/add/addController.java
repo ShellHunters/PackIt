@@ -139,7 +139,7 @@ private String providerEmail;
             ApplyingCommandController.TheProvider.setTotalFigure(Float.parseFloat( SendEmailController.df.format( totalfigure)));
             providerEmail=ApplyingCommandController.TheProvider.getEmail();
             UpdateProvider(ApplyingCommandController.TheProvider.getId(), totalfigure);
-
+imProviderController.ProviderList.set(ApplyingCommandController.TheProvider.getId(),ApplyingCommandController.TheProvider);
             product theProduct = ApplyingCommandController.ProductList.get(TheIndex);
             theProduct.setIfWasAdded(true);
             CommandHistoryController.command.getListOfProducts().set(TheIndex, theProduct);
@@ -149,7 +149,10 @@ private String providerEmail;
         } else if (providerCheck.isSelected()) {
             totalfigure = ((providersComboBox.getValue().getTotalFigure() + (float) quanity * buyPrice));
             providerEmail=providersComboBox.getValue().getEmail();
-
+            Provider addingProvider;
+            addingProvider=imProviderController.ProviderList.get(providersComboBox.getValue().getId());
+            addingProvider.setTotalFigure(totalfigure);
+            imProviderController.ProviderList.set(providersComboBox.getValue().getId(),addingProvider);
             UpdateProvider(providersComboBox.getValue().getId(), totalfigure);
         }
 
@@ -265,37 +268,7 @@ if (providerEmail!=null)
         quantity.setText("");
         expirationdate.setValue(null);
     }
-void addProvider(String email, String tableName) throws SQLException {
-    String Sql;
-    Connection connection = ConnectionClass.getConnection();
- //   PreparedStatement preparedStatement;
-    Statement statement = connection.createStatement();
-
-if (tableName.equals("stock")){
-     Sql="update "+tableName+"set providerEmail="+"'"+email+"' where barcode="+barcode.getText();//+"and userID=?";
-    //preparedStatement = connection.prepareStatement(Sql);
-  //  preparedStatement.setString(1, email);
-statement.executeUpdate(Sql);
-
-    System.out.println("hada houwa le ttest " + email);
-   // preparedStatement.setInt(2, user.getUserID());
-}
-/*
-else {
-    Sql = "update " + tableName + "set providerEmail='" + email + "'" + " where barcode="+barcode.getText()+" and buyprice=? and sellprice=? and userID=?";
-    preparedStatement = connection.prepareStatement(Sql);
-
-
-    preparedStatement.setInt(1, Integer.parseInt(buyprice.getText()));
-    preparedStatement.setInt(2, Integer.parseInt(sellprice.getText()));
-    preparedStatement.setInt(3, user.getUserID());
-
-
-}
-    preparedStatement.executeUpdate();
-
- */
-}    @Override
+   @Override
     public void initialize(URL location, ResourceBundle resources) {
         IfFromApplyingCommand = ApplyingCommandController.IfApplyingCommandIsOpen;
 

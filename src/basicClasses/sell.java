@@ -22,7 +22,7 @@ public class sell {
     private LocalDateTime sellTime;
     private SimpleIntegerProperty id;
     private float discountAmount;
-    private int clientID;
+    private int clientID = -1;
 
     public List<product> getSoldProducts() { return soldProducts; }
 
@@ -64,6 +64,10 @@ public class sell {
         sellTime  = LocalDateTime.now();
     }
 
+
+    public void addtocommande(product product){
+        this.soldProducts.add(product);
+    }
     public void addProduct(product product) {
         AtomicBoolean b = new AtomicBoolean(true);
         this.totalPrice = new SimpleFloatProperty(this.totalPrice.get() + product.getSellPrice());
