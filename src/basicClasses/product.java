@@ -19,7 +19,7 @@ public class product extends RecursiveTreeObject<product> {
     private SimpleIntegerProperty quantity;
     private SimpleBooleanProperty IfWasSent;
     private SimpleStringProperty expirationDate;
-    private Integer NeededQuantity;
+    private SimpleIntegerProperty NeededQuantity;
     boolean IfWasAdded;
     private SimpleStringProperty productType;
     private JFXCheckBox checkbox;
@@ -41,7 +41,7 @@ public SimpleStringProperty providerEmail ;
         this.sellPrice = new SimpleFloatProperty(sellPrice);
         this.quantity = new SimpleIntegerProperty(quantity);
         this.expirationDate = new SimpleStringProperty(expirationDate);
-        NeededQuantity = 0;
+        NeededQuantity=new SimpleIntegerProperty(0);
         stockPercentage = new SimpleFloatProperty(100);
         IfWasSent = new SimpleBooleanProperty(false);
         this.checkbox = new JFXCheckBox();
@@ -62,7 +62,7 @@ public SimpleStringProperty providerEmail ;
         this.sellPrice = new SimpleFloatProperty(0);
         this.quantity = new SimpleIntegerProperty(0);
         this.expirationDate = new SimpleStringProperty("");
-        NeededQuantity = 0;
+        NeededQuantity=new SimpleIntegerProperty(0);
         numberOfSells = 0;
         productType = new SimpleStringProperty();
         containerName = new SimpleStringProperty();
@@ -79,7 +79,7 @@ public SimpleStringProperty providerEmail ;
         this.quantity = new SimpleIntegerProperty(Quantity);
         IfWasSent = new SimpleBooleanProperty(ifWasSent);
         this.initialQuantity = InitialQuantity;
-        NeededQuantity = 0;
+        NeededQuantity=new SimpleIntegerProperty(0);
         numberOfSells = 0;
         productType = new SimpleStringProperty();
         containerName = new SimpleStringProperty();
@@ -105,7 +105,7 @@ public SimpleStringProperty providerEmail ;
     public product(String ProductName, Integer Barcode, Integer neededQuantity, boolean ifWasAdded ) {
         this.productName = new SimpleStringProperty(ProductName);
         this.barcode = new SimpleIntegerProperty(Barcode);
-        NeededQuantity = neededQuantity;
+        NeededQuantity=new SimpleIntegerProperty(0);
         IfWasAdded = ifWasAdded;
         numberOfSells = 0;
 
@@ -123,7 +123,7 @@ public SimpleStringProperty providerEmail ;
         this.sellPrice = new SimpleFloatProperty(sellPrice);
         this.quantity = new SimpleIntegerProperty(quantity);
         this.expirationDate = new SimpleStringProperty(expirationDate);
-        NeededQuantity = 0;
+        NeededQuantity=new SimpleIntegerProperty(0);
         totalStock= new SimpleIntegerProperty();
 
         IfWasSent = new SimpleBooleanProperty(false);
@@ -190,14 +190,17 @@ public SimpleStringProperty providerEmail ;
         return Objects.hash(productName, barcode, buyPrice, sellPrice, stockPercentage, quantity, IfWasSent, expirationDate, NeededQuantity, IfWasAdded, productType, checkbox, initialQuantity, numberOfSells, containerName, floor, totalStock, providerEmail);
     }
 
-    public Integer getNeededQuantity() {
+    public Integer getNeededQuantity () {
+        return NeededQuantity.get();
+    }
+
+    public SimpleIntegerProperty neededQuantityProperty () {
         return NeededQuantity;
     }
 
-    public void setNeededQuantity(Integer neededQuantity) {
-        NeededQuantity = neededQuantity;
+    public void setNeededQuantity (Integer neededQuantity) {
+        this.NeededQuantity.set(neededQuantity);
     }
-
 
     public float getStockPercentage() {
         return stockPercentage.get();
