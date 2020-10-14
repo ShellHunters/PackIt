@@ -38,7 +38,7 @@
                            <children>
                               <ImageView id="notification" fx:id="notificationImage" fitHeight="40.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../run/media/pikta_ka/HBCD_PE_X64/notificationPro/src/resource/icons/notificationsIconWhite.png" />
+                                    <Image url="@../resource/icons/notificationsIconWhite.png" />
                                  </image>
                               </ImageView>
                               <Label id="cont_notification" fx:id="notification_cont">
