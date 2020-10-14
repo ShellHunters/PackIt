@@ -39,7 +39,7 @@
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                             </columnResizePolicy>
                                         </TableView>
-                              <HBox alignment="CENTER" layoutX="28.0" layoutY="-7.0" prefHeight="65.0" prefWidth="1337.0" spacing="30.0">
+                              <HBox alignment="CENTER" layoutX="28.0" layoutY="1.0" prefHeight="49.0" prefWidth="1337.0" spacing="30.0">
                                  <children>
                                     <ImageView fitHeight="39.0" fitWidth="39.0">
                                        <image>
@@ -52,7 +52,7 @@
                                               <JFXTextField fx:id="SearchBox" labelFloat="true" prefHeight="40.0" prefWidth="448.0" promptText="Search Product" />
                                               <JFXCheckBox fx:id="CheckboxNeededProduct" checkedColor="#9c2410" text="Show Needed Product" underline="true" />
                                               <JFXCheckBox fx:id="MultipleSelectCheckBox" text="Multiple Select (Set Quantity)" underline="true" />
-                                              <JFXButton fx:id="SendEmailButton" onAction="#SendEmail" prefHeight="43.0" prefWidth="210.0" text="Send The Email">
+                                              <JFXButton fx:id="SendEmailButton" onAction="#SendEmail" prefHeight="43.0" prefWidth="244.0" text="Send The Email">
                                        <graphic>
                                           <ImageView fitHeight="30.0" fitWidth="30.0">
                                              <image>
