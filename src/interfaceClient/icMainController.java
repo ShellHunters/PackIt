@@ -109,7 +109,7 @@ public class icMainController implements Initializable {
     public void printCommande() {
 
 
-        String path = "src/resource/File/commande.jasper";
+        String path = "src\\resource\\File\\commande.jasper";
 
 
         try {

@@ -114,6 +114,10 @@ CheckBox selected;
         TotalFigure = totalFigure;
     }
 
+    public Provider (String email) {
+        Email = email;
+    }
+
     @Override
     public String toString(){
         return this.FirstName+"  "+this.LastName;

@@ -2,6 +2,7 @@ package identification;
 
 
 import Connector.ConnectionClass;
+import basicClasses.Provider;
 import basicClasses.user;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -63,7 +64,16 @@ public class identificationController  implements Initializable {
     public VBox loginContent;
     private static String emailFromLogin, passwordFromLogin;
 
+
+    private static Provider provider;
     Preferences preferences ;
+    public static Provider getProvider() {
+        return provider;
+    }
+
+    public  void setProvider(Provider provider) {
+        this.provider = provider;
+    }
 
     public identificationController() throws IOException, ClassNotFoundException {
     }
@@ -92,7 +102,7 @@ public class identificationController  implements Initializable {
 
 
         Connection connection = ConnectionClass.getConnection();
-        String sql = "SELECT * FROM logins where shopName= ?   ";//Query
+        String sql = "SELECT id FROM logins where shopName= ?   ";//Query
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, shopNameField.getText());
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -100,24 +110,28 @@ public class identificationController  implements Initializable {
             status.setText("Enter a correct shop name ");
             shopNameField.setText("");
         } else {
-            String Sql = "SELECT * FROM providers where email= ?   ";//Query
+            user.setUserID(resultSet.getInt(1));
+            String Sql = "SELECT * FROM ProvidersInfo where email=? and userID=?   ";//Query
             PreparedStatement preparedStatement1 = connection.prepareStatement(Sql);
             preparedStatement1.setString(1, emailField.getText());
+            preparedStatement1.setInt(2,user.getUserID());
             ResultSet resultSet1 = preparedStatement1.executeQuery();
             if (!resultSet1.next()) {
                 status.setText("Please entre a valid provider email ");
                 emailField.setText("");
             } else {
+                provider=new Provider(emailField.getText());
                 status.setTextFill(Color.GREEN);
                 status.setText("Login successful..Redirecting...");
+                //Linking between interface and login
+                ((Stage) identificationContainer.getScene().getWindow()).close();
+                Stage providerStage = new Stage();
+                ifMain userInterface = new ifMain();
+                //ADD CONDITION FOR EACH USER
+                userInterface.start(providerStage);
             }
 
-            //Linking between interface and login
-            ((Stage) identificationContainer.getScene().getWindow()).close();
-            Stage providerStage = new Stage();
-            ifMain userInterface = new ifMain();
-            //ADD CONDITION FOR EACH USER
-            userInterface.start(providerStage);
+
         }
 
     }
@@ -134,7 +148,7 @@ public class identificationController  implements Initializable {
     public void loginAsClient() throws Exception {
         if (!loginClientCompleteCheck()) return;
         Connection connection = ConnectionClass.getConnection();
-        String sql = "SELECT * FROM logins where shopName= ?   ";
+        String sql = "SELECT id FROM logins where shopName= ?   ";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, shopNameField.getText());
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -144,6 +158,7 @@ public class identificationController  implements Initializable {
         } else {
             status.setTextFill(Color.GREEN);
             status.setText("Login successful..Redirecting...");
+            user.setUserID(resultSet.getInt(1)) ;
 
             //Linking between interface and login
             ((Stage) identificationContainer.getScene().getWindow()).close();

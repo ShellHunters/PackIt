@@ -116,3 +116,32 @@
 .table-view .menu-item .label {
     -fx-padding: 5 0 5 0;
 }
+.jfx-text-field{
+    -fx-font: bolder 16px "Trebuchet MS";
+
+}
+.CloseButton{
+    -fx-graphic: url(../resource/icons/CloseBlack.png);
+    -fx-padding: 0px;
+    -fx-background-color:transparent;
+
+}
+.CloseButton:hover {
+    -fx-cursor: hand;
+    -fx-graphic: url(../resource/icons/CloseIconReverse.png);
+    -fx-background-color:transparent;
+}
+.Title{
+    -fx-font: bolder 16px "Trebuchet MS";
+    -fx-underline: true;
+    -fx-line-spacing:2px;
+
+}
+.StyleRoots{
+    -fx-border-width:3px;
+    -fx-border-color: #ee974c;
+}
+.TableContainer{
+    -fx-border-width: 2px;
+    -fx-border-color: #170480;
+}
