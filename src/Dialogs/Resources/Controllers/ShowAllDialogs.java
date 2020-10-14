@@ -16,13 +16,15 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public  class ShowAllDialogs {
+public  class ShowAllDialogs  {
     public static Stage DialogStage;
     public static StackPane DialogParent = new StackPane();
     public static Scene DialogScene ;
     public static boolean DialogIsOpen;
-    public static String Header;
-    public static  String Body;
+    public static String Header="";
+    public static  String Body="";
+    public static String alertType;
+    public static String threeButtonTheFirst="",threeButtonTheSecond="",threeButtonTheThird;
 
     public static SimpleBooleanProperty YESBUTTON = new SimpleBooleanProperty(false)  ;
     public static SimpleBooleanProperty NOBUTTON  = new SimpleBooleanProperty(false) ;
@@ -30,10 +32,13 @@ public  class ShowAllDialogs {
     public static SimpleBooleanProperty CANCELBUTTON = new SimpleBooleanProperty() ;
     public static SimpleBooleanProperty DELETEBUTTON = new SimpleBooleanProperty() ;
 
-    public static SimpleBooleanProperty SAVEBUTTON = new SimpleBooleanProperty()  ;
+    public static SimpleBooleanProperty ADDBUTTON = new SimpleBooleanProperty()  ;
     public static SimpleBooleanProperty EXITBUTTON = new SimpleBooleanProperty()  ;
     public static SimpleBooleanProperty ONEBUTTON = new SimpleBooleanProperty()  ;
-
+  public static  ConfirmDialogController confirmDialogController;
+  public static DeleteDialogController deleteDialogController;
+  public static WarningDialogController warningDialogController;
+  public static DialogOneController dialogOneController;
   static   CursorPosition dragPosition = new CursorPosition();
 
     public static void DialogScaleTransition(Node TransitionNode , double FromX,double FromY , double ToX , double ToY , String Mode ){
@@ -49,20 +54,48 @@ public  class ShowAllDialogs {
 }
 
 public static void initDialogWithShow(Window Owner , String AlertType) throws IOException {
-    Header  = "Something Went Wrong !";
-    Body = "You Must Verify Your Information Or Another Thing";
+
+
+    alertType=AlertType;
     FXMLLoader loader = new FXMLLoader();
-        if (AlertType.equals(AlertTypeDialog.CONFIRMATION))
-        loader.setLocation(ShowAllDialogs.class.getResource("/Dialogs/Resources/FxmlFiles/DialogConfirmation.fxml"));
- if (AlertType.equals(AlertTypeDialog.WARNING))
-    loader.setLocation(ShowAllDialogs.class.getResource("/Dialogs/Resources/FxmlFiles/DialogWarning.fxml"));
-    if (AlertType.equals(AlertTypeDialog.DELETE))
+        if (AlertType.equals(AlertTypeDialog.CONFIRMATION)) {
+            loader.setLocation(ShowAllDialogs.class.getResource("/Dialogs/Resources/FxmlFiles/DialogConfirmation.fxml"));
+
+            DialogParent = loader.load() ;
+            confirmDialogController=    loader.getController();
+            if (!Header.equals("")&&!Body.equals(""))
+
+                confirmDialogController.settingHeaderAndBody(Header,Body);
+
+        }
+ if (AlertType.equals(AlertTypeDialog.WARNING)) {
+     loader.setLocation(ShowAllDialogs.class.getResource("/Dialogs/Resources/FxmlFiles/DialogWarning.fxml"));
+     DialogParent = loader.load();
+     warningDialogController=    loader.getController();
+     if (!Header.equals("")&&!Body.equals(""))
+     warningDialogController.settingHeaderAndBody(Header,Body);
+     if(!threeButtonTheFirst.equals(""))
+         warningDialogController.settingAddButtonText(threeButtonTheFirst);
+ }
+    if (AlertType.equals(AlertTypeDialog.DELETE)) {
         loader.setLocation(ShowAllDialogs.class.getResource("/Dialogs/Resources/FxmlFiles/DialogDelete.fxml"));
-    if (AlertType.equals(AlertTypeDialog.ONEBUTTON))
-        loader.setLocation(ShowAllDialogs.class.getResource("/Dialogs/Resources/FxmlFiles/DialogOneButton.fxml"));
-ClickedButton.InitBoolean();
-        DialogStage = new Stage();
+
         DialogParent = loader.load();
+        deleteDialogController=    loader.getController();
+        if (!Header.equals("")&&!Body.equals(""))
+        deleteDialogController.settingHeaderAndBody(Header,Body);
+    }
+    if (AlertType.equals(AlertTypeDialog.ONEBUTTON)){
+        loader.setLocation(ShowAllDialogs.class.getResource("/Dialogs/Resources/FxmlFiles/DialogOneButton.fxml"));
+
+        DialogParent = loader.load();
+        dialogOneController=    loader.getController();
+        if (!Header.equals("")&&!Body.equals(""))
+
+            dialogOneController.settingHeaderAndBody(Header,Body);
+    }
+ClickedButton.InitBoolean();
+    DialogStage = new Stage();
     DialogStage.initStyle(StageStyle.TRANSPARENT);
     DialogStage.initModality(Modality.WINDOW_MODAL);
     DialogStage.initOwner(Owner);
@@ -73,7 +106,7 @@ DialogStage.centerOnScreen();
     ShowAllDialogs.DialogScaleTransition(DialogParent,0,0,1,1 , TransitionMode.OPENING);
     ClickedButton.dialogsYESBUTTON.addListener((observable, oldValue, newValue) -> YESBUTTON.set(ClickedButton.dialogsYESBUTTON.get()));
     ClickedButton.dialogsNOBUTTON.addListener((observable, oldValue, newValue) -> NOBUTTON.set(ClickedButton.dialogsNOBUTTON.get()));
-    ClickedButton.dialogsSAVEBUTTON.addListener((observable, oldValue, newValue) -> SAVEBUTTON.set(ClickedButton.dialogsSAVEBUTTON.get()));
+    ClickedButton.dialogsAddBUTTON.addListener((observable, oldValue, newValue) -> ADDBUTTON.set(ClickedButton.dialogsAddBUTTON.get()));
     ClickedButton.dialogsDELETEBUTTON.addListener((observable, oldValue, newValue) -> DELETEBUTTON.set(ClickedButton.dialogsDELETEBUTTON.get()));
     ClickedButton.dialogsCANCELBUTTON.addListener((observable, oldValue, newValue) -> CANCELBUTTON.set(ClickedButton.dialogsCANCELBUTTON.get()));
     ClickedButton.dialogsEXITBUTTON.addListener((observable, oldValue, newValue) -> EXITBUTTON.set(ClickedButton.dialogsEXITBUTTON.get()));
@@ -101,26 +134,16 @@ public static void ExitDialog(){
 
         }
     static public void InitContentDialog (String TheHeader , String TheBody){
-        TheHeader.replaceAll("\\s+","");
-        TheBody.replaceAll("\\s+","");
-
-        if (TheHeader.isEmpty()) {
-            Header  = "Something Went Wrong !";
-            System.out.println("hhhhhhhh true");
-        }
-        else
-            Header = TheHeader ;
-        if (TheBody.isEmpty()) {
-            System.out.println("hhhhhhhh hhhhhhh true");
-
-            Body = "You Must Verify Your Information Or Another Thing";
-        }
-        else
-            Body=TheBody;
+        Header =TheHeader;
+        Body = TheBody;
     }
+    public static  void threeButtonSetText(String text){
+threeButtonTheFirst=text;
+}
 
 
-public static class AlertTypeDialog{
+
+    public static class AlertTypeDialog{
         public static final String CONFIRMATION="CONFIRMATION";
     public static final String WARNING="WARNING";
     public static final String DELETE="DELETE";
@@ -138,7 +161,7 @@ public static class ClickedButton{
         public static SimpleBooleanProperty dialogsYESBUTTON  = new SimpleBooleanProperty() ;
     public static SimpleBooleanProperty dialogsNOBUTTON  = new SimpleBooleanProperty() ;
     public static SimpleBooleanProperty dialogsCANCELBUTTON  = new SimpleBooleanProperty() ;
-    public static SimpleBooleanProperty dialogsSAVEBUTTON   = new SimpleBooleanProperty() ;
+    public static SimpleBooleanProperty dialogsAddBUTTON = new SimpleBooleanProperty() ;
     public static SimpleBooleanProperty dialogsEXITBUTTON   = new SimpleBooleanProperty() ;
     public static SimpleBooleanProperty dialogsDELETEBUTTON   = new SimpleBooleanProperty() ;
     public static SimpleBooleanProperty dialogsONEBUTTON   = new SimpleBooleanProperty() ;
@@ -146,13 +169,13 @@ public static class ClickedButton{
     static   public void InitBoolean(){
       dialogsYESBUTTON.setValue(false);
       dialogsNOBUTTON.setValue(false);
-      dialogsSAVEBUTTON.setValue(false);
+      dialogsAddBUTTON.setValue(false);
       dialogsCANCELBUTTON.setValue(false);
       dialogsEXITBUTTON.setValue(false);
         dialogsDELETEBUTTON.set(false);
       YESBUTTON.setValue(false);
       NOBUTTON.setValue(false);
-      SAVEBUTTON.setValue(false);
+      ADDBUTTON.setValue(false);
       CANCELBUTTON.setValue(false);
       DELETEBUTTON.set(false);
       EXITBUTTON.setValue(false);

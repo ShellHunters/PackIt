@@ -7,39 +7,36 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="512.0" styleClass="WarningDialogRoot" stylesheets="@../StyleSheets/DialogsStyleSheets.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dialogs.Resources.Controllers.DialogOneController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="278.0" prefWidth="611.0" styleClass="WarningDialogRoot" stylesheets="@../StyleSheets/DialogsStyleSheets.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dialogs.Resources.Controllers.DialogOneController">
     <children>
-        <Pane prefHeight="454.0" prefWidth="512.0" />
-        <VBox alignment="CENTER" onMouseDragged="#OneDialogDragged" onMousePressed="#OneDialogPressed" prefHeight="454.0" prefWidth="512.0">
-            <children>
-                <ImageView fitHeight="116.0" fitWidth="118.0" opacity="0.48">
-                    <image>
-                        <Image url="@../../../resource/icons/ExclamationMarkIcon.png" />
-                    </image>
-                </ImageView>
-                <VBox alignment="CENTER" prefHeight="162.0" prefWidth="502.0" spacing="30.0">
-                    <children>
-                        <Label fx:id="DialogHeader" styleClass="DialogHeader">
-                            <font>
-                                <Font name="Caviar Dreams Bold" size="37.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="DialogBody" styleClass="DialogBody">
-                            <font>
-                                <Font name="Inconsolata Regular" size="20.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </VBox>
-                <HBox alignment="CENTER" prefHeight="132.0" prefWidth="506.0" spacing="36.0">
+        <Pane prefHeight="281.0" prefWidth="615.0">
+         <children>
+                <HBox alignment="CENTER" layoutX="-2.0" layoutY="192.0" prefHeight="67.0" prefWidth="590.0" spacing="36.0">
                     <children>
                         <JFXButton fx:id="DialogOneButton" onAction="#DialogOneButtonAction" prefHeight="45.0" prefWidth="170.0" styleClass="DialogOneButton" text="Ok" />
                     </children>
                 </HBox>
-            </children>
-        </VBox>
+                  <Label fx:id="DialogBody" alignment="CENTER" layoutY="144.0" prefHeight="20.0" prefWidth="590.0" styleClass="DialogBody" text="Verify Your Information">
+                      <font>
+                          <Font name="Inconsolata Regular" size="20.0" />
+                      </font>
+                  </Label>
+            <HBox alignment="CENTER" layoutX="-3.0" layoutY="33.0" prefHeight="101.0" prefWidth="607.0" spacing="20.0">
+               <children>
+                      <ImageView fitHeight="101.0" fitWidth="102.0">
+                          <image>
+                              <Image url="@../../../resource/icons/ExclamationMarkIcon.png" />
+                          </image>
+                      </ImageView>
+                        <Label fx:id="DialogHeader" styleClass="DialogHeader" text="Something Was Happened !">
+                            <font>
+                                <Font name="Caviar Dreams Bold" size="37.0" />
+                            </font>
+                        </Label>
+               </children>
+            </HBox>
+         </children></Pane>
     </children>
 </StackPane>

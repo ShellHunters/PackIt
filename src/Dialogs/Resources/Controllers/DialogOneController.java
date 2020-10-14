@@ -14,10 +14,10 @@ import static Dialogs.Resources.Controllers.ShowAllDialogs.*;
 
 public class DialogOneController implements Initializable {
     @FXML
-    private Label DialogHeader;
+    public Label DialogHeader;
 
     @FXML
-    private Label DialogBody;
+    public Label DialogBody;
 
     @FXML
     private JFXButton DialogOneButton;
@@ -25,8 +25,7 @@ public class DialogOneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        DialogHeader.setText(ShowAllDialogs.Header);
-        DialogBody.setText(ShowAllDialogs.Body);
+
 
     }
     @FXML
@@ -44,6 +43,10 @@ ShowAllDialogs.ClickedButton.dialogsONEBUTTON.set(true);
     void OneDialogPressed(MouseEvent event) {
         DialogScenePressedMouse(event);
 
+    }
+    public void settingHeaderAndBody(String Header , String Body){
+        DialogBody.setText(Body);
+                DialogHeader.setText(Header);
     }
 
 }

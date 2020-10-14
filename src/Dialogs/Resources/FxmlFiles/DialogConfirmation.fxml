@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="ConfirmDialogRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="512.0" styleClass="ConfirmDialogRoot" stylesheets="@../StyleSheets/DialogsStyleSheets.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dialogs.Resources.Controllers.ConfirmDialogController">
+<StackPane fx:id="ConfirmDialogRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="311.0" prefWidth="667.0" styleClass="ConfirmDialogRoot" stylesheets="@../StyleSheets/DialogsStyleSheets.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dialogs.Resources.Controllers.ConfirmDialogController">
    <children>
-      <Pane prefHeight="454.0" prefWidth="512.0" />
-      <VBox alignment="CENTER" onMouseDragged="#ConfirmDialogDragged" onMousePressed="#ConfirmDialogPressed" prefHeight="456.0" prefWidth="512.0">
+      <Pane prefHeight="454.0" prefWidth="512.0">
          <children>
-            <ImageView fitHeight="116.0" fitWidth="118.0" opacity="0.48">
-               <image>
-                  <Image url="@../../../resource/icons/QuestionMarkIcon.png" />
-               </image>
-            </ImageView>
-            <VBox alignment="CENTER" prefHeight="158.0" prefWidth="512.0" spacing="30.0">
+            <HBox alignment="CENTER" layoutX="1.0" layoutY="25.0" prefHeight="100.0" prefWidth="663.0">
                <children>
-                  <Label fx:id="DialogHader" styleClass="DialogHader" text="Are You Sure ?">
+                  <Label fx:id="DialogHeader" alignment="CENTER" styleClass="DialogHeader" text="Are You Sure ">
                      <font>
                         <Font name="Caviar Dreams Bold" size="37.0" />
                      </font>
                   </Label>
-                  <Label fx:id="DialogBody" styleClass="DialogBody" text="You Really Want To Save This information ">
-                     <font>
-                        <Font name="Inconsolata Regular" size="23.0" />
-                     </font>
-                  </Label>
+                  <ImageView fitHeight="63.0" fitWidth="64.0" opacity="0.88">
+                     <image>
+                        <Image url="@../../../resource/icons/QuestionMarkIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="10.0" />
+                     </HBox.margin>
+                  </ImageView>
                </children>
-            </VBox>
-            <HBox alignment="CENTER" prefHeight="126.0" prefWidth="502.0" spacing="36.0">
+            </HBox>
+            <Label fx:id="DialogBody" alignment="CENTER" layoutX="4.0" layoutY="154.0" prefHeight="25.0" prefWidth="667.0" styleClass="DialogBody" text="You Really Want To Save This information ">
+               <font>
+                  <Font name="Inconsolata Regular" size="23.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" layoutX="-4.0" layoutY="199.0" prefHeight="108.0" prefWidth="667.0" spacing="50.0">
                <children>
                   <JFXButton fx:id="ConfirmDialogYes" onAction="#ConfirmDialogYes" prefHeight="45.0" prefWidth="118.0" styleClass="ConfirmDialogYes" text="Yes" />
                   <JFXButton fx:id="ConfirmDialogNo" onAction="#ConfirmDialogNo" prefHeight="45.0" prefWidth="118.0" styleClass="ConfirmDialogNo" text="No" />
                </children>
             </HBox>
-         </children>
-      </VBox>
+         </children></Pane>
    </children>
 </StackPane>

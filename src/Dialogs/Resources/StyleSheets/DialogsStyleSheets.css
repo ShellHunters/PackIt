@@ -12,7 +12,7 @@
 }
 .WarningDialogRoot{
     -fx-border-width: 2px;
-    -fx-border-color: #f1c40f;
+    -fx-border-color: #ee974c;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
 }
@@ -29,11 +29,12 @@
     -fx-font: 18 'Century Gothic';
 }
 .DialogHeader{
-    font:37px 'Caviar Dreams';
-    -fx-font-weight: bold;
+    -fx-font: bolder 37px "Trebuchet MS";
+
 }
 .DialogBody{
     font:16px   'Inconsolata';
+    -fx-underline: true;
 }
 .ConfirmDialogCancel{
 -fx-border-radius: 25px;
