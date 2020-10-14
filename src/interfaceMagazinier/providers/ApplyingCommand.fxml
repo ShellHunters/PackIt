@@ -3,41 +3,52 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="applyingCommandContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#SceneDraggedMouse" onMousePressed="#ScenePressedMouse" prefHeight="805.0" prefWidth="1225.0" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.ApplyingCommandController">
+<StackPane fx:id="applyingCommandContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="855.0" prefWidth="1230.0" styleClass="StyleRoots" stylesheets="@applyCommand.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.ApplyingCommandController">
    <children>
-      <AnchorPane maxHeight="800.0" maxWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" stylesheets="@imProviders.css">
+      <AnchorPane maxHeight="857.0" maxWidth="1239.0" prefHeight="857.0" prefWidth="1230.0">
          <children>
-            <Button fx:id="ExitTop" layoutX="1140.0" layoutY="10.0" minWidth="46.0" mnemonicParsing="false" onAction="#Exit" prefHeight="50.0" prefWidth="50.0" styleClass="CloseButton" />
-            <HBox alignment="CENTER" layoutY="25.0" prefHeight="89.0" prefWidth="1200.0" spacing="50.0">
+            <Button fx:id="ExitTop" layoutX="1161.0" layoutY="14.0" minWidth="46.0" mnemonicParsing="false" onAction="#Exit" prefHeight="50.0" prefWidth="50.0" styleClass="CloseButton" />
+            <HBox alignment="CENTER" layoutY="64.0" prefHeight="89.0" prefWidth="1225.0" spacing="50.0">
                <children>
-                  <JFXButton fx:id="applySelectedProductsButton" onAction="#applySelectedProducts" text="Apply Selected Products" />
+                  <JFXButton fx:id="applySelectedProductsButton" onAction="#applySelectedProducts" prefHeight="37.0" prefWidth="226.0" text="Apply Selected Products" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../resource/icons/searchIconBlack.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="-55.0" />
+                     </HBox.margin>
+                  </ImageView>
                   <JFXTextField fx:id="searchCommandTextField" promptText="Search Command" />
-                  <JFXButton fx:id="applyingAllProductsButton" onAction="#applyingAllProducts" text="Applying All Products" />
+                  <JFXButton fx:id="applyingAllProductsButton" onAction="#applyingAllProducts" prefHeight="37.0" prefWidth="226.0" text="Applying All Products" />
                   <JFXCheckBox fx:id="NotAddedCheckBox" text="Show Not Added Products" />
                </children>
             </HBox>
-            <HBox layoutX="50.0" layoutY="175.0" prefHeight="600.0" prefWidth="1100.0" styleClass="TableCotainer">
+            <HBox layoutX="63.0" layoutY="214.0" prefHeight="600.0" prefWidth="1100.0" styleClass="TableContainer">
                <children>
                   <TableView fx:id="ProductTableView" prefHeight="563.0" prefWidth="1100.0">
                     <columns>
                       <TableColumn fx:id="selectedCommandCol" prefWidth="88.0" />
                         <TableColumn fx:id="ProductNameCol" prefWidth="250.0" text="Product Name" />
                       <TableColumn fx:id="RequiredQuantityCol" prefWidth="367.0" text="Required Quantity" />
-                        <TableColumn fx:id="SetRequiredButtonCol" prefWidth="384.0" text="Set Required" />
+                        <TableColumn fx:id="SetRequiredButtonCol" prefWidth="393.0" text="Set Required" />
                     </columns>
                   </TableView>
                </children>
             </HBox>
-            <Label fx:id="ProviderNameLabel" layoutX="350.0" layoutY="120.0" prefHeight="32.0" prefWidth="500.0">
+            <Label fx:id="ProviderNameLabel" alignment="CENTER" layoutX="334.0" layoutY="161.0" prefHeight="32.0" prefWidth="557.0" styleClass="Title" textAlignment="CENTER">
                <font>
                   <Font name="ADAM.CGPRO" size="20.0" />
                </font></Label>

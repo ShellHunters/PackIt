@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Paint;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -34,14 +35,14 @@ public class settingSenderInformationController implements Initializable {
     @FXML
     private JFXTextField emailTextField;
     @FXML
-    private Label errorLabel;
+    public Label errorLabel;
     @FXML
     private JFXPasswordField passwordField;
     //@FXML
    // private Label errorLabel;
     @FXML
         public void confirmInfo ( ActionEvent event) throws SQLException {
-        errorLabel.setText("Prepare sending msg ...");
+
         if (VerifyValidateEmail(emailTextField)&& passwordField.getText().length()>0) {
 
             Email.senderMail = emailTextField.getText();
@@ -50,8 +51,8 @@ public class settingSenderInformationController implements Initializable {
             Email.send();
 
             if (Email.ItSent){
-                errorLabel.getStyleClass().add("ValidateMessage");
 
+                errorLabel.setTextFill(Paint.valueOf("green"));
 errorLabel.setText("Email Was Sent");
                 SendEmailMessageController.settingInfoDialog.close();
                 if (Email.ItSent) {
@@ -59,10 +60,7 @@ errorLabel.setText("Email Was Sent");
                     DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                     InsertProductToCommand(ProductList,SendEmailMessageController.tempoProvider , dateformat.format(System.currentTimeMillis()));
-                    for (product infoProduct : ProductList) {
-                        infoProduct.setIfWasSent(true);
 
-                    }
 SendEmailMessageController.forDisablingTextArea.set(false);
 
 
@@ -71,14 +69,14 @@ SendEmailMessageController.forDisablingTextArea.set(false);
             }
 
             else {
-                errorLabel.getStyleClass().add("ErrorMessage");
+                errorLabel.setTextFill(Paint.valueOf("red"));
                 errorLabel.setText("Your Email Wasn't Sent");}
 
 
         }
 
       else {
-            errorLabel.getStyleClass().add("ErrorMessage");
+            errorLabel.setTextFill(Paint.valueOf("red"));
             errorLabel.setText("Verify Your Email Or Password");
         }
       }
@@ -100,6 +98,7 @@ boolean verifyIfEmpty(){
 
     @Override
     public void initialize (URL location, ResourceBundle resources) {
+
         errorLabel.setText("");
         emailTextField.setText(user.getEmail());
 passwordField.textProperty().addListener((observable, oldValue, newValue) ->{

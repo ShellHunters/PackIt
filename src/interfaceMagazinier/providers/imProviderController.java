@@ -82,7 +82,7 @@ public class imProviderController implements Initializable {
     public static JFXDialog infoProviderDialog;
     @FXML
     private MenuItem DeleteSelectedContext;
-    public AnchorPane ModifyContainer;
+    public StackPane ModifyContainer;
     public static StackPane ProvidersRootContainerTemp = new StackPane();
     public static StackPane test = new StackPane();
     public static Provider provider = null;
@@ -91,10 +91,11 @@ public class imProviderController implements Initializable {
     public static ArrayList<Provider> SelectedProvidersListForEmail = new ArrayList<Provider>();
     public static ArrayList<Provider> SelectedProvidersForTheListOfEmail = new ArrayList<Provider>();
     public static ArrayList<Provider> SelectedProvidersLoadEmail = new ArrayList<Provider>();
-
+    public static SendEmailController controllerOfSendEmail;
+    public static SendEmailMessageController controllerOfEmailMessage;
     public static Stage AddProviderStage;
     public static SimpleBooleanProperty ForDisableButtons = new SimpleBooleanProperty(true);
-
+public static Boolean applyCommandFromImProvider;
 
     void LoadModifyProviderScene() throws IOException {
         ModifyContainer = FXMLLoader.load(getClass().getResource("ModifyProviders.fxml"));
@@ -105,7 +106,7 @@ public class imProviderController implements Initializable {
 
     public void AddProviders(ActionEvent event) throws IOException {
 
-            AnchorPane root = FXMLLoader.load(getClass().getResource("InfoProviders.fxml"));
+            StackPane root = FXMLLoader.load(getClass().getResource("InfoProviders.fxml"));
           infoProviderDialog=new JFXDialog(ProvidersRootStackPane,root,JFXDialog.DialogTransition.LEFT);
         infoProviderDialog.show();
 
@@ -161,10 +162,21 @@ public class imProviderController implements Initializable {
         //   SendEmailMessageController.TempProvidersList.addAll(ProviderList);
         // SelectedProvider.clear();
         SendEmailController.IfTabPaneIsOpen = true;
-        AnchorPane root = FXMLLoader.load(getClass().getResource("SendEmail.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SendEmail.fxml"));
+        AnchorPane root =loader.load();
+        controllerOfSendEmail=loader.getController();
         ProvidersRootContainerTemp.getChildren().setAll(root);
 
 
+    }
+
+    public void applyCommand (ActionEvent event) throws IOException {
+        applyCommandFromImProvider=true;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SendEmail.fxml"));
+
+        AnchorPane root =loader.load();
+        controllerOfSendEmail=loader.getController();
+        ProvidersRootContainerTemp.getChildren().setAll(root);
     }
 
     public abstract class JFXCheckboxCell<T> extends TableCell<T, Boolean> {
@@ -277,12 +289,8 @@ public class imProviderController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (SendEmailController.IfTabPaneIsOpen) {
-            SendEmailButton.setVisible(false);
-            DeleteSelectedButton.setVisible(false);
 
-
-        }
+        applyCommandFromImProvider=false;
         ProvidersRootContainerTemp = ProvidersRootStackPane;
    //     if (!SendEmailController.IfTabPaneIsOpen)
      //       SendEmailMessageController.TableProviderContainer = TableRoot;

@@ -3,26 +3,29 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="SendEmailMessageRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" styleClass="roots" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.SendEmailMessageController">
+<StackPane fx:id="SendEmailMessageRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1390.0" styleClass="roots" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.SendEmailMessageController">
     <children>
         <Pane prefHeight="900.0" prefWidth="1380.0">
             <children>
-                <HBox alignment="CENTER" layoutY="1.0" prefHeight="116.0" prefWidth="1450.0">
+                <HBox alignment="CENTER" layoutX="21.0" layoutY="1.0" prefHeight="109.0" prefWidth="1429.0">
                     <children>
-                        <Label text="Send Email">
+                        <Label alignment="CENTER" prefHeight="93.0" prefWidth="428.0" text="Send Email" textAlignment="CENTER" textFill="#ee974c">
                             <font>
-                                <Font name="ADAM.CGPRO" size="80.0" />
+                                <Font name="Pacifico Regular" size="62.0" />
                             </font>
                         </Label>
                     </children>
@@ -61,14 +64,53 @@
                         <TextArea fx:id="ProductArea" prefHeight="87.0" prefWidth="1079.0" />
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" layoutY="117.0" prefHeight="62.0" prefWidth="1380.0" spacing="30.0">
+                <HBox alignment="CENTER" layoutY="107.0" prefHeight="72.0" prefWidth="1390.0" spacing="30.0">
                     <children>
-                        <JFXButton onAction="#AddProductOnList" text="Add Product In List" />
-                        <JFXTextField fx:id="SearchForProducts" prefHeight="26.0" prefWidth="243.0" promptText="Search For The Product" />
-                        <JFXButton fx:id="DeleteSelectedProductsButton" onAction="#DeleteSelectedProduct" text="Delete Selected Product" />
-                        <JFXButton fx:id="ModifySelectedProductsButton" onAction="#ModifySelectedProducts" text="Modify Quanity To Selected" />
-                  <JFXButton text="Send Product (Not in List)" />
+                        <JFXButton onAction="#AddProductOnList" prefHeight="48.0" prefWidth="282.0" text="Add Product In List">
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="36.0">
+                           <image>
+                              <Image url="@../../resource/icons/baseline_add_circle_outline_white_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <ImageView fitHeight="36.0" fitWidth="36.0">
+                     <image>
+                        <Image url="@../../resource/icons/searchIconBlack.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="-35.0" />
+                     </HBox.margin>
+                  </ImageView>
+                        <JFXTextField fx:id="SearchForProducts" prefHeight="32.0" prefWidth="270.0" promptText="Search For The Product" />
+                        <JFXButton fx:id="DeleteSelectedProductsButton" onAction="#DeleteSelectedProduct" prefHeight="48.0" prefWidth="320.0" text="Delete Selected Product">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="32.0">
+                           <image>
+                              <Image url="@../../resource/icons/baseline_delete_white_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                        <JFXButton fx:id="ModifySelectedProductsButton" onAction="#ModifySelectedProducts" prefHeight="48.0" prefWidth="359.0" text="Modify Quanity To Selected">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0">
+                           <image>
+                              <Image url="@../../resource/icons/baseline_update_white_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <JFXButton onAction="#sendProductNotInList" prefHeight="48.0" prefWidth="340.0" text="Send Product ( Not in List )">
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="36.0">
+                           <image>
+                              <Image url="@../../resource/icons/baseline_add_circle_outline_white_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
                     </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
                 </HBox>
                 <HBox alignment="CENTER" layoutX="3.0" layoutY="670.0" prefHeight="87.0" prefWidth="1373.0">
                     <children>
@@ -77,7 +119,7 @@
                 </HBox>
                 <Label layoutX="158.0" layoutY="576.0" prefHeight="29.0" prefWidth="178.0" text="The Message :">
                     <font>
-                        <Font name="ADAM.CGPRO" size="22.0" />
+                        <Font name="Trebuchet MS Bold" size="22.0" />
                     </font>
                 </Label>
             <HBox alignment="CENTER_LEFT" layoutX="158.0" layoutY="617.0" prefHeight="40.0" prefWidth="1069.0" spacing="100.0">

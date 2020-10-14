@@ -5,6 +5,7 @@ import basicClasses.Command;
 import basicClasses.Provider;
 import basicClasses.product;
 import basicClasses.user;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXDialog;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -12,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -63,6 +65,9 @@ public class CommandHistoryController implements Initializable {
 
     @FXML
     private JFXDatePicker CommandDatePicker;
+    @FXML
+    public JFXButton returnToProvidersButton;
+
 
     public static ObservableList<Command> CommandList = FXCollections.observableArrayList();
     public static ArrayList<product> ProductList = new ArrayList<product>();
@@ -72,6 +77,9 @@ public class CommandHistoryController implements Initializable {
     public static Command command;
     Stage CommandHistoryStage;
     public static boolean IfApplyingCommandIsOpen;
+    public static JFXDialog applyingCommandDialog;
+
+
 
 
     public class CustomButtonCell<T, S> extends TableCell<T, S> {
@@ -101,10 +109,14 @@ public class CommandHistoryController implements Initializable {
 
         }
     }
-
+    public void returnToProviders (ActionEvent event) throws IOException {
+        imProviderController.controllerOfSendEmail.ReturnToProvidersInterface();
+    }
     void LoadApplyingCommandScene() throws IOException {
         ApplyingCommandContainer = FXMLLoader.load(getClass().getResource("ApplyingCommand.fxml"));
-
+        applyingCommandDialog= new JFXDialog(CommandHistoryContainer,ApplyingCommandContainer, JFXDialog.DialogTransition.LEFT);
+        applyingCommandDialog.show();
+/*
         Scene scene = new Scene(ApplyingCommandContainer);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -114,25 +126,29 @@ public class CommandHistoryController implements Initializable {
         stage.show();
 
 
+ */
+
         //ApplyingCommandDialog=new JFXDialog(CommandHistoryContainer,ApplyingCommandContainer,JFXDialog.DialogTransition.CENTER);
         // ApplyingCommandDialog.setOverlayClose(false);
         //   ApplyingCommandDialog.show();
     }
 
     void InitTable() throws SQLException {
-        Integer ID;
+        CommandHashMap.clear();
+        CommandList.clear();
+        Integer ID=null;
         Connection connection = ConnectionClass.getConnection();
-        Connection connection2 = ConnectionClass.getConnection();
-        String Sql2 = "SELECT * FROM  ProvidersCommand where userID=?";
+
+
 
         String Sql = "SELECT * FROM  ProductsCommand where userID=?";
 
         //String Sql3="SELECT IdOFTheProvider FROM ProvidersCommand WHERE id=?";
-        PreparedStatement preparedStatement2 = connection2.prepareStatement(Sql2);
-        preparedStatement2.setInt(1,user.getUserID());
+
+
         PreparedStatement preparedStatement = connection.prepareStatement(Sql);
         preparedStatement.setInt(1,user.getUserID());
-        ResultSet resultSet2 = preparedStatement2.executeQuery();
+        ResultSet resultSet = preparedStatement.executeQuery();
         /*
         (new Thread(() -> {
             while (true) {
@@ -140,50 +156,19 @@ public class CommandHistoryController implements Initializable {
                     if (!resultSet2.next()) break;
 
          */
-        while (resultSet2.next()) {
-            ID = resultSet2.getInt(1);
-            //     System.out.println("this is command test  " +ID);
-            CommandHashMap.put(ID, new Command(ID, resultSet2.getString(6), resultSet2.getInt(7), new Provider(resultSet2.getString(2), resultSet2.getString(3), resultSet2.getString(4), resultSet2.getString(5))));
-
-
-        }
-
-
-                    /*
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
-        })).start();
-
-
- */
-        ResultSet resultSet = preparedStatement.executeQuery();
-        /*
-        (new Thread(() -> {
-            while (true) {
-                try {
-                    if (!resultSet.next()) break;
-
-         */
-        while (resultSet.next()) {
+       while (resultSet.next()){
             ID = resultSet.getInt(1);
-            //   System.out.println("this is  second command test  " +ID);
-
-            // if (!CommandHashMap.containsKey(ID))
-            //CommandHashMap.put(ID,  new Command(ID, new  product(resultSet.getString(2),resultSet.getInt(6),resultSet.getInt(5),resultSet.getBoolean(3))));
-
-            CommandHashMap.get(ID).addListProducts(new product(resultSet.getString(2), resultSet.getInt(6), resultSet.getInt(5), resultSet.getBoolean(3)));
-
+            if (!CommandHashMap.containsKey(ID))
+            //     System.out.println("this is command test  " +ID);
+            CommandHashMap.put(ID, new Command(ID, resultSet.getString("DateOfCommand"), resultSet.getInt("idOfProvider"), new product(resultSet.getString(2), resultSet.getInt(6), resultSet.getInt(5), resultSet.getBoolean(3),resultSet.getBoolean(8))));
+else
+                CommandHashMap.get(ID).addListProducts(new product(resultSet.getString(2), resultSet.getInt(6), resultSet.getInt(5), resultSet.getBoolean(3),resultSet.getBoolean(8)));
         }
-/*
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
-        })).start();
 
- */
+
+
+
+
         for (Command command : CommandHashMap.values()) {
             command.setSizeOfProduct(command.getListOfProducts().size());
 //System.out.println("this is loop test   "+ command.getDateOfCommand().substring(0,10));
@@ -195,11 +180,12 @@ public class CommandHistoryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+returnToProvidersButton.setVisible(imProviderController.applyCommandFromImProvider);
         System.out.println(LocalDate.now());
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
         Date date = new Date();
         CommandDatePicker.setValue(LocalDate.now());
+
 
 
         //CommandDatePicker.setValue(LocalDate.now());

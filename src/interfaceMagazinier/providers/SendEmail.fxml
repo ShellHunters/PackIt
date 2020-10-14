@@ -3,17 +3,20 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane fx:id="TheSendEmailRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" styleClass="roots" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.SendEmailController">
+<AnchorPane fx:id="TheSendEmailRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1390.0" styleClass="roots" stylesheets="@imProviders.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceMagazinier.providers.SendEmailController">
     <children>
-        <StackPane prefHeight="900.0" prefWidth="1380.0" />
+        <StackPane prefHeight="900.0" prefWidth="1390.0" />
         <TabPane fx:id="TheTabPaneRoot" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1380.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab fx:id="SendEmailProductsTab" text="Send Email">
@@ -31,7 +34,6 @@
                                                 <TableColumn fx:id="QuantityCol" prefWidth="137.0" text="Quantity" />
                                                 <TableColumn fx:id="OriginalStockCol" prefWidth="137.0" text="Initial Value" />
                                                 <TableColumn fx:id="StockPercentageCol" prefWidth="168.0" text="Stock Percentage   %" />
-                                                <TableColumn fx:id="WasSentCol" prefWidth="190.0" text="Was Sent" />
                                             </columns>
                                             <columnResizePolicy>
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -39,15 +41,37 @@
                                         </TableView>
                               <HBox alignment="CENTER" layoutX="28.0" layoutY="-7.0" prefHeight="65.0" prefWidth="1337.0" spacing="30.0">
                                  <children>
+                                    <ImageView fitHeight="39.0" fitWidth="39.0">
+                                       <image>
+                                          <Image url="@../../resource/icons/searchIconBlack.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="-35.0" />
+                                       </HBox.margin>
+                                    </ImageView>
                                               <JFXTextField fx:id="SearchBox" labelFloat="true" prefHeight="40.0" prefWidth="448.0" promptText="Search Product" />
                                               <JFXCheckBox fx:id="CheckboxNeededProduct" checkedColor="#9c2410" text="Show Needed Product" underline="true" />
                                               <JFXCheckBox fx:id="MultipleSelectCheckBox" text="Multiple Select (Set Quantity)" underline="true" />
-                                              <JFXButton fx:id="SendEmailButton" onAction="#SendEmail" prefHeight="26.0" prefWidth="170.0" text="Send The Email" />
-                                              <JFXButton fx:id="SetMultipleQuantityButton" onAction="#SetMultipleQuantity" prefHeight="32.0" prefWidth="201.0" text="Set Multiple Quantity" />
+                                              <JFXButton fx:id="SendEmailButton" onAction="#SendEmail" prefHeight="43.0" prefWidth="210.0" text="Send The Email">
+                                       <graphic>
+                                          <ImageView fitHeight="30.0" fitWidth="30.0">
+                                             <image>
+                                                <Image url="@../../resource/icons/email-white.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></JFXButton>
+                                              <JFXButton fx:id="SetMultipleQuantityButton" onAction="#SetMultipleQuantity" prefHeight="43.0" prefWidth="210.0" text="Set Multiple Quantity" />
                                  </children>
                               </HBox>
-                              <JFXButton layoutX="28.0" layoutY="813.0" onAction="#ReturnToProvidersInterface" text="Return To Providers Interface" />
-                              <JFXButton fx:id="ApplyingCommandButton" layoutX="1100.0" layoutY="813.0" onAction="#ApplyingCommand" prefHeight="32.0" prefWidth="230.0" text="Apply Command " />
+                              <JFXButton layoutX="28.0" layoutY="803.0" onAction="#ReturnToProvidersInterface" prefHeight="38.0" prefWidth="271.0" text="Return To Providers Interface" />
+                              <JFXButton fx:id="ApplyingCommandButton" layoutX="1125.0" layoutY="803.0" onAction="#ApplyingCommand" prefHeight="35.0" prefWidth="240.0" text="Apply Command ">
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0">
+                                       <image>
+                                          <Image url="@../../resource/icons/baseline_done_white_36dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></JFXButton>
                                     </children>
                                 </AnchorPane>
                             </children>

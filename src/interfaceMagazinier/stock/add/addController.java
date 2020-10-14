@@ -25,7 +25,9 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.PrimitiveIterator;
 import java.util.ResourceBundle;
 
 public class addController implements Initializable {
@@ -130,30 +132,47 @@ private String providerEmail;
         String tableName = "stock";
         if (addInFullStock) tableName = "fullStock";
         addInFullStock = false;
+        SendEmailController. df.setRoundingMode(RoundingMode.UP);
+
         if (IfFromApplyingCommand) {
             totalfigure = ((ApplyingCommandController.TheProvider.getTotalFigure() + (float) quanity * buyPrice));
             System.out.println("in add scene  " + totalfigure);
+            System.out.println("Email test : "+providerEmail);
          //   addProvider(ApplyingCommandController.TheProvider.getEmail(),tableName);
+            Integer indexProvider=returnProviderFromList(ApplyingCommandController. TheProvider.getId(),imProviderController.ProviderList);
 
-            SendEmailController. df.setRoundingMode(RoundingMode.UP);
             ApplyingCommandController.TheProvider.setTotalFigure(Float.parseFloat( SendEmailController.df.format( totalfigure)));
             providerEmail=ApplyingCommandController.TheProvider.getEmail();
+            System.out.println("Email test : "+providerEmail);
             UpdateProvider(ApplyingCommandController.TheProvider.getId(), totalfigure);
-imProviderController.ProviderList.set(ApplyingCommandController.TheProvider.getId(),ApplyingCommandController.TheProvider);
+            if(indexProvider!=null)
+imProviderController.ProviderList.set(indexProvider,ApplyingCommandController.TheProvider);
             product theProduct = ApplyingCommandController.ProductList.get(TheIndex);
             theProduct.setIfWasAdded(true);
             CommandHistoryController.command.getListOfProducts().set(TheIndex, theProduct);
-            //ApplyingCommandController.ProductList.set(TheIndex, theProduct);
+            ApplyingCommandController.ProductList.set(TheIndex, theProduct);
             SetThatWasAdded(barcode, CommandHistoryController.command.getId());
-            ApplyingCommandController.InitTable();
-        } else if (providerCheck.isSelected()) {
+          //  ApplyingCommandController.InitTable();
+        } else if (providerCheck.isSelected()&&providerCheck.isVisible()) {
+
+            System.out.println("this is test of visibility");
             totalfigure = ((providersComboBox.getValue().getTotalFigure() + (float) quanity * buyPrice));
             providerEmail=providersComboBox.getValue().getEmail();
-            Provider addingProvider;
-            addingProvider=imProviderController.ProviderList.get(providersComboBox.getValue().getId());
-            addingProvider.setTotalFigure(totalfigure);
-            imProviderController.ProviderList.set(providersComboBox.getValue().getId(),addingProvider);
+            Provider addingProvider = null;
+            Integer indexProviderInCommand=returnProviderFromList(providersComboBox.getValue().getId(),imProviderController.ProviderList);
+           if(indexProviderInCommand!=null)
+            addingProvider=imProviderController.ProviderList.get(indexProviderInCommand);
+            assert addingProvider != null;
+            addingProvider.setTotalFigure(Float.parseFloat( SendEmailController.df.format( totalfigure)));
             UpdateProvider(providersComboBox.getValue().getId(), totalfigure);
+          imProviderController.ProviderList.set(indexProviderInCommand,addingProvider);
+        //    ArrayList <Provider> tempoList=new ArrayList<Provider>(imProviderController.ProviderList);
+
+            System.out.println(providersComboBox.getValue().getEmail());
+          //  imProviderController.ProviderList.clear();
+            //imProviderController.ProviderList.addAll(tempoList);
+
+
         }
 
 
@@ -180,10 +199,12 @@ imProviderController.ProviderList.set(ApplyingCommandController.TheProvider.getI
 if (providerEmail!=null)
     preparedStatement.setString(12,providerEmail);
         preparedStatement.execute();
+        providerEmail=null;
 
 
 
         connection.close();
+
         int i=0;
         System.out.println("testing barcode "+(barcode));
 
@@ -216,7 +237,7 @@ if (providerEmail!=null)
                 || (!containerName.isDisable() && (containerName.getText().isEmpty() || floorNumber.getText().isEmpty()))
                 || (!expirationdate.isDisable() && expirationdate.getValue() == null)
                 || (!productTypeComboBox.isDisable() && productTypeComboBox.getValue() == null)
-                || (!providersComboBox.isDisable() && providersComboBox.getValue() == null)) {
+                || (providersComboBox.isVisible()&& !providersComboBox.isDisable() && providersComboBox.getValue() == null)) {
             errorLabel.setTextFill(Paint.valueOf("red"));
             errorLabel.setText("Fill all the text fields and informations");
             return true;
@@ -271,9 +292,10 @@ if (providerEmail!=null)
    @Override
     public void initialize(URL location, ResourceBundle resources) {
         IfFromApplyingCommand = ApplyingCommandController.IfApplyingCommandIsOpen;
-
+       providerEmail=null;
 
         if (ApplyingCommandController.IfApplyingCommandIsOpen) {
+            providerCheck.setVisible(false);
             providersComboBox.setVisible(false);
             barcode.setText(ApplyingCommandController.TheProduct.getBarcode().toString());
             quantity.setText(ApplyingCommandController.TheProduct.getNeededQuantity().toString());
@@ -308,6 +330,24 @@ if (providerEmail!=null)
         preparedStatement.setInt(3, Barcode);
         preparedStatement.setInt(4, user.getUserID());
         preparedStatement.executeUpdate();
+    }
+    Integer returnProviderFromList(Integer Id ,ObservableList<Provider> providersList){
+        Integer i = null ;
+
+
+        for (int j=0 ; j <providersList.size() ; j++){
+            if (providersList.get(j).getId().equals(Id)) {
+                i = j;
+                break;
+            }
+
+        }
+        return i;
+
+
+
+
+
     }
 
     @FXML

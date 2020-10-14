@@ -141,9 +141,11 @@ public class ApplyingCommandController implements Initializable {
     }
 
     public void Exit() {
-        Stage stage = (Stage) applyingCommandContainer.getScene().getWindow();
+       // Stage stage = (Stage) applyingCommandContainer.getScene().getWindow();
+
         IfApplyingSceneIsOpen = false;
-        stage.close();
+        CommandHistoryController.applyingCommandDialog.close();
+        //stage.close();
     }
 
     public class CustomButtonCell<T, S> extends TableCell<T, S> {
@@ -176,7 +178,7 @@ public class ApplyingCommandController implements Initializable {
                 });
 
 
-                if (!MyProduct.getIfWasAdded() ) {
+                if (!MyProduct.getIfWasAdded()&&MyProduct.getConfirmedProduct() ) {
                     this.setGraphic(AddProductToStock);
                 } else {
                     this.setText("");
@@ -222,7 +224,7 @@ public class ApplyingCommandController implements Initializable {
                 setText("");
             } else {
                 product MyProduct = (product) this.getTableView().getItems().get(getIndex());
-                if (!MyProduct.getIfWasAdded() ) {
+                if (!MyProduct.getIfWasAdded()&&MyProduct.getConfirmedProduct() ) {
                     this.isChecked.setSelected(this.getItem());
                     this.setGraphic(this.isChecked.getParent());
                 } else {
@@ -322,7 +324,7 @@ public class ApplyingCommandController implements Initializable {
         preparedStatement.setInt(2, user.getUserID());
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next())
-            provider = new Provider(id, resultSet.getString(2), resultSet.getString(3), resultSet.getFloat(7));
+            provider = new Provider(id, resultSet.getString(2), resultSet.getString(3), resultSet.getFloat(7),resultSet.getString(5));
         return provider;
 
     }
@@ -330,13 +332,14 @@ public class ApplyingCommandController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        System.out.println("test if init ");
+ProductList.clear();
         NotAddedCheckBox.setSelected(false);
         System.out.println("hada houwa test aaa " + CommandHistoryController.command.getIdOfProvider());
         try {
             TheProvider = getTheProvider(CommandHistoryController.command.getIdOfProvider());
             if (TheProvider != null)
-                ProviderNameLabel.setText("The Command Provider:  " + TheProvider.getLastName() + " " + TheProvider.getFirstName());
+                ProviderNameLabel.setText("The Command Provider :  " + TheProvider.getLastName() + " " + TheProvider.getFirstName());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -401,37 +404,7 @@ public class ApplyingCommandController implements Initializable {
             applyingAllProductsButton.setDisable(NotAddedList.isEmpty());
 
         });
-/*
 
-        FirstCol.setCellValueFactory(new PropertyValueFactory<Provider, String>("FirstName"));
-        LastCol.setCellValueFactory(new PropertyValueFactory<Provider, String>("LastName"));
-        PhoneCol.setCellValueFactory(new PropertyValueFactory<Provider, String>("PhoneNumber"));
-        EmailCol.setCellValueFactory(new PropertyValueFactory<Provider, String>("Email"));
-        SelectedItem.setCellValueFactory(call -> new SimpleBooleanProperty(false).asObject());
-        SelectedItem.setCellFactory(call -> {
-            return new JFXCheckboxCell() {
-                @Override
-                public void onUpdateRow (Object row, Boolean newValue) {
-                    Provider  TheProvider = (Provider)  this.getTableView().getItems().get(getIndex());
-
-                    if (newValue) {
-
-                        SelectedProvidersList.add(TheProvider);
-                    }
-                    else  SelectedProvidersList.remove(TheProvider);
-                }
-
-                @Override
-                public void onUpdateEntity (Object entity) {
-
-                }
-            };
-
-            });
-
-
-
- */
         FilteredList<product> ProductResults = new FilteredList<>(ProductList, b -> true);
         searchCommandTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
             ProductResults.setPredicate(product -> {
@@ -456,28 +429,6 @@ public class ApplyingCommandController implements Initializable {
 
 
 
-/*
-        FilteredList<Provider> Results = new FilteredList<>(ProviderList, b -> true);
-        SearchProviderTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
-            Results.setPredicate(provider -> {
-                if (newValue == null || newValue.isEmpty())
-                    return true;
-                String lowerCaseFilter = newValue.toLowerCase();
-                if (provider.getFirstName().toLowerCase().contains(lowerCaseFilter))
-                    return true;
-                else if (provider.getLastName().toLowerCase().contains(lowerCaseFilter))
-                    return true;
-                else if (provider.getEmail().toLowerCase().contains(lowerCaseFilter))
-                    return true;
-                else return provider.getPhoneNumber().toLowerCase().contains(lowerCaseFilter);
-            });
-        }));
 
-        SortedList<Provider> ProviderSortedResult = new SortedList<>(Results);
-        ProviderSortedResult.comparatorProperty().bind(ProvidersTableView.comparatorProperty());
-        ProvidersTableView.setItems(ProviderSortedResult);
-
-
- */
     }
 }

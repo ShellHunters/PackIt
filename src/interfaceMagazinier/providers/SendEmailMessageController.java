@@ -41,7 +41,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
-import static interfaceMagazinier.providers.SendEmailController.controllerOfSendEmail;
+
 
 public class SendEmailMessageController implements Initializable {
 
@@ -169,6 +169,11 @@ public class SendEmailMessageController implements Initializable {
 public static JFXDialog settingInfoDialog;
 public static SimpleBooleanProperty forDisablingTextArea = new SimpleBooleanProperty();
     public static String Quantity, msgSubject, msgContent;
+public static JFXDialog sendProductNotInListDialog;
+public static Integer idOfTheProvider;
+//
+
+
 
 
     public abstract class JFXCheckboxCell<T> extends TableCell<T, Boolean> {
@@ -315,6 +320,7 @@ public static SimpleBooleanProperty forDisablingTextArea = new SimpleBooleanProp
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ProductArea.setDisable(true);
         forDisablingTextArea.set(true);
         SendEmailMessageButton.setDisable(true);
         ProviderCombobox.setItems(imProviderController.ProviderList);
@@ -502,13 +508,7 @@ public static SimpleBooleanProperty forDisablingTextArea = new SimpleBooleanProp
 
  */
 
-    public void AddProvidersOnList(ActionEvent actionEvent) {
-        AddProviderButtonClicked.set(false);
-        AddProviderButtonClicked.set(true);
-        ForDisableModifyButton.set(true);
 
-
-    }
 /*
     public void DeleteSelectedProviders() throws IOException {
         ShowAllDialogs.initDialogWithShow(SendEmailMessageRoot.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.DELETE);
@@ -542,10 +542,10 @@ public static SimpleBooleanProperty forDisablingTextArea = new SimpleBooleanProp
 
  */
 System.out.println("abdelkader boussaid dahmouni");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SendEmail.fxml"));
+
      //   loader.setController(SendEmailMessageController);
-        controllerOfSendEmail     = loader.getController();
-controllerOfSendEmail.setApplyTab();
+imProviderController.controllerOfSendEmail.setSendEmailProductsTab();
+
 
     }
 
@@ -592,8 +592,10 @@ controllerOfSendEmail.setApplyTab();
     }
 
     public void SendEmailMessage(ActionEvent actionEvent) throws SQLException, IOException {
-        if (ProviderCombobox.getValue() == null)
+        if (ProviderCombobox.getValue() == null) {
+
             ShowAllDialogs.initDialogWithShow(SendEmailMessageRoot.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.ONEBUTTON);
+        }
         else {
             msgContent = "\n " + MessageArea.getText() + "\n \n \n" + ProductArea.getText();
             msgSubject = SubjectMessageTextField.getText();
@@ -607,8 +609,9 @@ controllerOfSendEmail.setApplyTab();
  */
             msgRecipients = ProviderCombobox.getValue().getEmail();
             MessageArea.setDisable(true);
-            ProductArea.setDisable(true);
+
             tempoProvider= ProviderCombobox.getValue();
+            idOfTheProvider=ProviderCombobox.getValue().getId();
             ShowSettingInformation ();
 System.out.println("after it this is the value "+Email.ItSent);
 
@@ -616,7 +619,6 @@ System.out.println("after it this is the value "+Email.ItSent);
             forDisablingTextArea.addListener((observable, oldValue, newValue) -> {
 if (!forDisablingTextArea.get()) {
     MessageArea.setDisable(forDisablingTextArea.get());
-    ProductArea.setDisable(forDisablingTextArea.get());
 }
             });
 
@@ -653,6 +655,11 @@ if (!forDisablingTextArea.get()) {
         ModifySelectedProductContext.setDisable(state);
 
     }
+    public void sendProductNotInList (ActionEvent event) throws IOException {
+        StackPane stackPane = FXMLLoader.load(getClass().getResource("settingProductNotInList.fxml"));
+        sendProductNotInListDialog= new JFXDialog(SendEmailMessageRoot,stackPane,JFXDialog.DialogTransition.RIGHT);
+        sendProductNotInListDialog.show();
+    }
 
     public void ModifyProductMethod(product infoProducts) {
         IfEmailMessageIsOpen = true;
@@ -684,15 +691,24 @@ if (!forDisablingTextArea.get()) {
         }
 
     }
-
     void DeleteIndividualProduct(product infoProducts) {
-        infoProducts.setNeededQuantity(0);
+
+       if(infoProducts.getBarcode()!=-1) {
+           infoProducts.setNeededQuantity(0);
+
+           SendEmailController.ProductList.add(infoProducts);
+           SendEmailController.TempoListOfProducts.add(infoProducts);
+           if (infoProducts.getStockPercentage() <= 20)
+               SendEmailController.NeededProduct.add(infoProducts);
+
+       }
         ProductList.remove(infoProducts);
-        SendEmailController.ProductList.add(infoProducts);
-        SendEmailController.TempoListOfProducts.add(infoProducts);
-        if (infoProducts.getStockPercentage() <= 20)
-            SendEmailController.NeededProduct.add(infoProducts);
         SelectedProductList.clear();
+    }
+    void showApplyCommandTabWithNoSendEmail(){
+
+
+
     }
 public  void ShowSettingInformation () throws IOException {
         StackPane stackPane = FXMLLoader.load(getClass().getResource("settingSenderInformation.fxml"));
@@ -708,8 +724,8 @@ public  void ShowSettingInformation () throws IOException {
         Connection connection = ConnectionClass.getConnection();
         //  Connection connection2 =ConnectionClass.getConnection();
 
-        String Sql = "INSERT INTO ProductsCommand (id,ProductName,DateOfCommand,RequiredQuantity,barcode,userID) values (?,?,?,?,?,?)";
-        String Sql2 = "INSERT INTO ProvidersCommand (id,FirstName,LastName,PhoneNumber,CommandDate,Email,IdOFTheProvider,userID) values (?,?,?,?,?,?,?,?)";
+        String Sql = "INSERT INTO ProductsCommand (id,ProductName,DateOfCommand,RequiredQuantity,barcode,userID,idOfProvider) values (?,?,?,?,?,?,?)";
+
         String Sql3 = "SELECT * FROM ProductsCommand WHERE id = (SELECT MAX(id) FROM ProductsCommand) and userID=?";
         int id = 1;
 
@@ -736,24 +752,14 @@ public  void ShowSettingInformation () throws IOException {
             preparedStatement.setInt(4, Product.getNeededQuantity());
             preparedStatement.setInt(5, Product.getBarcode());
             preparedStatement.setInt(6, user.getUserID());
+            preparedStatement.setInt(7,idOfTheProvider );
             preparedStatement.executeUpdate();
         }
-        preparedStatement = connection.prepareStatement(Sql2);
 
-        //  System.out.println("lwelwelel test  "+id +"   "+Product.getProductName()+"    "+Product.getNeededQuantity()+"   " +Product.getBarcode() + "    "+Date) ;
-
-        preparedStatement.setInt(1, id);
-        preparedStatement.setString(2, provider.getFirstName());
-        preparedStatement.setString(3, provider.getLastName());
-        preparedStatement.setString(4, provider.getPhoneNumber());
-        preparedStatement.setString(5, Date);
-        preparedStatement.setString(6, provider.getEmail());
-        preparedStatement.setInt(7, provider.getId());
-        preparedStatement.setInt(8, user.getUserID());
-
-
-        preparedStatement.executeUpdate();
 
     }
+
+
+
 
 }

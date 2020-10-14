@@ -3,15 +3,15 @@
     -fx-font: bolder 16px "Trebuchet MS";
 }
 
-.button{
-    -fx-background-color: #170480;
-    -fx-text-fill: white;
-    -fx-background-radius: 10;
-}
+    .button{
+        -fx-background-color: #170480;
+        -fx-text-fill: white;
+        -fx-background-radius: 10;
+    }
 
-.pressed{
-    -fx-background-color: #ee974c;
-}
+    .pressed{
+        -fx-background-color: #ee974c;
+    }
 
 .button:hover{
     -fx-background-color: #ee974c;

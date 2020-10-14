@@ -113,7 +113,7 @@ public class SendEmailController implements Initializable {
     public static SimpleBooleanProperty ForDisableSetQuantityButton = new SimpleBooleanProperty(true);
     public static SimpleBooleanProperty ForDisableMultipleCheck = new SimpleBooleanProperty(true);
     public static boolean IfTabPaneIsOpen;
-     static SendEmailController controllerOfSendEmail;
+
  public  static DecimalFormat df = new DecimalFormat("0.00");
     public void ApplyingCommand() {
         System.out.println("the size of the tab pane " + TheTabPaneRoot.getTabs().size());
@@ -250,24 +250,24 @@ public class SendEmailController implements Initializable {
             df.setRoundingMode(RoundingMode.UP);
             float Percentage = Float.parseFloat( df.format( (float) (resultSet.getInt(5) * 100) / resultSet.getInt(8)));
             // System.out.println("this is hbal test  "+resultSet.getInt(8) + "ber ber "+Percentage);
-            if (resultSet.getBoolean(9))
-                WasSentCol.getStyleClass().add("ItWasSent");
-            else WasSentCol.getStyleClass().add("ItWasntSent");
+
 //            String theDate=resultSet.getDate(3).toString();
             //  System.out.println("tajrouba   "+theDate);
             //   System.out.println("this is 3333333333hbal test  "+resultSet.getInt(5));
             //  System.out.println("hada hballllllll fga3333333  "+ resultSet.getInt(1) + "   "+ resultSet.getString(4)+ "   "+resultSet.getFloat(2) + "   "+ resultSet.getInt(5)+ "   "+resultSet.getInt(8)+ "   "+Percentage + "   "+resultSet.getBoolean(9));
             if (Percentage <= 20)
-                NeededProduct.add(new product(resultSet.getString(4), resultSet.getInt(1), resultSet.getFloat(2), resultSet.getInt(5), Percentage, resultSet.getBoolean(9), resultSet.getInt(8)));
+                NeededProduct.add(new product(resultSet.getString("name"), resultSet.getInt("barcode"), resultSet.getFloat("buyprice"), resultSet.getInt("quantity"), Percentage, resultSet.getInt("initialQuantity")));
 
-            ProductList.add(new product(resultSet.getString(4), resultSet.getInt(1), resultSet.getFloat(2), resultSet.getInt(5), Percentage, resultSet.getBoolean(9), resultSet.getInt(8)));
-            TempoListOfProducts.add(new product(resultSet.getString(4), resultSet.getInt(1), resultSet.getFloat(2), resultSet.getInt(5), Percentage, resultSet.getBoolean(9), resultSet.getInt(8)));
+            ProductList.add(new product(resultSet.getString("name"), resultSet.getInt("barcode"), resultSet.getFloat("buyprice"), resultSet.getInt("quantity"), Percentage, resultSet.getInt("initialQuantity")));
+            TempoListOfProducts.add(new product(resultSet.getString("name"), resultSet.getInt("barcode"), resultSet.getFloat("buyprice"), resultSet.getInt("quantity"), Percentage, resultSet.getInt("initialQuantity")));
 
         }
 
     }
-public void setApplyTab(){
-    TheTabPaneRoot.getSelectionModel().select(SendEmailProductsTab);
+public void setSendEmailProductsTab(){
+
+
+        TheTabPaneRoot.getSelectionModel().select(SendEmailProductsTab);
 }
 
     @Override
@@ -282,7 +282,11 @@ public void setApplyTab(){
         SetMultipleQuantityButton.setDisable(true);
         MultipleSelectCheckBox.setSelected(false);
         TheTabPaneRoot.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+        if(!imProviderController. applyCommandFromImProvider)
         TheTabPaneRoot.getTabs().removeAll(SendEmailMessageTab, ApplyingCommandTab);
+        else{
+            TheTabPaneRoot.getTabs().removeAll(SendEmailMessageTab, SendEmailProductsTab);
+        }
 
         System.out.println(TheTabPaneRoot.getTabs().size());
         /*
@@ -311,6 +315,7 @@ public void setApplyTab(){
         });
         SendEmailMessageTab.setOnCloseRequest(e -> {
             SendEmailMessageController.IfEmailMessageIsOpen = false;
+            SendEmailMessageController.IfSendEmailMessageIsLoaded=false;
             System.out.println("Hellllooooo");
         });
         /*
@@ -331,7 +336,14 @@ public void setApplyTab(){
         ApplyingCommandTab.setOnCloseRequest(e -> {
                     CommandHistoryController.IfApplyingCommandIsOpen = false;
                     System.out.println("this is the second place");
-
+                    if (imProviderController.applyCommandFromImProvider) {
+                        try {
+                            ReturnToProvidersInterface();
+                          imProviderController. applyCommandFromImProvider=false;
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
+                    }
 
                 }
         );
@@ -399,7 +411,7 @@ public void setApplyTab(){
         QuantityCol.setCellValueFactory(new PropertyValueFactory<product, Integer>("quantity"));
         OriginalStockCol.setCellValueFactory(new PropertyValueFactory<product, Integer>("initialQuantity"));
         StockPercentageCol.setCellValueFactory(new PropertyValueFactory<product, Double>("StockPercentage"));
-        WasSentCol.setCellValueFactory(new PropertyValueFactory<product, String>("ifWasSentString"));
+
         FilteredList<product> Results = new FilteredList<>(ProductList, b -> true);
         SearchBox.textProperty().addListener(((observable, oldValue, newValue) -> {
             Results.setPredicate(product -> {

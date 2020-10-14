@@ -11,7 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +26,7 @@ import static Dialogs.Resources.Controllers.ShowAllDialogs.*;
 
 public class ModifyProviderController implements Initializable {
     @FXML
-    public AnchorPane ModifyRoot;
+    public StackPane ModifyRoot;
     @FXML
     public JFXTextField ModifyEmailField;
     @FXML
@@ -54,8 +54,9 @@ public class ModifyProviderController implements Initializable {
     @FXML
     public void ExitModify() throws IOException, SQLException {
         if (!hasAnythingChanged()) {
+           ShowAllDialogs. threeButtonSetText("Save");
             initDialogWithShow(ModifyRoot.getScene().getWindow(), AlertTypeDialog.WARNING);
-            if (SAVEBUTTON.get()) {
+            if (ADDBUTTON.get()) {
                 if (FinalValidity(ModifyEmailField, ModifyPhoneField, ModifyFirstField, ModifyLastField, ModifyAddrField, imProviderController.provider.getEmail(), imProviderController.provider.getPhoneNumber())) {
                     SetFirstCharToUpper(ModifyFirstField);
                     SetFirstCharToUpper(ModifyLastField);

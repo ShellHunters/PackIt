@@ -25,6 +25,16 @@ public class Command {
         ListOfProducts.addAll(theProductList);
 
     }
+    public  Command (Integer ID, String dateOfCommand ,Integer idOfProvider,Collection<product> theProductList ,Integer size){
+
+        ListOfProducts = new ArrayList<product>();
+        Id=ID;
+        IdOfProvider=idOfProvider;
+        DateOfCommand = dateOfCommand;
+        ListOfProducts.addAll(theProductList);
+        SizeOfProduct=size;
+
+    }
     public  Command (Integer ID, String dateOfCommand ,Integer idOfProvider,Provider provider,Collection<product> theProductList ,Integer size){
         CommandProvider=provider;
         ListOfProducts = new ArrayList<product>();
@@ -45,6 +55,13 @@ public class Command {
 
     }
 
+    public  Command (Integer ID, String dateOfCommand ,Integer idOfProvider , product theProduct){
+        ListOfProducts = new ArrayList<product>();
+        ListOfProducts.add(theProduct);
+        Id=ID;
+        IdOfProvider=idOfProvider;
+        DateOfCommand = dateOfCommand;
+    }
     public  Command (Integer ID, String dateOfCommand ,Integer idOfProvider,Provider provider ){
         CommandProvider=provider;
         ListOfProducts = new ArrayList<product>();

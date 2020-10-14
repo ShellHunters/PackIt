@@ -106,10 +106,11 @@ CheckBox selected;
 
     }
 
-    public Provider ( Integer id,String firstName, String lastName, float totalFigure) {
+    public Provider ( Integer id,String firstName, String lastName , float totalFigure, String email) {
         FirstName = firstName;
         LastName = lastName;
         this.id = id;
+        Email=email;
         TotalFigure = totalFigure;
     }
 

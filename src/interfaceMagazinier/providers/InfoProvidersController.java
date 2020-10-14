@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -49,7 +48,6 @@ public class InfoProvidersController implements Initializable {
     public JFXButton ExitInfoProvider;
     @FXML
     public JFXButton AddProvider;
-    CursorPosition dragPosition = new CursorPosition();
 
     @FXML
     public void AddProvider(ActionEvent event) throws SQLException, IOException {
@@ -116,7 +114,7 @@ public class InfoProvidersController implements Initializable {
     void ExitProviderInfo(ActionEvent event) throws IOException, SQLException {
         if (!VerifyIfEmpty()) {
             ShowAllDialogs.initDialogWithShow(InfoRoot.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.WARNING);
-            if (ShowAllDialogs.SAVEBUTTON.get()) {
+            if (ShowAllDialogs.ADDBUTTON.get()) {
                 if (ModifyProviderController.FinalValidity(EmailField, PhoneField, FirstField, LastField, AddrField, "", "")) {
                     ErrorMessage.setText("");
                     ModifyProviderController.SetFirstCharToUpper(FirstField);
@@ -127,25 +125,12 @@ public class InfoProvidersController implements Initializable {
 
             }
             if (ShowAllDialogs.EXITBUTTON.get())
-                imProviderController.AddProviderStage.close();
+                imProviderController.infoProviderDialog.close();
 
         } else
-            imProviderController.AddProviderStage.close();
+            imProviderController.infoProviderDialog.close();
     }
 
-    public void SceneDraggedMouse(MouseEvent mouseEvent) {
-        imProviderController.AddProviderStage.setX(mouseEvent.getScreenX() + dragPosition.x);
-        imProviderController.AddProviderStage.setY(mouseEvent.getScreenY() + dragPosition.y);
-    }
-
-    public void ScenePressedMouse(MouseEvent mouseEvent) {
-        dragPosition.x = imProviderController.AddProviderStage.getX() - mouseEvent.getScreenX();
-        dragPosition.y = imProviderController.AddProviderStage.getY() - mouseEvent.getScreenY();
-    }
-
-    class CursorPosition {
-        double x, y;
-    }
 
     public boolean VerifyIfEmpty() {
         return FirstField.getText().isEmpty() && LastField.getText().isEmpty() && EmailField.getText().isEmpty() && PhoneField.getText().isEmpty() && AddrField.getText().isEmpty();

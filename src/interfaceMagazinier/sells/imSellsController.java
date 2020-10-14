@@ -1,5 +1,6 @@
 package interfaceMagazinier.sells;
 
+import Dialogs.Resources.Controllers.ShowAllDialogs;
 import basicClasses.product;
 import basicClasses.sell;
 import basicClasses.user;
@@ -308,11 +309,16 @@ public class imSellsController implements Initializable {
     public void okClick() throws SQLException {
         try {
             if (barcodeLabel.getText().equals("")) {
+                ShowAllDialogs.InitContentDialog("Error Was Occurred !","You Must Fill The Text-Field");
+                ShowAllDialogs.initDialogWithShow(content.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.ONEBUTTON);
+                /*
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("");
                 alert.setContentText("You must fill the label ");
                 alert.showAndWait();
+
+                 */
                 barcodeLabel.setText("");
             } else {
                 Connection connection = ConnectionClass.getConnection();
@@ -377,7 +383,7 @@ public class imSellsController implements Initializable {
     public void printFacture() {
 
 
-        String path = "src\\resource\\File\\facture1_2.jasper";
+        String path = "src/resource/File/facture1_2.jasper";
 
 
         try {
@@ -385,6 +391,10 @@ public class imSellsController implements Initializable {
             // HashMap<String, Object> params
             // JRDataSource jasperDataSource/
             // Indentation CTRL + ALT + L
+            // Indentation CTRL + ALT + L
+            // Indentation CTRL + ALT + L
+
+
 
             Path documentPath = Paths.get(path);
             Map<String, Object> params = new HashMap<>();

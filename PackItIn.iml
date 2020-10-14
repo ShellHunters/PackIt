@@ -10,17 +10,16 @@
     <orderEntry type="library" exported="" name="jfoenix-9.0.9" level="project" />
     <orderEntry type="library" exported="" name="javax.mail-1.6.21" level="project" />
     <orderEntry type="library" exported="" name="aopalliance-1.0" level="project" />
-    <orderEntry type="library" exported="" name="avalon-framework-4.1.3" level="project" />
-    <orderEntry type="library" exported="" name="bcprov-jdk15on-1.64" level="project" />
-    <orderEntry type="library" exported="" name="commons-beanutils-1.9.4-javadoc" level="project" />
-    <orderEntry type="library" exported="" name="jasperreports-6.12.2" level="project" />
-    <orderEntry type="library" exported="" name="jasperreports-annotation-processors-6.12.2" level="project" />
-    <orderEntry type="library" exported="" name="javax.mail" level="project" />
     <orderEntry type="library" exported="" name="jfoenix-8.0.8" level="project" />
-    <orderEntry type="library" exported="" name="joda-time-2.10.6-javadoc" level="project" />
-    <orderEntry type="library" exported="" name="jsf-impl-1.2" level="project" />
     <orderEntry type="library" exported="" name="mysql-connector-java-5.1.48" level="project" />
     <orderEntry type="library" exported="" name="activation-1.1.11" level="project" />
+    <orderEntry type="library" exported="" name="bcprov-jdk15on-1.64" level="project" />
     <orderEntry type="library" exported="" name="controlsfx-8.40.14" level="project" />
+    <orderEntry type="library" exported="" name="joda-time-2.10.6-javadoc" level="project" />
+    <orderEntry type="library" exported="" name="activation-1.1.1" level="project" />
+    <orderEntry type="library" exported="" name="commons-beanutils-1.9.4-javadoc" level="project" />
+    <orderEntry type="library" exported="" name="jasperreports-6.12.2" level="project" />
+    <orderEntry type="library" exported="" name="javax.mail" level="project" />
+    <orderEntry type="library" name="spring" level="project" />
   </component>
 </module>
