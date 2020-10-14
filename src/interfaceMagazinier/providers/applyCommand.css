@@ -2,87 +2,12 @@
 .button{
     -fx-background-color: #170480;
     -fx-text-fill: white;
+    -fx-font-size: 15;
     -fx-background-radius: 10;
-    -fx-font-size: 16px;
-
 }
 
-.button:pressed{
+.pressed{
     -fx-background-color: #ee974c;
-}
-
-.button:hover{
-    -fx-background-color: #ee974c;
-}
-.ExitButton{
-    -fx-text-fill: white;
-    -fx-background-radius: 10;
-    -fx-background-color:  #909497 ;
-
-    -fx-font-size: 16px;
-}
-.DeleteButton{
-    -fx-background-color:  #F38A8A;
-    -fx-font-size: 16px;
-
-}
-
-
-.Titles{
-    -fx-font-family:"ADAM.CG PRO";
-    -fx-font-size: 40px;
-    -fx-padding: 30px;
-}
-.ErrorMessage{
-    -fx-font-family: 'Roboto Mono for Powerline';
-    -fx-text-fill: red;
-    -fx-font-size: 20;
-
-}
-#AllProvidersTable {
-
-}
-.ContextList{
-    -fx-font: 20 'URW Gothic';
-}
-.CloseButton{
-    -fx-graphic: url(../../resource/icons/CloseBlack.png);
-    -fx-padding: 0px;
-    -fx-background-color:transparent;
-
-}
-.CloseButton:hover {
-    -fx-cursor: hand;
-    -fx-graphic: url(../../resource/icons/CloseIconReverse.png);
-    -fx-background-color:transparent;
-}
-#EditButton{
-    -fx-graphic: url(../../resource/icons/EditIcon.png);
-    -fx-padding: 0px;
-    -fx-background-color:transparent;
-    -fx-text-fill: black;
-}
-#EditButton:hover{
-    -fx-cursor: hand;
-}
-.RootParentModify{
-    -fx-background-color: rgba(255, 255, 255, 0)
-}
-.ModifyPane{
-    -fx-background-color:white;
-
-}
-.Content{
-    -fx-text-fill: blue;
-}
-.StyleRoots{
-    -fx-border-width:3px;
-    -fx-border-color: black;
-}
-
-.check-select {
-    -jfx-checked-color: #2196f3;
-    -fx-cursor: hand
 }
 .table-view {
     -fx-table-color: #ee974c;
@@ -99,7 +24,6 @@
     -fx-background-insets: 0, 0, 0, 0;
     -fx-text-fill: BLACK;
 }
-
 .table-view:focused .table-row-cell:selected .table-cell {
     -fx-text-fill: black;
 }
@@ -191,21 +115,33 @@
     -fx-background-color: rgb(239, 242, 249);
     -fx-font: bolder 16px "Trebuchet MS";
 }
-.windows {
-    -fx-border-width: 2px;
-    -fx-border-color: #170480;
-
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-
-}
-.jfx-text-field{
+.jfx-text-field , .jfx-check-box{
     -fx-font: bolder 16px "Trebuchet MS";
 
 }
-.ItWasSent{
-    -fx-text-fill:  #4CA64C;
+
+.CloseButton{
+    -fx-graphic: url(../../resource/icons/CloseBlack.png);
+    -fx-padding: 0px;
+    -fx-background-color:transparent;
+
 }
-.ItWasntSent{
-    -fx-text-fill: #F38A8A;
+.CloseButton:hover {
+    -fx-cursor: hand;
+    -fx-graphic: url(../../resource/icons/CloseIconReverse.png);
+    -fx-background-color:transparent;
+}
+.Title{
+    -fx-font: bolder 16px "Trebuchet MS";
+    -fx-underline: true;
+    -fx-line-spacing:2px;
+
+}
+.StyleRoots{
+    -fx-border-width:3px;
+    -fx-border-color: #ee974c;
+}
+.TableContainer{
+    -fx-border-width: 2px;
+    -fx-border-color: #170480;
 }
