@@ -1,6 +1,7 @@
 package interfaceMagazinier.stock;
 
 import Connector.ConnectionClass;
+import Dialogs.Resources.Controllers.ShowAllDialogs;
 import basicClasses.product;
 import basicClasses.user;
 import com.jfoenix.controls.JFXButton;
@@ -38,6 +39,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+
+import static Dialogs.Resources.Controllers.ShowAllDialogs.DELETEBUTTON;
+import static Dialogs.Resources.Controllers.ShowAllDialogs.initDialogWithShow;
 
 
 public class imStockController implements Initializable {
@@ -277,28 +281,31 @@ else return 0;
         });
     }
 
-    public void removeProduct() throws SQLException {
-        Connection connection = ConnectionClass.getConnection();
-        Statement statement = connection.createStatement();
-        ObservableList<product> removedProduct = FXCollections.observableArrayList();
-        for (product bean : products)
-            if (bean.getCheckbox().isSelected()) {
-                removedProduct.add(bean);
-                String sql;
-                if (!bean.getExpirationDate().equals(""))
-                    sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" + bean.getBuyPrice() + "', '" + bean.getQuantity() + "', '" + bean.getExpirationDate() + "','" + user.getUserID() + "')";
-                else
-                    sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" + bean.getBuyPrice() + "', '" + bean.getQuantity() + "','" + user.getUserID() + "')";
-                statement.executeUpdate(sql);
+    public void removeProduct() throws SQLException, IOException {
+        initDialogWithShow(stackPane.getScene().getWindow(), ShowAllDialogs.AlertTypeDialog.DELETE);
+        if (DELETEBUTTON.get()) {
+            Connection connection = ConnectionClass.getConnection();
+            Statement statement = connection.createStatement();
+            ObservableList<product> removedProduct = FXCollections.observableArrayList();
+            for (product bean : products)
+                if (bean.getCheckbox().isSelected()) {
+                    removedProduct.add(bean);
+                    String sql;
+                    if (!bean.getExpirationDate().equals(""))
+                        sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,expirationdate,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" + bean.getBuyPrice() + "', '" + bean.getQuantity() + "', '" + bean.getExpirationDate() + "','" + user.getUserID() + "')";
+                    else
+                        sql = "INSERT INTO removedproducts (name,barcode,sellprice,buyprice,quantity,userID) VALUES ('" + bean.getProductName() + "', '" + bean.getBarcode() + "', '" + bean.getSellPrice() + "', '" + bean.getBuyPrice() + "', '" + bean.getQuantity() + "','" + user.getUserID() + "')";
+                    statement.executeUpdate(sql);
 
-                String sqlDelete = "DELETE FROM stock WHERE barcode=? and userID=?";
-                PreparedStatement pst = connection.prepareStatement(sqlDelete);
-                pst.setInt(1, bean.getBarcode());
-                pst.setInt(2, user.getUserID());
-                pst.executeUpdate();
-                pst.close();
-            }
-        products.removeAll(removedProduct);
+                    String sqlDelete = "DELETE FROM stock WHERE barcode=? and userID=?";
+                    PreparedStatement pst = connection.prepareStatement(sqlDelete);
+                    pst.setInt(1, bean.getBarcode());
+                    pst.setInt(2, user.getUserID());
+                    pst.executeUpdate();
+                    pst.close();
+                }
+            products.removeAll(removedProduct);
+        }
     }
 
     public void updateProduct(javafx.event.ActionEvent event) throws IOException {

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="311.0" prefWidth="667.0" styleClass="WarningDialogRoot" stylesheets="@../StyleSheets/DialogsStyleSheets.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dialogs.Resources.Controllers.WarningDialogController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#WarningDialogDragged" onMousePressed="#WarningDialogPressed" prefHeight="311.0" prefWidth="667.0" styleClass="WarningDialogRoot" stylesheets="@../StyleSheets/DialogsStyleSheets.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dialogs.Resources.Controllers.WarningDialogController">
    <children>
       <Pane prefHeight="375.0" prefWidth="795.0">
          <children>

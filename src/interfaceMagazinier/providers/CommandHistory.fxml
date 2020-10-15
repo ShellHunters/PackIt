@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -27,7 +29,14 @@
             </VBox>
             <HBox alignment="CENTER_LEFT" layoutX="285.0" layoutY="82.0" prefHeight="100.0" prefWidth="869.0" spacing="40.0">
                <children>
-                  <JFXButton fx:id="returnToProvidersButton" onAction="#returnToProviders" prefHeight="37.0" prefWidth="212.0" text="Return to Providers" />
+                  <JFXButton fx:id="returnToProvidersButton" onAction="#returnToProviders" prefHeight="39.0" prefWidth="129.0" text="Return ">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="29.0" rotate="180.0">
+                           <image>
+                              <Image url="@../../../../../../../baseline_exit_to_app_white_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
                   <JFXDatePicker fx:id="CommandDatePicker" defaultColor="#ee801b" overLay="true" prefHeight="32.0" prefWidth="243.0" promptText="Select Date Of Command" />
                </children>
             </HBox>

@@ -50,6 +50,9 @@
                                  </StackPane.margin>
                               </Label>
                            </children>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
                         </StackPane>
                      </children>
                      <VBox.margin>

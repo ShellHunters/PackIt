@@ -3,17 +3,17 @@ package Dialogs.Resources.Controllers;
 import javafx.animation.ScaleTransition;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
 import javafx.stage.Window;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.IOException;
 
 public  class ShowAllDialogs  {
@@ -102,7 +102,7 @@ ClickedButton.InitBoolean();
     DialogScene = new Scene(DialogParent);
 DialogScene.setFill(Color.TRANSPARENT);
        DialogStage.setScene(DialogScene);
-DialogStage.centerOnScreen();
+
     ShowAllDialogs.DialogScaleTransition(DialogParent,0,0,1,1 , TransitionMode.OPENING);
     ClickedButton.dialogsYESBUTTON.addListener((observable, oldValue, newValue) -> YESBUTTON.set(ClickedButton.dialogsYESBUTTON.get()));
     ClickedButton.dialogsNOBUTTON.addListener((observable, oldValue, newValue) -> NOBUTTON.set(ClickedButton.dialogsNOBUTTON.get()));
@@ -113,6 +113,9 @@ DialogStage.centerOnScreen();
     ClickedButton.dialogsONEBUTTON.addListener((observable, oldValue, newValue) -> ONEBUTTON.set(ClickedButton.dialogsEXITBUTTON.get()));
 
     DialogStage.showAndWait();
+    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+    DialogStage.setX((primScreenBounds.getWidth() - DialogStage.getWidth()) / 2);
+    DialogStage.setY((primScreenBounds.getHeight() - DialogStage.getHeight()) / 2);
 }
 public static void ExitDialog(){
     ShowAllDialogs.DialogScaleTransition(DialogParent,1,1,0,0 , TransitionMode.CLOSING);
@@ -185,5 +188,7 @@ public static class ClickedButton{
 }
 
     static class CursorPosition {double x,y;}
+
+
 }
 

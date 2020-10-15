@@ -22,6 +22,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -88,7 +90,7 @@ public class imMainController implements Initializable {
         });
         //Notifications
 
-        notificationImage.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+       /* notificationImage.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
                 Region rootNotification=FXMLLoader.load(getClass().getResource("../notification/notification.fxml"));
                 JFXDialog notification = new JFXDialog(mainStackPane,rootNotification, JFXDialog.DialogTransition.LEFT);
@@ -98,21 +100,35 @@ public class imMainController implements Initializable {
                 e.printStackTrace();
             }
 
-        });
+        });*/
 
         loadContent();
 
         dashboardButton.getStyleClass().add("activeButton");
         contentPane.getChildren().setAll(contents[0]);
-
+        try {
+            newNotification=checkNotification(newNotification);
+            System.out.println(newNotification);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        if (newNotification > 0) {
+            nomuber_notifi=newNotification;
+            newNotification=0;
+            notification_cont.setText("" + nomuber_notifi);
+            notification_cont.setStyle("-fx-background-color: #ff5646;-fx-background-radius: 50;-fx-font-size:14px;-fx-padding: 0 5 0 5");
+           /* Media sound=new Media(getClass().getResource("/resource/sound/notification-sound.mp3").toString());
+            MediaPlayer mediaPlayer=new MediaPlayer(sound);
+            mediaPlayer.play();*/
+        }
         notificationImage.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             nomuber_notifi=0;
             notification_cont.setText("");
             notification_cont.setStyle("-fx-background-radius: 30;-fx-font-size:14px;-fx-padding: 0 5 0 5");
             try {
-                Region root1=FXMLLoader.load(getClass().getResource("/notifications/notification.fxml"));
+                Region root1=FXMLLoader.load(getClass().getResource("/notification/notification.fxml"));
                 JFXDialog dialog =new JFXDialog(mainStackPane,root1, JFXDialog.DialogTransition.RIGHT);
-                dialog.getStylesheets().add(getClass().getResource("/notifications/notification_style.css").toString());
+                dialog.getStylesheets().add(getClass().getResource("/notification/notification_style.css").toString());
                 dialog.show();
             } catch (IOException e) {
                 System.err.println(e);
@@ -205,16 +221,17 @@ public class imMainController implements Initializable {
         String products=null;
         ResultSet rs,rs1;
         boolean exist;
-        if(checkIf("Expired Products", getdesc("SELECT * FROM user.stock where DATEDIFF(stock.expirationdate,now()) <= 0 "))) n++;
-        if (checkIf("Expired date comming",getdesc("SELECT * FROM user.stock WHERE DATEDIFF(stock.expirationdate,now()) BETWEEN 1 AND 7"))) n++;
-        if (checkIf("Will Finish",getdesc("SELECT * FROM user.stock WHERE quantity=initialQuantity*0.2 AND DATEDIFF(expirationdate,now())>0")))n++;
-        if (checkIf("Confirmed Products",getDescForConfirmed("SELECT ProductName FROM ProductsCommand WHERE confirmedProduct=true"))) n++;
+        if(checkIf("Expired Products", getdesc("SELECT name FROM user.stock where (DATEDIFF(stock.expirationdate,now()) <= 0) and userID="+user.getUserID()))) n++;
+        if (checkIf("Expired date comming",getdesc("SELECT name FROM user.stock WHERE (DATEDIFF(stock.expirationdate,now()) BETWEEN 1 AND 7) and userID="+user.getUserID()))) n++;
+        if (checkIf("Will Finish",getdesc("SELECT name FROM user.stock WHERE quantity=initialQuantity*0.2 AND DATEDIFF(expirationdate,now())>0 and userID="+user.getUserID())))n++;
+        if (checkIf("Confirmed Products",getDescForConfirmed("SELECT ProductName FROM ProductsCommand WHERE confirmedProduct=true and userID="+user.getUserID())))n++;
+        if (checkIf("Suggest Product",getDescForConfirmed("SELECT name from suggestproducts where userID="+user.getUserID()))) n++;
         return n;
     }
     public boolean checkIf(String type,String des) throws SQLException {
         boolean exist=true;
         String SQL;
-        ResultSet rs = ConnectionClass.getConnection().createStatement().executeQuery("SELECT * FROM user.notification");
+        ResultSet rs = ConnectionClass.getConnection().createStatement().executeQuery("SELECT * FROM user.notification WHERE userID="+user.getUserID());
         if (des!=""&&des!=" ")
             while (rs.next()&& exist) {
                 if (rs.getString(1).equals(type) && rs.getString(2).equals(des)) exist=false;
@@ -225,7 +242,7 @@ public class imMainController implements Initializable {
             notificationHashList.add(des);
             //----------------------------------------set user id -----------------------------------------------------------------------
             //------------------------------------------------------------------------------------
-            SQL = "INSERT INTO user.notification (title, description, date, userID) VALUES ('"+type+"','"+des+"',now(),1)";
+            SQL = "INSERT INTO user.notification (title, description, date, userID) VALUES ('"+type+"','"+des+"',now(),"+user.getUserID()+") ";
             connection.createStatement().executeUpdate(SQL);
         }
         System.out.println(exist+" "+notificationHashList.isEmpty());
@@ -236,9 +253,9 @@ public class imMainController implements Initializable {
         HashSet<String> products=new HashSet<>();
         ResultSet rs=connection.createStatement().executeQuery(sql);
         while (rs.next()) products.add(rs.getString(1));
-        rs=connection.createStatement().executeQuery("SELECT name from stock where quantity=initialQuantity*0.2 and DATEDIFF(expirationdate,NOW())>0");
+        rs=connection.createStatement().executeQuery("SELECT name from stock where quantity=initialQuantity*0.2 and DATEDIFF(expirationdate,NOW())>0 and userID="+user.getUserID());
         while (rs.next()) if (products.contains(rs.getString(1))) des+=rs.getString(1)+" ";
-        rs=connection.createStatement().executeQuery("SELECT name from stock where datediff(expirationdate,now())<=0");
+        rs=connection.createStatement().executeQuery("SELECT name from stock where datediff(expirationdate,now())<=0 and userID="+user.getUserID());
         while (rs.next()) if (products.contains(rs.getString(1))) des+=rs.getString(1)+" ";
         return des;
     }
@@ -246,7 +263,7 @@ public class imMainController implements Initializable {
         String products="";
         ResultSet rs= ConnectionClass.getConnection().createStatement().executeQuery(sql);
         while (rs.next()){
-            products+=rs.getString(4)+" ";
+            products+=rs.getString(1)+" ";
         }
         System.out.println(products);
         return products;

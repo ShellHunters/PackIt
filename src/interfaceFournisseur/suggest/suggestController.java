@@ -34,15 +34,19 @@ public class suggestController implements Initializable{
             try {
                 if (!(productName.getText().isEmpty())&&!(productPrice.getText().isEmpty())) {
                         PreparedStatement pr;
-                        String SQL = "INSERT INTO suggestproduct VALUES (?,?,?,'"+ user.getUserID()+"')";
+                        String SQL = "INSERT INTO suggestproducts VALUES (?,?,?,?)";
                         pr = connect.prepareStatement(SQL);
                         pr.setString(1, productName.getText());
                         if (Integer.valueOf(productPrice.getText())>=0)
                         pr.setInt(2, Integer.valueOf(productPrice.getText()));
                         else noteLabel.setText("Note:Set number in price");
                         pr.setString(3,description.getText());
+                        pr.setInt(4,user.getUserID());
                         pr.executeUpdate();
-                    ResultSet resultSet=connect.createStatement().executeQuery("SELECT * FROM suggestproduct");
+
+                        pr=connect.prepareStatement("SELECT * FROM suggestproducts where userID=?");
+                        pr.setInt(1,user.getUserID());
+                    ResultSet resultSet=pr.executeQuery();
                    while(resultSet.next()){
                        if (resultSet.getString(1).equals(productName.getText())&&(resultSet.getInt(2)==Integer.valueOf(productPrice.getText()))){
                            JFXDialogLayout jfxDialogLayout=new JFXDialogLayout();
@@ -51,7 +55,7 @@ public class suggestController implements Initializable{
                            dialog.show();
                        }
                    }
-                   resultSet=connect.createStatement().executeQuery("SELECT * FROM suggestproduct");
+                   resultSet=connect.createStatement().executeQuery("SELECT * FROM suggestproducts where userID='"+user.getUserID()+"'");
                     while(resultSet.next()){
                         if (resultSet.getString(4).equals(productName.getText())&&(resultSet.getInt(2)==Integer.valueOf(productPrice.getText()))){
                             JFXDialogLayout jfxDialogLayout=new JFXDialogLayout();

@@ -63,7 +63,14 @@
                                               <JFXButton fx:id="SetMultipleQuantityButton" onAction="#SetMultipleQuantity" prefHeight="43.0" prefWidth="210.0" text="Set Multiple Quantity" />
                                  </children>
                               </HBox>
-                              <JFXButton layoutX="28.0" layoutY="803.0" onAction="#ReturnToProvidersInterface" prefHeight="38.0" prefWidth="271.0" text="Return To Providers Interface" />
+                              <JFXButton layoutX="28.0" layoutY="802.0" onAction="#ReturnToProvidersInterface" prefHeight="27.0" prefWidth="200.0" text="Return ">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="29.0" rotate="180.0">
+                                       <image>
+                                          <Image url="@../../../../../../../baseline_exit_to_app_white_36dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></JFXButton>
                               <JFXButton fx:id="ApplyingCommandButton" layoutX="1125.0" layoutY="803.0" onAction="#ApplyingCommand" prefHeight="35.0" prefWidth="240.0" text="Apply Command ">
                                  <graphic>
                                     <ImageView fitHeight="26.0" fitWidth="26.0">

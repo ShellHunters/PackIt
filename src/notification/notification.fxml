@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane id="notification_stackpane" prefHeight="688.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notification.notificaitonController">
+<StackPane id="notification_stackpane" prefHeight="688.0" prefWidth="446.0" stylesheets="@notification_style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notification.notificaitonController">
    <children>
       <AnchorPane prefHeight="686.0" prefWidth="438.0" StackPane.alignment="CENTER">
          <children>
