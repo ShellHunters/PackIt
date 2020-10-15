@@ -11,17 +11,26 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-import static interfaceMagazinier.providers.SendEmailMessageController.InsertProductToCommand;
-import static interfaceMagazinier.providers.SendEmailMessageController.ProductList;
+import static interfaceMagazinier.providers.SendEmailMessageController.*;
 
 public class settingSenderInformationController implements Initializable {
 
@@ -60,6 +69,25 @@ errorLabel.setText("Email Was Sent");
                     DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                     InsertProductToCommand(ProductList,SendEmailMessageController.tempoProvider , dateformat.format(System.currentTimeMillis()));
+                    String path = "src/resource/File/commande1.jasper";
+
+                    try {
+                        // Indentation CTRL + ALT + L
+                        // Path documentPath
+                        // HashMap<String, Object> params
+                        // JRDataSource jasperDataSource/
+                        Path documentPath = Paths.get(path);
+                        Map<String, Object> params = new HashMap<>();
+                        params.put("providerName", providerName); // get it from login
+                        JREmptyDataSource emptyDatasource = new JREmptyDataSource();
+                        JRBeanCollectionDataSource jasperDataSource = new JRBeanCollectionDataSource(ProductList);
+                        params.put("DataSource", jasperDataSource);
+                        JasperPrint jasperPrint = JasperFillManager.fillReport(documentPath.toAbsolutePath().toString(), params, jasperDataSource);
+                        JasperViewer.viewReport(jasperPrint, false);
+
+                    } catch (JRException e) {
+                        e.printStackTrace();
+                    }
 
 SendEmailMessageController.forDisablingTextArea.set(false);
 

@@ -170,6 +170,8 @@ public static JFXDialog settingInfoDialog;
 public static SimpleBooleanProperty forDisablingTextArea = new SimpleBooleanProperty();
     public static String Quantity, msgSubject, msgContent;
 public static JFXDialog sendProductNotInListDialog;
+
+public static String providerName;
 public static Integer idOfTheProvider;
 //
 
@@ -612,6 +614,7 @@ imProviderController.controllerOfSendEmail.setSendEmailProductsTab();
 
             tempoProvider= ProviderCombobox.getValue();
             idOfTheProvider=ProviderCombobox.getValue().getId();
+            providerName=ProviderCombobox.getValue().getFirstName()+" "+ProviderCombobox.getValue().getLastName();
             ShowSettingInformation ();
 System.out.println("after it this is the value "+Email.ItSent);
 
@@ -623,25 +626,6 @@ if (!forDisablingTextArea.get()) {
             });
 
             forDisablingTextArea.set(true);
-        }
-        String path = "src/resource/File/commande1.jasper";
-
-        try {
-            // Path documentPath
-            // HashMap<String, Object> params
-            // JRDataSource jasperDataSource/
-            // Indentation CTRL + ALT + L
-            Path documentPath = Paths.get(path);
-            Map<String, Object> params = new HashMap<>();
-            params.put("providerName", "Hamouda"); // get it from login
-            JREmptyDataSource emptyDatasource = new JREmptyDataSource();
-            JRBeanCollectionDataSource jasperDataSource = new JRBeanCollectionDataSource(ProductList);
-            params.put("DataSource", jasperDataSource);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(documentPath.toAbsolutePath().toString(), params, jasperDataSource);
-            JasperViewer.viewReport(jasperPrint, false);
-
-        } catch (JRException e) {
-            e.printStackTrace();
         }
 
 

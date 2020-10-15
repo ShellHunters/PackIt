@@ -150,6 +150,7 @@ confirmedProduct=ConfirmedProduct;
         floor = new SimpleIntegerProperty();
         totalStock= new SimpleIntegerProperty();
         providerEmail = new SimpleStringProperty();
+        NeededQuantity=new SimpleIntegerProperty(0);
         //Complete the other vars from database
         try {
             Connection connection = ConnectionClass.getConnection();
@@ -238,6 +239,8 @@ confirmedProduct=ConfirmedProduct;
     public Integer getBarcode() {
         return barcode.get();
     }
+
+
 
     public SimpleIntegerProperty barcodeProperty() {
         return barcode;

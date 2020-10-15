@@ -39,7 +39,7 @@
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                             </columnResizePolicy>
                                         </TableView>
-                              <HBox alignment="CENTER" layoutX="28.0" layoutY="1.0" prefHeight="49.0" prefWidth="1337.0" spacing="30.0">
+                              <HBox alignment="CENTER" layoutX="-4.0" layoutY="1.0" prefHeight="49.0" prefWidth="1380.0" spacing="30.0">
                                  <children>
                                     <ImageView fitHeight="39.0" fitWidth="39.0">
                                        <image>
@@ -60,14 +60,17 @@
                                              </image>
                                           </ImageView>
                                        </graphic></JFXButton>
-                                              <JFXButton fx:id="SetMultipleQuantityButton" onAction="#SetMultipleQuantity" prefHeight="43.0" prefWidth="210.0" text="Set Multiple Quantity" />
+                                              <JFXButton fx:id="SetMultipleQuantityButton" onAction="#SetMultipleQuantity" prefHeight="43.0" prefWidth="268.0" text="Set Multiple Quantity" />
                                  </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
                               </HBox>
                               <JFXButton layoutX="28.0" layoutY="802.0" onAction="#ReturnToProvidersInterface" prefHeight="27.0" prefWidth="200.0" text="Return ">
                                  <graphic>
-                                    <ImageView fitHeight="29.0" fitWidth="29.0" rotate="180.0">
+                                    <ImageView fitHeight="29.0" fitWidth="29.0" nodeOrientation="INHERIT" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../baseline_exit_to_app_white_36dp.png" />
+                                          <Image url="@../../../../../PackIt/src/resource/icons/return-second.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></JFXButton>

@@ -13,13 +13,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
+<AnchorPane id="mainFrame" fx:id="identificationContainer" prefHeight="700.0" prefWidth="500.0" stylesheets="@identificationMain.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="identification.identificationController">
    <children>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="455.0" layoutY="5.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resource/icons/closeIconBlack.png" />
-         </image>
-      </ImageView>
       <Label id="appName" alignment="CENTER" layoutY="50.0" prefWidth="500.0" text="Pack It In" />
       <VBox fx:id="loginContent" alignment="TOP_CENTER" layoutY="72.0" prefHeight="624.0" prefWidth="500.0" spacing="50.0">
          <children>
@@ -59,5 +54,6 @@
       </VBox>
       <Label layoutX="345.0" layoutY="638.0" onMouseClicked="#toLoginAsProvider" text="Login as provider" textFill="#ee974c" />
       <Label layoutX="16.0" layoutY="638.0" onMouseClicked="#toLoginAsClient" text="Login as client" textFill="#ee974c" />
+      <Button layoutX="442.0" layoutY="11.0" mnemonicParsing="false" onAction="#close" prefHeight="32.0" prefWidth="31.0" styleClass="CloseButton" />
    </children>
 </AnchorPane>

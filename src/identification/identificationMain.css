@@ -32,3 +32,20 @@
 .check-box .box {
     -fx-background-color: #ee974c;
 }
+
+.CloseButton{
+    -fx-graphic: url(../resource/icons/CloseBlack.png);
+    -fx-padding: 0px;
+    -fx-background-color:transparent;
+
+}
+.CloseButton:hover {
+    -fx-cursor: hand;
+    -fx-graphic: url(../resource/icons/CloseIconReverse.png);
+    -fx-background-color:transparent;
+}
+
+.StyleRoots{
+    -fx-border-width:3px;
+    -fx-border-color: #ee974c;
+}
